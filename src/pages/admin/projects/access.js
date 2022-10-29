@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { project } from '../../../schema/object_schema';
+import { project,sort_order } from '../../../schema/object_schema';
 import { fetchData,putData,removeData } from '../../../access/dba';
 
 /* STYLESHEET IMPORTS */
@@ -80,14 +80,7 @@ const NewProject = (args) => {
                                 <button 
                                     className='browser-btn'
                                     onClick={
-                                        () => {
-                                            console.log(
-                                                project(
-                                                    title,
-                                                    description,
-                                                    selectedMembers
-                                                )
-                                            )
+                                        async () => {
                                             putData(
                                                 'projects',
                                                 {},
@@ -95,6 +88,16 @@ const NewProject = (args) => {
                                                     title,
                                                     description,
                                                     selectedMembers
+                                                )
+                                            )
+                                            const sort = await fetchData('sort_orders')
+                                            sort.Items.filter(order => {return order.type.S === "projects"})[0].sort.L.push({'S':title})
+                                            const output = await putData(
+                                                'sort_orders',
+                                                {},
+                                                sort_order(
+                                                    'projects',
+                                                    sort.Items.filter(order => {return order.type.S === "projects"})[0].sort.L
                                                 )
                                             )
                                             setState(false)
@@ -108,6 +111,16 @@ const NewProject = (args) => {
                                             await removeData('projects',{
                                                 'title':{'S':title}
                                             })
+                                            const sort = await fetchData('sort_orders')
+                                            const output = sort.Items.filter(order => {return order.type.S === "projects"})[0].sort.L.filter(project => {return project.S != title})
+                                            await putData(
+                                                'sort_orders',
+                                                {},
+                                                sort_order(
+                                                    'projects',
+                                                    output
+                                                )
+                                            )
                                             setState(false)
                                             args.remove(false)
                                         }    
@@ -393,18 +406,122 @@ const EditableProject = (args) => {
     }
 }
 
+const SortableProjectList = ({ items }) => {
+
+    const [itemList,setItemList] = useState([])
+
+    let tempList=[]
+    useEffect(() => {
+        tempList=[]
+        items.map(item => {
+            tempList.push(item)
+        })
+        setItemList(tempList)
+    },[])
+
+    function decrement(index){
+        if(index!==0){
+            tempList = [...itemList]
+            const temp = tempList[index-1]
+            tempList[index-1] = tempList[index]
+            tempList[index] = temp
+            setItemList(tempList)
+        }
+    }
+
+    function increment(index){
+        if(index < [...itemList].length-1){
+            console.log("here" +[...itemList].length)
+            tempList = [...itemList]
+            const temp = tempList[index+1]
+            tempList[index+1] = tempList[index]
+            tempList[index] = temp
+            setItemList(tempList)
+        }
+    }
+
+    return (
+        <div className='border-2 h-96 overflow-scroll relative'>
+            {
+                itemList.map((project,index)=>{
+                    return(
+                        <div 
+                            key={project.title.S + "-" + index}
+                            className='flex justify-between shadow-lg rounded w-4/5 mx-auto my-1 bg-gray-200'
+                        >
+                            <div className='my-auto'>
+                                <p
+                                    className='text-lg px-2 font-bold'
+                                >{project.title.S}</p>
+                            </div>
+                            <div className='flex flex-col h-min'>
+                                <button
+                                    className='h-min p-0 rounded text-center my-1 border-2  hover:bg-gray-300'
+                                    onClick={() => {
+                                        decrement(index)
+                                    }}
+                                >
+                                    ^
+                                </button>
+
+                                <button 
+                                    className='h-min px-2 rounded text-center my-1 border-2 rotate-180 hover:bg-gray-300'
+                                    onClick={() => {
+                                        increment(index)
+                                    }}
+                                >
+                                    ^
+                                </button>
+                            </div>
+                        </div>
+                    )
+                })
+            }
+            <button 
+                className='sticky bg-gray-300 bottom-1 left-2 p-2 rounded hover:bg-gray-400'
+                onClick={async () => {
+                    const string_list = []
+                    itemList.map(project => {
+                        string_list.push(project.title)
+                    })
+                    await putData(
+                        'sort_orders',
+                        {},
+                        sort_order(
+                            'projects',
+                            string_list
+                        )
+                    )
+                    window.location.reload()
+                }}
+            >
+                confirm changes
+            </button>
+        </div>
+    )
+}
+
+function orderJsonObjects(order,objects){
+    const output = []
+    order.map(order_by => {
+
+        output.push(objects.filter(object => {return object.title.S === order_by.S})[0])
+    })
+    return output
+}
+
 const ProjectAccess = () => {
+    const [editOrder,setEditOrder] = useState(false)
     const [newProject,setNewProject] = useState(false)
     const [search,setSearch] = useState("")
 
     const [projects, setProjects] = useState();
     const getProjects = async () => {
+        const sort = await fetchData('sort_orders')
         const res = await fetchData('projects');
-        console.log(res)
 
-        if(res === "ERROR"){
-            setProjects([]);
-        }
+        if(sort.Items.filter(order => {return order.type.S === "projects"})[0].sort.L.length !== 0)
+            setProjects(orderJsonObjects(sort.Items.filter(order => {return order.type.S === "projects"})[0].sort.L,res.Items));
         else
             setProjects(res.Items)
     };
@@ -415,37 +532,65 @@ const ProjectAccess = () => {
 
     if(projects){
         return (
-            <div className='editable-list'>
-                <div>
-                    <textarea
-                        id="search"
-                        name="search"
-                        value={search}
-                        placeholder='search...'
-                        onChange={(event) => {setSearch(event.target.value)}}
-                    />
-                    <button className='browser-btn' onClick={() => setNewProject(true)}>add new project</button>
+            <>
+                {
+                    editOrder?
+                    (
+                        <div className='absolute bg-gray-100 shadow-lg w-4/5 rounded left-10 '>
+                            <button 
+                                className='px-2 rounded hover:bg-blue-100 absolute top-0 right-0 z-[55] bg-gray-200'
+                                onClick={() => {
+                                    setEditOrder(false)
+                                }}    
+                            >X</button>
+                            <p className='text-red-400 italic px-2'>(confirming changes will refresh the page)</p>
+                            <SortableProjectList items={projects}/>
+                        </div>
+                    )
+                    :
+                    (
+                        <></>
+                    )
+                }
+                <div className='editable-list'>
+                    <div>
+                        <textarea
+                            id="search"
+                            name="search"
+                            value={search}
+                            placeholder='search...'
+                            onChange={(event) => {setSearch(event.target.value)}}
+                        />
+                        <div>
+                            <button className='browser-btn' onClick={() => {
+                                setEditOrder(true)
+                            }}>
+                                edit order
+                            </button>
+                            <button className='browser-btn' onClick={() => setNewProject(true)}>add new project</button>
+                        </div>
+                    </div>
+                    {newProject ? <NewProject remove={setNewProject}/> : <></>}
+                    <div>
+                        {
+                            projects.filter(project => 
+                                project.title.S.toLowerCase().includes(search.toLowerCase())
+                            ).map((project,index) => {
+                                return (
+                                    <div>
+                                        <EditableProject 
+                                            key={project.title.S+index}
+                                            data={project.data.M}
+                                            title={project.title.S} 
+                                            id={'editable-project-'+index}
+                                        />
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
                 </div>
-                {newProject ? <NewProject remove={setNewProject}/> : <></>}
-                <div>
-                    {
-                        projects.filter(project => 
-                            project.title.S.toLowerCase().includes(search.toLowerCase())
-                        ).map((project,index) => {
-                            return (
-                                <div>
-                                    <EditableProject 
-                                        key={project.title.S+index}
-                                        data={project.data.M}
-                                        title={project.title.S} 
-                                        id={'editable-project-'+index}
-                                    />
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-            </div>
+            </>
         )
     }
     else{

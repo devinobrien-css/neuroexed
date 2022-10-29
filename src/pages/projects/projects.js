@@ -104,6 +104,15 @@ const ProjectList = (args) => {
     }
 }
 
+function orderJsonObjects(order,objects){
+    const output = []
+    order.map(order_by => {
+
+        output.push(objects.filter(object => {return object.title.S === order_by.S})[0])
+    })
+    return output
+}
+
 /** Quote for the landing page
  * 
  * @returns 
@@ -112,7 +121,11 @@ const ProjectList = (args) => {
     const [projects, setProjects] = React.useState();
     const getProjects = async () => {
         const res = await fetchData('projects');
-        if(res !== "EMPTY")
+        const sort = await fetchData('sort_orders')
+
+        if(sort.Items.filter(order => {return order.type.S === "projects"})[0].sort.L.length !== 0)
+            setProjects(orderJsonObjects(sort.Items.filter(order => {return order.type.S === "projects"})[0].sort.L,res.Items));
+        else
             setProjects(res.Items)
     };
 
