@@ -1,0 +1,110 @@
+div.affiliations-header {
+    background-image:url('../../img/hex-bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin:1em auto;
+    box-shadow: 1px 1px 4px lightslategray;
+    padding:1em;
+}
+div.affiliations-header > div:first-child > p {
+    font-family: 'Lato', sans-serif;
+    font-size: 3em;
+    padding: 0;
+    margin:0;
+    color:white;
+}
+@media screen and (max-width:700px) {
+    div.affiliations-header > div:first-child > p{
+        font-size: 2em;
+    }
+}
+div.affiliations-header > div:nth-child(2) > p {
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    padding: 0;
+    margin:0;
+    color:white;
+    font-style: italic;
+}
+
+
+
+
+
+div.affiliations-container {
+    background-image:url('../../img/standard-bg-light.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 1px 1px 4px lightslategray;
+    padding: 2em;
+    margin-bottom:1em;
+}
+
+div.affiliations-container > p {
+    font-family: 'Lato';
+    font-size:2em;
+    margin: 0;
+    padding: 0;
+}
+div.affiliations-container > div {
+    display: flex;
+}
+
+div.affiliation{
+    box-shadow: 1px 1px 4px lightslategray;
+    padding: 1em;
+    background-color: white;
+    margin: 1em auto;
+    transition: box-shadow 500ms ease;
+    width:44%;
+    height: fit-content;
+}
+div.affiliation:hover {
+    box-shadow: 1px 1px 2em lightslategray;
+}
+div.affiliation > div > p {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2em;
+    margin: 0;
+    padding: 0.5em;
+    text-align: center;
+}
+div.affiliation > div > button {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.2em;
+    display: block;
+    margin: 0 auto;
+    padding: 0.5em;
+    text-align: justify;
+    border-radius: 0.3em;
+    border: none;
+}
+div.affiliation > div > img {
+    margin:auto;
+    display: block;
+    /* width:13em;  */
+}
+@media screen and (max-width:1000px) {
+    div.affiliation {
+        width: 100%;
+    }
+    div.affiliation > div > p {
+        font-size: 1.3em;
+    }
+}
+
+
+
+
+div.leaving-page > button {
+    border:none;
+    padding:1em;
+    background-color: navy;
+    color:white;
+    border-radius: 0.2em;
+    font-size: 1em;
+    margin: 0 auto;
+    display: block;
+}

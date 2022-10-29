@@ -1,0 +1,281 @@
+
+ div.projects-header {
+    background-image:url('../../img/hex-bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin:1em auto;
+    box-shadow: 1px 1px 4px lightslategray;
+    padding:1em;
+}
+div.projects-header > div:first-child > p {
+    font-family: 'Lato', sans-serif;
+    font-size: 3em;
+    padding: 0;
+    margin:0;
+    color:white;
+}
+div.projects-header > div:nth-child(2) > p {
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    padding: 0;
+    margin:0;
+    color:white;
+    font-style: italic;
+}
+@media screen and (max-width:700px) {
+    div.projects-header {
+        padding:0.5em;
+    }
+    div.projects-header > div:first-child > p {
+        font-family: 'Lato', sans-serif;
+        font-size: 2em;
+        padding: 0;
+        margin:0;
+        color:white;
+    }
+}
+
+
+
+
+
+
+div.project-container {
+    background-image:url('../../img/standard-bg-light.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin:1em auto;
+    box-shadow: 1px 1px 4px lightslategray;
+    padding:2em;
+}
+div.project-container > p {
+    font-family: 'Lato';
+    font-size: 2.3em;
+    line-height: 160%;
+    margin: 0;
+}
+div.project {
+    box-shadow: 1px 1px 4px lightslategray;
+    padding: 1em;
+    background-color: white;
+    margin: 1em auto;
+    transition: box-shadow 500ms ease;
+    width:45%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+@media screen and (max-width:700px){
+    div.project-container {
+        padding:0.2em;
+    }
+    div.project-container > p {
+        font-size: 1.8em;
+        line-height: 160%;
+    }
+    div.project {
+        padding: 0.3em;
+        width:95%;
+    }
+}
+@media screen and (max-width:1150px) {
+    div.project {
+        width:95%;
+    }
+}
+div.project:hover {
+    box-shadow: 1px 1px 2em lightslategray;
+}
+
+
+div.project > div {
+    min-height: 12em;
+}   
+div.project > div > p:first-child {
+    font-family: 'Lato';
+    font-size: 1.5em;
+    line-height: 160%;
+    margin: 0;
+    padding: 0;
+}
+div.project > div > p:nth-child(2) {
+    font-family: 'Lato';
+    font-size: 1em;
+    line-height: 160%;
+    margin: 0;
+    padding-left: 0.5em;
+}
+div.project > div:nth-child(2) > div{
+    display: flex;
+    overflow: scroll;
+    padding: 1em;
+    bottom: 0;
+}
+
+
+div.project > div:nth-child(2) > p{
+    font-family: 'Lato';
+    font-size: 1.5em;
+    line-height: 160%;
+    margin: 0;
+    margin-top: 0.5em;
+}
+
+div.mini-profile {
+    box-shadow: 1px 1px 5px lightslategray;
+    border-radius: 0.2em;
+    margin-right:1em;
+    padding:0.3em;
+    min-width: 8em;
+    max-width: 30%;
+    transition:box-shadow 400ms ease;
+}
+div.mini-profile:hover {
+    box-shadow: 1px 1px 15px lightslategray;
+}
+div.mini-profile > div:first-child > img {
+    border-radius: 50%;
+    display: block;
+    margin:0 auto;
+    width: 70%;
+}
+div.mini-profile > p {
+    text-align: center;
+    margin:0 auto;
+    font-family: 'Lato';
+}
+div.mini-profile > button {
+    display: block;
+    text-align: center;
+    margin:0 auto;
+    font-family: 'Lato';
+    background-color: transparent;
+    border:none;
+    color:navy;
+}
+
+div.triune-brain-container{
+    display: flex;
+    flex-wrap: wrap-reverse;
+}
+
+div.triune-brain {
+    background-image: url('../../img/triune.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    box-shadow: 1px 1px 4px lightslategray;
+    height: 100%;
+    min-height: 20em;
+}
+
+div.triune-brain-toggle{
+    display: flex;
+    margin: 0 auto;
+    width: 100%;
+}
+div.triune-brain-toggle > button:first-child{
+    border-top-left-radius: 0.25em;
+    border-bottom-left-radius: 0.25em;
+}
+div.triune-brain-toggle > button:nth-child(3){
+    border-top-right-radius: 0.25em;
+    border-bottom-right-radius: 0.25em;
+}
+div.triune-brain-toggle > button {
+    display: block;
+    border:1px solid lightgrey;
+    background-color: lightgrey;
+    margin: 0;
+    padding: 0.2em;
+    font-size:1em;
+    width: 32%;
+    transition: all 600ms ease;
+}
+div.triune-brain-toggle > button.selected {
+    background-color: white;
+    color:navy;
+}
+div.triune-brain-detail {
+    background-image:url('../../img/standard-bg-light.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 1px 1px 4px lightslategray;
+    padding: 1em;
+    min-height: 20em;
+}
+div.triune-brain-detail > p:first-child {
+    font-family: 'Lato';
+    font-size: 2.5em;
+    margin: 0;
+}
+div.triune-brain-detail > p:nth-child(3) {
+    font-family: 'Lato';
+    font-size: 1em;
+    margin: 0;
+    margin-top: 1em;
+}
+
+
+
+
+div.switch-img-position-center {
+    background-position: center !important;
+
+}
+
+
+
+
+
+div.profile, div.modal-profile {
+    background-color: white;
+    box-shadow: 1px 1px 4px lightslategray;
+    padding:0.7em;
+    margin: 1em auto;
+    width: 90%;
+    transition: all 1s ease;
+}
+div.profile:hover, div.modal-profile:hover {
+    box-shadow: 1px 1px 20px lightslategray;
+
+}
+div.profile > div:first-child, div.modal-profile > div:first-child{
+    display: flex;
+}
+div.profile > div:first-child > div > img, div.modal-profile > div:first-child > div > img {
+    border-radius: 50%;
+    border:0.6em inset gray;
+}
+div.profile > div:first-child > div > p, div.modal-profile > div:first-child > div > p{
+    margin-left:0.8em;
+    font-family: 'Lato';
+    font-size: 2.3em;
+}
+div.profile > div:nth-child(2) > p, div.modal-profile > div:nth-child(2) > p{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+@media screen and (min-width:1100px) {
+    div.profile {
+        width:45%;
+    }
+}
+@media screen and (max-width:700px) {
+    div.profile > div:first-child, div.modal-profile > div:first-child {
+        display: block;
+    }
+    div.profile > div:first-child > div > img, div.modal-profile > div:first-child > div > img {
+        margin: 0 auto;
+        display: block;
+    }
+    div.profile > div:first-child > div > p, div.modal-profile > div:first-child > div > p{
+        margin-left:0;
+        font-family: 'Lato';
+        font-size: 1.3em;
+    }
+}

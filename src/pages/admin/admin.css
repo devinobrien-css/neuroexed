@@ -1,0 +1,194 @@
+
+
+
+
+
+button.browser-btn {
+    /* border:1px solid rgb(27,53,92); */
+    box-shadow: 0px 0px 4px 0px lightslategray;
+    border:none;
+    border-radius: 0.2em;
+    font-family: 'Lato';
+    font-size: 0.8em;
+    background-color: white;
+    padding:0.3em;
+    display: block;
+    height: fit-content;
+    margin: auto 0;
+}
+
+
+div.hidden-content {    
+    overflow: hidden;
+    font-size: 0;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    height:0;
+    /* fade out, then shrink */
+    transition: opacity .25s,
+                font-size .5s .25s,
+                margin .5s .25s,
+                padding .5s .25s;
+}
+
+div.open {
+    overflow: unset;
+    /* padding: 1em; */
+    font-size: 1.13em;
+    opacity: 1;
+    padding:0.25em;
+    height:unset;
+    transition: font-size .25s,
+                margin .25s,
+                padding .25s,
+                height .25s,
+                opacity .5s .25s;
+}
+
+
+
+div.editable-list{
+    display: relative;
+    background-color: rgba(200,200,200,0.5);
+}
+div.editable-list > div:first-child {
+    padding:0.5em;
+    border-bottom: 2px solid rgb(120,120,120);
+    display: flex;
+    justify-content: space-between;
+}
+div.editable-list > div:first-child > textarea {
+    border:none;
+    border-radius: 0.3em;
+    font-family: 'Lato';
+    font-size: 1.5em;
+    line-height: 1;
+    padding:0.2em;
+    max-height:1.2em;
+    resize: none;
+    width:50%;
+
+}
+div.editable-list > div:first-child > div{
+    display: flex;
+}
+div.editable-list > div:first-child > div > button:first-child {
+    display: block;
+    margin:auto 1em;
+}
+
+
+div.editable{
+    border-bottom: 2px solid slategray;
+    transition:background-color 500ms ease;
+}
+div.editable:hover{
+    background-color: white;
+}
+div.selected-editable{
+    background-color: white !important;
+}
+div.editable > div:first-child{
+    display: flex;
+    padding:0.5em;
+    justify-content: space-between;
+    font-family: 'Lato';
+}
+div.editable > div:first-child > p:first-child {
+    font-size: 1.5em;
+}
+div.edit-buttons {
+    width: min-content;
+    display: flex;
+    justify-content: right;
+}
+
+div.editable-item {
+    position:relative;
+    padding:0.5em;
+    font-family:'Lato';
+    display: flex;
+    justify-content: space-between;
+}
+
+div.editable-item > input,div.editable-item > textarea {
+    font-family:'Lato';
+    resize: vertical;
+    width: 80%;
+}
+
+
+div.selected-member-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: scroll;
+
+}
+div.selected-member-list > div {
+    margin:0.2em;
+    box-shadow: 0px 0px 4px 0px lightslategray;
+    background-color: white;
+    display: flex;
+    padding:0.5em;
+    font-family: 'Lato';
+    min-width: 260px;
+}
+div.selected-member-list > div > img {
+    display: block;
+    margin:auto 0;
+    width:2.3em;
+    height:2.3em;
+    border-radius: 50%;
+}
+div.selected-member-list > div > p {
+    margin-left: 0.3em;
+}
+div.selected-member-list > div > button{
+    font-family: 'Lato';
+    height:min-content;
+    display: block;
+    margin:auto 0.3em;
+    background-color: transparent;
+    border-radius: 0.2em;
+}
+
+
+div.filtered-member-list {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 10001;
+    width:30%;
+    top:2em;
+    left:4.5em;
+    box-shadow: 5px 5px 5px lightslategray;
+    max-height: 10em;
+    overflow: scroll;
+    min-width: 240px;
+
+}
+div.filtered-member-list > div {
+    border:1px solid gray;
+    background-color: white;
+    display: flex;
+    padding:0.5em;
+    min-width: 240px;
+}
+div.filtered-member-list > div > img {
+    display: block;
+    width:3em;
+    border-radius: 50%;
+}
+div.filtered-member-list > div > p {
+    margin-left: 0.3em;
+}
+
+.hide {
+    display:none;
+}
+
+p.sub-header {
+    font-family: 'Lato';
+}
