@@ -11,8 +11,7 @@ import Modal from '../../components/modals/modal';
 import { fetchData } from '../../access/dba';
 
 
-/** Header for the landing page
- * 
+/** Header for the affiliations page
  * @returns 
  */
 const AffiliationsHeader = () => {
@@ -29,19 +28,8 @@ const AffiliationsHeader = () => {
 }
 
 
-const AffiliationsSpaceRow = (args) => {
-    return (
-        <div className={'space-row '+args.spec}>
-            <br/>
-            <br/>
-            <br/>
-        </div>
-    )
-}
-
 const Affiliation = (args) => {
     var affiliate = args.data;
-
     var modal_content = (
         <div className='bg-white rounded py-8 px-4'>
             <div className='text-xl md:text-4xl'>
@@ -59,16 +47,16 @@ const Affiliation = (args) => {
     )
 
     return (
-        <div className='affiliation content-column'> 
-            <div>
-                <img src={'./img/affiliations_logos/'+affiliate.data.M.slug.S+'.png'} alt={affiliate.data.M.slug.S}/>
-            </div> 
-            <div>
-                <p>{affiliate.name.S}</p>
-            </div>
-            <div>
-                <button onClick={() => Modal(modal_content)}>VISIT SITE</button>
-            </div>
+        <div className='md:w-5/12 mx-auto p-4 my-4 bg-white rounded shadow-lg'> 
+            <img 
+                src={`https://neuro-exed-images.s3.us-east-1.amazonaws.com/affiliations/${affiliate.data.M.slug.S}.png`} 
+                alt={`affiliation ${affiliate.name.S}`} 
+                className='mx-auto my-4 shadow-lg shadow-gray-300 rounded p-2 border'
+            /> 
+            <p className='text-2xl my-2 text-center'>{affiliate.name.S}</p>
+            <button
+                className='bg-gray-800 hover:bg-gray-900 transition-all transform hover:scale-105 text-white rounded px-4 py-1 mx-auto block'
+                onClick={() => Modal(modal_content)}>visit</button>
         </div>
     )
 }
@@ -83,31 +71,21 @@ const AffiliationsSection = () => {
         getAffiliations();
     }, []);
 
-    if(affiliations){
-        return (
-            <div className='affiliations-container'>
-                <p>Affiliations</p>
-                <div className='column-container'>
-                    {
-                        affiliations.map((affiliate,index) => {
-                            return <Affiliation key={index} data={affiliate} />
-                        })
-                    }
-                </div>
+    return (
+        <div className='p-4 shadow-xl bg-cover mb-4 bg-light-hex'>
+            <p className='text-6xl font-light mb-4'>Our Affiliates</p>
+            <div className='flex flex-wrap'>
+                {
+                    affiliations?.map((affiliate,index) => {
+                        return <Affiliation key={index} data={affiliate} />
+                    })
+                }
             </div>
-        );
-    }
-    else {
-        return (
-            <div className='affiliations-container'>
-                <p>Affiliations</p>
-            </div>
-        );
-    }
+        </div>
+    );
 }
 
-/**
- * 
+/**Affiliations Section
  * @param {*} args 
  * @returns 
  */
@@ -116,7 +94,6 @@ const Affiliations = () => {
 		<>
 			<AffiliationsHeader />
             <AffiliationsSection />
-            <AffiliationsSpaceRow />
             <Footer />
 		</>
     );
