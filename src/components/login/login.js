@@ -30,7 +30,7 @@ function HandleLogout(setUser){
         setUser("")
     })
     .catch((error) => {   
-        console.log('err')
+        console.log('error')
         console.log(error)
     });
     modal.click()
@@ -127,8 +127,8 @@ const Login = () => {
         )
     }
     return (
-        <div className="login" onClick={() => Modal(<LoginModal />)}>
-            <img src='./lock.png'/>
+        <div className="fixed bottom-1 right-1 z-[1001] grayscale w-12" onClick={() => Modal(<LoginModal />)}>
+            <img src='./lock.png' alt="lock"/>
         </div>
     )
 }

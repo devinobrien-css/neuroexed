@@ -12,7 +12,6 @@ const EditableProject = (args) => {
     const [people, setPeople] = useState();
     const getPeople = async () => {
         const res = await fetchData('people');
-        console.log(res)
 
         if(res === "EMPTY"){
             setPeople([]);
@@ -26,8 +25,6 @@ const EditableProject = (args) => {
     }, []);
 
     const [state,setState] = useState(false)
-
-    console.log(args.data)
     const [title,setTitle] = useState(args.title)
     const [description,setDescription] = useState(args.data.description.S)
 
@@ -51,7 +48,6 @@ const EditableProject = (args) => {
                 'last':{'S':person.data.M.last.S}
             }
         })
-        console.log(newList)
         setSelectedMembers(newList)
     }
 
@@ -81,13 +77,6 @@ const EditableProject = (args) => {
                                     className='browser-btn'
                                     onClick={
                                         () => {
-                                            console.log(
-                                                project(
-                                                    title,
-                                                    description,
-                                                    selectedMembers
-                                                )
-                                            )
                                             putData(
                                                 'projects',
                                                 {},
@@ -209,7 +198,6 @@ const ProjectAccess = () => {
     const [projects, setProjects] = useState();
     const getProjects = async () => {
         const res = await fetchData('projects');
-        console.log(res)
 
         if(res === "ERROR"){
             setProjects([]);

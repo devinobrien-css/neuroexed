@@ -6,54 +6,18 @@ import './news.css'; //contains styles specific to the user page
 import '../../components/content_sections.css'; //contains general container styles
 
 /* COMPONENT AND ELEMENT IMPORTS */
-import Footer from '../../components/footer/footer';
+import Footer from '../../components/footer.component';
 import Modal from '../../components/modals/modal';
-import Header from '../../components/header/header';
-
-
-const DateCard = (args) => {
-    const date = args.date
-    const months = {
-        '1':'JAN',
-        '2':'FEB',
-        '3':'MAR',
-        '4':'APR',
-        '5':'MAY',
-        '6':'JUN',
-        '7':'JUL',
-        '8':'AUG',
-        '9':'SEP',
-        '10':'OCT',
-        '11':'NOV',
-        '12':'DEC'
-    }
-
-    return (
-        <div className='flex flex-col'>
-            <div 
-                className='mx-auto rounded overflow-hidden shadow-lg'
-            >
-                <p className='bg-gray-400 text-gray-100 px-2'>{months[date[0]]}</p>
-                <p className='mx-auto text-center bg-white'>{date[1]}</p>
-            </div>
-            <p
-                className='mx-auto text-center'
-            >{'20'+date[2]}</p>
-        </div>
-
-    )
-}
-
+import Header from '../../components/header.component';
+import DateCard from '../../components/general/DateCard.component';
 
 
 const Posts = () => {
     const [news, setNews] = useState();
     const getNews = async () => {
         const res = await fetchData('news');
-        console.log(res)
 
         if(res === "ERROR"){
-            console.log('err')
             setNews([]);
         }
         else
@@ -69,7 +33,7 @@ const Posts = () => {
         return (
             <div className='news-section'>
                 <p>Our Latest Updates</p>
-                <div className='post-list'>
+                <div className='flex'>
                     {
                         news.map((post,index) => {
                             const modal_content = (

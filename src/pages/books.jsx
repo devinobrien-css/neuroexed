@@ -1,27 +1,8 @@
 import React from 'react';
 
-
 /* COMPONENT AND ELEMENT IMPORTS */
-import Footer from '../components/footer/footer';
-import Header from '../components/header/header';
-
-
-
-const BooksHeader = () => {
-    return (
-        <div className='books-header'>
-            <div>
-                <p></p>
-            </div>
-            <div>
-                <p></p>
-            </div>
-        </div>
-
-
-    );
-}
-
+import Footer from '../components/footer.component';
+import Header from '../components/header.component';
 
 const BooksSection = () =>{
     return (
@@ -49,7 +30,6 @@ const BooksSection = () =>{
         </div>
     );
 }
-
 
 const Books = () => {
     return (

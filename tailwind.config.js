@@ -20,6 +20,7 @@ module.exports = {
 		extend: {
 			backgroundImage: {
 				'dark-hex':"url('./img/hex-bg-dark.png')",
+				'nav-hex':"url('./img/hex-nav-bg.png')",
 				'light-hex':"url('./img/standard-bg-light.png')",
 				'hex': "url('./img/hex-bg.png')",
 				'main-brain': "url('./img/brain.gif')",
@@ -30,7 +31,12 @@ module.exports = {
 			},
 			fontFamily: {
 				'sans': 'Gill Sans'
-			}
+			},
+			transitionProperty: {
+				'height': 'height',
+				'width': 'width',
+				'spacing': 'margin, padding',
+			},
 		},
 	},
 	plugins: [

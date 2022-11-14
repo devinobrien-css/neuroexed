@@ -15,9 +15,7 @@ const NewPerson = (args) => {
     const[state,setState] = useState(true)
     const[error,setError] = useState([])
     const Error = ({message,type}) => {
-        console.log(error)
         if(error.includes(type)){
-            console.log(type)
             return (
                 <p className='text-red-500 italic text-sm'>{message}</p>
             )
@@ -78,9 +76,6 @@ const NewPerson = (args) => {
                                 onClick={
                                     async () => {
                                         setError([])
-                                        //error check
-                                        console.log(first.length===0)
-                                        console.log(last)
                                         if(first.length === 0){
                                             setError(...error,'missing-first')
                                         }
@@ -183,7 +178,6 @@ const NewPerson = (args) => {
                         type="file" 
                         accept="image/png"
                         onChange={(event) => {
-                            console.log(event.target.files[0])
                             setImageUpload(event.target.files[0])
                         }}
                     />
@@ -283,11 +277,6 @@ const EditablePerson = (args) => {
                                             )
                                         )   
 
-                                        console.log(process.env.REACT_APP_NEUROEXED_BUCKET)
-                                        console.log(process.env.REACT_APP_NEUROEXED_REGION)
-                                        console.log(process.env.REACT_APP_NEUROEXED_ACCESS)
-                                        console.log(process.env.REACT_APP_NEUROEXED_SECRET)
-
                                         const config = {
                                             bucketName: process.env.REACT_APP_NEUROEXED_BUCKET,
                                             dirName: "profile_pictures",
@@ -372,7 +361,6 @@ const EditablePerson = (args) => {
                             var file = event.target.files[0]
                             var blob = file.slice(0, file.size, 'image/png'); 
                             const newFile = new File([blob], `${last.replace("'","").toLowerCase()}.png`, {type: 'image/png'});
-                            console.log(newFile)
                             setImageUpload(newFile)
                         }}
                     />
@@ -452,7 +440,6 @@ const SortablePersonList = ({ items }) => {
 
     function increment(index){
         if(index < [...itemList].length-1){
-            console.log("here" +[...itemList].length)
             tempList = [...itemList]
             const temp = tempList[index+1]
             tempList[index+1] = tempList[index]

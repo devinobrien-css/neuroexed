@@ -219,10 +219,8 @@ const AffiliateAccess = () => {
     const [affiliates, setAffiliates] = useState();
     const getAffiliates = async () => {
         const res = await fetchData('affiliations');
-        console.log(res)
 
         if(res === "ERROR"){
-            console.log('err')
             setAffiliates([]);
         }
         else

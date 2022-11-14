@@ -1,15 +1,15 @@
 import React, { useState,useEffect } from 'react';
 import { fetchData } from '../access/dba';
-import Footer from '../components/footer/footer';
+import Footer from '../components/footer.component';
 import Modal from '../components/modals/modal';
 import { Profile } from './people';
-import Header from '../components/header/header';
+import Header from '../components/header.component';
 
 const Member = (args) => {
     const member_data = args.data.data.M
 
     return (
-        <div className=' w-fit mx-4 min-w-1/4 bg-white rounded p-2 shadow border flex flex-col justify-between' 
+        <div className=' mx-4 min-w-[140px] bg-white rounded p-2 shadow border flex flex-col justify-between' 
             onClick={() => Modal(
                 <div className='bg-white rounded overflow-hidden w-[100%]'>
                     <Profile data={member_data}/>
@@ -79,17 +79,12 @@ const ProjectList = (args) => {
 
 function orderJsonObjects(order,objects){
     const output = []
-    order.map(order_by => {
-
+    order.forEach(order_by => {
         output.push(objects.filter(object => {return object.title.S === order_by.S})[0])
     })
     return output
 }
 
-/** Quote for the landing page
- * 
- * @returns 
- */
  const ProjectSection = () => {
     const [projects, setProjects] = React.useState();
     const getProjects = async () => {
@@ -161,8 +156,8 @@ const ProjectBrainSection = () => {
                     </p>
                 </div>
             </div>
-            <div className='md:w-1/2'>
-                <div className='bg-triune bg-contain h-full bg-no-repeat bg-center border shadow rounded-lg ml-4'>
+            <div className='md:w-1/2 w-full'>
+                <div className='bg-triune bg-contain h-full min-h-[200px] bg-no-repeat bg-center border shadow rounded-lg ml-4'>
                     
                 </div>
             </div>
@@ -175,20 +170,20 @@ const ProjectBrainSection = () => {
 
         <div className='p-4 shadow-xl border bg-cover bg-bottom bg-light-hex'>
             <p className='text-6xl font-light'>Our lab group's core values</p>
-            <div className='flex flex-wrap'>
-                <div className='w-[45%] shadow-lg mx-auto bg-white p-4 bg-opacity-90 my-4 rounded border'>  
+            <div className='md:flex flex-wrap'>
+                <div className='w-full md:w-[45%] shadow-lg mx-auto bg-white p-4 bg-opacity-90 my-4 rounded border'>  
                     <p className='text-3xl'>The Experiential Development of Professional Wisdom</p>
                     <p>Student development of "so-called" soft-skills, professional knowledge, entrepreneurship, and even wisdom through experiential education is seen as a natural progression with age and with experiential activities. This project examines how learning from experience in conjunction with a strong academic curriculum can develop expertise in a skill and thinking area. Knowing the modern view of neuroplasticity, it also looks at factors such as engagement that produce brain and behavioral changes. Knowing modern neuroscience, it looks at cognitive-emotional integration as below.</p>
                 </div>
-                <div className='w-[45%] shadow-lg mx-auto bg-white p-4 bg-opacity-90 my-4 rounded border'>  
+                <div className='w-full md:w-[45%] shadow-lg mx-auto bg-white p-4 bg-opacity-90 my-4 rounded border'>  
                     <p className='text-3xl'>Cognitive-Emotional Brain Circuit Integration and Reflection</p>
                     <p>Reflection facilitates the integration of emotion with cognition in producing student maturity from experiential education. While focused on the neuroscience of brain areas and networks from brain scanner studies, this project also learns from other fields such as art/music, social psychology/sociology, philosophy, etc. A particular interest is in the two-way communication between unconscious (mammalian brain) and conscious (primate brain) decision-making brain circuits and its enhancement over time. We also are interested in parallels to mindfulness and growth mindset practices.</p>
                 </div>
-                <div className='w-[45%] shadow-lg mx-auto bg-white p-4 bg-opacity-90 my-4 rounded border'>  
+                <div className='w-full md:w-[45%] shadow-lg mx-auto bg-white p-4 bg-opacity-90 my-4 rounded border'>  
                     <p className='text-3xl'>Diversity and inclusion</p>
                     <p>Using experiential education thinking to promote students taking agency in working with diverse groups of college students for a diverse world is the focus of this project. Several members of the lab recently produced a book on this topic, using student and alumni stories to illustrate basic social neuroscience principles of relevant unconscious decision-making. There is no question that diversity/inclusion generally is a compelling issue of our time inside and outside of the college experience and is an ongoing interest of the lab.</p>
                 </div>
-                <div className='w-[45%] shadow-lg mx-auto bg-white p-4 bg-opacity-90 my-4 rounded border'>  
+                <div className='w-full md:w-[45%] shadow-lg mx-auto bg-white p-4 bg-opacity-90 my-4 rounded border'>  
                     <p className='text-3xl'>Engaged Teaching</p>
                     <p>Applying lessons from experiential education and the above projects, the goal here is to better reach, engage, and promote active learning in all classroom students, ranging from those who are passionate about the topic to those who may lack confidence or are otherwise less engaged. We are currently using a balanced hybrid, flipped-classroom teaching model with group work and continuous student feedback in an introductory psychology class that the lab director teaches every semester and which has research assistance from lab members.</p>
                 </div>

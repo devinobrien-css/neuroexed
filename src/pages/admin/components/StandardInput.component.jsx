@@ -21,7 +21,6 @@ const StandardInput = ({title, type='text', value, setValue,classes}) => {
                 autoComplete="false"
                 placeholder={'Enter ' + title}
                 onChange={(event) => {
-                    console.log(event.target.value)
                     if(type==='date')
                         setValue(event.target.value.split('-')[0])
                     else

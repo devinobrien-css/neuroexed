@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { fetchData } from '../access/dba';
 
 /* COMPONENT AND ELEMENT IMPORTS */
-import Footer from '../components/footer/footer';
-import Header from '../components/header/header';
+import Footer from '../components/footer.component';
+import Header from '../components/header.component';
 
 const StellarSection = () => {
     const [state,setState] = useState(false)
@@ -18,7 +18,7 @@ const StellarSection = () => {
                 <div 
                     className='group-hover:border-8 rounded-lg overflow-hidden border-double border-4 shadow-lg mx-auto  w-32 md:mx-0 h-min border-blue-300 transition-all '
                 >
-                    <img src={`https://neuro-exed-images.s3.us-east-1.amazonaws.com/profile_pictures/stellar.png`} alt="image" />
+                    <img src={`https://neuro-exed-images.s3.us-east-1.amazonaws.com/profile_pictures/stellar.png`} alt="James Stellar" />
                 </div>
                 <div className='pl-2 w-full md:w-3/5 flex flex-col justify-between'>
                     <p className="font-light text-4xl md:text-4xl w-full  mb-2 transition-all md:text-left text-center"> Dr. James Stellar</p>
@@ -84,7 +84,7 @@ export const Profile = (args) => {
                 <div 
                     className='group-hover:border-8 rounded-lg overflow-hidden border-double border-4 shadow-lg mx-auto  w-32 md:mx-0 h-min border-blue-300 transition-all '
                 >
-                    <img src={`https://neuro-exed-images.s3.us-east-1.amazonaws.com/profile_pictures/${data["last"].S.toLowerCase().replace("'","")}.png`} alt="image" />
+                    <img src={`https://neuro-exed-images.s3.us-east-1.amazonaws.com/profile_pictures/${data["last"].S.toLowerCase().replace("'","")}.png`} alt={`Lab Member ${data["first"].S} ${data["last"].S}`} />
                 </div>
                 <div className='pl-2 w-full md:w-3/5 flex flex-col justify-between'>
                     <p className="font-light text-4xl md:text-4xl w-full  mb-2 transition-all md:text-left text-center"> {data['first'].S} {data['last'].S}</p>

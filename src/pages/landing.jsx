@@ -5,12 +5,11 @@ import { useRecoilState } from "recoil";
 import { pageState } from "../atom";
 
 /* COMPONENT AND ELEMENT IMPORTS */
-import Footer from '../components/footer/footer';
-import Header from '../components/header/header.jsx';
-import Blog from '../components/landing/Blog.component.jsx';
+import Footer from '../components/footer.component';
+import Header from '../components/header.component';
 import Loading from '../components/general/Loading.component.jsx';
 
-import {SpaceRow} from "../components/custom.library"
+import {BlogMd, SpaceRow} from "../components/custom.library"
 
 /** Quote for the landing page
  * 
@@ -53,7 +52,7 @@ function orderJsonObjects(order,objects){
  * @returns 
  */
  const LandingBlogs = () => {
-    const [blogs, setBlogs] = React.useState();
+    const [blogs, setBlogs] = useState();
     const getBlogs = async () => {
         const sort = await fetchData('sort_orders')
         const res = await fetchData('blogs')
@@ -66,46 +65,60 @@ function orderJsonObjects(order,objects){
         getBlogs();
     }, []);
 
+
+    const [page,setPage] = useState(1)
     const [paginate,setPaginate] = useState(0)
     const step = 4
+
 
     return (
         <div 
             className='p-4 shadow-xl bg-cover bg-no-repeat my-4 transition-all bg-light-hex bg-center' 
         >
             <p className='text-6xl font-light mb-8'>Blog Posts and Podcasts</p>
+            <div>
+                <div className='w-fit  shadow shadow-gray-600 rounded-full'>
+                    <button 
+                        className={`rounded-l-full px-3 ${paginate-step>=0?"bg-gray-200 text-blue-300":"cursor-not-allowed bg-gray-600 text-gray-800"}`}
+                        disabled={(paginate-step<0)}
+                        onClick={() => {
+                            if(paginate-step>=0){
+                                setPage(page-1)
+                                setPaginate(paginate-step)
+                            }
+                            else{
+                                setPage(1)
+                                setPaginate(0)
+                            }
+                        }
+                    }>{"<"}</button>
+                    <button 
+                        className={`rounded-r-full px-3 ${(paginate+step>=blogs?.length-1)?"bg-gray-600 text-gray-800 cursor-not-allowed":"bg-gray-200  text-blue-300"}`}
+                        disabled={(paginate+step>=blogs?.length-1)}
+                        onClick={() => {
+                            if(paginate+step<blogs?.length){
+                                setPage(page+1)
+                                setPaginate(paginate+step)
+                            }
+                            else{
+                                setPage(Math.round(blogs.length/step))
+                                setPaginate(blogs?.length)
+                            }
+                        }
+                    }>{">"}</button>
+                </div>
+                <p className='italic text-gray-400'>page {page} of {Math.round(blogs?.length/step)}</p>
+            </div>
             <div className='flex flex-wrap'>
                 {
                     blogs?(
                         blogs.map((blog,index) => {
                             if(index >= paginate && index < paginate+step)
-                                return <Blog key={index} data={blog.data.M} />
+                                return <BlogMd key={index} data={blog.data.M} />
+                            return null
                         })
                     ):(<Loading />)
                 }
-            </div>
-            <div className='w-fit mx-auto shadow shadow-gray-600 rounded-full'>
-                <button 
-                    className={`rounded-l-full px-3 ${paginate-step>=0?"bg-gray-200 text-blue-300":"cursor-not-allowed bg-gray-600 text-gray-800"}`}
-                    disabled={(paginate-step<0)}
-                    onClick={() => {
-                        console.log(paginate-step)
-                        if(paginate-step>=0)
-                            setPaginate(paginate-step)
-                        else
-                            setPaginate(0)
-                    }
-                }>{"<"}</button>
-                <button 
-                    className={`rounded-r-full px-3 ${(paginate+step>=blogs?.length-1)?"bg-gray-600 text-gray-800 cursor-not-allowed":"bg-gray-200  text-blue-300"}`}
-                    disabled={(paginate+step>=blogs?.length-1)}
-                    onClick={() => {
-                        if(paginate+step<blogs?.length)
-                            setPaginate(paginate+step)
-                        else
-                            setPaginate(blogs?.length)
-                    }
-                }>{">"}</button>
             </div>
         </div>
     );

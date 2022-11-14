@@ -8,7 +8,7 @@ import BlogAccess from './blogs/access';
 import PeopleAccess from './peopleAccess';
 import NewsAccess from './news/access';
 import MessageAccess from './messages/access';
-import Header from '../../components/header/header';
+import Header from '../../components/header.component';
 
 const Studio = () => {
     const [tab,setTab] = useRecoilState(adminState)
