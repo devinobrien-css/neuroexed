@@ -6,7 +6,7 @@ const { persistAtom } = recoilPersist()
 
 export const pageState = atom({
     key: "page",
-    default: "/",
+    default: "home",
     effects_UNSTABLE: [persistAtom],
 });
 
