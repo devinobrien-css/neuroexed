@@ -10,6 +10,12 @@ export const pageState = atom({
     effects_UNSTABLE: [persistAtom],
 });
 
+export const navState = atom({
+    key: "nav",
+    default: "free",
+    effects_UNSTABLE: [persistAtom],
+});
+
 export const adminState = atom({
     key: "admin",
     default: "people",

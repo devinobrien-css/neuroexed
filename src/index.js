@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client'
 import React, { useState } from "react"
 
 import { RecoilRoot, useRecoilState } from "recoil";
-import { pageState } from './atom';
+import { pageState,navState } from './atom';
 
 import './index.css'
 import Nav from './components/nav.component'
@@ -103,14 +103,14 @@ updateOders()
 
 const App = () => {
     const [page,] = useRecoilState(pageState)
+    const [,setNavState] = useRecoilState(navState)
     const Page = tabs.filter(tab => tab.name===page)[0].page
 
     return (
-        <div className='w-full flex'>
+        <div className='w-full flex relative'>
             <div className='w-full md:h-screen md:overflow-y-scroll p-4'>
                 <Page />
             </div>
-            <Nav />
             <Login />
         </div>
     )

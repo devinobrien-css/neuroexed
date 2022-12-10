@@ -10,34 +10,8 @@ import Header from '../components/header.component';
 import Loading from '../components/general/Loading.component.jsx';
 
 import {BlogMd, SpaceRow} from "../components/custom.library"
-
-/** Quote for the landing page
- * 
- * @returns 
- */
- const LandingQuote = () => {
-    return (
-        <div className='p-4 bg-light-hex bg-center mx-auto bg-cover bg-no-repeat shadow-lg my-4 border shadow-xl'>
-            <p className='mx-auto text-blue-900 text-3xl text-center'>“The heart has reasons of which reason does not know.”</p>
-            <p className='text-center'>- Blaise Pascale, 1623-62, mathematician, physicist, philosopher</p>
-        </div>
-    );
-}
-
-/** Brain Gif and Small Blurb
- * @returns 
- */
- const LandingBrain = () => {
-    return (
-        <div className='md:flex my-4'>
-            <div className='w-full md:w-1/2 bg-cover bg-center bg-brain-gif bg-no-repeat p-4 min-h-[400px]'>
-            </div>
-            <div className='border w-full md:w-1/2 md:ml-4  px-4 py-10 text-lg shadow-xl bg-light-hex bg-top bg-no-repeat bg-cover'>
-                <p className='text-justify h-fit my-auto md:text-xl'>The Stellar Research Lab is made up of an interdisciplinary team of neuroscience enthusiasts. A common interest in the importance of experiential learning and the brain basis of decision making unites us to explore this challenging yet exciting area. Because of our unique, oftentimes non-neuroscientist backgrounds, the lab is able to approach topics from nontraditional point of view to compose unique assortments of blogs, papers, podcasts and books for the fellow curious mind...</p>
-            </div>
-        </div>
-    );
-}
+import { SubTitleSm, TitleMd, TitleSm, Wrapper } from '../components/common.library.jsx';
+import { Icon } from '@iconify/react';
 
 function orderJsonObjects(order,objects){
     const output = []
@@ -214,21 +188,110 @@ const LandingAd = () => {
     )
 }
 
-const Landing = (args) => {
+const Landing = () => {
+    const [,setPage] = useRecoilState(pageState)
+
     return (
 		<>
 			<Header 
                 content='Center for Neuroscience and Experiential Education'
                 subtext='An interactive semi-virtual laboratory for study, writing, and research'
             />
-            <LandingQuote />
-            <SpaceRow />
-            <LandingBrain />
-            <LandingReferenceRow />
+            <Wrapper color='light'>
+                <p className='mx-auto text-blue-900 text-3xl text-center'>“The heart has reasons of which reason does not know.”</p>
+                <p className='text-center'>- Blaise Pascale, 1623-62, mathematician, physicist, philosopher</p>
+            </Wrapper>
+
+            <Wrapper>
+                <br/>
+            </Wrapper>
+
+            <div className='md:flex my-4'>
+                <div className='w-full md:w-1/2 bg-cover rounded-xl bg-center bg-brain-gif bg-no-repeat p-4 min-h-[400px]'>
+                </div>
+                <div className='w-full md:w-1/2 md:ml-4 rounded-xl px-4 py-10 text-lg shadow-xl bg-light-hex bg-top bg-no-repeat bg-cover'>
+                    <p className='text-justify h-fit my-auto md:text-xl'>The Stellar Research Lab is made up of an interdisciplinary team of neuroscience enthusiasts. A common interest in the importance of experiential learning and the brain basis of decision making unites us to explore this challenging yet exciting area.<br/><br/> Because of our unique, oftentimes non-neuroscientist backgrounds, the lab is able to approach topics from nontraditional point of view to compose unique assortments of blogs, papers, podcasts and books for the fellow curious mind...</p>
+                </div>
+            </div>
+
+
+            <Wrapper className="mt-12">
+                <div className="bg-white w-[95%] mx-auto -mt-8 shadow-xl shadow-gray-800 rounded">
+                    <div className='flex border-b'>
+                        <div className='w-1/2 p-4 group hover:bg-gray-200 transition-all cursor-pointer' onClick={()=>window.location.href="https://www.otherlobe.com"}>
+                            <div className='flex justify-between'>
+                                <Icon icon="material-symbols:library-books-rounded" width={45}/>
+                                <Icon icon="material-symbols:arrow-outward-rounded" width={35} className="transition-all group-hover:-mt-2 group-hover:-mr-2" />
+                            </div>
+                            <br/>
+                            <TitleMd className="">Papers</TitleMd>
+                            <SubTitleSm className="text-gray-600 font-bold">Our papers and articles on The Other Lobe</SubTitleSm>
+                        </div>
+                        <div className='w-1/2 p-4 group hover:bg-gray-200 transition-all border-l cursor-pointer' onClick={()=>setPage("publications")}>
+                            <div className='flex justify-between'>
+                                <Icon icon="mdi:book-multiple" width={45}/>
+                                <Icon icon="material-symbols:arrow-outward-rounded" width={35} className="transition-all group-hover:-mt-2 group-hover:-mr-2" />
+                            </div>
+                            <br/>
+                            <TitleMd className="">Books</TitleMd>
+                            <SubTitleSm className="text-gray-600 font-bold">Our papers and articles on The Other Lobe</SubTitleSm>
+                        </div>
+                    </div>
+                    <div className='flex border-b'>
+                        <div className='w-1/2 p-4 group hover:bg-gray-200 transition-all cursor-pointer' onClick={()=>window.location.href="https://experienced.simplecast.com/"}>
+                            <div className='flex justify-between'>
+                                <Icon icon="material-symbols:video-library-rounded" width={45}/>
+                                <Icon icon="material-symbols:arrow-outward-rounded" width={35} className="transition-all group-hover:-mt-2 group-hover:-mr-2" />
+                            </div>
+                            <br/>
+                            <TitleMd className="">Podcasts</TitleMd>
+                            <SubTitleSm className="text-gray-600 font-bold">Our papers and articles on The Other Lobe</SubTitleSm>
+                        </div>
+                        <div className='w-1/2 p-4 group hover:bg-gray-200 transition-all border-l cursor-pointer' onClick={()=>setPage("people")}>
+                            <div className='flex justify-between'>
+                                <Icon icon="mdi:user-box-multiple" width={45}/>
+                                <Icon icon="material-symbols:arrow-outward-rounded" width={35} className="transition-all group-hover:-mt-2 group-hover:-mr-2" />
+                            </div>
+                            <br/>
+                            <TitleMd className="">People</TitleMd>
+                            <SubTitleSm className="text-gray-600 font-bold">The members of our lab team</SubTitleSm>
+                        </div>
+                    </div>
+                    <div className='flex '>
+                        <div className='w-1/2 p-4 group hover:bg-gray-200 transition-all cursor-pointer' onClick={()=>setPage("projects")}>
+                            <div className='flex justify-between'>
+                                <Icon icon="mdi:library-edit-outline" width={45} />
+                                <Icon icon="material-symbols:arrow-outward-rounded" width={35} className="transition-all group-hover:-mt-2 group-hover:-mr-2" />
+                            </div>
+                            <br/>
+                            <TitleMd className="">Projects</TitleMd>
+                            <SubTitleSm className="text-gray-600 font-bold">Our collaborative work broken down into clusters</SubTitleSm>
+                        </div>
+                        <div className='w-1/2 p-4 group hover:bg-gray-200 transition-all border-l cursor-pointer' onClick={()=>setPage("affiliations")}>
+                            <div className='flex justify-between'>
+                                <Icon icon="ic:round-library-add" width={45} />
+                                <Icon icon="material-symbols:arrow-outward-rounded" width={35} className="transition-all group-hover:-mt-2 group-hover:-mr-2" />
+                            </div>
+                            <br/>
+                            <TitleMd className="">Affiliates</TitleMd>
+                            <SubTitleSm className="text-gray-600 font-bold">Our papers and articles on The Other Lobe</SubTitleSm>
+                        </div>
+                    </div>
+                </div>
+            </Wrapper>
+
             <LandingBlogs />
-            <SpaceRow />
+            
+            <Wrapper>
+                <br/>
+            </Wrapper>
+
             <LandingBooks />
-            <SpaceRow />
+            
+            <Wrapper>
+                <br/>
+            </Wrapper>
+
             <LandingAd />
             <Footer />
 		</>

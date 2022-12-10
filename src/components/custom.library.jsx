@@ -19,6 +19,8 @@ export const SpaceRow = () => {
 
 
 
+
+
 export const BlogMd = ({data}) => {
     const [state,setState] = useState()
     const date = data['media_date'].S.split('/');

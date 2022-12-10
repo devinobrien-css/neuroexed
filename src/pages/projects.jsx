@@ -4,6 +4,9 @@ import Footer from '../components/footer.component';
 import Modal from '../components/modals/modal';
 import { Profile } from './people';
 import Header from '../components/header.component';
+import { ScrollLoader } from '../components/loaders.library';
+import { TriuneBrain } from '../assets/triune';
+import { SectionTitle, SubTitleSm, TitleLg, TitleMd } from '../components/common.library';
 
 const Member = (args) => {
     const member_data = args.data.data.M
@@ -87,7 +90,9 @@ function orderJsonObjects(order,objects){
 
  const ProjectSection = () => {
     const [projects, setProjects] = React.useState();
+    const [loading,setLoading] = useState()
     const getProjects = async () => {
+        setLoading(true)
         const res = await fetchData('projects');
         const sort = await fetchData('sort_orders')
 
@@ -95,71 +100,64 @@ function orderJsonObjects(order,objects){
             setProjects(orderJsonObjects(sort.Items.filter(order => {return order.type.S === "projects"})[0].sort.L,res.Items));
         else
             setProjects(res.Items)
-    };
 
+        setLoading()
+    };
     useEffect(() => {
         getProjects();
     }, []);
 
-    if(projects){
-        return (
-            <div className='p-4 shadow-xl border bg-cover bg-light-hex'>
-                <p className='text-6xl font-light'>Our Latest Projects</p>
-                <div className='md:flex flex-wrap'>
-                    <ProjectList data={projects} />
-                </div>
+    return (
+        <div className='p-4 shadow-xl border bg-cover bg-light-hex'>
+            <p className='text-6xl font-light'>Our Latest Projects</p>
+            <div className='md:flex flex-wrap'>
+                {loading?(
+                    <div className='flex flex-col items-center w-full min-h-[400px]'>
+                        <ScrollLoader className="my-auto" />
+                    </div>
+                ):(
+                    projects?(
+                        <ProjectList data={projects} />
+                    ):(<></>)
+                )}
             </div>
-        );
-    }
-    else {
-        return (
-            <></>
-        );
-    }
+        </div>
+    );
 }
 
 const brainData = {
-    'NEO':"The crowning achievement of evolution is the development of the 6 layer neocortex that houses our ability to perceive, act, and reason with a high degree of cognitive abstraction. Sitting at the highest level of brain function, it exercises the power of speech and handles the facts and theory learning seen in higher education. Research also indicates that it tends to perceive itself as the source of all awareness often ignoring the functioning of lower brain systems that our defining quote from Pascale calls “heart reasons.”",
-    'PALEO':"Sitting in the middle of the three brain levels, its limbic and motor systems generate the motivated actions required to preserve the body's health (feeding when hungry) and it gives pleasure and pain signals that can drive behavior (such as addiction). A tremendous amount of logic exists at this level, is largely outside awareness, but can guide decisions (e.g. in neuroeconomics). The integration of this “limbic logic” developed through direct experience (internships, etc.) with more cognitive classroom-based learning is the lab's main focus.",
-    'REPT':"Lying at the bottom of the brain, it controls simple life-sustaining reflexes (such as breathing), as well as more complex patterns (e.g. lower motor control of walking).  It also mediates evolutionary encoded actions like eye-tracking (vs the primate brain which models the object's trajectory).  Although not much a subject of our lab's work, it nicely illustrates the principle of levels of function in the brain."
+    'NEO':{
+        description:"The crowning achievement of evolution is the development of the 6 layer neocortex that houses our ability to perceive, act, and reason with a high degree of cognitive abstraction. Sitting at the highest level of brain function, it exercises the power of speech and handles the facts and theory learning seen in higher education. Research also indicates that it tends to perceive itself as the source of all awareness often ignoring the functioning of lower brain systems that our defining quote from Pascale calls “heart reasons.”",
+        title:"Neomammilian Layer"
+    },
+    'PALEO':{
+        description:"Sitting in the middle of the three brain levels, its limbic and motor systems generate the motivated actions required to preserve the body's health (feeding when hungry) and it gives pleasure and pain signals that can drive behavior (such as addiction). A tremendous amount of logic exists at this level, is largely outside awareness, but can guide decisions (e.g. in neuroeconomics). The integration of this “limbic logic” developed through direct experience (internships, etc.) with more cognitive classroom-based learning is the lab's main focus.",
+        title:"Paleomammilian Layer"
+    },
+    'REPT':{
+        description:"Lying at the bottom of the brain, it controls simple life-sustaining reflexes (such as breathing), as well as more complex patterns (e.g. lower motor control of walking).  It also mediates evolutionary encoded actions like eye-tracking (vs the primate brain which models the object's trajectory).  Although not much a subject of our lab's work, it nicely illustrates the principle of levels of function in the brain.",
+        title:"Reptillian Layer"
+    }
 }
 
 const ProjectBrainSection = () => {
     const [selected,setSelected] = useState('NEO')
 
     return (
-        <div className='md:flex flex-wrap justify-between my-8'>
-            <div className='md:w-1/2'>
-                <div className='bg-light-hex bg-cover bg-no-repeat bg-bottom p-4 border shadow rounded-lg'>
-                    <p className='text-6xl font-light'>The Triune Brain</p>
-                    <div className='border shadow rounded-lg overflow-clip'>
-                        <button 
-                            className={`w-1/3 transition-all ${(selected==="NEO")?"bg-gray-100":" bg-gray-300"}`} 
-                            onClick={() => setSelected('NEO')}
-                        
-                        >NEO</button>
-                        <button 
-                            className={`w-1/3 transition-all ${selected==="PALEO"?"bg-gray-100":" bg-gray-300"}`} 
-                            onClick={() => setSelected('PALEO')}
-                        
-                        >PALEO</button>
-                        <button 
-                            className={`w-1/3 transition-all ${selected==="REPT"?"bg-gray-100":" bg-gray-300"}`} 
-                            onClick={() => setSelected('REPT')}
-                        
-                        >REPTILIAN</button>
-                    </div>
-                    <p className='py-3'>
-                        {
-                            brainData[selected]
-                        }
-                    </p>
+        <div className='flex justify-between my-16 rounded-xl shadow'>
+            <div className='bg-light-hex bg-cover bg-no-repeat bg-bottom  border shadow rounded-lg w-1/2'>
+                <div className='bg-white rounded p-2 w-10/12 mx-auto shadow-std -mt-8'>
+                    <SectionTitle>The Triune Brain</SectionTitle>
+                    <SubTitleSm>Select a layer of the brain to explore further</SubTitleSm>
+                    <br/>
+
+
+                    <TitleLg>{brainData[selected].title}</TitleLg>
+                    <p className='py-3'>{brainData[selected].description}</p>
                 </div>
             </div>
-            <div className='md:w-1/2 w-full'>
-                <div className='bg-triune bg-contain h-full min-h-[200px] bg-no-repeat bg-center border shadow rounded-lg ml-4'>
-                    
-                </div>
+            <div className='w-1/2 p-2'>
+                <TriuneBrain setState={setSelected}/>
             </div>
         </div>
     );
@@ -167,7 +165,6 @@ const ProjectBrainSection = () => {
 
  const ProjectValuesSection = () => {
     return (
-
         <div className='p-4 shadow-xl border bg-cover bg-bottom bg-light-hex'>
             <p className='text-6xl font-light'>Our lab group's core values</p>
             <div className='md:flex flex-wrap'>

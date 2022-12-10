@@ -1,9 +1,18 @@
+import { SubTitleMd, TitleXl, Wrapper } from "./common.library";
+import Nav from "./nav.component";
+
 const Header = ({content,subtext}) => {
     return (
-        <div className='bg-cover shadow-lg p-2 text-white my-4 bg-dark-hex bg-center'>
-            <p className="text-3xl md:text-5xl">{content}</p>
-            <p className="italic md:text-xl">{subtext}</p>
-        </div>
+        <>
+            <Wrapper className="overflow-visible min-h-48" id="header">
+                <div className="bg-white w-[95%] mx-auto -mt-8 shadow-xl shadow-gray-800 rounded p-4">
+                    <TitleXl className="text-center">{content}</TitleXl>
+                    <SubTitleMd className="text-center text-gray-700">{subtext}</SubTitleMd>
+                </div>
+                <br/>
+            </Wrapper>
+            <Nav />
+        </>
     );
 }
 export default Header
