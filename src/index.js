@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client'
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import { RecoilRoot, useRecoilState } from "recoil";
 import { pageState,navState } from './atom';
@@ -105,6 +105,11 @@ const App = () => {
     const [page,] = useRecoilState(pageState)
     const [,setNavState] = useRecoilState(navState)
     const Page = tabs.filter(tab => tab.name===page)[0].page
+
+    useEffect(() => {
+        console.log("refresh")
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    },[page])
 
     return (
         <div className='w-full flex relative'>

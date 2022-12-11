@@ -10,9 +10,7 @@ export const Wrapper = ({children,className,color="dark",...rest}) => {
 }
 
 export const SectionTitle = ({children,className,...rest}) => {
-    return (
-        <p className='text-6xl font-light'>{children}</p>
-    )
+    return <p className='text-4xl md:text-6xl transition-all font-light'>{children}</p>
 }
 
 export const TitleXl = ({children,className,...rest}) => {

@@ -144,8 +144,8 @@ const ProjectBrainSection = () => {
     const [selected,setSelected] = useState('NEO')
 
     return (
-        <div className='flex justify-between my-16 rounded-xl shadow'>
-            <div className='bg-light-hex bg-cover bg-no-repeat bg-bottom  border shadow rounded-lg w-1/2'>
+        <div className='flex md:flex-wrap flex-wrap-reverse justify-between mt-16 rounded-xl shadow'>
+            <div className='bg-light-hex bg-cover bg-no-repeat bg-bottom  border shadow rounded-lg md:w-1/2 w-full'>
                 <div className='bg-white rounded p-2 w-10/12 mx-auto shadow-std -mt-8'>
                     <SectionTitle>The Triune Brain</SectionTitle>
                     <SubTitleSm>Select a layer of the brain to explore further</SubTitleSm>
@@ -156,7 +156,7 @@ const ProjectBrainSection = () => {
                     <p className='py-3'>{brainData[selected].description}</p>
                 </div>
             </div>
-            <div className='w-1/2 p-2'>
+            <div className='md:w-1/2 w-full p-2'>
                 <TriuneBrain setState={setSelected}/>
             </div>
         </div>
@@ -165,7 +165,7 @@ const ProjectBrainSection = () => {
 
  const ProjectValuesSection = () => {
     return (
-        <div className='p-4 shadow-xl border bg-cover bg-bottom bg-light-hex'>
+        <div className='p-4 shadow-xl border bg-cover bg-bottom bg-light-hex rounded-xl my-8'>
             <p className='text-6xl font-light'>Our lab group's core values</p>
             <div className='md:flex flex-wrap'>
                 <div className='w-full md:w-[45%] shadow-lg mx-auto bg-white p-4 bg-opacity-90 my-4 rounded border'>  

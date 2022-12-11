@@ -11,7 +11,7 @@ const StellarSection = () => {
     const [state,setState] = useState(false)
 
     return (
-        <div className='p-4 shadow-xl border bg-cover bg-light-hex transition-all bg-no-repeat'>
+        <div className='p-4 shadow-xl border bg-cover bg-light-hex transition-all bg-no-repeat my-6 rounded-xl'>
             <p className='text-6xl font-light'>Our Lab Director, James Stellar</p>
             <div 
                 className={`border mt-8 w-full  group shadow p-2 mx-auto transition-all hover:shadow-xl my-2 flex flex-col justify-between bg-white ${(state?"w-full":"md:w-1/2")}`}
@@ -75,7 +75,7 @@ export const Profile = (args) => {
             className={'my-4 w-11/12 group shadow-std mx-auto transition-all hover:shadow-xl flex flex-col justify-between min-h-[300px] bg-white  rounded-xl overflow-hidden ' + (state ? 'bg-opacity-90' : 'bg-opacity-60')}
         >
             <div className='flex flex-wrap'>
-                <div className='h-24 w-full bg-hex'>
+                <div className='h-24 w-full bg-hex bg-cover bg-no-repeat'>
 
                 </div>
                 <div 
@@ -85,9 +85,9 @@ export const Profile = (args) => {
                 </div>
             </div>
             <p className="font-light text-4xl w-full  mb-2 transition-all text-center mx-auto">{data['first'].S} {data['last'].S}</p>
-            <div>
-                <p className='italic text-gray-600 md:text-xl md:text-left text-center border-t-8 border-double border-gray-400'>Member since {data['year_joined'].S}</p>
-                <p className='italic text-gray-600 md:text-lg md:text-left text-center'>{data['lab_title'].S}</p>
+            <div className='border-t-8 border-double border-gray-400 h-24'>
+                <p className='italic text-gray-600 md:text-xl text-center'>Member since {data['year_joined'].S}</p>
+                <p className='italic text-gray-600 md:text-lg text-center'>{data['lab_title'].S}</p>
             </div>
             <div>
                 <div className=' border-t-2 border-b-2 my-1 py-1'>
@@ -120,11 +120,11 @@ export const Profile = (args) => {
                         onClick={() => {
                             state?setState(false):setState(true)
                         }}
-                        className="text-blue-500 block mx-auto underline"    
+                        className="text-blue-500 block mx-auto underline p-2"    
                     >
                         {state?"close description":"read description"}
                     </button>
-                    <p className={`transition-all  ${state?"h-48 overflow-scroll":"h-0 overflow-hidden"}`}>{data['description'].S }</p>
+                    <p className={`transition-all  ${state?"h-48 overflow-scroll p-2":"p-0 h-0 overflow-hidden"}`}>{data['description'].S }</p>
                 </div>
             </div>
         </div>
