@@ -158,7 +158,7 @@ const Footer = () => {
     const [,setPage] = useRecoilState(pageState)
 
     return (
-        <div className='md:flex bg-dark-hex bg-no-repeat bg-cover bg-center p-2 md:p-8'>
+        <div className='md:flex bg-dark-hex rounded-xl bg-no-repeat bg-cover bg-center p-2 md:p-8'>
             <div className='w-full md:w-1/3'>
                 <p className='text-white uppercase border-b-4 border-white text-2xl'>CONTACT</p>
                 <div className='flex flex-col'>

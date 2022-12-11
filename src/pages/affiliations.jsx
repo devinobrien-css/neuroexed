@@ -7,6 +7,7 @@ import Modal from '../components/modals/modal';
 import { fetchData } from '../access/dba';
 import { ScrollLoader } from '../components/loaders.library';
 import Header from '../components/header.component';
+import { SectionTitle } from '../components/common.library';
 
 
 const Affiliation = (args) => {
@@ -48,8 +49,8 @@ const AffiliationsSection = () => {
     }, []);
 
     return (
-        <div className='p-4 shadow-xl bg-cover mb-4 bg-light-hex'>
-            <p className='text-6xl font-light mb-4'>Our Affiliates</p>
+        <div className='p-4 shadow-std bg-cover rounded-xl my-4 bg-light-hex'>
+            <SectionTitle>Our Affiliates</SectionTitle>
             <div className='flex flex-wrap'>
                 {loading?(
                     <div className='flex flex-col items-center w-full min-h-[400px]'>

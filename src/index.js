@@ -1,11 +1,10 @@
 import ReactDOM from 'react-dom/client'
-import React, { useState } from "react"
+import React, { useEffect } from "react"
 
 import { RecoilRoot, useRecoilState } from "recoil";
 import { pageState } from './atom';
 
 import './index.css'
-import Nav from './components/nav.component'
 import Login from './components/login/login'
 
 
@@ -88,7 +87,7 @@ async function updateOders(){
             }
         });
 
-        const output = await putData(
+        await putData(
             'sort_orders',
             {},
             sort_order(
@@ -105,12 +104,16 @@ const App = () => {
     const [page,] = useRecoilState(pageState)
     const Page = tabs.filter(tab => tab.name===page)[0].page
 
+    useEffect(() => {
+        console.log("refresh")
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    },[page])
+
     return (
-        <div className='w-full flex'>
-            <div className='w-full md:h-screen md:overflow-y-scroll p-4'>
+        <div className='w-full flex relative'>
+            <div className='w-full max-w-[1800px] mx-auto md:h-screen md:overflow-y-scroll p-4'>
                 <Page />
             </div>
-            <Nav />
             <Login />
         </div>
     )

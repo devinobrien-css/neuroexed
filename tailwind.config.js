@@ -30,13 +30,17 @@ module.exports = {
 				'triune':"url('./img/triune.png')"
 			},
 			fontFamily: {
-				'sans': 'Gill Sans'
+				'sans': ['Gill Sans','sans-serif'],
+				'lato': ['Lato','sans-serif'],
 			},
 			transitionProperty: {
 				'height': 'height',
 				'width': 'width',
 				'spacing': 'margin, padding',
 			},
+			boxShadow: {
+				'std': '0 -5px 40px -15px rgba(0, 0, 0, 0.3)',
+			}
 		},
 	},
 	plugins: [

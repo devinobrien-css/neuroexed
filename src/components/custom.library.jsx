@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import DateCard from "./general/DateCard.component"
 
 export const Header = () => {
@@ -7,20 +7,11 @@ export const Header = () => {
     )
 }
 
-export const SpaceRow = () => {
-    return (
-        <div className='bg-hex bg-cover bg-bottom shadow-xl shadow-gray-400 my-4'>
-            <br/>
-            <br/>
-            <br/>
-        </div>
-    )
-}
+
 
 
 
 export const BlogMd = ({data}) => {
-    const [state,setState] = useState()
     const date = data['media_date'].S.split('/');
 
     return (
@@ -49,7 +40,7 @@ export const BlogMd = ({data}) => {
                         )
                     }
                 </div>
-                <p className='font-semibold text-xl p-2'>
+                <p className='font-semibold text-xl p-2 h-24'>
                     {data['media_title'].S}
                 </p>
             </div>
@@ -57,7 +48,7 @@ export const BlogMd = ({data}) => {
                 className='border-t-2'
             >
                 <div className={`overflow-hidden transition-all duration-300 `}>
-                    <p className="p-2">{data['media_content'].S}</p>
+                    <p className="p-2 h-48">{data['media_content'].S}</p>
                 </div>
                 {/* 
                 ${state?"max-h-full opacity-100":"max-h-0 opacity-0"}

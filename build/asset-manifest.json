@@ -1,20 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.26a09d04.css",
-    "main.js": "/static/js/main.77206dee.js",
+    "main.css": "/static/css/main.fe844d5d.css",
+    "main.js": "/static/js/main.c1ac22ec.js",
     "static/media/brain.gif": "/static/media/brain.311d612983f3b48f84b0.gif",
     "static/media/diversity.png": "/static/media/diversity.8f30c2d6e08a5c134cb2.png",
-    "static/media/triune.png": "/static/media/triune.5debb60b299427845bd2.png",
     "static/media/hex-bg.png": "/static/media/hex-bg.792c1d267d5dee166183.png",
     "static/media/hex-bg-dark.png": "/static/media/hex-bg-dark.b8fd7f1a1785262d1469.png",
     "static/media/education.png": "/static/media/education.7012f145efcd8eaa4244.png",
     "static/media/standard-bg-light.png": "/static/media/standard-bg-light.a0de29beb3ff90908c2c.png",
     "index.html": "/index.html",
-    "main.26a09d04.css.map": "/static/css/main.26a09d04.css.map",
-    "main.77206dee.js.map": "/static/js/main.77206dee.js.map"
+    "main.fe844d5d.css.map": "/static/css/main.fe844d5d.css.map",
+    "main.c1ac22ec.js.map": "/static/js/main.c1ac22ec.js.map"
   },
   "entrypoints": [
-    "static/css/main.26a09d04.css",
-    "static/js/main.77206dee.js"
+    "static/css/main.fe844d5d.css",
+    "static/js/main.c1ac22ec.js"
   ]
 }

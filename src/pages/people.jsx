@@ -1,15 +1,18 @@
+import { Icon } from '@iconify/react';
 import React, { useEffect, useState } from 'react';
 import { fetchData } from '../access/dba';
+import { Wrapper } from '../components/common.library';
 
 /* COMPONENT AND ELEMENT IMPORTS */
 import Footer from '../components/footer.component';
 import Header from '../components/header.component';
+import { ScrollLoader } from '../components/loaders.library';
 
 const StellarSection = () => {
     const [state,setState] = useState(false)
 
     return (
-        <div className='p-4 shadow-xl border bg-cover bg-light-hex transition-all bg-no-repeat'>
+        <div className='p-4 shadow-xl border bg-cover bg-light-hex transition-all bg-no-repeat my-6 rounded-xl'>
             <p className='text-6xl font-light'>Our Lab Director, James Stellar</p>
             <div 
                 className={`border mt-8 w-full  group shadow p-2 mx-auto transition-all hover:shadow-xl my-2 flex flex-col justify-between bg-white ${(state?"w-full":"md:w-1/2")}`}
@@ -31,15 +34,9 @@ const StellarSection = () => {
                         className="text-blue-500 block mx-auto underline"
                         onClick={() => {state?setState(false):setState(true)}}
                     >
-                        {
-                            state?
-                            "close description"
-                            :
-                            "read description"
-                        }
+                        {state?"close description":"read description"}
                     </button>
-                    {
-                        state?
+                    {state?
                         <div>
                             <p className='text-2xl font-light'>Momentous beginnings..</p>
                             <p  className='text-justify mb-4'> 
@@ -61,9 +58,7 @@ const StellarSection = () => {
                                 Stellar teaches courses on introductory psychology (with an active engagement approach borrowed from experiential education), psychopharmacology, and seminars on cognitive-limbic integration in making decisions. He works with universities, companies, institutes, consulting firms, and cooperative education societies (e.g. WACE).
                             </p>
                         </div>
-                        :
-                        <></>
-                    }
+                    :<></>}
                 </div>
                 
             </div>
@@ -78,71 +73,59 @@ export const Profile = (args) => {
     
     return (
         <div 
-            className={'my-4 w-11/12 group shadow mx-auto transition-all hover:shadow-xl flex flex-col justify-between min-h-[300px] bg-white bg-opacity-60 rounded p-4 ' + (state ? 'bg-white' : 'h-fit')}
+            className={'my-4 w-11/12 group shadow-std mx-auto transition-all hover:shadow-xl flex flex-col justify-between min-h-[300px] bg-white  rounded-xl overflow-hidden ' + (state ? 'bg-opacity-90' : 'bg-opacity-60')}
         >
             <div className='flex flex-wrap'>
+                <div className='h-24 w-full bg-hex bg-cover bg-no-repeat'>
+
+                </div>
                 <div 
-                    className='group-hover:border-8 rounded-lg overflow-hidden border-double border-4 shadow-lg mx-auto  w-32 md:mx-0 h-min border-blue-300 transition-all '
+                    className='group-hover:border-8 rounded-lg overflow-hidden border-double border-4 shadow-lg mx-auto  w-32 -mt-16 h-min border-blue-300 transition-all '
                 >
                     <img src={`https://neuro-exed-images.s3.us-east-1.amazonaws.com/profile_pictures/${data["last"].S.toLowerCase().replace("'","")}.png`} alt={`Lab Member ${data["first"].S} ${data["last"].S}`} />
                 </div>
-                <div className='pl-2 w-full md:w-3/5 flex flex-col justify-between'>
-                    <p className="font-light text-4xl md:text-4xl w-full  mb-2 transition-all md:text-left text-center"> {data['first'].S} {data['last'].S}</p>
-                    <p className='italic text-gray-600 md:text-xl md:text-left text-center border-t-8 border-double border-gray-400'>Member since {data['year_joined'].S}</p>
-                </div>
-                <p className='italic text-gray-600 md:text-lg md:text-left text-center'>{data['lab_title'].S}</p>
+            </div>
+            <p className="font-light text-4xl w-full  mb-2 transition-all text-center mx-auto">{data['first'].S} {data['last'].S}</p>
+            <div className='border-t-8 border-double border-gray-400 h-24'>
+                <p className='italic text-gray-600 md:text-xl text-center'>Member since {data['year_joined'].S}</p>
+                <p className='italic text-gray-600 md:text-lg text-center'>{data['lab_title'].S}</p>
             </div>
             <div>
                 <div className=' border-t-2 border-b-2 my-1 py-1'>
                     <div className='flex m-auto w-4/5'>
-
-                        {
-                            socials.map(social => {
-                                if(data.socials.M[social].S !== ""){
-                                    return (
-                                        <a 
-                                            className='w-8 m-auto cursor-pointer hover:scale-110 transition-all'
-                                            rel='noreferrer'
-                                            target='_blank'
-                                            href={(social === 'email' ? "mailto:" : "") + data.socials.M[social].S}
-                                        >
-                                            <img 
-                                                alt={`headshot of ${social}`}
-                                                src={`./img/social_logos/${social}.png`}
-                                                className='rounded-lg block shrink-0 bg-blue-300'
-                                            />
-                                        </a>
-                                    )
-                                }
-                                else {
-                                    return <></>
-                                }
-                            })
-                        }
+                        {socials.map(social => {
+                            if(data.socials.M[social].S !== ""){
+                                return (
+                                    <a 
+                                        className='w-8 m-auto cursor-pointer hover:scale-110 transition-all'
+                                        rel='noreferrer'
+                                        target='_blank'
+                                        href={(social === 'email' ? "mailto:" : "") + data.socials.M[social].S}
+                                    >
+                                        <img 
+                                            alt={`headshot of ${social}`}
+                                            src={`./img/social_logos/${social}.png`}
+                                            className='rounded-lg block shrink-0 bg-blue-300'
+                                        />
+                                    </a>
+                                )
+                            }
+                            else {
+                                return <></>
+                            }
+                        })}
                     </div>
                 </div>
                 <div>
                     <button 
-                        onClick={
-                            () => {
-                                state?setState(false):setState(true)
-                            }
-                        }
-                        className="text-blue-500 block mx-auto underline"    
+                        onClick={() => {
+                            state?setState(false):setState(true)
+                        }}
+                        className="text-blue-500 block mx-auto underline p-2"    
                     >
-                        {
-                            state?
-                            "close description"
-                            :
-                            "read description"
-                        }
+                        {state?"close description":"read description"}
                     </button>
-                    {
-                        state?
-                        <p>{data['description'].S }</p>
-                        :
-                        <></>
-                    }
+                    <p className={`transition-all  ${state?"h-48 overflow-scroll p-2":"p-0 h-0 overflow-hidden"}`}>{data['description'].S }</p>
                 </div>
             </div>
         </div>
@@ -160,9 +143,13 @@ function orderJsonObjects(order,objects){
 /** Fetches perople data, renders list of members
  * @returns 
  */
- const PeopleSection = () => {
+const PeopleSection = () => {
+    const [search,setSearch] = useState("")
+    const [loading,setLoading] = useState()
+        
     const [people, setPeople] = useState();
     const getPeople = async () => {
+        setLoading(true)
         const sort = await fetchData('sort_orders')
         const res = await fetchData('people')
 
@@ -170,50 +157,43 @@ function orderJsonObjects(order,objects){
             setPeople(orderJsonObjects(sort.Items.filter(order => {return order.type.S === "people"})[0].sort.L,res.Items));
         else
             setPeople(res.Items)
+        setLoading(false)
+        
     };
 
     useEffect(() => {
         getPeople();
     }, []);
 
-    if(people){
-        return (
-            <div 
-                className='p-2 shadow-xl shadow-gray-400 bg-cover mb-4 bg-light-hex bg-no-repeat'
-            >
-                <p className='text-6xl font-light mb-4'>Our Lab Members</p>
-                <div className='flex flex-wrap'>
-                    {
-                        people.map((member,index) => {
-                            return (
-                                <div className='w-full lg:w-1/2 xl:w-1/2'>
-                                    <Profile key={index} data={member.data.M}/>
-                                </div>
-                            )
-                        })
-                    }
+    return (
+        <div 
+            className='p-4 shadow-xl shadow-gray-400 bg-cover mb-4 bg-light-hex bg-no-repeat rounded-xl'
+        >
+            <p className='text-6xl font-light mb-4'>Our Lab Members</p>
+            <div className='flex flex-col items-center'>
+                <div className='flex shadow p-2 rounded-xl w-1/3'>
+                    <Icon icon="fa6-solid:magnifying-glass" className='my-auto text-gray-500'/>
+                    <input  className='text-xl ml-2 outline-none text-gray-500' placeholder={`Search for members...`} value={search} onChange={(e)=>setSearch(e.target.value)}/>
                 </div>
             </div>
-        );
-    }
-    else {
-        return (
-            <div className='load'>
-                Loading
+            <div className='flex flex-wrap'>
+                {loading?(
+                    <div className='flex flex-col items-center w-full min-h-[400px]'>
+                        <ScrollLoader className="my-auto" />
+                    </div>
+                ):(
+                    people?.filter(member => member.data.M.first.S.toLowerCase().includes(search) || member.data.M.last.S.toLowerCase().includes(search))
+                    .map((member,index) => {
+                        return (
+                            <div className='w-full lg:w-1/2 xl:w-1/2'>
+                                <Profile key={index} data={member.data.M}/>
+                            </div>
+                        )
+                    })
+                )}
             </div>
-        );
-    }
-}
-
-
-const PageSpaceRow = () => {
-    return (
-        <div className="bg-dark-hex bg-no-repeat bg-cover bg-bottom shadow-xl my-4" >
-            <br/>
-            <br/>
-            <br/>
         </div>
-    )
+    );
 }
 
 
@@ -230,7 +210,9 @@ const People = (args) => {
                 subtext='With distinguished, oftentimes non-neuroscientist backgrounds, the lab approaches topics from nontraditional points of view to compose unique content for the fellow curious mind.'
             />
             <StellarSection />
-            <PageSpaceRow />
+            <Wrapper>
+                <br/>
+            </Wrapper>
             <PeopleSection />
             <Footer />
 		</>
