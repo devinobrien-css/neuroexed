@@ -6,7 +6,7 @@ import { Profile } from './people';
 import Header from '../components/header.component';
 import { ScrollLoader } from '../components/loaders.library';
 import { TriuneBrain } from '../assets/triune';
-import { SectionTitle, SubTitleSm, TitleLg, TitleMd } from '../components/common.library';
+import { SectionTitle, SubTitleSm, TitleLg } from '../components/common.library';
 
 const Member = (args) => {
     const member_data = args.data.data.M
@@ -108,7 +108,7 @@ function orderJsonObjects(order,objects){
     }, []);
 
     return (
-        <div className='p-4 shadow-xl border bg-cover bg-light-hex'>
+        <div className='p-4 shadow-xl border bg-cover bg-light-hex mt-4 rounded-xl'>
             <p className='text-6xl font-light'>Our Latest Projects</p>
             <div className='md:flex flex-wrap'>
                 {loading?(

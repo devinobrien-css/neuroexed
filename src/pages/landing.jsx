@@ -4,13 +4,12 @@ import { fetchData } from '../access/dba.js'
 import { useRecoilState } from "recoil";
 import { pageState } from "../atom";
 
-/* COMPONENT AND ELEMENT IMPORTS */
 import Footer from '../components/footer.component';
 import Header from '../components/header.component';
 import Loading from '../components/general/Loading.component.jsx';
 
-import {BlogMd, SpaceRow} from "../components/custom.library"
-import { SubTitleSm, TitleMd, TitleSm, Wrapper } from '../components/common.library.jsx';
+import {BlogMd} from "../components/custom.library"
+import { SubTitleSm, TitleMd, Wrapper } from '../components/common.library.jsx';
 import { Icon } from '@iconify/react';
 
 function orderJsonObjects(order,objects){
@@ -96,9 +95,7 @@ function orderJsonObjects(order,objects){
             </div>
         </div>
     );
-
 }
-
 
 const LandingBooks = () =>{
     return (
@@ -127,67 +124,6 @@ const LandingBooks = () =>{
 
 
 
-const LandingReferenceRow = () => {
-    const [,setPage] = useRecoilState(pageState)
-
-    return (
-        <div 
-            className='bg-cover flex flex-wrap p-2 text-white bg-white'
-            style={{backgroundImage:"url('../../img/hex-bg-dark.png')"}}
-        >
-            <div
-                className='w-2/12 min-w-[180px] xl:w-1/12 lg:w-1/12 my-1 mx-auto bg-gray-400 bg-opacity-90 p-1 rounded'
-                onClick={() => window.location.href = 'http://otherlobe.com/papers/'}
-            >
-                <svg 
-                className='mx-auto'
-                fill="white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.602 4.075c2.201 1.174 4.904 3.254 6.398 5.252-1.286-.9-3.011-1.027-5.058-.549.222-1.469-.185-3.535-1.34-4.703zm-.825 6.925s1.522-7-3.335-7h-5.442v20h16v-10.629c0-3.42-4.214-3.116-7.223-2.371zm-.318-8l-1.459-1h-9v20h1v-19h9.459zm-2.443-2l-1.5-1h-8.516v20h1v-19h9.016z"/></svg>
-                <p className='mx-auto text-center uppercase'>our papers</p>
-            </div>
-            <div
-                className='w-2/12 min-w-[180px] xl:w-1/12 lg:w-1/12 my-1 mx-auto bg-gray-400 bg-opacity-90 p-1 rounded'
-                onClick={() =>  setPage('/publications')}
-            >
-                <svg 
-                className='mx-auto'
-                width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="white"  clipRule="evenodd"><path d="M14 0v10l2-1.518 2 1.518v-10h4v24h-17c-1.657 0-3-1.343-3-3v-18c0-1.657 1.343-3 3-3h9zm6 20h-14.505c-1.375 0-1.375 2 0 2h14.505v-2z"/></svg>
-                <p className='mx-auto text-center uppercase'>our books</p>
-            </div>
-            <div
-                className='w-2/12 min-w-[180px] xl:w-1/12 lg:w-1/12 my-1 mx-auto bg-gray-400 bg-opacity-90 p-1 rounded'
-                onClick={() => window.location.href = 'http://otherlobe.com/blog/'}
-            >
-                <svg 
-                className='mx-auto'
-                fill="white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M14.568.075c2.202 1.174 5.938 4.883 7.432 6.881-1.286-.9-4.044-1.657-6.091-1.179.222-1.468-.185-4.534-1.341-5.702zm7.432 10.925v13h-20v-24h8.409c4.857 0 3.335 8 3.335 8 3.009-.745 8.256-.419 8.256 3zm-16 5h5v-4h-5v4zm12 2h-12v1h12v-1zm0-3h-5v1h5v-1zm0-3h-5v1h5v-1z"/></svg>
-                <p className='mx-auto text-center uppercase'>our articles</p>
-            </div>
-            <div
-                className='w-2/12 min-w-[180px] xl:w-1/12 lg:w-1/12 my-1 mx-auto bg-gray-400 bg-opacity-90 p-1 rounded'
-                onClick={() => window.location.href = 'https://experienced.simplecast.com/'}
-            >
-                <svg 
-                className='mx-auto'
-                width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="white" clipRule="evenodd"><path d="M7.5 21c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5zm9 0c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5zm-4.5 0c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5zm8-12v2c0 4.418-3.582 8-8 8s-8-3.582-8-8v-2h2v2c0 3.309 2.691 6 6 6s6-2.691 6-6v-2h2zm-4 2c0 2.209-1.791 4-4 4s-4-1.791-4-4v-7c0-2.209 1.791-4 4-4s4 1.791 4 4v7z"/></svg>
-                <p className='mx-auto text-center uppercase'>our PODCASTS</p>
-            </div>
-        </div>
-    )
-}
-
-
-
-
-const LandingAd = () => {
-    return (
-        <div className='landing-advertisement'>
-            <div>
-                
-            </div>
-        </div>
-    )
-}
-
 const Landing = () => {
     const [,setPage] = useRecoilState(pageState)
 
@@ -210,10 +146,9 @@ const Landing = () => {
                 <div className='w-full md:w-1/2 bg-cover rounded-xl bg-center bg-brain-gif bg-no-repeat p-4 min-h-[400px]'>
                 </div>
                 <div className='w-full md:w-1/2 md:ml-4 rounded-xl px-4 py-10 text-lg shadow-xl bg-light-hex bg-top bg-no-repeat bg-cover'>
-                    <p className='text-justify h-fit my-auto md:text-xl'>The Stellar Research Lab is made up of an interdisciplinary team of neuroscience enthusiasts. A common interest in the importance of experiential learning and the brain basis of decision making unites us to explore this challenging yet exciting area.<br/><br/> Because of our unique, oftentimes non-neuroscientist backgrounds, the lab is able to approach topics from nontraditional point of view to compose unique assortments of blogs, papers, podcasts and books for the fellow curious mind...</p>
+                    <p className='text-justify h-fit my-auto md:text-xl'>The Stellar Research Lab is made up of an <span className='text-blue-600 italic'>interdisciplinary team of neuroscience enthusiasts.</span> A common interest in the importance of experiential learning and the brain basis of decision making unites us to explore this challenging yet exciting area.<br/><br/> Because of our unique, oftentimes non-neuroscientist backgrounds, <span className='text-blue-600 italic'>the lab is able to approach topics from nontraditional point of view</span> to compose unique assortments of blogs, papers, podcasts and books for the fellow curious mind...</p>
                 </div>
             </div>
-
 
             <Wrapper className="mt-12">
                 <div className="bg-white w-[95%] mx-auto -mt-8 shadow-xl shadow-gray-800 rounded">
@@ -234,7 +169,7 @@ const Landing = () => {
                             </div>
                             <br/>
                             <TitleMd className="">Books</TitleMd>
-                            <SubTitleSm className="text-gray-600 font-bold">Our papers and articles on The Other Lobe</SubTitleSm>
+                            <SubTitleSm className="text-gray-600 font-bold">Our recent publications</SubTitleSm>
                         </div>
                     </div>
                     <div className='flex border-b'>
@@ -245,7 +180,7 @@ const Landing = () => {
                             </div>
                             <br/>
                             <TitleMd className="">Podcasts</TitleMd>
-                            <SubTitleSm className="text-gray-600 font-bold">Our papers and articles on The Other Lobe</SubTitleSm>
+                            <SubTitleSm className="text-gray-600 font-bold">Our podcasts with guest speakers</SubTitleSm>
                         </div>
                         <div className='w-1/2 p-4 group hover:bg-gray-200 transition-all border-l cursor-pointer' onClick={()=>setPage("people")}>
                             <div className='flex justify-between'>
@@ -274,7 +209,7 @@ const Landing = () => {
                             </div>
                             <br/>
                             <TitleMd className="">Affiliates</TitleMd>
-                            <SubTitleSm className="text-gray-600 font-bold">Our papers and articles on The Other Lobe</SubTitleSm>
+                            <SubTitleSm className="text-gray-600 font-bold">Our affiliates and collaborators</SubTitleSm>
                         </div>
                     </div>
                 </div>
@@ -292,7 +227,6 @@ const Landing = () => {
                 <br/>
             </Wrapper>
 
-            <LandingAd />
             <Footer />
 		</>
     );

@@ -1,11 +1,10 @@
 import ReactDOM from 'react-dom/client'
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 
 import { RecoilRoot, useRecoilState } from "recoil";
-import { pageState,navState } from './atom';
+import { pageState } from './atom';
 
 import './index.css'
-import Nav from './components/nav.component'
 import Login from './components/login/login'
 
 
@@ -88,7 +87,7 @@ async function updateOders(){
             }
         });
 
-        const output = await putData(
+        await putData(
             'sort_orders',
             {},
             sort_order(
@@ -103,7 +102,6 @@ updateOders()
 
 const App = () => {
     const [page,] = useRecoilState(pageState)
-    const [,setNavState] = useRecoilState(navState)
     const Page = tabs.filter(tab => tab.name===page)[0].page
 
     useEffect(() => {
@@ -113,7 +111,7 @@ const App = () => {
 
     return (
         <div className='w-full flex relative'>
-            <div className='w-full md:h-screen md:overflow-y-scroll p-4'>
+            <div className='w-full max-w-[1800px] mx-auto md:h-screen md:overflow-y-scroll p-4'>
                 <Page />
             </div>
             <Login />

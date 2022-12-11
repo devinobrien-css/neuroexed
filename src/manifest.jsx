@@ -2,7 +2,7 @@ import Admin from "./pages/admin/admin";
 import Affiliations from "./pages/affiliations";
 import Books from "./pages/books";
 import Landing from "./pages/landing";
-import News from "./pages/news/news";
+import News from "./pages/news";
 import People from "./pages/people";
 import Projects from "./pages/projects";
 

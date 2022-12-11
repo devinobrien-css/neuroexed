@@ -33,6 +33,10 @@ export const TitleSm = ({children,className,...rest}) => {
 
 
 
+export const TextSectionSm = ({children,className,...rest}) => {
+    return <p className={`text-sm ${className}`} {...rest}>{children}</p>
+}
+
 
 
 

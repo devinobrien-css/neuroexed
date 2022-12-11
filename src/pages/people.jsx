@@ -1,3 +1,4 @@
+import { Icon } from '@iconify/react';
 import React, { useEffect, useState } from 'react';
 import { fetchData } from '../access/dba';
 import { Wrapper } from '../components/common.library';
@@ -169,8 +170,11 @@ const PeopleSection = () => {
             className='p-4 shadow-xl shadow-gray-400 bg-cover mb-4 bg-light-hex bg-no-repeat rounded-xl'
         >
             <p className='text-6xl font-light mb-4'>Our Lab Members</p>
-            <div>
-                <input />
+            <div className='flex flex-col items-center'>
+                <div className='flex shadow p-2 rounded-xl w-1/3'>
+                    <Icon icon="fa6-solid:magnifying-glass" className='my-auto text-gray-500'/>
+                    <input  className='text-xl ml-2 outline-none text-gray-500' placeholder={`Search for members...`} value={search} onChange={(e)=>setSearch(e.target.value)}/>
+                </div>
             </div>
             <div className='flex flex-wrap'>
                 {loading?(
@@ -178,7 +182,7 @@ const PeopleSection = () => {
                         <ScrollLoader className="my-auto" />
                     </div>
                 ):(
-                    people?.filter(member => member.data.M.first.S.includes(search))
+                    people?.filter(member => member.data.M.first.S.toLowerCase().includes(search) || member.data.M.last.S.toLowerCase().includes(search))
                     .map((member,index) => {
                         return (
                             <div className='w-full lg:w-1/2 xl:w-1/2'>
@@ -190,17 +194,6 @@ const PeopleSection = () => {
             </div>
         </div>
     );
-}
-
-
-const PageSpaceRow = () => {
-    return (
-        <div className="bg-dark-hex bg-no-repeat bg-cover bg-bottom shadow-xl my-4" >
-            <br/>
-            <br/>
-            <br/>
-        </div>
-    )
 }
 
 
