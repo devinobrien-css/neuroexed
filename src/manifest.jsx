@@ -4,6 +4,7 @@ import Books from "./pages/books";
 import Landing from "./pages/landing";
 import News from "./pages/news";
 import People from "./pages/people";
+import Podcasts from "./pages/podcasts";
 import Projects from "./pages/projects";
 
 
@@ -43,6 +44,12 @@ export const tabs = [
         protected:false,
         icon:"carbon:network-4",
         page:Affiliations
+    },
+    {
+        name:"podcasts",
+        protected:false,
+        icon:"ic:twotone-mic",
+        page:Podcasts
     },
     {
         name:"admin",
