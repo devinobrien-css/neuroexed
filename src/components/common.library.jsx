@@ -9,6 +9,14 @@ export const Wrapper = ({children,className,color="dark",...rest}) => {
     )
 }
 
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    SECTION TITLES
+
+*/
+
 export const SectionTitle = ({children,className,...rest}) => {
     return <p className='text-4xl md:text-6xl transition-all font-light'>{children}</p>
 }
@@ -29,17 +37,6 @@ export const TitleSm = ({children,className,...rest}) => {
     return <p className={`text-lg ${className}`} {...rest}>{children}</p>
 }
 
-
-
-
-
-export const TextSectionSm = ({children,className,...rest}) => {
-    return <p className={`text-sm ${className}`} {...rest}>{children}</p>
-}
-
-
-
-
 export const SubTitleMd = ({children,className,...rest}) => {
     return <p className={`italic text-2xl ${className}`} {...rest}>{children}</p>
 }
@@ -47,3 +44,9 @@ export const SubTitleMd = ({children,className,...rest}) => {
 export const SubTitleSm = ({children,className,...rest}) => {
     return <p className={`font-lato italic  ${className}`} {...rest}>{children}</p>
 }
+export const TextSectionSm = ({children,className,...rest}) => {
+    return <p className={`text-sm ${className}`} {...rest}>{children}</p>
+}
+
+
+

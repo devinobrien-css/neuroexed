@@ -1,8 +1,5 @@
 import axios from 'axios';
-
-
 const NEURO_API = 'https://y8hve2cnh5.execute-api.us-east-1.amazonaws.com/default/neuroexed-access';
-
 const NEW_URL = `https://${process.env.REACT_APP_NEUROEXED_API_URL}.execute-api.${process.env.REACT_APP_NEUROEXED_REGION}.amazonaws.com/${process.env.REACT_APP_NEUROEXED_DEPLOYMENT_STAGE}`;
 
 

@@ -16,7 +16,6 @@ export const blog = (media_title,media_type,media_date,media_source,media_conten
 }
 
 export const post = (title,date,content) => {
-
     return {
         'title'  : {'S' : title},
         'date'  : {'S' : date},
