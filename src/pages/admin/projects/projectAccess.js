@@ -89,10 +89,10 @@ const NewProject = (args) => {
                                                     selectedMembers
                                                 )
                                             )
-                                            const sort = await fetchData('sort_orders')
+                                            const sort = await fetchData('sort-orders')
                                             sort.Items.filter(order => {return order.type.S === "projects"})[0].sort.L.push({'S':title})
                                             const output = await putData(
-                                                'sort_orders',
+                                                'sort-orders',
                                                 {},
                                                 sort_order(
                                                     'projects',
@@ -110,10 +110,10 @@ const NewProject = (args) => {
                                             await removeData('projects',{
                                                 'title':{'S':title}
                                             })
-                                            const sort = await fetchData('sort_orders')
+                                            const sort = await fetchData('sort-orders')
                                             const output = sort.Items.filter(order => {return order.type.S === "projects"})[0].sort.L.filter(project => {return project.S != title})
                                             await putData(
-                                                'sort_orders',
+                                                'sort-orders',
                                                 {},
                                                 sort_order(
                                                     'projects',
@@ -315,10 +315,10 @@ const EditableProject = (args) => {
                                             await removeData('projects',{
                                                 'title':{'S':title}
                                             })
-                                            const sort = await fetchData('sort_orders')
+                                            const sort = await fetchData('sort-orders')
                                             const output = sort.Items.filter(order => {return order.type.S === "projects"})[0].sort.L.filter(project => {return project.S != title})
                                             await putData(
-                                                'sort_orders',
+                                                'sort-orders',
                                                 {},
                                                 sort_order(
                                                     'projects',
@@ -519,7 +519,7 @@ const SortableProjectList = ({ items }) => {
                         string_list.push(project.title)
                     })
                     await putData(
-                        'sort_orders',
+                        'sort-orders',
                         {},
                         sort_order(
                             'projects',
@@ -550,7 +550,7 @@ const ProjectAccess = () => {
 
     const [projects, setProjects] = useState();
     const getProjects = async () => {
-        const sort = await fetchData('sort_orders')
+        const sort = await fetchData('sort-orders')
         const res = await fetchData('projects');
 
         if(sort.Items.filter(order => {return order.type.S === "projects"})[0].sort.L.length !== 0)

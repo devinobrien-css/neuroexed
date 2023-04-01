@@ -50,10 +50,10 @@ const NewBlog = (args) => {
                                             {},
                                             blog(title,type,date,source,content)
                                         )
-                                        const sort = await fetchData('sort_orders')
+                                        const sort = await fetchData('sort-orders')
                                         sort.Items.filter(order => {return order.type.S === "blogs"})[0].sort.L = [{'S':title}, ...sort.Items.filter(order => {return order.type.S === "blogs"})[0].sort.L]
                                         const output = await putData(
-                                            'sort_orders',
+                                            'sort-orders',
                                             {},
                                             sort_order(
                                                 'blogs',
@@ -188,10 +188,10 @@ const EditableBlog = (args) => {
                                         await removeData('blogs',{
                                             'title':{'S':args.data['media_title'].S},
                                         })
-                                        const sort = await fetchData('sort_orders')
+                                        const sort = await fetchData('sort-orders')
                                         const output = sort.Items.filter(order => {return order.type.S === "blogs"})[0].sort.L.filter(blog => {return blog.S != title})
                                         await putData(
-                                            'sort_orders',
+                                            'sort-orders',
                                             {},
                                             sort_order(
                                                 'blogs',
@@ -338,7 +338,7 @@ const SortableBlogList = ({ items }) => {
                         string_list.push({'S':blog.title.S})
                     })
                     const output = await putData(
-                        'sort_orders',
+                        'sort-orders',
                         {},
                         sort_order(
                             'blogs',
@@ -371,7 +371,7 @@ const BlogAccess = () => {
 
     const [blogs, setBlogs] = useState();
     const getBlogs = async () => {
-        const sort = await fetchData('sort_orders')
+        const sort = await fetchData('sort-orders')
         const res = await fetchData('blogs')
 
         if(sort.Items.filter(order => {return order.type.S === "blogs"})[0].sort.L.length !== 0)

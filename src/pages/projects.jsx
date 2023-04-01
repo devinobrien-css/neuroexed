@@ -20,7 +20,7 @@ const Member = (args) => {
             )}>
             <img 
                 className='w-16 rounded mx-auto'
-                src={`https://neuro-exed-images.s3.us-east-1.amazonaws.com/profile_pictures/${member_data.last.S.toLowerCase().replace("'","")}.png`} 
+                src={`https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/${member_data.last.S.toLowerCase().replace("'","")}.png`} 
                 alt={member_data.last.S.toLowerCase()}
             />
             <div>
@@ -94,7 +94,7 @@ function orderJsonObjects(order,objects){
     const getProjects = async () => {
         setLoading(true)
         const res = await fetchData('projects');
-        const sort = await fetchData('sort_orders')
+        const sort = await fetchData('sort-orders')
 
         if(sort.Items.filter(order => {return order.type.S === "projects"})[0].sort.L.length !== 0)
             setProjects(orderJsonObjects(sort.Items.filter(order => {return order.type.S === "projects"})[0].sort.L,res.Items));

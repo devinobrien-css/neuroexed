@@ -21,7 +21,7 @@ const StellarSection = () => {
                 <div 
                     className='group-hover:border-8 rounded-lg overflow-hidden border-double border-4 shadow-lg mx-auto  w-32 md:mx-0 h-min border-blue-300 transition-all '
                 >
-                    <img src={`https://neuro-exed-images.s3.us-east-1.amazonaws.com/profile_pictures/stellar.png`} alt="James Stellar" />
+                    <img src={`https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/stellar.png`} alt="James Stellar" />
                 </div>
                 <div className='pl-2 w-full md:w-3/5 flex flex-col justify-between'>
                     <p className="font-light text-4xl md:text-4xl w-full  mb-2 transition-all md:text-left text-center"> Dr. James Stellar</p>
@@ -82,7 +82,7 @@ export const Profile = (args) => {
                 <div 
                     className='group-hover:border-8 rounded-lg overflow-hidden border-double border-4 shadow-lg mx-auto  w-32 -mt-16 h-min border-blue-300 transition-all '
                 >
-                    <img src={`https://neuro-exed-images.s3.us-east-1.amazonaws.com/profile_pictures/${data["last"].S.toLowerCase().replace("'","")}.png`} alt={`Lab Member ${data["first"].S} ${data["last"].S}`} />
+                    <img src={`https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/${data["last"].S.toLowerCase().replace("'","")}.png`} alt={`Lab Member ${data["first"].S} ${data["last"].S}`} />
                 </div>
             </div>
             <p className="font-light text-4xl w-full  mb-2 transition-all text-center mx-auto">{data['first'].S} {data['last'].S}</p>
@@ -150,7 +150,7 @@ const PeopleSection = () => {
     const [people, setPeople] = useState();
     const getPeople = async () => {
         setLoading(true)
-        const sort = await fetchData('sort_orders')
+        const sort = await fetchData('sort-orders')
         const res = await fetchData('people')
 
         if(sort.Items.filter(order => {return order.type.S === "people"})[0].sort.L.length !== 0)

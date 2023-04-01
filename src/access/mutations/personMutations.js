@@ -10,11 +10,11 @@ async function addUpdatePerson(member,email){
         member
     )
 
-    const sort = await fetchData('sort_orders')
+    const sort = await fetchData('sort-orders')
     sort.Items.filter(order => {return order.type.S === "people"})[0].sort.L.push({'S':email})
     
     await putData(
-        'sort_orders',
+        'sort-orders',
         {},
         sort_order(
             'people',

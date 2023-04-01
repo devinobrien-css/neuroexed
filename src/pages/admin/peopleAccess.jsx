@@ -45,7 +45,7 @@ const NewPerson = (args) => {
                                 imageUpload?
                                 URL.createObjectURL(imageUpload)
                                 :
-                                "https://neuro-exed-images.s3.us-east-1.amazonaws.com/profile_pictures/profile.png"
+                                "https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/profile.png"
                             } 
                         />
                     </div>
@@ -233,7 +233,7 @@ const EditablePerson = (args) => {
                                 imageUpload?
                                 URL.createObjectURL(imageUpload)
                                 :
-                                `https://neuro-exed-images.s3.us-east-1.amazonaws.com/profile_pictures/${last.replace("'","").toLowerCase()}.png`
+                                `https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/${last.replace("'","").toLowerCase()}.png`
                             } 
                         />
                     </div>
@@ -310,10 +310,10 @@ const EditablePerson = (args) => {
                                         await removeData('people',{
                                             'email':{'S':email}
                                         })
-                                        const sort = await fetchData('sort_orders')
+                                        const sort = await fetchData('sort-orders')
                                         const output = sort.Items.filter(order => {return order.type.S === "people"})[0].sort.L.filter(user => {return user.S != email})
                                         await putData(
-                                            'sort_orders',
+                                            'sort-orders',
                                             {},
                                             sort_order(
                                                 'people',
@@ -493,7 +493,7 @@ const SortablePersonList = ({ items }) => {
                         string_list.push(person.email)
                     })
                     await putData(
-                        'sort_orders',
+                        'sort-orders',
                         {},
                         sort_order(
                             'people',
@@ -528,11 +528,17 @@ const PeopleAccess = () => {
 
     const [people, setPeople] = React.useState();
     const getPeople = async () => {
-        const sort = await fetchData('sort_orders')
+        const sort = await fetchData('sort-orders')
         const res = await fetchData('people')
 
-        if(sort.Items.filter(order => {return order.type.S === "people"})[0].sort.L.length !== 0)
-            setPeople(orderJsonObjects(sort.Items.filter(order => {return order.type.S === "people"})[0].sort.L,res.Items));
+        
+        if(sort.Count !== 0)
+            if(sort?.Items?.filter(order => {
+                return order.type?.S === "people"
+            })[0]?.sort?.L?.length !== 0)
+                setPeople(orderJsonObjects(sort.Items.filter(order => {return order.type?.S === "people"})[0].sort?.L,res.Items));
+            else
+                setPeople(res.Items)
         else
             setPeople(res.Items)
     };

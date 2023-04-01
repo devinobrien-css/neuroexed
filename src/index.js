@@ -7,7 +7,6 @@ import { pageState } from './atom';
 import './index.css'
 import Login from './components/login/login'
 
-
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { fetchData, putData } from './access/dba';
@@ -39,7 +38,7 @@ async function updateOders(){
     const people = await fetchData('people');
     const projects = await fetchData('projects');
     const blogs = await fetchData('blogs');
-    const orders = await fetchData('sort_orders');
+    const orders = await fetchData('sort-orders');
 
 
     const personOrder = orders.Items.filter(item => item.type.S==="people")[0].sort.L;
@@ -54,7 +53,7 @@ async function updateOders(){
         });
 
         await putData(
-            'sort_orders',
+            'sort-orders',
             {},
             sort_order(
                 'people',
@@ -71,7 +70,7 @@ async function updateOders(){
         });
 
         await putData(
-            'sort_orders',
+            'sort-orders',
             {},
             sort_order(
                 'projects',
@@ -88,7 +87,7 @@ async function updateOders(){
         });
 
         await putData(
-            'sort_orders',
+            'sort-orders',
             {},
             sort_order(
                 'blogs',
@@ -105,7 +104,6 @@ const App = () => {
     const Page = tabs.filter(tab => tab.name===page)[0].page
 
     useEffect(() => {
-        console.log("refresh")
         window.scrollTo({ top: 0, behavior: 'smooth' });
     },[page])
 

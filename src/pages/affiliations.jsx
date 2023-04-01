@@ -26,7 +26,7 @@ const Affiliation = (args) => {
 
     return (
         <div className='hover:shadow-xl shadow-gray-400 max-w-[450px] md:w-5/12 mx-auto transition-all my-4 bg-white rounded-xl hover:scale-105 transform shadow overflow-hidden pb-4 cursor-pointer' onClick={() => Modal(modal_content)}> 
-            <img src={`https://neuroexed-bucket.s3.us-east-1.amazonaws.com/affiliations/${affiliate.data.M.slug.S}.png`} className="block max-w-full min-h-[200px]" alt={`Website of ${affiliate.name.S}`}/>
+            <img src={`https://neuroexed-bucket.s3.us-east-1.amazonaws.com/affiliations/${affiliate.data.M.slug.S.toLowerCase()}.png`} className="block max-w-full min-h-[200px]" alt={`Website of ${affiliate.name.S}`}/>
             <p className='text-2xl my-2 text-center'>{affiliate.name.S}</p>
             <button
                 className='bg-gray-800 hover:bg-gray-900 transition-all transform hover:scale-105 text-white rounded px-4 py-1 mx-auto block'

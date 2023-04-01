@@ -1,21 +1,8 @@
 import axios from 'axios';
-const NEURO_API = 'https://y8hve2cnh5.execute-api.us-east-1.amazonaws.com/default/neuroexed-access';
-const NEW_URL = `https://${process.env.REACT_APP_NEUROEXED_API_URL}.execute-api.${process.env.REACT_APP_NEUROEXED_REGION}.amazonaws.com/${process.env.REACT_APP_NEUROEXED_DEPLOYMENT_STAGE}`;
+const NEURO_API = 'https://9uc2frxhqk.execute-api.us-east-1.amazonaws.com/prod/database/';
 
 
-const getPeople = async () => {
-    await axios
-    .post(
-        NEW_URL
-    )
-    .then((response) => {
-        console.log(response.data.body);
-    })
-}
-
-getPeople()
-
-/**
+/** Fetches a row of a table
  * @param {*} tableName 
  * @returns 
  */
@@ -32,15 +19,47 @@ export const fetchData = async (tableName,conditions={}) => {
         }
     )
     .then((response) => {
-        output = response.data.body.result;
+        try{
+            output = response.data.result;
+        }
+        catch(error) {
+            console.log("ERROR OCCURED IN FETCH")
+            console.log(response)
+            console.log(error)
+        }
     })
     .catch((error) => {
         console.log('FETCH ERROR')
         console.log(error);
     });
+
+    console.log("TESTING !")
+    await fetch(NEURO_API, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            command:'READ',
+            table:tableName,
+            conditions:conditions,
+            data:{}
+        }),
+    })
+    .then((out) => console.log(out))
+    .catch((e) => console.log(e))
+
     return output
 }
 
+/** Updates a row of a table
+ * @param {*} tableName 
+ * @param {*} conditions 
+ * @param {*} data 
+ * @returns 
+ */
 export const putData = async (tableName, conditions={}, data) => {
     let output = null 
 
@@ -55,7 +74,7 @@ export const putData = async (tableName, conditions={}, data) => {
         }
     )
     .then((response) => {
-        output = response.data.body;
+        output = response.data;
     })
     .catch((error) => {
         console.log('PUT ERROR')
@@ -64,6 +83,11 @@ export const putData = async (tableName, conditions={}, data) => {
     return output
 }
 
+/** Removes a row of a table
+ * @param {*} tableName 
+ * @param {*} key 
+ * @returns 
+ */
 export const removeData = async (tableName, key) => {
     let output = null 
 

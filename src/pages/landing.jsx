@@ -27,7 +27,7 @@ function orderJsonObjects(order,objects){
  const LandingBlogs = () => {
     const [blogs, setBlogs] = useState();
     const getBlogs = async () => {
-        const sort = await fetchData('sort_orders')
+        const sort = await fetchData('sort-orders')
         const res = await fetchData('blogs')
         if(sort.Items.filter(order => {return order.type.S === "blogs"})[0].sort.L.length !== 0)
             setBlogs(orderJsonObjects(sort.Items.filter(order => {return order.type.S === "blogs"})[0].sort.L,res.Items));
