@@ -1,12 +1,12 @@
 
 
 
-const StandardTextArea = ({title, type="", value, setValue, classes}) => {
+const StandardTextArea = ({title, type="", value, setValue, className}) => {
 
 
     return (
         <div
-            className={`${classes} md:flex justify-between`}
+            className={`${className} md:flex justify-between`}
         >
             <label
                 className="w-3/12 text-gray-500"

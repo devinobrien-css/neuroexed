@@ -6,6 +6,7 @@ import { fetchData,putData,removeData } from '../../../access/dba';
 /* STYLESHEET IMPORTS */
 import '../admin.css'; //contains styles specific to the user page
 import '../../../components/content_sections.css'; //contains general container styles
+import StandardInput from '../components/StandardInput.component';
 
 const NewAffiliate = (args) => {
 
@@ -75,38 +76,24 @@ const NewAffiliate = (args) => {
                 </div>
             </div>
             <div className={state ? 'hidden-content open' : 'hidden-content'}>
-                <div className='editable-item'>
-                    <label>name</label>
-                    <textarea
-                        id="name"
-                        name="name"
-                        value={name}
-                        placeholder='affiliate name...'
-                        onChange={(event) => setName(event.target.value)}
-                    />
-                </div>
-                <hr/>
-                <div className='editable-item'>
-                    <label>short name</label>
-                    <textarea
-                        id="slug"
-                        name="slug"
-                        value={slug}
-                        placeholder='affiliate shortname...'
-                        onChange={(event) => setSlug(event.target.value)}
-                    />
-                </div>
-                <hr/>
-                <div className='editable-item'>
-                    <label>source</label>
-                    <textarea
-                        id="source"
-                        name="source"
-                        value={source}
-                        placeholder='affiliate source...'
-                        onChange={(event) => setSource(event.target.value)}
-                    />
-                </div>
+                <StandardInput 
+                    title={"Affiliate Name"}
+                    className={'border px-2'}
+                    value={name}
+                    setValue={setName}
+                />
+                <StandardInput 
+                    title={"Short Name"}
+                    className={'border px-2'}
+                    value={slug}
+                    setValue={setSlug}
+                />
+                <StandardInput 
+                    title={"Source"}
+                    className={'border px-2'}
+                    value={source}
+                    setValue={setSource}
+                />
             </div>
         </div>
     )
@@ -175,38 +162,24 @@ const EditableAffiliate = (args) => {
                 </div>
             </div>
             <div className={state ? 'hidden-content open' : 'hidden-content'}>
-                <div className='editable-item'>
-                    <label>name</label>
-                    <textarea
-                        id="name"
-                        name="name"
-                        value={name}
-                        placeholder='affiliate name...'
-                        onChange={(event) => setName(event.target.value)}
-                    />
-                </div>
-                <hr/>
-                <div className='editable-item'>
-                    <label>short name</label>
-                    <textarea
-                        id="slug"
-                        name="slug"
-                        value={slug}
-                        placeholder='affiliate shortname...'
-                        onChange={(event) => setSlug(event.target.value)}
-                    />
-                </div>
-                <hr/>
-                <div className='editable-item'>
-                    <label>source</label>
-                    <textarea
-                        id="source"
-                        name="source"
-                        value={source}
-                        placeholder='affiliate source...'
-                        onChange={(event) => setSource(event.target.value)}
-                    />
-                </div>
+                <StandardInput 
+                    title={"Affiliate Name"}
+                    className={'border px-2'}
+                    value={name}
+                    setValue={setName}
+                />
+                <StandardInput 
+                    title={"Short Name"}
+                    className={'border px-2'}
+                    value={slug}
+                    setValue={setSlug}
+                />
+                <StandardInput 
+                    title={"Source"}
+                    className={'border px-2'}
+                    value={source}
+                    setValue={setSource}
+                />
             </div>
         </div>
     )

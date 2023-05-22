@@ -1,12 +1,7 @@
-
-
-
-const StandardInput = ({title, type='text', value, setValue,classes}) => {
-
-
+const StandardInput = ({title, type='text', value, setValue, className}) => {
     return (
         <div
-            className={`${classes} md:flex justify-between`}
+            className={`${className} md:flex justify-between`}
         >
             <label
                 className="w-3/12 text-gray-500"
@@ -21,11 +16,7 @@ const StandardInput = ({title, type='text', value, setValue,classes}) => {
                 autoComplete="false"
                 placeholder={'Enter ' + title}
                 onChange={(event) => {
-                    if(type==='date')
-                        setValue(event.target.value.split('-')[0])
-                    else
-                        setValue(event.target.value)
-                
+                    setValue(event.target.value)
                 }}
                 className="w-full border-0 md:border-l border-gray-300 md:pl-2"
             />

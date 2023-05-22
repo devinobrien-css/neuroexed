@@ -135,12 +135,14 @@ export const Profile = (args) => {
 function orderJsonObjects(order,objects){
     const output = []
     order.forEach(order_by => {
-        output.push(objects.filter(object => {return object.email.S === order_by.S})[0])
+        output.push(objects.filter(object => {
+            return object.email.S === order_by.S
+        })[0])
     })
     return output
 }
 
-/** Fetches perople data, renders list of members
+/** Fetches people data, renders list of members
  * @returns 
  */
 const PeopleSection = () => {
@@ -158,12 +160,13 @@ const PeopleSection = () => {
         else
             setPeople(res.Items)
         setLoading(false)
-        
     };
 
     useEffect(() => {
         getPeople();
     }, []);
+
+    console.log(people)
 
     return (
         <div 
@@ -185,7 +188,7 @@ const PeopleSection = () => {
                     people?.filter(member => member.data.M.first.S.toLowerCase().includes(search) || member.data.M.last.S.toLowerCase().includes(search))
                     .map((member,index) => {
                         return (
-                            <div className='w-full lg:w-1/2 xl:w-1/2'>
+                            <div className='w-full lg:w-1/2 xl:w-1/2' key={index}>
                                 <Profile key={index} data={member.data.M}/>
                             </div>
                         )

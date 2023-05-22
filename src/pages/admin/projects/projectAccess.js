@@ -7,6 +7,7 @@ import { fetchData,putData,removeData } from '../../../access/dba';
 import '../admin.css'; //contains styles specific to the user page
 import '../../../components/content_sections.css'; //contains general container styles
 import StandardInput from '../components/StandardInput.component';
+import StandardTextArea from '../components/StandardTextArea.component';
 
 const NewProject = (args) => {
     const [people, setPeople] = useState();
@@ -133,11 +134,13 @@ const NewProject = (args) => {
                 <div className={state ? 'hidden-content open' : 'hidden-content'}>
                     <StandardInput 
                         title={"Project Title"}
+                        className={'border px-2'}
                         value={title}
                         setValue={setTitle}
                     />
-                    <StandardInput 
+                    <StandardTextArea 
                         title={"Project Description"}
+                        className={'border px-2'}
                         value={description}
                         setValue={setDescription}
                     />
@@ -175,6 +178,7 @@ const NewProject = (args) => {
                     >
                         <StandardInput 
                             title={"Add Members"}
+                            className={'border px-2'}
                             value={newMember}
                             setValue={setNewMember}
                         />
@@ -341,11 +345,13 @@ const EditableProject = (args) => {
                 >
                     <StandardInput 
                         title={"Project Title"}
+                        className={'border px-2'}
                         value={title}
                         setValue={setTitle}
                     />
-                    <StandardInput 
+                    <StandardTextArea 
                         title={"Project Description"}
+                        className={'border px-2'}
                         value={description}
                         setValue={setDescription}
                     />
@@ -386,6 +392,7 @@ const EditableProject = (args) => {
                     >
                         <StandardInput 
                             title={"Add Members"}
+                            className={'border px-2'}
                             value={newMember}
                             setValue={setNewMember}
                         />

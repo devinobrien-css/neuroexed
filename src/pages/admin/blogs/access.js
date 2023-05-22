@@ -6,6 +6,9 @@ import { fetchData,putData,removeData } from '../../../access/dba';
 /* STYLESHEET IMPORTS */
 import '../admin.css'; //contains styles specific to the user page
 import '../../../components/content_sections.css'; //contains general container styles
+import StandardInput from '../components/StandardInput.component';
+import StandardSelect from '../components/StandardSelect.component';
+import StandardTextArea from '../components/StandardTextArea.component';
 
 const NewBlog = (args) => {
     const [state,setState] = useState(true)
@@ -83,56 +86,38 @@ const NewBlog = (args) => {
                 </div>
             </div>
             <div className={state ? 'hidden-content open' : 'hidden-content'}>
-                <div className='editable-item'>
-                    <label>Title</label>
-                    <textarea
-                        id="media_title"
-                        name="media_title"
-                        value={title}
-                        placeholder='enter title...'
-                        onChange={(event) => setTitle(event.target.value)}
-                    />
-                </div>
-                <div className='editable-item'>
-                    <label>Date</label>
-                    <textarea
-                        id="media_date"
-                        name="media_date"
-                        value={date}
-                        placeholder='enter date...'
-                        onChange={(event) => setDate(event.target.value)}
-                    />
-                </div>
-                <div className='editable-item'>
-                    <label>Media Type</label>
-                    <textarea
-                        id="media_type"
-                        name="media_type"
-                        value={type}
-                        placeholder='enter type...'
-                        onChange={(event) => setType(event.target.value)}
-                    />
-                </div>
-                <div className='editable-item'>
-                    <label>Source</label>
-                    <textarea
-                        id="media_source"
-                        name="media_source"
-                        value={source}
-                        placeholder='enter url...'
-                        onChange={(event) => setSource(event.target.value)}
-                    />
-                </div>
-                <div className='editable-item'>
-                    <label>Description</label>
-                    <textarea
-                        id="media_content"
-                        name="media_content"
-                        value={content}
-                        placeholder='enter description...'
-                        onChange={(event) => setContent(event.target.value)}
-                    />
-                </div>
+                <StandardInput
+                    title={"Title"}
+                    className={'border px-2'}
+                    value={title}
+                    setValue={setTitle}
+                />
+                <StandardInput 
+                    title={"Date"}
+                    className={'border px-2'}
+                    type='date'
+                    value={date !== '' ? date : new Date().toISOString().substring(0,10)}
+                    setValue={setDate}
+                />
+                <StandardSelect
+                    title='Media Type'
+                    className={'border px-2'}
+                    options={['BLOG','PODCAST']}
+                    selected={type}
+                    setSelected={setType}
+                />
+                <StandardInput 
+                    title={"Source"}
+                    className={'border px-2'}
+                    value={source}
+                    setValue={setSource}
+                />
+                <StandardTextArea 
+                    title={"Description"}
+                    className={'border px-2'}
+                    value={content}
+                    setValue={setContent}
+                />
             </div>
         </div>
     )
@@ -209,52 +194,38 @@ const EditableBlog = (args) => {
                 </div>
             </div>
             <div className={state ? 'hidden-content open' : 'hidden-content'}>
-                <div className='editable-item'>
-                    <label>Title</label>
-                    <textarea
-                        id="media_title"
-                        name="media_title"
-                        value={title}
-                        onChange={(event) => setTitle(event.target.value)}
-                    />
-                </div>
-                <div className='editable-item'>
-                    <label>Date</label>
-                    <textarea
-                        id="media_date"
-                        name="media_date"
-                        value={date}
-                        placeholder='enter date...'
-                        onChange={(event) => setDate(event.target.value)}
-                    />
-                </div>
-                <div className='editable-item'>
-                    <label>Media Type</label>
-                    <textarea
-                        id="media_type"
-                        name="media_type"
-                        value={type}
-                        onChange={(event) => setType(event.target.value)}
-                    />
-                </div>
-                <div className='editable-item'>
-                    <label>Source</label>
-                    <textarea
-                        id="media_source"
-                        name="media_source"
-                        value={source}
-                        onChange={(event) => setSource(event.target.value)}
-                    />
-                </div>
-                <div className='editable-item'>
-                    <label>Description</label>
-                    <textarea
-                        id="media_content"
-                        name="media_content"
-                        value={content}
-                        onChange={(event) => setContent(event.target.value)}
-                    />
-                </div>
+                <StandardInput
+                    title={"Title"}
+                    className={'border px-2'}
+                    value={title}
+                    setValue={setTitle}
+                />
+                <StandardInput 
+                    title={"Date"}
+                    className={'border px-2'}
+                    type='date'
+                    value={new Date(date).toISOString().substring(0,10)}
+                    setValue={setDate}
+                />
+                <StandardSelect
+                    title='Media Type'
+                    className={'border px-2'}
+                    options={['BLOG','PODCAST']}
+                    selected={type}
+                    setSelected={setType}
+                />
+                <StandardInput 
+                    title={"Source"}
+                    className={'border px-2'}
+                    value={source}
+                    setValue={setSource}
+                />
+                <StandardTextArea 
+                    title={"Description"}
+                    className={'border px-2'}
+                    value={content}
+                    setValue={setContent}
+                />
             </div>
         </div>
     )
@@ -267,7 +238,7 @@ const SortableBlogList = ({ items }) => {
     let tempList=[]
     useEffect(() => {
         tempList=[]
-        items.map(item => {
+        items.forEach(item => {
             tempList.push(item)
         })
         setItemList(tempList)
@@ -334,10 +305,10 @@ const SortableBlogList = ({ items }) => {
                 className='sticky bg-gray-300 bottom-1 left-2 p-2 rounded hover:bg-gray-400'
                 onClick={async () => {
                     const string_list = []
-                    itemList.map(blog => {
+                    itemList.forEach(blog => {
                         string_list.push({'S':blog.title.S})
                     })
-                    const output = await putData(
+                    await putData(
                         'sort-orders',
                         {},
                         sort_order(
@@ -357,7 +328,7 @@ const SortableBlogList = ({ items }) => {
 
 function orderJsonObjects(order,objects){
     const output = []
-    order.map(order_by => {
+    order.forEach(order_by => {
         output.push(objects.filter(object => {return object.title.S === order_by.S})[0])
     })
     return output
@@ -432,7 +403,7 @@ const BlogAccess = () => {
                             ).map((blog,index) => {
                                 return (
                                     <div
-                                        key={blog.data.M.media_title.S + "-" + index}
+                                        key={index}
                                     >
                                         <EditableBlog 
                                             key={blog.data.M.media_title.S+index}

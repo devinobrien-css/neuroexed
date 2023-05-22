@@ -45,7 +45,7 @@ const Posts = () => {
                     );
 
                     return (
-                        <div className='w-full md:w-1/3 bg-white shadow-std overflow-hidden my-2 rounded-lg ' onClick={() => Modal(modal_content)}>
+                        <div className='w-full md:w-1/3 bg-white shadow-std overflow-hidden my-2 rounded-lg ' onClick={() => Modal(modal_content)} key={index}>
                             <div className='bg-hex bg-cover w-full flex justify-between p-2'>
                                 <p className='text-white p-2 text-2xl'>News Post</p>
                                 <DateCard date={post.date.S.split('/')} />
