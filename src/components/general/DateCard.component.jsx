@@ -21,8 +21,8 @@ const DateCard = (args) => {
         <div className='flex flex-col z-50'>
             <div className='mx-auto rounded shadow-lg group relative'>
                 <p className='bg-gray-400 text-gray-100 px-2 rounded-t'>{months[date[0]]}</p>
-                <p className='mx-auto text-center bg-white rounded-b group-hover:rounded-none'>{date[1]}</p>
-                <p className='mx-auto text-center bg-white rounded-b border-t bg-opacity-90 group-hover:max-h-full group-hover:opacity-100 duration-300 max-h-0 transition-all opacity-0 absolute w-full'>{'20'+date[2]}</p>
+                <p className='mx-auto text-center bg-white group-hover:rounded-none'>{date[1]}</p>
+                <p className='mx-auto text-center bg-white rounded-b border-t bg-opacity-90 w-full'>{'20'+date[2]}</p>
             </div>
         </div>
 
