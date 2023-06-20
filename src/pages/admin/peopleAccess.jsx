@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { member, sort_order } from '../../schema/object_schema';
 import { fetchData,putData,removeData } from '../../access/dba';
-import S3ImageUpload,{ uploadFile, deleteFile } from "react-s3"
+import { uploadFile } from "react-s3"
 
 import StandardInput from './components/StandardInput.component';
 import StandardTextArea from './components/StandardTextArea.component';
@@ -194,7 +194,7 @@ const NewPerson = (args) => {
                 >
                     <p className="text-gray-500">Profile Picture</p>
                     <input 
-                        class="block w-min h-min my-auto overflow-hidden text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none " 
+                        className="block w-min h-min my-auto overflow-hidden text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none " 
                         type="file" 
                         accept="image/png"
                         onChange={(event) => {
@@ -313,7 +313,7 @@ const EditablePerson = (args) => {
                                             'email':{'S':email}
                                         })
                                         const sort = await fetchData('sort-orders')
-                                        const output = sort.Items.filter(order => {return order.type.S === "people"})[0].sort.L.filter(user => {return user.S != email})
+                                        const output = sort.Items.filter(order => {return order.type.S === "people"})[0].sort.L.filter(user => {return user.S !== email})
                                         await putData(
                                             'sort-orders',
                                             {},
@@ -400,7 +400,7 @@ const EditablePerson = (args) => {
                     <p className="text-gray-500 md:w-3/12">Profile Picture</p>
                     <div>
                         <input 
-                            class="md:border-l block w-min h-min my-auto overflow-hidden text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none " 
+                            className="md:border-l block w-min h-min my-auto overflow-hidden text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none " 
                             type="file" 
                             accept="image/png"
                             onChange={(event) => {
@@ -410,7 +410,7 @@ const EditablePerson = (args) => {
                                 setImageUpload(newFile)
                             }}
                         />
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help"> PNG (MAX. 600x600px). <span className='italic'>The file name should be the user's last name</span></p>
+                        <p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help"> PNG (MAX. 600x600px). <span className='italic'>The file name should be the user's last name</span></p>
                     </div>
                 </div>
             </div>

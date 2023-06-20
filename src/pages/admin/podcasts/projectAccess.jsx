@@ -152,7 +152,7 @@ const NewPodcast = (args) => {
                 >
                     <p className="text-gray-500">Audio File</p>
                     <input 
-                        class="block w-min h-min my-auto overflow-hidden text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none " 
+                        className="block w-min h-min my-auto overflow-hidden text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none " 
                         type="file" 
                         accept="image/png"
                         onChange={(event) => {
@@ -324,7 +324,7 @@ const EditablePodcast = (args) => {
                 >
                     <p className="text-gray-500">Audio File</p>
                     <input 
-                        class="block w-min h-min my-auto overflow-hidden text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none " 
+                        className="block w-min h-min my-auto overflow-hidden text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none " 
                         type="file" 
                         accept="image/png"
                         onChange={(event) => {
