@@ -3,40 +3,52 @@ import axios from 'axios';
 const NEURO_API = 'https://9uc2frxhqk.execute-api.us-east-1.amazonaws.com/prod/database/';
 const NEURO_S3_API = 'https://9uc2frxhqk.execute-api.us-east-1.amazonaws.com/prod/s3/';
 
+const putFileToS3 = async (file, fileName, bucket) => {
+    return await axios
+    .post(
+        NEURO_S3_API,
+        {
+            file: file,
+            fileName: fileName,
+            bucket: bucket
+        }
+    )
+    .then((response) => {
+        try {
+            console.log('NO ERROR')
+            return response.data.result;
+        }
+        catch (error) {
+            console.log("ERROR OCCURED IN S3 POST")
+            console.log(response)
+            console.log(error)
+        }
+    })
+    .catch((error) => {
+        console.log('S3 ERROR')
+        console.log(error);
+    });
+}
+
 /** Uploads a file to S3
  */
-export const uploadFileToBucket = async (fileName,file) => {
+export const uploadFileToBucket = async (folder, fileName,file) => {
     console.log('sendit')
-    let output = null
 
     const form = new FormData()
-    form.append('file', file)
-    
-    await axios
-        .post(
-            NEURO_S3_API,
-            {
-                file: form,
-                fileName: fileName,
-            }
-        )
-        .then((response) => {
-            try {
-                console.log('NO ERROR')
-                output = response.data.result;
-            }
-            catch (error) {
-                console.log("ERROR OCCURED IN S3 POST")
-                console.log(response)
-                console.log(error)
-            }
-        })
-        .catch((error) => {
-            console.log('S3 ERROR')
-            console.log(error);
-        });
+    form.append('data', JSON.stringify({
+        name: fileName, 
+    }));
+    form.append('file', file, fileName)
 
-    console.log(output)
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file)
+
+    reader.onload = async () => await putFileToS3(reader.result,`${folder}/${fileName}`, 'neuroexed-bucket')
+
+    console.log('-0-0-C-0-0-')
+    
     // const result = await ReactS3Client.uploadFile(file, fileName);
     // const s3 = new AWS.S3();
 

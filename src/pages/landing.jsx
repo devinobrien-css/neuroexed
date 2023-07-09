@@ -153,6 +153,19 @@ const Landing = () => {
                 </div>
             </div>
 
+
+            <LandingBlogs />
+            
+            <Wrapper>
+                <br/>
+            </Wrapper>
+
+            <LandingBooks />
+
+            <Wrapper>
+                <br/>
+            </Wrapper>
+            
             <Wrapper className="mt-12">
                 <div className="bg-white w-[95%] mx-auto -mt-8 shadow-xl shadow-gray-800 rounded">
                     <div className='flex border-b'>
@@ -216,18 +229,6 @@ const Landing = () => {
                         </div>
                     </div>
                 </div>
-            </Wrapper>
-
-            <LandingBlogs />
-            
-            <Wrapper>
-                <br/>
-            </Wrapper>
-
-            <LandingBooks />
-            
-            <Wrapper>
-                <br/>
             </Wrapper>
 
             <Footer />

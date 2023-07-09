@@ -281,7 +281,7 @@ const EditablePerson = (args) => {
                                             console.log('lets upload this file')
                                             console.log(imageUpload)
                                             const fileName = `${last.toLowerCase()}.png`
-                                            uploadFileToBucket(fileName, imageUpload)
+                                            uploadFileToBucket('profile_pictures',fileName, imageUpload)
                                         }
 
                                         setState(false)
@@ -388,15 +388,9 @@ const EditablePerson = (args) => {
                         <input 
                             className="md:border-l block w-min h-min my-auto overflow-hidden text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none " 
                             type="file" 
-                            // accept="image/png"
+                            accept="image/png"
                             onChange={(e) => {
-                                console.log('------------0--0-0-0-')
-                                console.log(e.target.files)
-                                console.log(e.target.files[0])
-                                console.log(e.target.files['0'])
                                 setImageUpload(e.target.files[0])
-                                console.log('------------0--0-0-0-')
-
                             }}
                         />
                         <p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help"> PNG (MAX. 600x600px). <span className='italic'>The file name should be the user's last name</span></p>
