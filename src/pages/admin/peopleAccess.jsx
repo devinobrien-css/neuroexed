@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
-
 import { member, sort_order } from '../../schema/object_schema';
-import { fetchData,putData,removeData } from '../../access/dba';
-import { uploadFile } from "react-s3"
-
+import { fetchData,putData,removeData, uploadFileToBucket } from '../../access/dba';
 import StandardInput from './components/StandardInput.component';
 import StandardTextArea from './components/StandardTextArea.component';
 import addUpdatePerson from '../../access/mutations/personMutations';
@@ -279,23 +276,12 @@ const EditablePerson = (args) => {
                                             )
                                         )   
 
-                                        const config = {
-                                            bucketName: process.env.REACT_APP_NEUROEXED_BUCKET,
-                                            dirName: "profile_pictures",
-                                            region: process.env.REACT_APP_NEUROEXED_REGION,
-                                            accessKeyId: process.env.REACT_APP_NEUROEXED_ACCESS,
-                                            secretAccessKey: process.env.REACT_APP_NEUROEXED_SECRET,
-                                        }
-
 
                                         if(imageUpload){
-
-                                            uploadFile(imageUpload, config)
-                                            .then(data => console.log(data))
-                                            .catch(e => {
-                                                console.log('error')
-                                                console.log(e)
-                                            })
+                                            console.log('lets upload this file')
+                                            console.log(imageUpload)
+                                            const fileName = `${last.toLowerCase()}.png`
+                                            uploadFileToBucket(fileName, imageUpload)
                                         }
 
                                         setState(false)
@@ -402,12 +388,15 @@ const EditablePerson = (args) => {
                         <input 
                             className="md:border-l block w-min h-min my-auto overflow-hidden text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none " 
                             type="file" 
-                            accept="image/png"
-                            onChange={(event) => {
-                                var file = event.target.files[0]
-                                var blob = file.slice(0, file.size, 'image/png'); 
-                                const newFile = new File([blob], `${last.replace("'","").toLowerCase()}.png`, {type: 'image/png'});
-                                setImageUpload(newFile)
+                            // accept="image/png"
+                            onChange={(e) => {
+                                console.log('------------0--0-0-0-')
+                                console.log(e.target.files)
+                                console.log(e.target.files[0])
+                                console.log(e.target.files['0'])
+                                setImageUpload(e.target.files[0])
+                                console.log('------------0--0-0-0-')
+
                             }}
                         />
                         <p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help"> PNG (MAX. 600x600px). <span className='italic'>The file name should be the user's last name</span></p>

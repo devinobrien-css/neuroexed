@@ -1,6 +1,63 @@
 import axios from 'axios';
-const NEURO_API = 'https://9uc2frxhqk.execute-api.us-east-1.amazonaws.com/prod/database/';
 
+const NEURO_API = 'https://9uc2frxhqk.execute-api.us-east-1.amazonaws.com/prod/database/';
+const NEURO_S3_API = 'https://9uc2frxhqk.execute-api.us-east-1.amazonaws.com/prod/s3/';
+
+/** Uploads a file to S3
+ */
+export const uploadFileToBucket = async (fileName,file) => {
+    console.log('sendit')
+    let output = null
+
+    const form = new FormData()
+    form.append('file', file)
+    
+    await axios
+        .post(
+            NEURO_S3_API,
+            {
+                file: form,
+                fileName: fileName,
+            }
+        )
+        .then((response) => {
+            try {
+                console.log('NO ERROR')
+                output = response.data.result;
+            }
+            catch (error) {
+                console.log("ERROR OCCURED IN S3 POST")
+                console.log(response)
+                console.log(error)
+            }
+        })
+        .catch((error) => {
+            console.log('S3 ERROR')
+            console.log(error);
+        });
+
+    console.log(output)
+    // const result = await ReactS3Client.uploadFile(file, fileName);
+    // const s3 = new AWS.S3();
+
+    // if (!file) {
+    //     return;
+    // }
+    // const params = { 
+    //     Bucket: 'profile_pictures', 
+    //     __dirname:'',
+    //     Key: fileName, 
+    //     Body: file 
+    // };
+
+    // const { Location } = await s3.upload(params).promise();
+
+    // if(Location) {
+    //     console.log(Location);
+    // } else {
+    //     console.log('error case');
+    // }
+}
 
 /** Fetches a row of a table
  * @param {*} tableName 
