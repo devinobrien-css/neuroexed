@@ -22,7 +22,7 @@ export const SectionTitle = ({children,className,...rest}) => {
 }
 
 export const TitleXl = ({children,className,...rest}) => {
-    return <p className={`text-4xl  ${className}`} {...rest}>{children}</p>
+    return <p className={`text-4xl font-lato font-light  ${className}`} {...rest}>{children}</p>
 }
 
 export const TitleLg = ({children,className,...rest}) => {

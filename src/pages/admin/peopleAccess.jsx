@@ -107,6 +107,12 @@ const NewPerson = (args) => {
                                         )
 
                                         window.location.reload()
+
+                                        if(imageUpload){
+                                            const fileName = `${last.toLowerCase()}.png`
+                                            uploadFileToBucket('profile_pictures',fileName, imageUpload)
+                                        }
+
                                         setState(false)
                                     }    
                                 } 
@@ -278,8 +284,6 @@ const EditablePerson = (args) => {
 
 
                                         if(imageUpload){
-                                            console.log('lets upload this file')
-                                            console.log(imageUpload)
                                             const fileName = `${last.toLowerCase()}.png`
                                             uploadFileToBucket('profile_pictures',fileName, imageUpload)
                                         }

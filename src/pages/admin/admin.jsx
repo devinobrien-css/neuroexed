@@ -8,19 +8,21 @@ import BlogAccess from './blogs/access';
 import PeopleAccess from './peopleAccess';
 import NewsAccess from './news/access';
 import MessageAccess from './messages/access';
+import PodcastAccess from './podcasts/access';
 import Header from '../../components/header.component';
 
 const Studio = () => {
     const [tab,setTab] = useRecoilState(adminState)
 
-    const tabs = ['people','blogs','projects','affiliates','news','messages']
+    const tabs = ['people','blogs','projects','affiliates','news','podcasts','messages']
     const tabMap = {
         'people':PeopleAccess,
         'blogs':BlogAccess,
         'affiliates':AffiliateAccess,
         'projects':ProjectAccess,
         'news':NewsAccess,
-        'messages':MessageAccess
+        'messages':MessageAccess,
+        'podcasts':PodcastAccess
     }
     var CurrentContent = tabMap[tab]
 

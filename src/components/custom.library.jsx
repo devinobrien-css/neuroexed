@@ -13,7 +13,7 @@ export const Header = () => {
 
 export const BlogMd = ({data}) => {
     const date = data['media_date'].S.split('/');
-
+    console.log(data)
     return (
         <div className='group hover:shadow-xl shadow transition-all  bg-white mx-auto my-2 w-full sm:w-4/5 md:w-[48%] flex flex-col justify-between rounded-xl overflow-visible h-min min-h-[280px]'>  
             <div>
