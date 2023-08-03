@@ -1,6 +1,6 @@
 # NeuroExed Web Application
 
-Welcome to the NeuroExed web application! This React and TypeScript-based application is designed to power the neuroscience website for our company, NeuroExed. Our mission is to facilitate the exchange of knowledge and discoveries in the field of neuroscience, providing valuable resources to researchers, practitioners, and enthusiasts worldwide.
+Welcome to the NeuroExed web application! This React and TypeScript-based application is designed to power the neuroscience website for our research lab, NeuroExed. Our mission is to facilitate the exchange of knowledge and discoveries in the field of neuroscience, providing valuable resources to researchers, practitioners, and enthusiasts worldwide.
 
 ## Getting Started
 
