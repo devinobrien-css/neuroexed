@@ -19,19 +19,20 @@ module.exports = {
 		},
 		extend: {
 			backgroundImage: {
-				'dark-hex':"url('./img/hex-bg-dark.png')",
-				'nav-hex':"url('./img/hex-nav-bg.png')",
-				'light-hex':"url('./img/standard-bg-light.png')",
-				'hex': "url('./img/hex-bg.png')",
-				'main-brain': "url('./img/brain.gif')",
-				'brain-gif': "url('./img/brain.gif')",
-				'diversity': "url('./img/diversity.png')",
-				'education':"url('./img/education.png')",
-				'triune':"url('./img/triune.png')"
+				'main-brain': "url('./shared/assets/img/brain.gif')",
+				'brain-gif': "url('./shared/assets/img/brain.gif')",
+				'diversity': "url('./shared/assets/img/diversity.png')",
+				'education':"url('./shared/assets/img/education.png')",
+				'landing':"url('./shared/assets/img/backgrounds/bg-3.jpeg')",
+				'brain-network':"url('./shared/assets/img/brain-art.png')",
+				'brain-1':"url('./shared/assets/img/backgrounds/bg-1.png')",
+				'brain-3':"url('./shared/assets/img/backgrounds/bg-3.png')",
+				'brain-5':"url('./shared/assets/img/backgrounds/bg-5.png')",
 			},
 			fontFamily: {
 				'sans': ['Gill Sans','sans-serif'],
 				'lato': ['Lato','sans-serif'],
+				'raleway': ['Raleway',' sans-serif']
 			},
 			transitionProperty: {
 				'height': 'height',

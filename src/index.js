@@ -1,20 +1,18 @@
+import React from "react"
 import ReactDOM from 'react-dom/client'
-import React, { useEffect } from "react"
-
-import { RecoilRoot, useRecoilState } from "recoil";
-import { pageState } from './atom';
-
+import { RecoilRoot } from "recoil";
 import './index.css'
-import Login from './components/login/login'
-
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { fetchData, putData } from './access/dba';
-import { sort_order } from './schema/object_schema';
+import { fetchData, putData } from './shared/services/dba';
+import { sort_order } from './shared/types/object_schema';
 import { tabs } from './manifest';
 
-window.Buffer = window.Buffer || require("buffer").Buffer;
+import {
+    createBrowserRouter,
+    RouterProvider,
+  } from "react-router-dom";
 
+window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const firebaseConfig = {
   apiKey: "AIzaSyDAnsPneOYk5AhWsOMGTfYwhVwnIGVCI2U",
@@ -27,7 +25,6 @@ const firebaseConfig = {
 };
 
 initializeApp(firebaseConfig);
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
@@ -36,7 +33,6 @@ async function updateOders(){
     const projects = await fetchData('projects');
     const blogs = await fetchData('blogs');
     const orders = await fetchData('sort-orders');
-
 
     const personOrder = orders.Items.filter(item => item.type.S==="people")[0].sort.L;
     const projectOrder = orders.Items.filter(item => item.type.S==="projects")[0].sort.L;
@@ -96,28 +92,20 @@ async function updateOders(){
 }
 updateOders()
 
-const App = () => {
-    const [page,] = useRecoilState(pageState)
-    const Page = tabs.filter(tab => tab.name===page)[0].page
-
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    },[page])
-
-    return (
-        <div className='w-full flex relative'>
-            <div className='w-full max-w-[1800px] mx-auto md:h-screen md:overflow-y-scroll p-4'>
-                <Page />
-            </div>
-            <Login />
-        </div>
-    )
+const createTabs = () => {
+    return tabs.map(tab => {
+        return {
+            path: tab.pathname,
+            element: <tab.page />
+        }
+    })
 }
+const router = createBrowserRouter(createTabs());
 
 root.render(
   <React.StrictMode>
         <RecoilRoot>
-            <App />
+            <RouterProvider router={router} />
         </RecoilRoot>
   </React.StrictMode>
 );
