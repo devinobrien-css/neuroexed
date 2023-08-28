@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { member, sort_order } from '../../shared/types/object_schema';
 import { fetchData,putData,removeData, uploadFileToBucket } from '../../shared/services/dba';
