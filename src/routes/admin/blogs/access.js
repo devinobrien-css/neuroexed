@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 
 import { blog, sort_order } from '../../../shared/types/object_schema';

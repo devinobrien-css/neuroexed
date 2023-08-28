@@ -541,7 +541,7 @@ const SortableProjectList = ({ items }) => {
 
 function orderJsonObjects(order,objects){
     const output = []
-    order.map(order_by => {
+    order.forEach(order_by => {
         output.push(objects.filter(object => {return object.title.S === order_by.S})[0])
     })
     return output
