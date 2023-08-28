@@ -416,7 +416,7 @@ const SortablePersonList = ({ items }) => {
     let tempList=[]
     useEffect(() => {
         tempList=[]
-        items.map(item => {
+        items.forEach(item => {
             tempList.push(item)
         })
         setItemList(tempList)
@@ -483,7 +483,7 @@ const SortablePersonList = ({ items }) => {
                 className='sticky bg-gray-300 bottom-1 left-2 p-2 rounded hover:bg-gray-400'
                 onClick={async () => {
                     const string_list = []
-                    itemList.map(person => {
+                    itemList.forEach(person => {
                         string_list.push(person.email)
                     })
                     await putData(
@@ -508,7 +508,7 @@ const SortablePersonList = ({ items }) => {
 
 function orderJsonObjects(order,objects){
     const output = []
-    order.map(order_by => {
+    order.forEach(order_by => {
         output.push(objects.filter(object => {return object.email.S === order_by.S})[0])
     })
     return output

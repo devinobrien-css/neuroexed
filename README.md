@@ -53,8 +53,9 @@ The NeuroExed web application is built using the following technologies:
 
 - Redux: A state management library for managing application state.
 
-- React Query: A query hook library for APIs, allowing efficient data retrieval and mutation with caching.
+- Tailwind CSS: A utility-first CSS framework that enables rapid UI development with a focus on flexibility and simplicity.
 
+- React Query: A query hook library for APIs, allowing efficient data retrieval and mutation with caching.
 
 ## License
 

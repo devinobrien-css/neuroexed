@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { podcast, post } from '../../../shared/types/object_schema';
+import { podcast } from '../../../shared/types/object_schema';
 import { fetchData,putData,removeData, uploadFileToBucket } from '../../../shared/services/dba';
 
 /* STYLESHEET IMPORTS */
