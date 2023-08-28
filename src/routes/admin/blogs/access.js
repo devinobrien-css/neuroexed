@@ -53,7 +53,7 @@ const NewBlog = (args) => {
                                         )
                                         const sort = await fetchData('sort-orders')
                                         sort.Items.filter(order => {return order.type.S === "blogs"})[0].sort.L = [{'S':title}, ...sort.Items.filter(order => {return order.type.S === "blogs"})[0].sort.L]
-                                        const output = await putData(
+                                        await putData(
                                             'sort-orders',
                                             {},
                                             sort_order(
@@ -172,7 +172,7 @@ const EditableBlog = (args) => {
                                             'title':{'S':args.data['media_title'].S},
                                         })
                                         const sort = await fetchData('sort-orders')
-                                        const output = sort.Items.filter(order => {return order.type.S === "blogs"})[0].sort.L.filter(blog => {return blog.S != title})
+                                        const output = sort.Items.filter(order => {return order.type.S === "blogs"})[0].sort.L.filter(blog => {return blog.S !== title})
                                         await putData(
                                             'sort-orders',
                                             {},
