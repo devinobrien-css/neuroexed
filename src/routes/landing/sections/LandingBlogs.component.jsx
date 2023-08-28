@@ -4,6 +4,7 @@ import { fetchData } from "../../../shared/services/dba";
 import { BlogMd, BlogStyledMd } from "../../../shared/components/custom.library";
 import Loader from "../../../shared/components/Loader.component";
 
+
 function orderJsonObjects(order,objects){
     const output = []
     order.forEach(order_by => {
@@ -15,6 +16,7 @@ function orderJsonObjects(order,objects){
 }
 
 const LandingBlogs = () => {
+    // const { blogs: getAllBlogs } = useBlogs();
     const [blogs, setBlogs] = useState();
     const getBlogs = async () => {
         const sort = await fetchData('sort-orders')
