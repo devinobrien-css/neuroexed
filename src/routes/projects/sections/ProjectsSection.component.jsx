@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../shared/api/dba";
 import ProjectProfile from "./ProjectProfile.component";
-import Loader from "../../../shared/components/Loader.component";
+import Loader from "../../../shared/components/Loader";
 
 const Project = (args) => {
   const project = args.data;

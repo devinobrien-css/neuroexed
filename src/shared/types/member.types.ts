@@ -1,4 +1,19 @@
-export const defaultMemberFormValues = (member) => {
+export interface MemberFormInput {
+  "First Name": string;
+  "Last Name": string;
+  "Collegiate Title": string;
+  "Lab Title": string;
+  "Year Joined": string;
+  "Lab Status": boolean;
+  Description: string;
+  Email: string;
+  Twitter: string;
+  Instagram: string;
+  Linkedin: string;
+  image?: FileList;
+}
+
+export const defaultMemberFormValues = (member: Record<string, any>) => {
   return {
     "First Name": member.first.S,
     "Last Name": member.last.S,
@@ -14,13 +29,13 @@ export const defaultMemberFormValues = (member) => {
 };
 
 export const member = (
-  first_name,
-  last_name,
-  collegiate_title,
-  lab_title,
-  year_joined,
-  description,
-  socials,
+  first_name: string,
+  last_name: string,
+  collegiate_title: string,
+  lab_title: string,
+  year_joined: string,
+  description: string,
+  socials: Record<string, string>,
 ) => {
   return {
     email: { S: socials.email },

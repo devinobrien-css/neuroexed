@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import Loader from "../../../shared/components/Loader.component";
+import Loader from "../../../shared/components/Loader";
 import Profile from "./Profile.component";
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../shared/api/dba";

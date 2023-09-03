@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../shared/api/dba";
 import { SectionTitle } from "../../../shared/components/common.library";
-import Loader from "../../../shared/components/Loader.component";
+import Loader from "../../../shared/components/Loader";
 import Modal from "../../../shared/components/modals/modal";
 
 const Affiliation = (args) => {

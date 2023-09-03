@@ -1,9 +1,20 @@
-import { TextArea } from "../../../shared/components/form/Textarea";
-import { Input, Select } from "../../../shared/components/form/Input";
+import { TextArea } from "../../../../shared/components/form/Textarea";
 
-export const MemberForm = ({ register, state }) => {
+import { UseFormRegister } from "react-hook-form";
+import { MemberFormInput } from "../../../../shared/types/member.types";
+import { Input, Select } from "../../../../shared/components/form/Input";
+
+interface MemberFormProps {
+  register: UseFormRegister<MemberFormInput>;
+  state: boolean;
+}
+export const MemberForm = ({ register, state }: MemberFormProps) => {
   return (
-    <div className={state ? "hidden-content open" : "hidden-content"}>
+    <div
+      className={`transition-all ${
+        state ? "h-[100%] opacity-100" : "h-0 overflow-clip opacity-0"
+      }`}
+    >
       <div className="flex flex-wrap">
         <div className="gap-y-4 flex flex-col md:w-1/2 w-full p-4">
           <p className="font-normal text-2xl font-lato">Personal Information</p>
@@ -19,14 +30,13 @@ export const MemberForm = ({ register, state }) => {
                   type="file"
                   accept="image/png"
                   {...register("image")}
-                  //   onChange={(e) => setImageUpload(e.target.files[0])}
                 />
               </div>
             </div>
             <Select
               register={register}
-              options={["Alumni", "Member"]}
               name="Lab Status"
+              options={["Alumni", "Member"]}
             />
           </div>
           <TextArea name="Description" register={register} />
@@ -36,7 +46,7 @@ export const MemberForm = ({ register, state }) => {
           <p className="font-normal text-2xl font-lato">Lab Information</p>
           <Input name="Collegiate Title" register={register} />
           <TextArea rows={2} name="Lab Title" register={register} />
-          <Input name="Year Joined" type="date" register={register} />
+          <Input name="Year Joined" register={register} type="date" />
 
           <p className="font-normal text-2xl font-lato">Socials</p>
           <Input name="Instagram" register={register} />

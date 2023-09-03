@@ -1,26 +1,3 @@
-export const blog = (
-  media_title,
-  media_type,
-  media_date,
-  media_source,
-  media_content,
-) => {
-  const blog = {
-    title: { S: media_title },
-    data: {
-      M: {
-        media_type: { S: media_type },
-        media_title: { S: media_title },
-        media_date: { S: media_date },
-        media_source: { S: media_source },
-        media_content: { S: media_content },
-      },
-    },
-  };
-
-  return blog;
-};
-
 export const post = (title, date, content) => {
   return {
     title: { S: title },

@@ -1,20 +1,21 @@
 import { useState } from "react";
-import useMembers from "../../../shared/hooks/useMembers";
+import useMembers from "../../../../shared/hooks/useMembers";
 import { useForm } from "react-hook-form";
-import { Button } from "../../../shared/components/form/Button";
+import { Button } from "../../../../shared/components/form/Button";
 import { MemberForm } from "./MemberForm";
+import { MemberFormInput } from "../../../../shared/types/member.types";
 
-const NewPerson = ({ remove }) => {
-  // state control variables
+const NewPerson = () => {
   const [state, setState] = useState(true);
-
   const { createMember } = useMembers();
-  const { register, watch, handleSubmit } = useForm();
+  const { register, watch, handleSubmit } = useForm<MemberFormInput>();
 
-  const onSubmit = async (data) => {
-    await createMember(data);
+  const onSubmit = async (data: MemberFormInput) => {
+    createMember(data);
+    setState(false);
   };
-  console.log(watch("image"));
+
+  const imagePreview = watch("image");
 
   return (
     <form
@@ -29,17 +30,17 @@ const NewPerson = ({ remove }) => {
               className="block my-auto"
               alt="uploaded file"
               src={
-                watch("image")?.length
-                  ? URL.createObjectURL(watch("image")?.[0])
+                imagePreview?.length
+                  ? URL.createObjectURL(imagePreview?.[0])
                   : `https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/profile.png`
               }
             />
           </div>
           <div className="ml-2 ">
             <p className="text-4xl font-light">
-              {watch("first_name")} {watch("last_name")}
+              {watch("First Name")} {watch("Last Name")}
             </p>
-            <p className="text-2xl font-light">{watch("email")}</p>
+            <p className="text-2xl font-light">{watch("Email")}</p>
           </div>
         </div>
         <div className="">
@@ -48,7 +49,6 @@ const NewPerson = ({ remove }) => {
             title={state ? "cancel" : "edit"}
             type="button"
             onClick={() => {
-              if (state) remove(false);
               state ? setState(false) : setState(true);
             }}
           />

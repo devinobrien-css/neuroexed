@@ -5,7 +5,7 @@ import {
   BlogMd,
   BlogStyledMd,
 } from "../../../shared/components/custom.library";
-import Loader from "../../../shared/components/Loader.component";
+import Loader from "../../../shared/components/Loader";
 
 function orderJsonObjects(order, objects) {
   const output = [];

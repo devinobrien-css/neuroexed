@@ -3,7 +3,7 @@ import { fetchData } from "../../shared/api/dba";
 import { SectionTitle } from "../../shared/components/common.library";
 import NavHeader from "../../shared/components/Header";
 import Footer from "../../shared/components/footer/Footer";
-import Loader from "../../shared/components/Loader.component";
+import Loader from "../../shared/components/Loader";
 
 const Posts = () => {
   const [news, setNews] = useState();

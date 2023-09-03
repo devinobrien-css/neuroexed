@@ -1,4 +1,15 @@
-export const Input = ({ register, name, ...rest }) => {
+import { FieldValues, Path, UseFormRegister } from "react-hook-form";
+import { InputHTMLAttributes } from "react";
+
+interface InputProps<T extends FieldValues> {
+  register: UseFormRegister<T>;
+  name: Path<T>;
+}
+export const Input = <T extends FieldValues>({
+  register,
+  name,
+  ...rest
+}: InputProps<T> & InputHTMLAttributes<HTMLInputElement>) => {
   return (
     <label
       htmlFor={name}
@@ -15,7 +26,17 @@ export const Input = ({ register, name, ...rest }) => {
   );
 };
 
-export const Select = ({ register, options, name, ...rest }) => {
+interface SelectProps<T extends FieldValues> {
+  register: UseFormRegister<T>;
+  options: string[];
+  name: Path<T>;
+}
+export const Select = <T extends FieldValues>({
+  register,
+  options,
+  name,
+  ...rest
+}: SelectProps<T>) => {
   return (
     <label
       htmlFor={name}
