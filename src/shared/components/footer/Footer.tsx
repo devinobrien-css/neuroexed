@@ -10,14 +10,13 @@ const BugModalContent = () => {
   const [location, setLocation] = useState('');
   const [content, setContent] = useState('');
 
-  if (sent) {
-    return (
-      <div className="w-[60vw] rounded bg-white px-2 py-6">
-        <p>Bug Reported!</p>
-      </div>
-    );
-  } else {
-    return (
+  return (
+    <>
+      {sent && (
+        <div className="w-[60vw] rounded bg-white px-2 py-6">
+          <p>Bug Reported!</p>
+        </div>
+      )}
       <div className="w-[90vw] overflow-clip rounded-xl bg-white pb-2 md:w-[60vw]">
         <div className=" bg-dark-hex w-full bg-cover bg-center">
           <p className="p-6 text-6xl font-light text-white">Report a Bug</p>
@@ -70,8 +69,8 @@ const BugModalContent = () => {
           send
         </button>
       </div>
-    );
-  }
+    </>
+  );
 };
 
 const EmailModalContent = () => {
@@ -232,11 +231,13 @@ const Footer = () => {
         <br />
         <br />
         <div className="flex flex-col gap-y-6">
-          <div className="flex justify-center gap-x-4">
+          {/* <div className="flex justify-center gap-x-4">
             <div className="w-1/5 border-t border-white p-4"></div>
             <div className="w-1/5 border-t border-white p-4"></div>
             <div className="w-1/5 border-t border-white p-4"></div>
-          </div>
+          </div> */}
+          <br />
+          <br />
           <div className="mx-auto pb-8">
             <a
               href="#footer"
