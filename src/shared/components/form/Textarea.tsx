@@ -1,5 +1,5 @@
-import { TextareaHTMLAttributes } from "react";
-import { FieldValues, Path, UseFormRegister } from "react-hook-form";
+import { TextareaHTMLAttributes } from 'react';
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 interface TextAreaProps<T extends FieldValues> {
   name: Path<T>;
@@ -13,14 +13,14 @@ export const TextArea = <T extends FieldValues>({
   return (
     <label
       htmlFor={name}
-      className={`bg-white flex flex-col cursor-pointer shadow hover:shadow-lg border rounded-lg p-2`}
+      className={`flex cursor-pointer flex-col rounded-lg border bg-white p-2 shadow hover:shadow-lg`}
     >
-      <span className="w-3/12 text-xl font-lato text-gray-800">{name}</span>
+      <span className="w-3/12 font-lato text-xl text-gray-800">{name}</span>
       <textarea
         id={name}
         rows={10}
-        autoComplete={"false"}
-        className="w-full border-0 rounded font-lato"
+        autoComplete={'false'}
+        className="w-full rounded border-0 font-lato"
         {...register(name)}
         {...rest}
       />

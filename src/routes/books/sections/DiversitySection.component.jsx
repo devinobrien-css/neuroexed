@@ -2,16 +2,16 @@ import {
   SubTitleSm,
   TextSectionSm,
   TitleLg,
-} from "../../../shared/components/common.library";
+} from '../../../shared/components/common.library';
 
 const DiversitySection = () => {
   return (
-    <div className="border rounded shadow-lg my-4 p-12">
-      <div className="md:flex p-4">
-        <div className="shrink-0 md:w-1/4 bg-diversity bg-contain min-h-[300px] bg-no-repeat bg-center mx-auto"></div>
+    <div className="my-4 rounded border p-12 shadow-lg">
+      <div className="p-4 md:flex">
+        <div className="mx-auto min-h-[300px] shrink-0 bg-diversity bg-contain bg-center bg-no-repeat md:w-1/4"></div>
         <div className="">
           <div className="">
-            <p className="font-light text-5xl font-raleway">
+            <p className="font-raleway text-5xl font-light">
               Diversity at College
             </p>
             <br />
@@ -27,21 +27,21 @@ const DiversitySection = () => {
               recent panel discussions.
             </p>
           </div>
-          <div className="flex justify-evenly my-2 md:w-1/2 mx-auto">
+          <div className="mx-auto my-2 flex justify-evenly md:w-1/2">
             <button
-              className="my-6 mx-auto px-4 py-2 block rounded bg-blue-900 hover:bg-blue-400 hover:text-gray-600 transition-all transform hover:scale-105 text-white"
+              className="mx-auto my-6 block transform rounded bg-blue-900 px-4 py-2 text-white transition-all hover:scale-105 hover:bg-blue-400 hover:text-gray-600"
               onClick={() =>
                 (window.location.href =
-                  "https://www.amazon.com/Diversity-College-Conquering-Education-Inclusive/dp/1646870352")
+                  'https://www.amazon.com/Diversity-College-Conquering-Education-Inclusive/dp/1646870352')
               }
               title="purchase this book on amazon"
             >
               buy this book
             </button>
             <button
-              className="my-6 mx-auto px-4 py-2 block rounded bg-blue-900 hover:bg-blue-400 hover:text-gray-600 transition-all transform hover:scale-105 text-white"
+              className="mx-auto my-6 block transform rounded bg-blue-900 px-4 py-2 text-white transition-all hover:scale-105 hover:bg-blue-400 hover:text-gray-600"
               onClick={() =>
-                (window.location.href = "https://diversityatcollege.com")
+                (window.location.href = 'https://diversityatcollege.com')
               }
               title="visit diversity at college's website"
             >
@@ -49,26 +49,26 @@ const DiversitySection = () => {
             </button>
           </div>
           <br />
-          <div className="flex justify-evenly my-2">
+          <div className="my-2 flex justify-evenly">
             <img
               src="img/bba-award.png"
               alt="Best Book Award Logo"
-              className="w-1/3 shrink-0 max-w-[150px]"
+              className="w-1/3 max-w-[150px] shrink-0"
             />
             <img
               src="img/indie-award.png"
               alt="Indie Book Award Logo"
-              className="w-1/3 shrink-0 max-w-[150px]"
+              className="w-1/3 max-w-[150px] shrink-0"
             />
           </div>
         </div>
       </div>
-      <hr className="border-2 w-5/6 mx-auto my-4" />
+      <hr className="mx-auto my-4 w-5/6 border-2" />
       <div>
-        <TitleLg className="w-fit mx-auto">What People are Saying</TitleLg>
+        <TitleLg className="mx-auto w-fit">What People are Saying</TitleLg>
 
         <div className="flex justify-evenly">
-          <div className="p-4 my-2 w-2/3">
+          <div className="my-2 w-2/3 p-4">
             <TextSectionSm className="text-center font-light">
               "In this education policy book, Stellar and some former students
               at Queens College and the University of Albany (debut authors

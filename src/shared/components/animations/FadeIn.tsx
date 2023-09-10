@@ -1,11 +1,11 @@
-import { gsap } from "gsap";
-import { useEffect } from "react";
+import { gsap } from 'gsap';
+import { useEffect } from 'react';
 
 interface FadeInProps {
   children: React.ReactNode;
 }
 export const FadeIn = ({ children }: FadeInProps) => {
-  const elementClassName = "fade-in";
+  const elementClassName = 'fade-in';
 
   useEffect(() => {
     const textAnimation = gsap.timeline();
@@ -23,6 +23,6 @@ export const FadeIn = ({ children }: FadeInProps) => {
     );
   }, []);
   return (
-    <div className={`${elementClassName} opacity-100 rotate-0`}>{children}</div>
+    <div className={`${elementClassName} rotate-0 opacity-100`}>{children}</div>
   );
 };

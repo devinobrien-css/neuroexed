@@ -1,53 +1,48 @@
-import { Icon } from "@iconify/react";
+import { Icon } from '@iconify/react';
 
 const Profile = (args) => {
   const data = args.data;
-  const socials = ["email", "twitter", "instagram", "linkedin"];
+  const socials = ['email', 'twitter', 'instagram', 'linkedin'];
 
   const socialIcons = {
-    email: "mdi:email-outline",
-    twitter: "jam:twitter-square",
-    instagram: "bi:instagram",
-    linkedin: "ant-design:linkedin-outlined",
+    email: 'mdi:email-outline',
+    twitter: 'jam:twitter-square',
+    instagram: 'bi:instagram',
+    linkedin: 'ant-design:linkedin-outlined',
   };
 
   return (
-    <div
-      className={
-        "group mx-auto my-8 p-4 bg-white md:w-[23%] transition-all shadow rounded-lg h-max-content flex flex-col justify-between"
-      }
-    >
+    <div className="h-max-content group mx-auto my-8 flex flex-col justify-between rounded-lg bg-white p-4 shadow transition-all md:w-[23%]">
       <div>
         <img
-          className="mx-auto block shrink-0 rounded-full border-8 w-4/5"
-          src={`https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/${data[
-            "last"
-          ].S.toLowerCase().replace("'", "")}.png`}
-          alt={`Lab Member ${data["first"].S} ${data["last"].S}`}
+          className="mx-auto block w-4/5 shrink-0 rounded-full border-8"
+          src={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${data.last
+            .toLowerCase()
+            .replace("'", '')}.png`}
+          alt={`Lab Member ${data.first} ${data.last}`}
         />
-        <p className="text-center font-lato font-light text-3xl mx-auto my-2">
-          {data["first"].S} {data["last"].S}
+        <p className="mx-auto my-2 text-center font-lato text-3xl font-light">
+          {data.first} {data.last}
         </p>
-        <p className="text-center text-gray-600 md:text-xl font-light">
-          Member since {new Date(data["year_joined"].S).getFullYear()}
+        <p className="text-center font-light text-gray-600 md:text-xl">
+          Member since {new Date(data.year_joined).getFullYear()}
         </p>
       </div>
       <div>
-        <p className="my-2 text-gray-600 md:text-lg font-lato font-light text-center text-xs">
-          {data["lab_title"].S}
+        <p className="my-2 text-center font-lato text-xs font-light text-gray-600 md:text-lg">
+          {data['lab_title'].S}
         </p>
-        <div className="flex space-x-2 justify-center">
+        <div className="flex justify-center space-x-2">
           {socials.map((social) => {
-            if (data.socials.M[social].S !== "") {
+            if (data.socials[social] !== '') {
               return (
                 <a
-                  key={data.socials.M[social].S}
-                  className="cursor-pointer hover:scale-110 transition-all"
+                  key={data.socials[social]}
+                  className="cursor-pointer transition-all hover:scale-110"
                   rel="noreferrer"
                   target="_blank"
                   href={
-                    (social === "email" ? "mailto:" : "") +
-                    data.socials.M[social].S
+                    (social === 'email' ? 'mailto:' : '') + data.socials[social]
                   }
                 >
                   <Icon icon={socialIcons[social]} width={40} />

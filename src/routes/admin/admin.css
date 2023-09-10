@@ -3,7 +3,7 @@ button.browser-btn {
   box-shadow: 0px 0px 4px 0px lightslategray;
   border: none;
   border-radius: 0.2em;
-  font-family: "Lato";
+  font-family: 'Lato';
   font-size: 0.8em;
   background-color: white;
   padding: 0.3em;
@@ -55,7 +55,7 @@ div.editable-list > div:first-child {
 div.editable-list > div:first-child > textarea {
   border: none;
   border-radius: 0.3em;
-  font-family: "Lato";
+  font-family: 'Lato';
   font-size: 1.5em;
   line-height: 1;
   padding: 0.2em;
@@ -85,7 +85,7 @@ div.editable > div:first-child {
   display: flex;
   padding: 0.5em;
   justify-content: space-between;
-  font-family: "Lato";
+  font-family: 'Lato';
 }
 div.editable > div:first-child > p:first-child {
   font-size: 1.5em;
@@ -99,14 +99,14 @@ div.edit-buttons {
 div.editable-item {
   position: relative;
   padding: 0.5em;
-  font-family: "Lato";
+  font-family: 'Lato';
   display: flex;
   justify-content: space-between;
 }
 
 div.editable-item > input,
 div.editable-item > textarea {
-  font-family: "Lato";
+  font-family: 'Lato';
   resize: vertical;
   width: 80%;
 }
@@ -123,7 +123,7 @@ div.selected-member-list > div {
   background-color: white;
   display: flex;
   padding: 0.5em;
-  font-family: "Lato";
+  font-family: 'Lato';
   min-width: 260px;
 }
 div.selected-member-list > div > img {
@@ -137,7 +137,7 @@ div.selected-member-list > div > p {
   margin-left: 0.3em;
 }
 div.selected-member-list > div > button {
-  font-family: "Lato";
+  font-family: 'Lato';
   height: min-content;
   display: block;
   margin: auto 0.3em;
@@ -179,5 +179,5 @@ div.filtered-member-list > div > p {
 }
 
 p.sub-header {
-  font-family: "Lato";
+  font-family: 'Lato';
 }

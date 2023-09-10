@@ -1,23 +1,23 @@
-import { tabs } from "../../manifest";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { tabs } from '../../manifest';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const Studio = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const tabs = [
-    "people",
-    "blogs",
-    "projects",
-    "affiliates",
-    "news",
-    "podcasts",
-    "messages",
+    'people',
+    'blogs',
+    'projects',
+    'affiliates',
+    'news',
+    'podcasts',
+    'notifications',
   ];
 
   return (
-    <div className="shadow-xl mb-4">
-      <div className="w-full mx-auto flex overflow-x-scroll text-xl divide-x">
+    <div className="mb-4 shadow-xl">
+      <div className="mx-auto flex w-full divide-x overflow-x-scroll text-xl">
         {tabs.map((current) => {
           const route = `/admin/${current}`;
 
@@ -27,8 +27,8 @@ const Studio = () => {
               onClick={() => navigate(route)}
               className={`mx-auto w-full border-0 py-4  text-gray-700 transition-colors  ${
                 location.pathname === route
-                  ? " bg-gray-50"
-                  : " bg-gray-400 hover:bg-gray-300"
+                  ? ' bg-gray-50'
+                  : ' bg-gray-400 hover:bg-gray-300'
               }`}
             >
               {current}
@@ -48,17 +48,17 @@ const Admin = () => {
   return (
     <>
       <div className="bg-landing bg-cover shadow-lg">
-        <div className="w-full backdrop-blur-sm backdrop-brightness-50 flex flex-col">
-          <div className="my-auto w-fit md:w-2/3 mx-auto py-12">
-            <p className="text-white md:text-6xl text-center font-raleway">
+        <div className="flex w-full flex-col backdrop-blur-sm backdrop-brightness-50">
+          <div className="mx-auto my-auto w-fit py-12 md:w-2/3">
+            <p className="text-center font-raleway text-white md:text-6xl">
               NeuroExed Studio
             </p>
-            <p className="text-gray-200 text-3xl text-center font-light">-</p>
-            <p className="text-gray-200 text-2xl text-center font-light">
+            <p className="text-center text-3xl font-light text-gray-200">-</p>
+            <p className="text-center text-2xl font-light text-gray-200">
               Use the following studio to edit website content
             </p>
           </div>
-          <div className="w-full flex justify-between p-12">
+          <div className="flex w-full justify-between p-12">
             {tabs.map((tab) => {
               if (!tab.protected) {
                 return (
@@ -66,8 +66,8 @@ const Admin = () => {
                     key={tab.name}
                     className={`font-raleway text-xl uppercase transition-all ${
                       location.pathname === tab.pathname
-                        ? " border-b-4 border-white text-gray-200"
-                        : "text-gray-200 drop-shadow-2xl"
+                        ? ' border-b-4 border-white text-gray-200'
+                        : 'text-gray-200 drop-shadow-2xl'
                     }`}
                     onClick={() => {
                       navigate(tab.pathname);

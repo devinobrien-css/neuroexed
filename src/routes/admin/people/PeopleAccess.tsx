@@ -1,86 +1,65 @@
-import React, { useState } from "react";
-import { EditablePerson } from "./components/EditableMember";
-import { Button } from "../../../shared/components/form/Button";
-import useMembers from "../../../shared/hooks/useMembers";
-import { SortMembers } from "./components/SortMembers";
-import NewPerson from "./components/NewMember";
+import { useState } from 'react';
+import { EditablePerson } from './sections/EditableMember';
+import useMembers from '../../../shared/hooks/useMembers';
+import { SortMembersModal } from './sections/SortMembersModal';
+import NewPerson from './sections/NewMember';
+import { MemberResponse } from '../../../shared/types/member.types';
+import { Button } from '../../../shared/components/form/Button';
 
 const PeopleAccess = () => {
   const [editOrder, setEditOrder] = useState(false);
   const [newPerson, setNewPerson] = useState(false);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const { members } = useMembers();
 
-  if (members) {
-    return (
-      <>
-        {editOrder ? (
-          <div className="absolute bg-gray-100 shadow-lg w-4/5 rounded left-10 z-[1000]">
-            <button
-              className="px-2 rounded hover:bg-blue-100 absolute top-0 right-0 z-[55] bg-gray-200"
-              onClick={() => {
-                setEditOrder(false);
-              }}
-            >
-              X
-            </button>
-            <p className="text-red-400 italic px-2">
-              (confirming changes will refresh the page)
-            </p>
-            <SortMembers items={members} />
-          </div>
-        ) : (
-          <></>
-        )}
-        <div className="">
-          <div className="flex flex-col md:flex-row gap-y-4 justify-between py-8">
-            <input
-              id="search"
-              name="search"
-              value={search}
-              placeholder="search..."
-              className="my-auto border-2 shadow rounded-xl md:w-1/3 p-4 mx-8"
-              onChange={(event) => {
-                setSearch(event.target.value);
-              }}
+  return (
+    <>
+      {editOrder && (
+        <SortMembersModal
+          members={members}
+          closeModal={() => setEditOrder(false)}
+        />
+      )}
+      <div className="">
+        <div className="flex flex-col justify-between gap-y-4 py-8 md:flex-row">
+          <input
+            id="search"
+            name="search"
+            value={search}
+            placeholder="search..."
+            className="mx-8 my-auto rounded-xl border-2 p-4 shadow md:w-1/3"
+            onChange={(event) => {
+              setSearch(event.target.value);
+            }}
+          />
+          <div className="mx-auto flex gap-x-2 md:mx-4">
+            <Button
+              color="gray"
+              title="edit order"
+              onClick={() => setEditOrder(true)}
             />
-            <div className="flex gap-x-2 mx-auto md:mx-4">
-              <Button
-                color="gray"
-                onClick={() => {
-                  setEditOrder(true);
-                }}
-                title="edit order"
-              />
-              <Button
-                color="gray"
-                onClick={() => setNewPerson(true)}
-                title="add new person"
-              />
-            </div>
-          </div>
-          <div className="divide-y md:px-24">
-            {newPerson ? <NewPerson /> : <></>}
-            {members
-              .filter(
-                (person: any) =>
-                  person.data.M.first.S.toLowerCase().includes(
-                    search.toLowerCase(),
-                  ) ||
-                  person.data.M.last.S.toLowerCase().includes(
-                    search.toLowerCase(),
-                  ),
-              )
-              .map((person: any, index: number) => {
-                return <EditablePerson key={index} data={person.data.M} />;
-              })}
+            <Button
+              color="gray"
+              title="add new person"
+              onClick={() => setNewPerson(true)}
+            />
           </div>
         </div>
-      </>
-    );
-  } else {
-    return <></>;
-  }
+        <div className="divide-y md:px-24">
+          {newPerson ? <NewPerson /> : <></>}
+          {members
+            ?.filter(
+              (member: MemberResponse) =>
+                member?.first?.toLowerCase().includes(search.toLowerCase()) ||
+                member?.last?.toLowerCase().includes(search.toLowerCase()),
+            )
+            .map((member: MemberResponse, index: number) => {
+              return <EditablePerson key={index} data={member} />;
+            })}
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default PeopleAccess;

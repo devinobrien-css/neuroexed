@@ -1,116 +1,53 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { BlogForm } from './BlogForm';
+import { BlogFormInput } from '../../../../shared/types/blog.types';
+import { Button } from '../../../../shared/components/form/Button';
+import { useForm } from 'react-hook-form';
+import useBlogs from '../../../../shared/hooks/useBlogs';
 
-export const NewBlog = (args) => {
+export const NewBlog = () => {
   const [state, setState] = useState(true);
 
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
-  const [content, setContent] = useState("");
-  const [source, setSource] = useState("");
-  const [type, setType] = useState("");
+  const { updateBlog } = useBlogs();
+  const { register, handleSubmit, watch, reset } = useForm<BlogFormInput>();
+
+  const onSubmit = (blog: BlogFormInput) => {
+    updateBlog(blog);
+    setState(false);
+  };
 
   return (
-    <div className="editable selected-editable" id={"new-blog"}>
-      <div>
-        <p>{title}</p>
-        <div className="edit-buttons">
-          <button
-            className="browser-btn"
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex justify-between px-2 py-4">
+        <p className="md:text-2xl">{watch('title')}</p>
+        <div className="flex justify-end gap-x-4">
+          <Button
+            color="blue"
+            type="button"
             onClick={() => {
-              if (state) args.remove(false);
-
               state ? setState(false) : setState(true);
             }}
-          >
-            {state ? "cancel" : "edit"}
-          </button>
+            title={state ? 'cancel' : 'edit'}
+          />
           {state ? (
             <>
-              <button
-                className="browser-btn"
-                onClick={async () => {
-                  putData(
-                    "blogs",
-                    {},
-                    blog(title, type, date, source, content),
-                  );
-                  const sort = await fetchData("sort-orders");
-                  sort.Items.filter((order) => {
-                    return order.type.S === "blogs";
-                  })[0].sort.L = [
-                    { S: title },
-                    ...sort.Items.filter((order) => {
-                      return order.type.S === "blogs";
-                    })[0].sort.L,
-                  ];
-                  await putData(
-                    "sort-orders",
-                    {},
-                    sort_order(
-                      "blogs",
-                      sort.Items.filter((order) => {
-                        return order.type.S === "blogs";
-                      })[0].sort.L,
-                    ),
-                  );
-                  window.location.reload();
+              <Button color="yellow" type="submit" title="confirm" />
+              <Button
+                color="red"
+                title="delete"
+                type="button"
+                onClick={() => {
+                  reset();
                   setState(false);
                 }}
-              >
-                confirm
-              </button>
-              <button
-                className="browser-btn"
-                onClick={async () => {
-                  await removeData("blogs", {
-                    title: { S: title },
-                  });
-                  setState(false);
-                  args.remove(false);
-                }}
-              >
-                delete
-              </button>
+              />
             </>
           ) : (
             <></>
           )}
         </div>
       </div>
-      <div className={state ? "hidden-content open" : "hidden-content"}>
-        <StandardInput
-          title={"Title"}
-          className={"border px-2"}
-          value={title}
-          setValue={setTitle}
-        />
-        <StandardInput
-          title={"Date"}
-          className={"border px-2"}
-          type="date"
-          value={date !== "" ? date : new Date().toISOString().substring(0, 10)}
-          setValue={setDate}
-        />
-        <StandardSelect
-          title="Media Type"
-          className={"border px-2"}
-          options={["BLOG", "PODCAST"]}
-          selected={type}
-          setSelected={setType}
-        />
-        <StandardInput
-          title={"Source"}
-          className={"border px-2"}
-          value={source}
-          setValue={setSource}
-        />
-        <StandardTextArea
-          title={"Description"}
-          className={"border px-2"}
-          value={content}
-          setValue={setContent}
-        />
-      </div>
-    </div>
+      <BlogForm register={register} state={state} />
+    </form>
   );
 };

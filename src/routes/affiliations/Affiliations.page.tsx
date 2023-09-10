@@ -1,6 +1,7 @@
-import Footer from "../../shared/components/footer/Footer";
-import NavHeader from "../../shared/components/Header";
-import AffiliationsList from "./sections/AffiliationsList";
+import { ComingSoon } from '../../shared/components/ComingSoon';
+import Footer from '../../shared/components/footer/Footer';
+import NavHeader from '../../shared/components/Header';
+import AffiliationsList from './sections/AffiliationsList';
 
 /**Affiliations Section
  * @returns a list of affiliates

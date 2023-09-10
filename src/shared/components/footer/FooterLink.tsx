@@ -1,11 +1,11 @@
 interface FooterLinkProps {
   children: React.ReactNode | string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 export const FooterLink = ({ children, onClick }: FooterLinkProps) => {
   return (
     <button
-      className="text-white text-left mb-3 text-xl font-raleway hover:scale-105 transition py-2"
+      className="mb-3 py-2 text-left font-raleway text-xl text-white transition hover:scale-105"
       onClick={onClick}
     >
       {children}

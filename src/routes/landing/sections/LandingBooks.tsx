@@ -1,30 +1,30 @@
 const LandingPublications = () => {
   return (
-    <div className="bg-cover bg-landing backdrop-opacity-10 my-32 bg-no-repeat shadow-2xl shadow-gray-400">
-      <div className="backdrop-contrast-30 backdrop-blur-md p-16">
-        <p className="md:text-6xl text-4xl font-raleway text-white mb-8 text-center">
+    <div className="my-32 bg-landing bg-cover bg-no-repeat shadow-2xl shadow-gray-400 backdrop-opacity-10">
+      <div className="backdrop-contrast-30 p-16 backdrop-blur-md">
+        <p className="mb-8 text-center font-raleway text-4xl text-white md:text-6xl">
           Our Books
         </p>
-        <div className="md:flex md:p-8 my-4 md:border justify-center">
+        <div className="my-4 justify-center md:flex md:border md:p-8">
           <img
             src="./img/diversity.png"
             alt="Diversity at College Book"
-            className="hidden w-1/4 md:p-12 md:block"
+            className="hidden w-1/4 md:block md:p-12"
           />
-          <div className="md:w-2/5 md:pl-2 flex flex-col h-max-content">
+          <div className="h-max-content flex flex-col md:w-2/5 md:pl-2">
             <div className="my-auto">
               <div className="flex flex-shrink-0">
                 <img
                   src="./img/diversity.png"
                   alt="Diversity at College Book"
-                  className="block w-1/4 md:hidden pr-2"
+                  className="block w-1/4 pr-2 md:hidden"
                 />
-                <p className="text-white font-light md:text-5xl text-3xl my-auto font-lato">
+                <p className="my-auto font-lato text-3xl font-light text-white md:text-5xl">
                   Diversity at College
                 </p>
               </div>
               <br />
-              <p className="md:text-lg text-sm text-justify md:text-left text-gray-400 font-lato">
+              <p className="text-justify font-lato text-sm text-gray-400 md:text-left md:text-lg">
                 In 2020, eight lab members and recent college graduates produced
                 a book, Diversity at College: Real Stories of Students
                 Conquering Bias and Making Higher Education more Inclusive. The
@@ -36,10 +36,10 @@ const LandingPublications = () => {
                 basis for recent panel discussions.
               </p>
               <button
-                className="my-6 mx-auto px-4 py-2 block rounded border-white border-2 transition-all transform hover:scale-105 text-white"
+                className="mx-auto my-6 block transform rounded border-2 border-white px-4 py-2 text-white transition-all hover:scale-105"
                 onClick={() =>
                   (window.location.href =
-                    "https://www.amazon.com/Diversity-College-Conquering-Education-Inclusive/dp/1646870352")
+                    'https://www.amazon.com/Diversity-College-Conquering-Education-Inclusive/dp/1646870352')
                 }
               >
                 PURCHASE
@@ -51,21 +51,21 @@ const LandingPublications = () => {
         <br />
         <br />
 
-        <div className="md:flex md:p-8 my-4 md:border justify-center">
-          <div className="md:w-2/5 pl-2 flex flex-col h-max-content">
+        <div className="my-4 justify-center md:flex md:border md:p-8">
+          <div className="h-max-content flex flex-col pl-2 md:w-2/5">
             <div className="my-auto">
               <div className="flex flex-shrink-0">
                 <img
                   src="./img/education.png"
                   alt="Education That Works Book"
-                  className="block w-1/4 md:hidden pr-2"
+                  className="block w-1/4 pr-2 md:hidden"
                 />
-                <p className="text-white font-light md:text-5xl text-3xl my-auto font-lato">
+                <p className="my-auto font-lato text-3xl font-light text-white md:text-5xl">
                   Education That Works
                 </p>
               </div>
               <br />
-              <p className="md:text-lg text-sm text-justify md:text-left text-gray-400 font-lato">
+              <p className="text-justify font-lato text-sm text-gray-400 md:text-left md:text-lg">
                 Experiential Education complements the classical academic nature
                 of the classroom-based college experience by bringing in direct
                 experience with industry, non-profits, and governments. In 2017,
@@ -77,10 +77,10 @@ const LandingPublications = () => {
                 good students, good citizens, and good employees.
               </p>
               <button
-                className="my-6 mx-auto px-4 py-2 block rounded border-white border-2 transition-all transform hover:scale-105 text-white"
+                className="mx-auto my-6 block transform rounded border-2 border-white px-4 py-2 text-white transition-all hover:scale-105"
                 onClick={() =>
                   (window.location.href =
-                    "https://www.amazon.com/Diversity-College-Conquering-Education-Inclusive/dp/1646870352")
+                    'https://www.amazon.com/Diversity-College-Conquering-Education-Inclusive/dp/1646870352')
                 }
               >
                 PURCHASE
@@ -90,7 +90,7 @@ const LandingPublications = () => {
           <img
             src="./img/education.png"
             alt="Education that Works Book"
-            className="hidden w-1/4 md:p-12 md:block"
+            className="hidden w-1/4 md:block md:p-12"
           />
         </div>
       </div>

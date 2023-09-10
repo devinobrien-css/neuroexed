@@ -28,3 +28,11 @@ export interface BlogFormInput {
   source: string;
   content: string;
 }
+
+export interface BlogResponse {
+  media_title: string;
+  media_type: string;
+  media_date: string;
+  media_source: string;
+  media_content: string;
+}

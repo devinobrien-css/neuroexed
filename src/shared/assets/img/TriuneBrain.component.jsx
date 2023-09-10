@@ -1,3 +1,5 @@
+import { BrainSectionEnum } from '../../../routes/projects/sections/ProjectsBrain.component';
+
 export const TriuneBrain = ({ setState }) => {
   return (
     <svg
@@ -6,8 +8,8 @@ export const TriuneBrain = ({ setState }) => {
       className="mx-auto w-3/5"
     >
       <g
-        className="hover:fill-gray-400 fill-gray-300 hover:scale-105 transition-all cursor-pointer "
-        onClick={() => setState("NEO")}
+        className="cursor-pointer fill-gray-300 transition-all hover:scale-105 hover:fill-gray-400 "
+        onClick={() => setState(BrainSectionEnum.NEO)}
       >
         <ellipse cx="166" cy="96.5" rx="166" ry="96.5" />
         <path d="M307 130C307 171.697 225.5 179.5 255 195C368 268 116 148.197 116 106.5C116 64.8025 164.353 31 224 31C283.647 31 307 88.3025 307 130Z" />
@@ -146,8 +148,8 @@ export const TriuneBrain = ({ setState }) => {
         />
       </g>
       <g
-        className="fill-red-600 hover:fill-red-400 hover:scale-105 transition-all cursor-pointer"
-        onClick={() => setState("PALEO")}
+        className="cursor-pointer fill-red-600 transition-all hover:scale-105 hover:fill-red-400"
+        onClick={() => setState(BrainSectionEnum.PALEO)}
       >
         <path d="M261.385 134.955C261.385 164.2 217 212.5 152.5 192C104.897 192 89 164.2 89 134.955C89 105.709 127.59 82 175.193 82C222.796 82 261.385 105.709 261.385 134.955Z" />
         <ellipse cx="205.308" cy="140.442" rx="56.0772" ry="41.4307" />
@@ -219,8 +221,8 @@ export const TriuneBrain = ({ setState }) => {
       </g>
 
       <g
-        className="fill-green-600 hover:fill-gray-500 hover:scale-105 transition-all cursor-pointer"
-        onClick={() => setState("REPT")}
+        className="cursor-pointer fill-green-600 transition-all hover:scale-105 hover:fill-gray-500"
+        onClick={() => setState(BrainSectionEnum.REPT)}
       >
         <path d="M226.5 146.5C226.5 159 200.5 152 200.5 166.5C170.677 166.5 144.5 144.56 144.5 136C144.5 127.44 157.177 124 187 124C216.823 124 226.5 137.94 226.5 146.5Z" />
         <path d="M226.5 146.5C226.5 159 200.5 152 200.5 166.5C170.677 166.5 144.5 144.56 144.5 136C144.5 127.44 157.177 124 187 124C216.823 124 226.5 137.94 226.5 146.5Z" />

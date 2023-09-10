@@ -1,28 +1,28 @@
-import React, { useState } from "react";
-import Modal from "../modals/modal";
-import { putData } from "../../api/dba";
-import { useNavigate } from "react-router-dom";
-import { message } from "../../types/object_schema";
-import { FooterLink } from "./FooterLink";
+import React, { useState } from 'react';
+import { putData } from '../../api/dba';
+import { useNavigate } from 'react-router-dom';
+import { message } from '../../types/object_schema';
+import { FooterLink } from './FooterLink';
+import { Icon } from '@iconify/react';
 
 const BugModalContent = () => {
   const [sent, setSent] = useState(false);
-  const [location, setLocation] = useState("");
-  const [content, setContent] = useState("");
+  const [location, setLocation] = useState('');
+  const [content, setContent] = useState('');
 
   if (sent) {
     return (
-      <div className="bg-white py-6 px-2 rounded w-[60vw]">
+      <div className="w-[60vw] rounded bg-white px-2 py-6">
         <p>Bug Reported!</p>
       </div>
     );
   } else {
     return (
-      <div className="bg-white rounded-xl overflow-clip md:w-[60vw] w-[90vw] pb-2">
-        <div className=" w-full bg-cover bg-center bg-dark-hex">
-          <p className="font-light text-6xl p-6 text-white">Report a Bug</p>
+      <div className="w-[90vw] overflow-clip rounded-xl bg-white pb-2 md:w-[60vw]">
+        <div className=" bg-dark-hex w-full bg-cover bg-center">
+          <p className="p-6 text-6xl font-light text-white">Report a Bug</p>
         </div>
-        <div className="shadow-lg rounded p-4 w-full md:w-4/5 mx-auto">
+        <div className="mx-auto w-full rounded p-4 shadow-lg md:w-4/5">
           <div className="pb-2">
             <p>Location</p>
             <input
@@ -37,7 +37,7 @@ const BugModalContent = () => {
           <div>
             <p>Description</p>
             <textarea
-              className="w-full border-0 p-0 rounded"
+              className="w-full rounded border-0 p-0"
               value={content}
               placeholder="description of bug..."
               onChange={(event) => {
@@ -47,24 +47,23 @@ const BugModalContent = () => {
           </div>
         </div>
         <button
-          className="rounded bg-blue-300 px-2 block mx-auto mt-2"
+          className="mx-auto mt-2 block rounded bg-blue-300 px-2"
           onClick={async () => {
             var timestamp = new Date().getTime();
 
             await putData(
-              "messages",
-              {},
+              'messages',
               message(
-                "error-" + timestamp,
-                "Error Reporter",
+                'error-' + timestamp,
+                'Error Reporter',
                 location,
                 content,
                 timestamp,
               ),
             );
 
-            setContent("");
-            setLocation("");
+            setContent('');
+            setLocation('');
             setSent(true);
           }}
         >
@@ -77,26 +76,26 @@ const BugModalContent = () => {
 
 const EmailModalContent = () => {
   const [sent, setSent] = useState(false);
-  const [from, setFrom] = useState("");
-  const [subject, setSubject] = useState("");
-  const [content, setContent] = useState("");
+  const [from, setFrom] = useState('');
+  const [subject, setSubject] = useState('');
+  const [content, setContent] = useState('');
 
   if (sent) {
     return (
-      <div className="bg-white py-6 px-2 rounded w-[60vw]">
+      <div className="w-[60vw] rounded bg-white px-2 py-6">
         <p>Message Sent!</p>
       </div>
     );
   } else {
     return (
-      <div className="bg-white rounded-xl overflow-clip md:w-[60vw] w-[90vw] pb-2">
-        <div className=" w-full bg-cover bg-center bg-dark-hex">
-          <p className="font-light text-6xl p-6 text-white">
+      <div className="w-[90vw] overflow-clip rounded-xl bg-white pb-2 md:w-[60vw]">
+        <div className=" bg-dark-hex w-full bg-cover bg-center">
+          <p className="p-6 text-6xl font-light text-white">
             Contact NeuroExed
           </p>
         </div>
 
-        <div className="shadow-lg rounded p-4 w-full md:w-4/5 mx-auto">
+        <div className="mx-auto w-full rounded p-4 shadow-lg md:w-4/5">
           <div className="w-full">
             <p className="text-xl">From</p>
             <input
@@ -123,7 +122,7 @@ const EmailModalContent = () => {
             <p className="text-xl">Message</p>
             <textarea
               value={content}
-              className="border-0 w-full p-0 rounded focus:outline-none"
+              className="w-full rounded border-0 p-0 focus:outline-none"
               placeholder="Hey there,"
               onChange={(event) => {
                 setContent(event.target.value);
@@ -132,15 +131,14 @@ const EmailModalContent = () => {
           </div>
         </div>
         <button
-          className="rounded bg-blue-300 px-2 block mx-auto my-4"
+          className="mx-auto my-4 block rounded bg-blue-300 px-2"
           onClick={async () => {
             var timestamp = new Date().getTime();
 
             await putData(
-              "messages",
-              {},
+              'messages',
               message(
-                "message-" + timestamp,
+                'message-' + timestamp,
                 from,
                 subject,
                 content,
@@ -148,9 +146,9 @@ const EmailModalContent = () => {
               ),
             );
 
-            setFrom("");
-            setSubject("");
-            setContent("");
+            setFrom('');
+            setSubject('');
+            setContent('');
 
             setSent(true);
           }}
@@ -166,69 +164,89 @@ const Footer = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-landing bg-no-repeat bg-cover bg-center">
-      <div className="md:flex backdrop-blur-md p-4">
-        <div className="w-full md:w-1/3 p-4">
-          <p className="text-white uppercase border-b-4 border-white text-2xl font-lato font-light">
-            OUTREACH
-          </p>
-          <div className="flex flex-col p-2">
-            <FooterLink
-              onClick={() => (window.location.href = "http://otherlobe.com/")}
-            >
-              The Other Lobe Blog
-            </FooterLink>
-            <FooterLink onClick={() => navigate("/publications")}>
-              Our Lab's Publications
-            </FooterLink>
-            <FooterLink
-              onClick={() =>
-                (window.location.href = "https://experienced.simplecast.com/")
-              }
-            >
-              Simplecast Podcast
-            </FooterLink>
+    <div className="bg-landing bg-cover bg-center bg-no-repeat">
+      <div className="p-4 backdrop-blur-md">
+        <div className="flex">
+          <div className="mx-4 w-full border-b border-white p-4 md:w-1/3">
+            <p className="border-b border-white font-lato text-2xl font-light uppercase text-white">
+              OUTREACH
+            </p>
+            <div className="flex flex-col p-2">
+              <FooterLink
+                onClick={() => (window.location.href = 'http://otherlobe.com/')}
+              >
+                The Other Lobe Blog
+              </FooterLink>
+              <FooterLink onClick={() => navigate('/publications')}>
+                Our Lab's Publications
+              </FooterLink>
+              <FooterLink
+                onClick={() =>
+                  (window.location.href = 'https://experienced.simplecast.com/')
+                }
+              >
+                Simplecast Podcast
+              </FooterLink>
+            </div>
+          </div>
+          <div className="mx-4 w-full border-b border-white p-4 md:w-1/3">
+            <p className="border-b border-white font-lato text-2xl font-light uppercase text-white">
+              AFFILIATES
+            </p>
+            <div className="flex flex-col p-2">
+              <FooterLink
+                onClick={() => (window.location.href = 'https://waceinc.org/')}
+              >
+                World Association of Cooperative Education
+              </FooterLink>
+              <FooterLink
+                onClick={() =>
+                  (window.location.href =
+                    'https://thecenterforsympatheticintelligence.org/')
+                }
+              >
+                Center for Sympathetic Intelligence
+              </FooterLink>
+              <FooterLink
+                onClick={() => (window.location.href = 'https://www.iq4.com/')}
+              >
+                IQ4 Transforming the Learning Economy
+              </FooterLink>
+            </div>
+          </div>
+          <div className="mx-4 w-full border-b border-white p-4 md:w-1/3 ">
+            <p className="border-b border-white font-lato text-2xl font-light uppercase text-white">
+              CONTACT
+            </p>
+            <div className="flex flex-col p-2">
+              {/* onClick={() => Modal(<EmailModalContent />)} */}
+              <FooterLink>send us a message</FooterLink>
+              <FooterLink onClick={() => navigate('people')}>
+                email a staff member
+              </FooterLink>
+              {/* onClick={() => Modal(<BugModalContent />)} */}
+              <FooterLink>report a bug</FooterLink>
+            </div>
           </div>
         </div>
-        <div className="w-full md:w-1/3 p-4">
-          <p className="text-white uppercase border-b-4 border-white text-2xl font-lato font-light">
-            AFFILIATES
-          </p>
-          <div className="flex flex-col p-2">
-            <FooterLink
-              onClick={() => (window.location.href = "https://waceinc.org/")}
-            >
-              World Association of Cooperative Education
-            </FooterLink>
-            <FooterLink
-              onClick={() =>
-                (window.location.href =
-                  "https://thecenterforsympatheticintelligence.org/")
-              }
-            >
-              Center for Sympathetic Intelligence
-            </FooterLink>
-            <FooterLink
-              onClick={() => (window.location.href = "https://www.iq4.com/")}
-            >
-              IQ4 Transforming the Learning Economy
-            </FooterLink>
+        <br />
+        <br />
+        <div className="flex flex-col gap-y-6">
+          <div className="flex justify-center gap-x-4">
+            <div className="w-1/5 border-t border-white p-4"></div>
+            <div className="w-1/5 border-t border-white p-4"></div>
+            <div className="w-1/5 border-t border-white p-4"></div>
           </div>
-        </div>
-        <div className="w-full md:w-1/3 p-4">
-          <p className="text-white uppercase border-b-4 border-white text-2xl font-lato font-light">
-            CONTACT
-          </p>
-          <div className="flex flex-col p-2">
-            <FooterLink onClick={() => Modal(<EmailModalContent />)}>
-              send us a message
-            </FooterLink>
-            <FooterLink onClick={() => navigate("people")}>
-              email a staff member
-            </FooterLink>
-            <FooterLink onClick={() => Modal(<BugModalContent />)}>
-              report a bug
-            </FooterLink>
+          <div className="mx-auto pb-8">
+            <a
+              href="#footer"
+              className="flex gap-x-2 font-lato text-lg font-light text-white"
+            >
+              <Icon icon="simple-icons:github" className="my-auto" />
+              <span className="my-auto">
+                view this page's source on github{' '}
+              </span>
+            </a>
           </div>
         </div>
       </div>

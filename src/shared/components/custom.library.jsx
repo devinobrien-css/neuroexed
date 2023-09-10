@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react';
 
 export const BlogMd = ({ data }) => {
   return (
     <div
-      className="cursor-pointer group transition-all bg-white mx-auto my-2 w-full flex flex-col justify-between shadow hover:shadow-xl overflow-visible h-min min-h-[280px]"
-      onClick={() => (window.location.href = data["media_source"].S)}
+      className="group mx-auto my-2 flex h-min min-h-[280px] w-full cursor-pointer flex-col justify-between overflow-visible bg-white shadow transition-all hover:shadow-xl"
+      onClick={() => (window.location.href = data.media_source)}
     >
-      <div className="text-left p-4">
-        <p className="text-2xl font-lato font-light">
-          {data["media_type"].S === "BLOG" ? "Blog: " : "Podcast: "}
-          {data["media_title"].S}
+      <div className="p-4 text-left">
+        <p className="font-lato text-2xl font-light">
+          {data.media_type === 'BLOG' ? 'Blog: ' : 'Podcast: '}
+          {data.media_title}
         </p>
-        <p>{new Date(data["media_date"].S).toDateString()}</p>
+        <p>{new Date(data.media_date).toDateString()}</p>
       </div>
       <div className="border-t-2 text-left">
         <div className={`overflow-hidden transition-all duration-300 `}>
-          <p className="p-2">{data["media_content"].S}</p>
+          <p className="p-2">{data.media_content}</p>
         </div>
       </div>
     </div>
@@ -25,26 +25,26 @@ export const BlogMd = ({ data }) => {
 export const BlogStyledMd = ({ data, index }) => {
   return (
     <div
-      className="cursor-pointer group transition-all  bg-white mx-auto my-2 w-full flex flex-col shadow justify-between hover:shadow-xl overflow-visible h-min min-h-[280px]"
-      onClick={() => (window.location.href = data["media_source"].S)}
+      className="group mx-auto my-2  flex h-min min-h-[280px] w-full cursor-pointer flex-col justify-between overflow-visible bg-white shadow transition-all hover:shadow-xl"
+      onClick={() => (window.location.href = data.media_source)}
     >
-      <div className={`overflow-clip border h-48 w-full`}>
+      <div className={`h-48 w-full overflow-clip border`}>
         <img
           alt="Blog neuron background"
           src={`./img/backgrounds/bg-${index % 2}.png`}
           className="w-full"
         />
       </div>
-      <div className="text-left p-4">
-        <p className="text-2xl font-lato font-light">
-          {data["media_type"].S === "BLOG" ? "Blog: " : "Podcast: "}
-          {data["media_title"].S}
+      <div className="p-4 text-left">
+        <p className="font-lato text-2xl font-light">
+          {data.media_type === 'BLOG' ? 'Blog: ' : 'Podcast: '}
+          {data.media_title}
         </p>
-        <p>{new Date(data["media_date"].S).toDateString()}</p>
+        <p>{new Date(data.media_date).toDateString()}</p>
       </div>
       <div className="border-t-2 text-left">
         <div className={`overflow-hidden transition-all duration-300 `}>
-          <p className="p-2">{data["media_content"].S}</p>
+          <p className="p-2">{data.media_content}</p>
         </div>
       </div>
     </div>

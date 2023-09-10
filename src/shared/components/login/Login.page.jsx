@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import Modal from "../modals/modal";
+import React, { useState } from 'react';
+import Modal from '../modals/Modal';
 import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
   deleteUser,
-} from "firebase/auth";
+} from 'firebase/auth';
 
 const ACCESSORS = [-1100094163, 580637913, -1832356757, 182488850];
 const ACCESSOR_E = [-573709167, 1079467346, -762918048, -386773661];
 
 function b64(str) {
   return str
-    .split("")
+    .split('')
     .reduce((prev, cur) => ((prev << 5) - prev + cur.charCodeAt(0)) | 0, 0);
 }
 function vd(cred) {
@@ -25,15 +25,15 @@ function vde(cred) {
 
 function HandleLogout(setUser) {
   const auth = getAuth();
-  const modal = document.querySelector("div.modal-bg");
+  const modal = document.querySelector('div.modal-bg');
 
   signOut(auth)
     .then(() => {
-      console.log("signed out");
-      setUser("");
+      console.log('signed out');
+      setUser('');
     })
     .catch((error) => {
-      console.log("error");
+      console.log('error');
       console.log(error);
     });
   modal.click();
@@ -42,7 +42,7 @@ function HandleLogout(setUser) {
 function HandleLogin(cred, setUser) {
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
-  const modal = document.querySelector("div.modal-bg");
+  const modal = document.querySelector('div.modal-bg');
 
   const valid = vd(b64(cred)) ? true : false;
 
@@ -54,7 +54,7 @@ function HandleLogin(cred, setUser) {
         if (!vde(b64(valid_user.email))) {
           deleteUser(valid_user)
             .then(() => {
-              console.log("deleted user");
+              console.log('deleted user');
             })
             .catch((error) => {
               console.log(error);
@@ -66,19 +66,19 @@ function HandleLogin(cred, setUser) {
       })
       .catch((error) => {});
   } else {
-    console.log("incorrect login");
-    console.log("attempt recorded");
+    console.log('incorrect login');
+    console.log('attempt recorded');
   }
 }
 
 const LoginModal = () => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
 
   return (
-    <div className="bg-white p-1 rounded xl:w-[60vw] lg:w-[60vw] w-[90vw]">
-      {"user" !== "" ? (
+    <div className="w-[90vw] rounded bg-white p-1 lg:w-[60vw] xl:w-[60vw]">
+      {'user' !== '' ? (
         <>
-          <p className="text-4xl p-4">Logout</p>
+          <p className="p-4 text-4xl">Logout</p>
           <div className="flex justify-around p-1">
             <img
               src="./lock.png"
@@ -91,7 +91,7 @@ const LoginModal = () => {
         </>
       ) : (
         <>
-          <p className="text-4xl p-4">NeuroExed Access</p>
+          <p className="p-4 text-4xl">NeuroExed Access</p>
           <div className="flex justify-around p-1">
             <img
               src="./lock.png"
@@ -105,7 +105,7 @@ const LoginModal = () => {
               name="input"
               value={input}
               placeholder="..."
-              className="w-4/5 shadow my-auto"
+              className="my-auto w-4/5 shadow"
               onChange={(event) => {
                 setInput(event.target.value);
               }}
@@ -120,7 +120,7 @@ const LoginModal = () => {
 const Login = () => {
   return (
     <div
-      className="fixed bottom-1 right-1 z-[1001] grayscale w-12"
+      className="fixed bottom-1 right-1 z-[1001] w-12 grayscale"
       onClick={() => Modal(<LoginModal />)}
     >
       <img src="./img/lock.png" alt="lock" />

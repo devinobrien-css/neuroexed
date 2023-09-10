@@ -1,5 +1,5 @@
-import { FieldValues, Path, UseFormRegister } from "react-hook-form";
-import { InputHTMLAttributes } from "react";
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
+import { InputHTMLAttributes } from 'react';
 
 interface InputProps<T extends FieldValues> {
   register: UseFormRegister<T>;
@@ -13,12 +13,12 @@ export const Input = <T extends FieldValues>({
   return (
     <label
       htmlFor={name}
-      className={`bg-white justify-between cursor-pointer shadow hover:shadow-lg border rounded-lg p-2`}
+      className={`cursor-pointer justify-between rounded-lg border bg-white p-2 shadow hover:shadow-lg`}
     >
-      <span className="text-xl font-lato text-gray-800">{name}</span>
+      <span className="font-lato text-xl text-gray-800">{name}</span>
       <input
         id={name}
-        className="w-full border-0 text-md border-gray-300 p-2 font-lato"
+        className="text-md w-full border-0 border-gray-300 p-2 font-lato"
         {...register(name)}
         {...rest}
       />
@@ -40,12 +40,12 @@ export const Select = <T extends FieldValues>({
   return (
     <label
       htmlFor={name}
-      className={`bg-white justify-between cursor-pointer shadow hover:shadow-lg border rounded-lg p-2`}
+      className={`cursor-pointer justify-between rounded-lg border bg-white p-2 shadow hover:shadow-lg`}
     >
-      <span className="text-xl font-lato text-gray-800">{name}</span>
+      <span className="font-lato text-xl text-gray-800">{name}</span>
       <select
         id={name}
-        className="w-full border-0 text-md border-gray-300 p-2 font-lato"
+        className="text-md w-full border-0 border-gray-300 p-2 font-lato"
         {...register(name)}
         {...rest}
       >
