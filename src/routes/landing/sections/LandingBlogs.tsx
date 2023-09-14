@@ -1,18 +1,46 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
-import {
-  BlogMd,
-  BlogStyledMd,
-} from '../../../shared/components/custom.library';
+import { BlogMd } from '../../../shared/components/custom.library';
 import Loader from '../../../shared/components/Loader';
 import useBlogs from '../../../shared/hooks/useBlogs';
+import { BlogResponse } from '../../../shared/types/blog.types';
+
+const partitionItems = (items: any[], step: number): any[] => {
+  const output: any[] = [];
+
+  for (var i = 0; i < items.length; i++) {
+    const current_list = [];
+    for (var j = 0; j < 4; j++) {
+      if (j + i === items.length) continue;
+      else current_list.push(items[i + j]);
+    }
+    output.push(current_list);
+    i += 3;
+  }
+  return output;
+};
 
 const LandingBlogs = () => {
+  const step = 4;
+
   const { blogs } = useBlogs();
 
-  const [page, setPage] = useState(1);
+  const [partitionedBlogs, setBlogs] = useState<any[]>();
+  useEffect(() => {
+    setBlogs(partitionItems(blogs ?? [], step));
+  }, [blogs]);
+
   const [paginate, setPaginate] = useState(0);
-  const step = 4;
+  const increment = () => {
+    if (paginate - 1 < partitionedBlogs!.length) {
+      setPaginate(paginate + 1);
+    }
+  };
+  const decrement = () => {
+    if (paginate > 0) {
+      setPaginate(paginate - 1);
+    }
+  };
 
   return (
     <div
@@ -22,35 +50,20 @@ const LandingBlogs = () => {
       <p className="mb-8 font-raleway text-4xl font-light md:text-6xl">
         Blog Posts and Podcasts
       </p>
-      {blogs ? (
+      {partitionedBlogs ? (
         <>
-          <div className="gap-x-6 space-y-12 md:flex">
-            <div className="h-max-content flex flex-col justify-between space-y-12 md:w-1/2">
-              <BlogMd data={blogs[paginate]} />
-              <BlogStyledMd data={blogs[paginate + 1]} index={paginate + 1} />
-            </div>
-            <div className="h-max-content flex flex-col flex-wrap-reverse justify-between space-y-12 md:w-1/2">
-              <BlogStyledMd data={blogs[paginate + 2]} index={paginate + 2} />
-              <BlogMd data={blogs[paginate + 3]} />
-            </div>
+          <div className="flex flex-wrap gap-6">
+            {partitionedBlogs[paginate]?.map((blog: BlogResponse) => {
+              return <BlogMd className="md:w-[45%]" {...blog} />;
+            })}
           </div>
           <div className="flex w-full justify-between shadow">
             <a
               href="#blogs"
               className={`group border-l px-8 py-6 ${
-                paginate - step >= 0
-                  ? ''
-                  : 'pointer-events-none cursor-not-allowed'
+                paginate > 0 ? '' : 'pointer-events-none cursor-not-allowed'
               }`}
-              onClick={() => {
-                if (paginate - step >= 0) {
-                  setPage(page - 1);
-                  setPaginate(paginate - step);
-                } else {
-                  setPage(1);
-                  setPaginate(0);
-                }
-              }}
+              onClick={decrement}
             >
               <Icon
                 icon="lucide:chevron-first"
@@ -58,24 +71,16 @@ const LandingBlogs = () => {
               />
             </a>
             <p className="my-6 font-raleway text-lg italic text-gray-400">
-              page {page} of {Math.round(blogs?.length / step)}
+              page {paginate + 1} of {partitionedBlogs!.length}
             </p>
             <a
               href="#blogs"
               className={`group border-r px-8 py-6 ${
-                paginate + step >= blogs?.length - 1
+                paginate === partitionedBlogs!.length - 1
                   ? 'pointer-events-none cursor-not-allowed'
                   : ''
               }`}
-              onClick={() => {
-                if (paginate + step < blogs?.length) {
-                  setPage(page + 1);
-                  setPaginate(paginate + step);
-                } else {
-                  // setPage(Math.round(blogs.length / step));
-                  // setPaginate(blogs?.length);
-                }
-              }}
+              onClick={increment}
             >
               <Icon
                 icon="lucide:chevron-last"

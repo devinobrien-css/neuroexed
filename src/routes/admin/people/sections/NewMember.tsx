@@ -6,7 +6,11 @@ import { MemberForm } from './MemberForm';
 import { MemberFormInput } from '../../../../shared/types/member.types';
 import { Button } from '../../../../shared/components/form/Button';
 
-const NewPerson = () => {
+const NewPerson = ({
+  setNewPerson,
+}: {
+  setNewPerson: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const [state, setState] = useState(true);
   const { createMember } = useMembers();
   const { register, watch, handleSubmit } = useForm<MemberFormInput>();
@@ -51,6 +55,7 @@ const NewPerson = () => {
             type="button"
             onClick={() => {
               state ? setState(false) : setState(true);
+              setNewPerson(false);
             }}
           />
           {state ? (

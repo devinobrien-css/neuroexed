@@ -8,6 +8,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { updateOders } from './shared/helpers/utils';
 import { router } from './manifest';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 initializeApp({
   apiKey: import.meta.env.VITE_API_KEY,
@@ -26,7 +28,9 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <DndProvider backend={HTML5Backend}>
+        <RouterProvider router={router} />
+      </DndProvider>
       <ToastContainer
         position="bottom-right"
         newestOnTop

@@ -98,10 +98,10 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/podcasts/:id',
+        // need a way to include reference to podcast in the url
       },
     ],
   },
-  // need a way to include reference to podcast in the url
   {
     path: '/admin',
     element: <Admin />,

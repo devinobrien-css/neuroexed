@@ -1,4 +1,5 @@
 import { Icon } from '@iconify/react';
+import { Button } from '../form/Button';
 
 interface ModalProps {
   children: React.ReactNode;
@@ -11,12 +12,12 @@ export const Modal = ({ children, className, closeModal }: ModalProps) => {
       <div
         className={`${className} relative m-auto h-[80vh] w-3/5 rounded bg-white`}
       >
-        <button
-          className="absolute right-4 top-4 rounded-lg bg-gray-300 p-2"
+        <Button
+          className="absolute right-2 top-2"
+          color="gray"
           onClick={closeModal}
-        >
-          close
-        </button>
+          title="close"
+        />
         <div className="h-full overflow-y-scroll">{children}</div>
       </div>
     </div>

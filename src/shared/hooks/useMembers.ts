@@ -77,6 +77,7 @@ const useMembers = () => {
 
   return {
     members: members,
+    refetchMembers,
     createMember: mutateMember,
     updateMember: mutateMember,
     deleteMember: deleteMember,

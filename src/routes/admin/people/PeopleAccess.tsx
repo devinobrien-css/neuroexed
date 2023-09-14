@@ -10,7 +10,7 @@ const PeopleAccess = () => {
   const [editOrder, setEditOrder] = useState(false);
   const [newPerson, setNewPerson] = useState(false);
   const [search, setSearch] = useState('');
-  const { members } = useMembers();
+  const { members, refetchMembers } = useMembers();
 
   return (
     <>
@@ -18,6 +18,7 @@ const PeopleAccess = () => {
         <SortMembersModal
           members={members}
           closeModal={() => setEditOrder(false)}
+          refetchMembers={refetchMembers}
         />
       )}
       <div className="">
@@ -46,7 +47,7 @@ const PeopleAccess = () => {
           </div>
         </div>
         <div className="divide-y md:px-24">
-          {newPerson ? <NewPerson /> : <></>}
+          {newPerson ? <NewPerson setNewPerson={setNewPerson} /> : <></>}
           {members
             ?.filter(
               (member: MemberResponse) =>
