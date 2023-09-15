@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import useMembers from '../../../../shared/hooks/useMembers';
 import { useForm } from 'react-hook-form';
-
 import { MemberForm } from './MemberForm';
 import { MemberFormInput } from '../../../../shared/types/member.types';
 import { Button } from '../../../../shared/components/form/Button';

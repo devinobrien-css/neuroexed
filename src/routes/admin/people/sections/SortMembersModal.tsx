@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { putData } from '../../../../shared/api/dba';
 import { sort_order } from '../../../../shared/types/object_schema';
 import { MemberResponse } from '../../../../shared/types/member.types';
@@ -13,18 +12,17 @@ export const SortMembersModal = ({
 }: {
   members?: MemberResponse[];
   closeModal: () => void;
-  refetchMembers: () => void;
+  refetchMembers: () => any;
 }) => {
   const onSubmit = async (items: string[]) => {
     try {
-      const res = await putData(
+      await putData(
         'sort-orders',
         sort_order(
           'people',
           items.map((i) => ({ S: i })),
         ),
       );
-      console.log(items);
       closeModal();
       await refetchMembers();
       toast.success('Users have been updated!');
