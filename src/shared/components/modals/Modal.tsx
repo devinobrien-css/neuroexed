@@ -1,10 +1,9 @@
-import { Icon } from '@iconify/react';
 import { Button } from '../form/Button';
 
 interface ModalProps {
   children: React.ReactNode;
   className?: string;
-  closeModal: () => void;
+  closeModal: React.Dispatch<React.SetStateAction<any>>;
 }
 export const Modal = ({ children, className, closeModal }: ModalProps) => {
   return (
