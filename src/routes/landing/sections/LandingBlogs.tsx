@@ -8,9 +8,9 @@ import { BlogResponse } from '../../../shared/types/blog.types';
 const partitionItems = (items: any[], step: number): any[] => {
   const output: any[] = [];
 
-  for (var i = 0; i < items.length; i++) {
+  for (let i = 0; i < items.length; i++) {
     const current_list = [];
-    for (var j = 0; j < 4; j++) {
+    for (let j = 0; j < 4; j++) {
       if (j + i === items.length) continue;
       else current_list.push(items[i + j]);
     }

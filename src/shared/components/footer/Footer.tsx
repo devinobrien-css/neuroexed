@@ -230,26 +230,28 @@ const Footer = () => {
         </div>
         <br />
         <br />
-        <div className="flex flex-col gap-y-6">
-          {/* <div className="flex justify-center gap-x-4">
-            <div className="w-1/5 border-t border-white p-4"></div>
-            <div className="w-1/5 border-t border-white p-4"></div>
-            <div className="w-1/5 border-t border-white p-4"></div>
-          </div> */}
-          <br />
-          <br />
-          <div className="mx-auto pb-8">
-            <a
-              href="#footer"
-              className="flex gap-x-2 font-lato text-lg font-light text-white"
-            >
-              <Icon icon="simple-icons:github" className="my-auto" />
-              <span className="my-auto">
-                view this page's source on github{' '}
-              </span>
-            </a>
-          </div>
+        <div className="mx-auto flex pb-8 text-white">
+          <a
+            href="#footer"
+            className="mx-auto flex gap-x-2 font-lato text-lg font-light text-white"
+          >
+            <Icon icon="simple-icons:github" className="my-auto" />
+            <span className="my-auto">view this page's source on github </span>
+          </a>
         </div>
+
+        <button
+          onClick={() => navigate('/admin')}
+          className="absolute bottom-4 right-4"
+        >
+          {/* <Icon icon='fxemoji:lock' width={30}/> */}
+          {/* <Icon icon='eos-icons:admin-outlined' width={30} className='text-white'/> */}
+          <Icon
+            icon="ic:twotone-admin-panel-settings"
+            width={30}
+            className="text-white"
+          />
+        </button>
       </div>
     </div>
   );

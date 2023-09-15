@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { BlogResponse } from '../types/blog.types';
+import { Icon } from '@iconify/react';
 
 export const BlogMd = ({
   media_title,
@@ -12,16 +13,36 @@ export const BlogMd = ({
   const [viewDescription, setView] = useState(false);
   return (
     <div
-      className={`group mx-auto my-2 flex h-fit min-h-[220px] flex-col justify-between overflow-visible bg-white shadow transition-all hover:shadow-xl ${className}`}
+      className={`group mx-auto my-2 flex h-fit min-h-[250px] flex-col justify-between overflow-visible bg-white shadow transition-all hover:shadow-xl ${className}`}
     >
-      <div className="p-4 text-left">
-        <p className={`font-lato text-2xl font-light`}>
-          {media_type === 'BLOG' ? 'Blog: ' : 'Podcast: '}
-          {media_title}
-        </p>
-        <p>{new Date(media_date).toDateString()}</p>
+      <div className="shrink-0 p-4 text-left">
+        <div>
+          <div className="flex justify-between border-b">
+            <p className={`flex pb-2 font-lato text-2xl font-light`}>
+              {media_type === 'BLOG' ? (
+                <>
+                  <span>
+                    <Icon icon="fluent:brain-circuit-20-regular" width={30} />
+                  </span>
+                  <span>Blog</span>
+                </>
+              ) : (
+                <>
+                  <span>
+                    <Icon icon="ph:apple-podcasts-logo-duotone" width={30} />
+                  </span>
+                  <span>Podcast</span>
+                </>
+              )}
+            </p>
+            <p className="my-auto font-lato font-normal">
+              {new Date(media_date).toDateString()}
+            </p>
+          </div>
+          <p className={`p-2 font-lato text-2xl font-light`}>{media_title}</p>
+        </div>
       </div>
-      <div className="border-t-2 text-left">
+      <div className=" text-left">
         <div
           className={`transition-all duration-300 ${
             viewDescription
