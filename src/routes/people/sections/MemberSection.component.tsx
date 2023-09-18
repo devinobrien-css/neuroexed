@@ -47,7 +47,12 @@ const MembersSection = () => {
                 member.last.toLowerCase().includes(search.toLocaleLowerCase()),
             )
             .map((member: MemberResponse) => {
-              return <Profile key={member} data={member} />;
+              return (
+                <Profile
+                  key={member.socials.email + member.first}
+                  data={member}
+                />
+              );
             })
         )}
       </div>

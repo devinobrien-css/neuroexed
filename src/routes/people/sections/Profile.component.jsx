@@ -15,7 +15,7 @@ const Profile = (args) => {
     <div className="h-max-content group mx-auto my-8 flex flex-col justify-between rounded-lg bg-white p-4 shadow transition-all md:w-[23%]">
       <div>
         <img
-          className="mx-auto block w-4/5 shrink-0 rounded-full border-8"
+          className="mx-auto block h-48 w-48 shrink-0 rounded-full border-8"
           src={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${data.last
             .toLowerCase()
             .replace("'", '')}.png`}

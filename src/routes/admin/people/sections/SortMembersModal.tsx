@@ -14,6 +14,8 @@ export const SortMembersModal = ({
   closeModal: () => void;
   refetchMembers: () => any;
 }) => {
+  console.log(members);
+
   const onSubmit = async (items: string[]) => {
     try {
       await putData(
@@ -35,7 +37,7 @@ export const SortMembersModal = ({
     <Modal className="" closeModal={closeModal}>
       <DragAndDrogList
         items={(members ?? []).map((member) => ({
-          label: member!.first + ' ' + member.last,
+          label: member!.first + ' ' + member!.last,
           value: member!.socials!.email ?? '',
         }))}
         onSubmit={onSubmit}
