@@ -1,42 +1,43 @@
 import { putData } from '../../../../shared/api/dba';
 import { sort_order } from '../../../../shared/types/object_schema';
-import { MemberResponse } from '../../../../shared/types/member.types';
 import { Modal } from '../../../../shared/components/modals/Modal';
 import { toast } from 'react-toastify';
 import { DragAndDrogList } from '../../../../shared/components/DragAndDrop/DragAndDrogList';
+import { BlogResponse } from '../../../../shared/types/blog.types';
+import { Project } from '../../../../shared/types/project.types';
 
-export const SortMembersModal = ({
-  members,
+export const SortProjectsModal = ({
+  projects,
   closeModal,
-  refetchMembers,
+  refetchProjects,
 }: {
-  members?: MemberResponse[];
+  projects?: Project[];
   closeModal: () => void;
-  refetchMembers: () => any;
+  refetchProjects: () => any;
 }) => {
   const onSubmit = async (items: string[]) => {
     try {
       await putData(
         'sort-orders',
         sort_order(
-          'people',
+          'projects',
           items.map((i) => ({ S: i })),
         ),
       );
       closeModal();
-      await refetchMembers();
-      toast.success('Users have been updated!');
+      await refetchProjects();
+      toast.success('Projects have been updated!');
     } catch (e: any) {
-      toast.error('User update failed.');
+      toast.error('Project update failed.');
     }
   };
 
   return (
     <Modal className="" closeModal={closeModal}>
       <DragAndDrogList
-        items={(members ?? []).map((member) => ({
-          label: member!.first + ' ' + member.last,
-          value: member!.socials!.email ?? '',
+        items={(projects ?? []).map((project) => ({
+          label: project!.title,
+          value: project!.title ?? '',
         }))}
         onSubmit={onSubmit}
       />

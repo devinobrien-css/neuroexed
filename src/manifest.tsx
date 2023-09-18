@@ -42,9 +42,9 @@ export const tabs = [
     icon: 'fluent:news-24-regular',
   },
   {
-    name: 'publications',
+    name: 'books',
     protected: false,
-    pathname: '/publications',
+    pathname: '/books',
     icon: 'ph:books',
   },
   {
@@ -85,7 +85,7 @@ export const router = createBrowserRouter([
     element: <News />,
   },
   {
-    path: '/publications',
+    path: '/books',
     element: <Books />,
   },
   {

@@ -1,238 +1,190 @@
-// /* eslint-disable react-hooks/exhaustive-deps */
-// import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
+import {
+  Project,
+  ProjectMember,
+  projectMember,
+} from '../../../../shared/types/project.types';
+import useMembers from '../../../../shared/hooks/useMembers';
+import { Button } from '../../../../shared/components/form/Button';
+import { Input } from '../../../../shared/components/form/Input';
+import { useForm } from 'react-hook-form';
+import useProjects from '../../../../shared/hooks/useProjects';
 
-// import { project, sort_order } from '../../../shared/types/object_schema';
-// import { fetchData, putData, removeData } from '../../../shared/api/dba';
-// import StandardInput from '../components/StandardInput.component';
-// import StandardTextArea from '../components/StandardTextArea.component';
+export const NewProject = () => {
+  const [state, setState] = useState(true);
 
-// const NewProject = (args) => {
-//   const [people, setPeople] = useState();
-//   const getPeople = async () => {
-//     const res = await fetchData('people');
+  const [newMember, setNewMember] = useState(false);
+  const [selectedMembers, setSelectedMembers] = useState(Array<any>);
 
-//     if (res === 'EMPTY') {
-//       setPeople([]);
-//     } else setPeople(res.Items);
-//   };
+  const { members } = useMembers();
+  const { updateProject } = useProjects();
 
-//   useEffect(() => {
-//     getPeople();
-//   }, []);
+  const { register, handleSubmit, watch } = useForm<Project>();
 
-//   const [state, setState] = useState(true);
+  function handleRemove(id: string) {
+    const newList = selectedMembers.filter((item) => item.id !== id);
+    setSelectedMembers(newList);
+  }
 
-//   const [title, setTitle] = useState('');
-//   const [description, setDescription] = useState('');
+  function handleAdd(person: ProjectMember) {
+    const newList = selectedMembers;
+    newList.push({
+      id: person.id, //email.split('@')[0]
+      email: person.email,
+      first: person.first,
+      last: person.last,
+    });
+    setSelectedMembers(newList);
+  }
 
-//   const [newMember, setNewMember] = useState('');
-//   const [selectedMembers, setSelectedMembers] = useState([]);
+  const onSubmit = (data: Project) => {
+    updateProject({
+      title: data.title,
+      description: data.description,
+      members: selectedMembers,
+    });
+    setState(false);
+  };
 
-//   function handleRemove(id) {
-//     const newList = selectedMembers.filter((item) => item.M.id.S !== id);
+  return (
+    <form className="py-2" onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex justify-between">
+        <p className="font-light md:text-2xl">
+          {watch('title') ?? 'Project Title'}
+        </p>
+        <div className="flex">
+          <Button
+            color="gray"
+            type="button"
+            title={state ? 'cancel' : 'edit'}
+            onClick={() => {
+              state ? setState(false) : setState(true);
+            }}
+          />
+          {state && (
+            <>
+              <Button color="yellow" title="confirm" type="submit" />
+              <Button
+                color="red"
+                type="button"
+                title="delete"
+                onClick={async () => {
+                  setState(false);
+                }}
+              />
+            </>
+          )}
+        </div>
+      </div>
+      <div
+        className={`flex flex-col gap-y-4 transition-all ${
+          state ? 'h-[100%] p-10 opacity-100' : 'h-0 overflow-clip opacity-0'
+        }`}
+      >
+        <Input name="title" register={register} />
+        <Input name="description" register={register} />
 
-//     setSelectedMembers(newList);
-//   }
+        <hr />
 
-//   function handleAdd(person) {
-//     const newList = selectedMembers.filter(
-//       (item) => item.M.id.S !== person.data.M.slug.S,
-//     );
-//     newList.push({
-//       M: {
-//         id: { S: person.data.M.slug.S },
-//         email: { S: person.email.S },
-//         first: { S: person.data.M.first.S },
-//         last: { S: person.data.M.last.S },
-//       },
-//     });
-//     setSelectedMembers(newList);
-//   }
+        <div className="rounded-lg bg-white p-4 shadow hover:shadow-xl">
+          <div className="flex justify-between">
+            <p className="font-lato text-lg">Members</p>
+            <div className="relative shrink-0 rounded">
+              <Button
+                color="gray"
+                title="Add Members"
+                type="button"
+                onClick={() => setNewMember(true)}
+              />
+              {newMember && (
+                <div className="absolute top-full z-[100] max-h-[280px] min-w-[320px] overflow-scroll overflow-y-scroll bg-white shadow">
+                  <button
+                    type="button"
+                    className="sticky top-0 w-full bg-white px-2 text-right underline"
+                    onClick={() => setNewMember(false)}
+                  >
+                    close
+                  </button>
+                  <div className="flex flex-col divide-y">
+                    {members?.map((member) => {
+                      return (
+                        <div
+                          key={member.last}
+                          onClick={() =>
+                            handleAdd({
+                              id: member.socials.email.split('@')[0],
+                              first: member.first,
+                              email: member.socials.email,
+                              last: member.last,
+                            })
+                          }
+                          className="no-wrap space-between flex cursor-pointer p-2"
+                        >
+                          <div className="no-wrap flex w-full">
+                            <img
+                              src={`${
+                                import.meta.env.VITE_S3_PROFILE_PICTURES
+                              }${member.last
+                                .toLowerCase()
+                                .replace("'", '')}.png`}
+                              alt={'photo of ' + member.last}
+                              className="block w-16 rounded-full"
+                            />
+                            <p className="my-auto pl-1 text-xl font-light">
+                              {member.first} {member.last}
+                            </p>
+                          </div>
+                          <Button
+                            type="button"
+                            color="blue"
+                            title="add"
+                            className="my-auto"
+                            onClick={() =>
+                              handleAdd({
+                                id: member.socials.email.split('@')[0],
+                                first: member.first,
+                                email: member.socials.email,
+                                last: member.last,
+                              })
+                            }
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
 
-//   if (people) {
-//     return (
-//       <div className="editable selected-editable" id={'new-project'}>
-//         <div>
-//           <p>{title}</p>
-//           <div className="flex">
-//             <button
-//               className="mx-2 h-min rounded border border-blue-300 bg-blue-100 px-2 py-0 text-sm text-blue-300"
-//               onClick={() => {
-//                 if (state) args.remove(false);
-//                 state ? setState(false) : setState(true);
-//               }}
-//             >
-//               {state ? 'cancel' : 'edit'}
-//             </button>
-//             {state ? (
-//               <>
-//                 <button
-//                   className="mx-2 h-min rounded border border-yellow-500 bg-yellow-100 px-2 py-0 text-sm text-yellow-500"
-//                   onClick={async () => {
-//                     putData(
-//                       'projects',
-//                       {},
-//                       project(title, description, selectedMembers),
-//                     );
-//                     const sort = await fetchData('sort-orders');
-//                     sort.Items.filter((order) => {
-//                       return order.type.S === 'projects';
-//                     })[0].sort.L.push({ S: title });
-//                     await putData(
-//                       'sort-orders',
-//                       {},
-//                       sort_order(
-//                         'projects',
-//                         sort.Items.filter((order) => {
-//                           return order.type.S === 'projects';
-//                         })[0].sort.L,
-//                       ),
-//                     );
-//                     setState(false);
-//                   }}
-//                 >
-//                   confirm
-//                 </button>
-//                 <button
-//                   className="mx-2 h-min rounded border border-red-500 bg-red-100 px-2 py-0 text-sm text-red-500"
-//                   onClick={async () => {
-//                     await removeData('projects', {
-//                       title: { S: title },
-//                     });
-//                     const sort = await fetchData('sort-orders');
-//                     const output = sort.Items.filter((order) => {
-//                       return order.type.S === 'projects';
-//                     })[0].sort.L.filter((project) => {
-//                       return project.S !== title;
-//                     });
-//                     await putData(
-//                       'sort-orders',
-//                       {},
-//                       sort_order('projects', output),
-//                     );
-//                     setState(false);
-//                     args.remove(false);
-//                   }}
-//                 >
-//                   delete
-//                 </button>
-//               </>
-//             ) : (
-//               <></>
-//             )}
-//           </div>
-//         </div>
-//         <div className={state ? 'hidden-content open' : 'hidden-content'}>
-//           <StandardInput
-//             title={'Project Title'}
-//             className={'border px-2'}
-//             value={title}
-//             setValue={setTitle}
-//           />
-//           <StandardTextArea
-//             title={'Project Description'}
-//             className={'border px-2'}
-//             value={description}
-//             setValue={setDescription}
-//           />
-
-//           <p>Members</p>
-//           <div className="selected-member-list">
-//             {selectedMembers.map((item, index) => (
-//               <div
-//                 key={index + '-selectable-' + item.M.last.S}
-//                 className="relative m-1 flex min-w-[300px] border bg-white p-1 shadow"
-//               >
-//                 <img
-//                   src={
-//                     './img/people/' +
-//                     item.M.last.S.toLowerCase().replace("'", '') +
-//                     '.png'
-//                   }
-//                   alt={'photo of ' + item.M.last.S}
-//                   className="my-auto block w-14 rounded-full"
-//                 />
-//                 <p className="my-auto pl-2 text-xl font-light">
-//                   {item.M.first.S} {item.M.last.S}
-//                 </p>
-//                 <button
-//                   type="button"
-//                   className="absolute right-2 top-1 rounded border border-red-400 bg-red-100 p-1 text-sm text-red-400 transition-all hover:bg-red-200"
-//                   onClick={() => handleRemove(item.M.id.S)}
-//                 >
-//                   remove
-//                 </button>
-//               </div>
-//             ))}
-//           </div>
-//           <div className="relative shrink-0 rounded border">
-//             <StandardInput
-//               title={'Add Members'}
-//               className={'border px-2'}
-//               value={newMember}
-//               setValue={setNewMember}
-//             />
-//             <div className="absolute top-full z-[100] flex max-h-[180px] w-1/3 min-w-[240px] flex-col overflow-scroll overflow-y-scroll bg-white shadow">
-//               {newMember !== '' ? (
-//                 people
-//                   .filter(
-//                     (person) =>
-//                       selectedMembers.filter(
-//                         (selected) => selected.M.id.S === person.data.M.slug.S,
-//                       ).length === 0 &&
-//                       (person.data.M.slug.S.toLowerCase().includes(
-//                         newMember.toLowerCase(),
-//                       ) ||
-//                         person.data.M.first.S.toLowerCase().includes(
-//                           newMember.toLowerCase(),
-//                         ) ||
-//                         person.data.M.last.S.toLowerCase().includes(
-//                           newMember.toLowerCase(),
-//                         )),
-//                   )
-//                   .map((person, index) => {
-//                     return (
-//                       <div
-//                         key={index + '-member-' + person.data.M.last.S}
-//                         onClick={() => handleAdd(person)}
-//                         className="no-wrap space-between flex cursor-pointer border p-1"
-//                       >
-//                         <div className="no-wrap flex w-full">
-//                           <img
-//                             src={
-//                               './img/people/' +
-//                               person.data.M.last.S.toLowerCase().replace(
-//                                 "'",
-//                                 '',
-//                               ) +
-//                               '.png'
-//                             }
-//                             alt={'photo of ' + person.data.M.last.S}
-//                             className="block w-16 rounded-full"
-//                           />
-//                           <p className="my-auto pl-1 text-2xl font-light">
-//                             {person.data.M.first.S} {person.data.M.last.S}
-//                           </p>
-//                         </div>
-//                         <button
-//                           type="button"
-//                           className="my-auto mr-0 rounded border border-blue-400 bg-blue-100 p-1 px-3 text-sm text-blue-400 transition-all hover:bg-blue-200"
-//                           onClick={() => handleAdd(person)}
-//                         >
-//                           add
-//                         </button>
-//                       </div>
-//                     );
-//                   })
-//               ) : (
-//                 <></>
-//               )}
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   } else {
-//     return <></>;
-//   }
-// };
+          <div className="no-wrap flex flex-row overflow-scroll">
+            {selectedMembers.map((member) => (
+              <div
+                key={member.last}
+                className="relative m-1 flex min-w-[300px] border bg-white p-3 shadow"
+              >
+                <img
+                  src={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${member.last
+                    .toLowerCase()
+                    .replace("'", '')}.png`}
+                  alt={'photo of ' + member.last}
+                  className="my-auto block w-14 rounded-full"
+                />
+                <p className="my-auto pl-2 text-xl font-light">
+                  {member.first} {member.last}
+                </p>
+                <button
+                  type="button"
+                  className="absolute right-2 top-1 rounded border border-red-400 bg-red-100 p-1 text-sm text-red-400 transition-all hover:bg-red-200"
+                  onClick={() => handleRemove(member.id)}
+                >
+                  remove
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </form>
+  );
+};

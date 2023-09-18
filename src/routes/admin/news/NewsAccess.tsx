@@ -8,10 +8,7 @@ import { EditablePost } from './components/EditablePost';
 const NewsAccess = () => {
   const [newPost, setNewPost] = useState(false);
   const [search, setSearch] = useState('');
-
   const { posts } = useNews();
-
-  console.log(posts);
 
   return (
     <div className="">
@@ -34,7 +31,7 @@ const NewsAccess = () => {
           />
         </div>
       </div>
-      <div className="mx-auto flex flex-col divide-y md:max-w-screen-xl">
+      <div className="mx-auto flex flex-col divide-y md:max-w-screen-2xl">
         {newPost && <NewPost />}
         {posts
           ?.filter(

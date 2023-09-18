@@ -46,7 +46,7 @@ const PeopleAccess = () => {
             />
           </div>
         </div>
-        <div className="divide-y md:px-24">
+        <div className="mx-auto divide-y md:max-w-screen-2xl">
           {newPerson ? <NewPerson setNewPerson={setNewPerson} /> : <></>}
           {members
             ?.filter(

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from '../modals/Modal';
+import Modal from '../../shared/components/modals/Modal';
 import {
   getAuth,
   signInWithPopup,

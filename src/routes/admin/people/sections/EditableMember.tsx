@@ -16,6 +16,7 @@ export const EditablePerson = ({ data }: { data: any }) => {
       'Last Name': data.last,
       'Collegiate Title': data.collegiate_title,
       'Lab Title': data.lab_title,
+      'Lab Status': data.lab_status ?? 'Member',
       'Year Joined': data.year_joined,
       Description: data.description,
       Email: data.socials.email,
@@ -54,10 +55,10 @@ export const EditablePerson = ({ data }: { data: any }) => {
             />
           </div>
           <div className="my-auto ml-2">
-            <p className="text-4xl font-light">
+            <p className="font-light md:text-2xl">
               {data.first} {data.last}
             </p>
-            <p className="text-2xl font-light">{data.socials.email}</p>
+            <p className="font-light md:text-2xl">{data.socials.email}</p>
           </div>
         </div>
         <div className="my-auto flex">

@@ -17,7 +17,7 @@ export const EditableProject = ({ project }: { project: Project }) => {
   const [selectedMembers, setSelectedMembers] = useState(project.members);
 
   const { members } = useMembers();
-  const { updateProject } = useProjects();
+  const { updateProject, deleteProject, refetchProjects } = useProjects();
 
   const { register, handleSubmit } = useForm<Project>({
     defaultValues: {
@@ -54,7 +54,9 @@ export const EditableProject = ({ project }: { project: Project }) => {
   return (
     <form className="py-2" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex justify-between">
-        <p className="font-lato text-lg">{project.title ?? 'Project Title'}</p>
+        <p className="font-light md:text-2xl">
+          {project.title ?? 'Project Title'}
+        </p>
         <div className="flex">
           <Button
             color="gray"
@@ -72,6 +74,8 @@ export const EditableProject = ({ project }: { project: Project }) => {
                 type="button"
                 title="delete"
                 onClick={async () => {
+                  deleteProject(project.title);
+                  await refetchProjects();
                   setState(false);
                 }}
               />
@@ -96,11 +100,13 @@ export const EditableProject = ({ project }: { project: Project }) => {
               <Button
                 color="gray"
                 title="Add Members"
+                type="button"
                 onClick={() => setNewMember(true)}
               />
               {newMember && (
                 <div className="absolute top-full z-[100] max-h-[280px] min-w-[320px] overflow-scroll overflow-y-scroll bg-white shadow">
                   <button
+                    type="button"
                     className="sticky top-0 w-full bg-white px-2 text-right underline"
                     onClick={() => setNewMember(false)}
                   >

@@ -8,7 +8,11 @@ const useProjects = () => {
   const { data: projects, refetch: refetchProjects } = useQuery({
     queryKey: ['PROJECTS'],
     queryFn: async () => {
-      return await fetchData('projects');
+      const sort = (await fetchData('sort-orders')) as Record<string, string[]>;
+      const res = (await fetchData('projects')) as Project[];
+      return sort['projects'].map(
+        (title) => res.filter((m) => m.title === title)[0],
+      );
     },
     cacheTime: 10 * 60 * 60,
   });
@@ -45,6 +49,7 @@ const useProjects = () => {
     projects,
     updateProject,
     deleteProject,
+    refetchProjects,
   };
 };
 

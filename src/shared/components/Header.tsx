@@ -1,6 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { tabs } from '../../manifest';
 import { FadeIn } from './animations/FadeIn';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useState } from 'react';
 
 interface HeaderProps {
   title: string;
@@ -9,6 +11,14 @@ interface HeaderProps {
 const Header = ({ title, sub_title }: HeaderProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const auth = getAuth();
+  const [authorized, setAuthorized] = useState(false);
+
+  onAuthStateChanged(auth, (user) => {
+    user ? setAuthorized(true) : setAuthorized(false);
+  });
+
+  console.log();
 
   return (
     <>
@@ -51,6 +61,21 @@ const Header = ({ title, sub_title }: HeaderProps) => {
               }
               return null;
             })}
+            {authorized && (
+              <button
+                key="administrate"
+                className={`font-raleway text-xl uppercase transition-all ${
+                  location.pathname.startsWith('/admin')
+                    ? ' border-b-4 border-gray-200 text-gray-200'
+                    : 'text-gray-200 drop-shadow-2xl'
+                }`}
+                onClick={() => {
+                  navigate('/admin');
+                }}
+              >
+                Admin
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -24,7 +24,9 @@ export const EditableAffiliate = ({ affiliate }: { affiliate: Affiliate }) => {
   return (
     <form className="py-4" onSubmit={handleSubmit(onSumbit)}>
       <div className="flex justify-between">
-        <p className="text-xl">{watch('name') ?? 'New Affiliation'}</p>
+        <p className="font-light md:text-2xl">
+          {watch('name') ?? 'New Affiliation'}
+        </p>
         <div className="edit-buttons">
           <Button
             color="gray"

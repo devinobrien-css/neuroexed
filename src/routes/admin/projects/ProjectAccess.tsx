@@ -4,32 +4,24 @@ import useProjects from '../../../shared/hooks/useProjects';
 import { EditableProject } from './sections/EditableProject';
 import { Project } from '../../../shared/types/project.types';
 import useMockProjects from '../../../shared/mocks/useMockProjects';
+import { SortProjectsModal } from './sections/SortProjectsModal';
+import { NewProject } from './sections/NewProject';
 
 const ProjectAccess = () => {
   const [editOrder, setEditOrder] = useState(false);
   const [newProject, setNewProject] = useState(false);
   const [search, setSearch] = useState('');
 
-  // const { projects } = useProjects();
-  const { projects } = useMockProjects();
+  const { projects, refetchProjects } = useProjects();
 
   return (
     <>
       {editOrder && (
-        <div className="absolute left-10 z-[1000] w-4/5 rounded bg-gray-100 shadow-lg">
-          <button
-            className="absolute right-0 top-0 z-[55] rounded bg-gray-200 px-2 hover:bg-blue-100"
-            onClick={() => {
-              setEditOrder(false);
-            }}
-          >
-            X
-          </button>
-          <p className="px-2 italic text-red-400">
-            (confirming changes will refresh the page)
-          </p>
-          {/* <SortableProjectList items={projects} /> */}
-        </div>
+        <SortProjectsModal
+          closeModal={() => setEditOrder(false)}
+          projects={projects}
+          refetchProjects={refetchProjects}
+        />
       )}
       <div className="">
         <div className="flex flex-col justify-between gap-y-4 py-8 md:flex-row">
@@ -51,13 +43,13 @@ const ProjectAccess = () => {
             />
             <Button
               color="gray"
-              title="add new post"
+              title="add new project"
               onClick={() => setNewProject(true)}
             />
           </div>
         </div>
-        <div className="mx-auto flex max-w-screen-lg flex-col divide-y p-4">
-          {newProject ? <>TODO</> : <></>}
+        <div className="mx-auto flex flex-col divide-y p-4 md:max-w-screen-2xl">
+          {newProject && <NewProject />}
           {projects?.map((project: Project) => (
             <EditableProject key={project.title} project={project} />
           ))}

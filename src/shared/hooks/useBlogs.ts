@@ -53,6 +53,7 @@ const useBlogs = () => {
     blogs: blogs,
     updateBlog,
     deleteBlog,
+    refetchBlogs,
   };
 };
 

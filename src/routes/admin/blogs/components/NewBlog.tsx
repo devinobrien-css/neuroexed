@@ -19,7 +19,7 @@ export const NewBlog = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex justify-between px-2 py-4">
-        <p className="md:text-2xl">{watch('title')}</p>
+        <p className="font-light md:text-2xl">{watch('title')}</p>
         <div className="flex justify-end gap-x-4">
           <Button
             color="blue"

@@ -24,6 +24,7 @@ const useMembers = () => {
     MemberFormInput
   >({
     mutationFn: async (data) => {
+      console.log(data);
       await putData(
         'people',
         Member({

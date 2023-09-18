@@ -1,42 +1,42 @@
 import { putData } from '../../../../shared/api/dba';
 import { sort_order } from '../../../../shared/types/object_schema';
-import { MemberResponse } from '../../../../shared/types/member.types';
 import { Modal } from '../../../../shared/components/modals/Modal';
 import { toast } from 'react-toastify';
 import { DragAndDrogList } from '../../../../shared/components/DragAndDrop/DragAndDrogList';
+import { BlogResponse } from '../../../../shared/types/blog.types';
 
-export const SortMembersModal = ({
-  members,
+export const SortBlogsModal = ({
+  blogs,
   closeModal,
-  refetchMembers,
+  refetchBlogs,
 }: {
-  members?: MemberResponse[];
+  blogs?: BlogResponse[];
   closeModal: () => void;
-  refetchMembers: () => any;
+  refetchBlogs: () => any;
 }) => {
   const onSubmit = async (items: string[]) => {
     try {
       await putData(
         'sort-orders',
         sort_order(
-          'people',
+          'blogs',
           items.map((i) => ({ S: i })),
         ),
       );
       closeModal();
-      await refetchMembers();
-      toast.success('Users have been updated!');
+      await refetchBlogs();
+      toast.success('Blogs have been updated!');
     } catch (e: any) {
-      toast.error('User update failed.');
+      toast.error('Blog update failed.');
     }
   };
 
   return (
     <Modal className="" closeModal={closeModal}>
       <DragAndDrogList
-        items={(members ?? []).map((member) => ({
-          label: member!.first + ' ' + member.last,
-          value: member!.socials!.email ?? '',
+        items={(blogs ?? []).map((blog) => ({
+          label: blog!.media_title,
+          value: blog!.media_title ?? '',
         }))}
         onSubmit={onSubmit}
       />

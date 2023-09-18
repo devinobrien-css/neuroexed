@@ -8,13 +8,10 @@ import { EditableAffiliate } from './components/EditableAffiliate';
 const AffiliateAccess = () => {
   const [newAffiliate, setNewAffiliate] = useState(false);
   const [search, setSearch] = useState('');
-
   const { affiliates } = useAffiliates();
 
-  console.log(affiliates);
-
   return (
-    <div className="editable-list">
+    <div className="bg-white">
       <div className="flex flex-col justify-between gap-y-4 py-8 md:flex-row">
         <input
           id="search"
@@ -29,12 +26,12 @@ const AffiliateAccess = () => {
         <div className="mx-auto flex gap-x-2 md:mx-4">
           <Button
             color="gray"
-            title="add new post"
+            title="add new affiliate"
             onClick={() => setNewAffiliate(true)}
           />
         </div>
       </div>
-      <div className="mx-auto flex flex-col divide-y md:max-w-screen-lg">
+      <div className="mx-auto flex flex-col divide-y md:max-w-screen-2xl">
         {newAffiliate && <NewAffiliate />}
         {affiliates
           ?.filter(

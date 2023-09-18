@@ -1,3 +1,4 @@
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { SectionTitle } from '../../../shared/components/common.library';
 import useNews from '../../../shared/hooks/useNews';
 import { Post } from '../../../shared/types/post.types';
@@ -17,7 +18,10 @@ export const Posts = () => {
                 {new Date(post.date).toDateString()}
               </p>
               <br />
-              <p className="font-light text-gray-700">{post.content}</p>
+
+              <ReactMarkdown className="font-light text-gray-700 [&>*>a]:underline">
+                {post.content}
+              </ReactMarkdown>
             </div>
           );
         })}

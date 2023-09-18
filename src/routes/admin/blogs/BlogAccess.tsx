@@ -3,34 +3,24 @@ import useBlogs from '../../../shared/hooks/useBlogs';
 import { Button } from '../../../shared/components/form/Button';
 import { EditableBlog } from './components/EditableBlog';
 import { NewBlog } from './components/NewBlog';
+import { SortBlogsModal } from './components/SortBlogsModal';
 
 const BlogAccess = () => {
   const [editOrder, setEditOrder] = useState(false);
   const [search, setSearch] = useState('');
   const [newBlog, setNewBlog] = useState(false);
 
-  const { blogs } = useBlogs();
+  const { blogs, refetchBlogs } = useBlogs();
 
   if (blogs) {
     return (
       <>
-        {editOrder ? (
-          <div className="absolute left-10 w-4/5 rounded bg-gray-100 shadow-lg ">
-            <button
-              className="absolute right-0 top-0 z-[55] rounded bg-gray-200 px-2 hover:bg-blue-100"
-              onClick={() => {
-                setEditOrder(false);
-              }}
-            >
-              X
-            </button>
-            <p className="px-2 italic text-red-400">
-              (confirming changes will refresh the page)
-            </p>
-            {/* <SortableBlogList items={blogs} /> */}
-          </div>
-        ) : (
-          <></>
+        {editOrder && (
+          <SortBlogsModal
+            blogs={blogs}
+            closeModal={() => setEditOrder(false)}
+            refetchBlogs={refetchBlogs}
+          />
         )}
         <div>
           <div className="flex flex-col justify-between gap-y-4 py-8 md:flex-row">

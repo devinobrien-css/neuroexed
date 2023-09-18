@@ -25,7 +25,7 @@ export const EditablePost = ({ post }: { post: Post }) => {
     <form className="py-4" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col">
         <div className="flex justify-between">
-          <p className="p-2 font-lato text-xl">{post.title ?? 'Post Title'}</p>
+          <p className="font-light md:text-2xl">{post.title ?? 'Post Title'}</p>
           <div className="">
             <Button
               color="gray"

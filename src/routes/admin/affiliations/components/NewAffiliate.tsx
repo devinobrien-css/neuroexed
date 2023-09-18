@@ -11,7 +11,9 @@ export const NewAffiliate = () => {
   return (
     <div className="editable selected-editable" id={'new-affiliate'}>
       <div>
-        <p>{watch('name') ?? 'New Affiliation'}</p>
+        <p className="font-light md:text-2xl">
+          {watch('name') ?? 'New Affiliation'}
+        </p>
         <div className="edit-buttons">
           <Button
             color="gray"

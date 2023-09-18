@@ -6,6 +6,8 @@ import { FooterLink } from './FooterLink';
 import { Icon } from '@iconify/react';
 import { Modal } from '../modals/Modal';
 import { Button } from '../form/Button';
+import { LoginModal, LogoutModal } from '../../../routes/login/Login';
+import { getAuth } from 'firebase/auth';
 
 const BugModalContent = () => {
   const [sent, setSent] = useState(false);
@@ -163,61 +165,21 @@ const EmailModalContent = () => {
 
 const Footer = () => {
   const navigate = useNavigate();
-  const [modal, setModal] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
+  const auth = getAuth();
+  console.log(auth.currentUser);
 
   return (
     <>
-      {modal && (
-        <Modal className="h-min md:w-2/5" closeModal={() => setModal(false)}>
-          <div className="mx-auto flex h-full flex-col border md:p-12">
-            <div className="my-auto py-8">
-              <h1 className="text-center font-lato text-4xl font-light">
-                Login
-              </h1>
-              <p className="py-4 text-center font-lato font-light">
-                Entering the administrative portal requires a login. <br />{' '}
-                Please enter your credentials below
-              </p>
-
-              <div className="my-5">
-                <p className="text-center font-lato text-gray-600">
-                  Username or Email
-                </p>
-                <div className="mx-auto flex rounded-lg bg-gray-200 p-2 md:w-2/5">
-                  <Icon icon="solar:user-bold-duotone" className="my-auto" />
-                  <input className="my-auto w-full border-0 bg-transparent pl-1 font-lato font-light outline-0" />
-                </div>
-              </div>
-              <div className="my-5">
-                <p className="text-center font-lato text-gray-600">Password</p>
-                <div className="mx-auto flex rounded-lg bg-gray-200 p-2 md:w-2/5">
-                  <Icon
-                    icon="solar:lock-password-bold-duotone"
-                    className="my-auto"
-                  />
-                  <input
-                    className="my-auto w-full border-0 bg-transparent py-0 pl-1 font-lato font-light outline-0 ring-0"
-                    type="password"
-                  />
-                </div>
-              </div>
-              <Button color="blue" title="login" className="mx-auto block" />
-              <br />
-              <br />
-              <hr />
-              <div className="mx-auto mt-6 flex w-fit">
-                <Icon icon="twemoji:brain" width={40} />
-                <span className="my-auto font-lato text-3xl font-light">
-                  Neuroexed
-                </span>
-              </div>
-            </div>
-          </div>
-        </Modal>
-      )}
+      {loginModal &&
+        (auth.currentUser ? (
+          <LogoutModal toggleModal={() => setLoginModal(false)} />
+        ) : (
+          <LoginModal toggleModal={() => setLoginModal(false)} />
+        ))}
       <div className="bg-landing bg-cover bg-center bg-no-repeat">
         <div className="p-4 backdrop-blur-md">
-          <div className="flex">
+          <div className="md:flex">
             <div className="mx-4 w-full border-b border-white p-4 md:w-1/3">
               <p className="border-b border-white font-lato text-2xl font-light uppercase text-white">
                 OUTREACH
@@ -302,7 +264,7 @@ const Footer = () => {
           </div>
 
           <button
-            onClick={() => setModal(true)}
+            onClick={() => setLoginModal(true)}
             className="absolute bottom-4 right-4"
           >
             {/* <Icon icon='fxemoji:lock' width={30}/> */}

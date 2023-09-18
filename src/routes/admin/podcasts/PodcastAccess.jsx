@@ -5,9 +5,6 @@ import {
   removeData,
   uploadFileToBucket,
 } from '../../../shared/api/dba';
-
-/* STYLESHEET IMPORTS */
-import '../admin.css'; //contains styles specific to the user page
 import StandardInput from '../components/StandardInput.component';
 import StandardTextArea from '../components/StandardTextArea.component';
 import { podcast } from '../../../shared/types/podcast.types';

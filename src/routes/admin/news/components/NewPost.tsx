@@ -19,7 +19,7 @@ export const NewPost = () => {
     <form className="" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col">
         <div className="flex justify-between">
-          <p className="p-2 font-lato text-xl">
+          <p className="font-light md:text-2xl">
             {watch('title') ?? 'Post Title'}
           </p>
           <div className="">

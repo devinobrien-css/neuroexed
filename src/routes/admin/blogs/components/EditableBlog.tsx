@@ -28,7 +28,7 @@ export const EditableBlog = ({ blog }: { blog: any }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex justify-between px-2 py-4">
-        <p className="md:text-2xl">{blog.media_title}</p>
+        <p className="font-light md:text-2xl">{blog.media_title}</p>
         <div className="flex justify-end gap-x-4">
           <Button
             color="blue"
