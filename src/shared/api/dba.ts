@@ -25,9 +25,9 @@ export const uploadFileToBucket = async (
       name: fileName,
     }),
   );
-  form.append('file', file, fileName);
+  form.append('file', file[0], fileName);
   const reader = new FileReader();
-  reader.readAsDataURL(file);
+  reader.readAsDataURL(file[0]);
   reader.onload = async () =>
     await putFileToS3(
       reader.result,
