@@ -19,7 +19,7 @@ export const LoginModal = ({ toggleModal }: { toggleModal: () => void }) => {
   const onSubmit = (data: LoginForm) => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then(() => {
-        toast.success("You've been logged in!");
+        toast.success('Logged in successfully!');
         toggleModal();
       })
       .catch(() => {
@@ -91,7 +91,7 @@ export const LogoutModal = ({ toggleModal }: { toggleModal: () => void }) => {
   const onClick = () => {
     signOut(auth)
       .then(() => {
-        toast.success("You've safely logged out");
+        toast.success('Logged out safely.');
         toggleModal();
       })
       .catch(() => {

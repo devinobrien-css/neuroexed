@@ -3,7 +3,6 @@ import { Button } from '../../../shared/components/form/Button';
 import useProjects from '../../../shared/hooks/useProjects';
 import { EditableProject } from './sections/EditableProject';
 import { Project } from '../../../shared/types/project.types';
-import useMockProjects from '../../../shared/mocks/useMockProjects';
 import { SortProjectsModal } from './sections/SortProjectsModal';
 import { NewProject } from './sections/NewProject';
 

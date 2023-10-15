@@ -29,7 +29,7 @@ const useProjects = () => {
       ),
     onSuccess: async () => {
       await refetchProjects();
-      toast.success(`Project has been updated!`);
+      toast.success('Project has been updated!');
     },
     onError: () => toast.error('Project update failed'),
   });
@@ -40,7 +40,7 @@ const useProjects = () => {
     },
     onSuccess: async () => {
       await refetchProjects();
-      toast.success(`Project has been deleted!`);
+      toast.success('Project has been deleted!');
     },
     onError: () => toast.error('Project deletion failed'),
   });

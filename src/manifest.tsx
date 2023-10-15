@@ -13,8 +13,7 @@ import NewsAccess from './routes/admin/news/NewsAccess';
 import NotificationAccess from './routes/admin/messages/NotificationAccess';
 import AffiliateAccess from './routes/admin/affiliations/AffiliateAccess';
 import ProjectAccess from './routes/admin/projects/ProjectAccess';
-import { ComingSoon } from './shared/components/ComingSoon';
-import PodcastAccess from './routes/admin/podcasts/PodcastAccess';
+// import PodcastAccess from './routes/admin/podcasts/PodcastAccess';
 
 export const tabs = [
   {
@@ -131,7 +130,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/admin/podcasts',
-        element: <PodcastAccess />,
+        element: <></>,
       },
     ],
   },

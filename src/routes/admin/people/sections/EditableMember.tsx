@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useMembers from '../../../../shared/hooks/useMembers';
-import { MemberFormInput } from '../../../../shared/types/member.types';
+import {
+  MemberFormInput,
+  MemberResponse,
+} from '../../../../shared/types/member.types';
 import { MemberForm } from './MemberForm';
 import { Button } from '../../../../shared/components/form/Button';
 
-export const EditablePerson = ({ data }: { data: any }) => {
+export const EditablePerson = ({ data }: { data: MemberResponse }) => {
   const [state, setState] = useState<boolean>(false);
 
   const { deleteMember, updateMember } = useMembers();
@@ -33,11 +36,13 @@ export const EditablePerson = ({ data }: { data: any }) => {
   };
 
   const imagePreview = watch('image');
+  // eslint-disable-next-line quotes
+  const img = data.last.replace("'", '').toLowerCase();
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`border-gray-600 bg-gray-50 p-2 transition-all`}
+      className="border-gray-600 bg-gray-50 p-2 transition-all"
     >
       <div className="flex flex-col justify-between gap-y-4 md:flex-row">
         <div className="flex">
@@ -48,9 +53,7 @@ export const EditablePerson = ({ data }: { data: any }) => {
               src={
                 imagePreview?.length
                   ? URL.createObjectURL(imagePreview?.[0])
-                  : `https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/${data.last
-                      .replace("'", '')
-                      .toLowerCase()}.png`
+                  : `https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/${img}.png`
               }
             />
           </div>

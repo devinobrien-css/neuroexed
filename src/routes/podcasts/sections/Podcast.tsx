@@ -21,7 +21,7 @@ export const Podcast = ({ podcast }: { podcast: PodcastType }) => {
           }}
         />
       )}
-      <div className="mx-auto my-4 transform cursor-pointer border-b-2 border-t-2 bg-white p-3 transition-all hover:shadow-xl">
+      <div className="mx-auto my-4 cursor-pointer border-y-2 bg-white p-3 transition-all hover:shadow-xl">
         <div>
           <hr />
           <div className="p-2">

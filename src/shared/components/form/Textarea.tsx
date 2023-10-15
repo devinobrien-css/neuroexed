@@ -13,7 +13,9 @@ export const TextArea = <T extends FieldValues>({
   return (
     <label
       htmlFor={name}
-      className={`flex cursor-pointer flex-col rounded-lg border bg-white p-2 shadow hover:shadow-lg`}
+      className={
+        'flex cursor-pointer flex-col rounded-lg border bg-white p-2 shadow hover:shadow-lg'
+      }
     >
       <span className="w-3/12 font-lato text-xl text-gray-800">{name}</span>
       <textarea

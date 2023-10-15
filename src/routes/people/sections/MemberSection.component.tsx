@@ -29,7 +29,7 @@ const MembersSection = () => {
           />
           <input
             className="ml-2 bg-transparent font-lato text-xl text-gray-500 outline-none"
-            placeholder={`Search for members...`}
+            placeholder={'Search for members...'}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />

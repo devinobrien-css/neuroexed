@@ -1,14 +1,18 @@
 import axios from 'axios';
 
-const putFileToS3 = async (file: any, fileName: string, bucket: string) => {
+const putFileToS3 = async (
+  file: string | ArrayBuffer | null,
+  fileName: string,
+  bucket: string,
+) => {
   return await axios
     .post(import.meta.env.VITE_NEURO_S3_API, {
       file: file,
       fileName: fileName,
       bucket: bucket,
     })
-    .then((response) => response.data)
-    .catch((error) => console.error(error));
+    .then((response) => response.data);
+  // .catch((error) => console.error(error));
 };
 
 /** Uploads a file to S3
@@ -16,7 +20,7 @@ const putFileToS3 = async (file: any, fileName: string, bucket: string) => {
 export const uploadFileToBucket = async (
   folder: string,
   fileName: string,
-  file: any,
+  file: FileList,
 ) => {
   const form = new FormData();
   form.append(
@@ -47,8 +51,8 @@ export const fetchData = async (tableName: string) => {
       table: tableName,
       data: {},
     })
-    .then((response) => response.data)
-    .catch((error) => console.error(error));
+    .then((response) => response.data);
+  // .catch((error) => console.error(error));
 };
 
 /** Updates a row of a table
@@ -57,15 +61,15 @@ export const fetchData = async (tableName: string) => {
  * @param {*} data
  * @returns
  */
-export const putData = async (tableName: string, data: any) => {
+export const putData = async (tableName: string, data: object) => {
   return await axios
     .post(import.meta.env.VITE_NEURO_API, {
       command: 'INSERT',
       table: tableName,
       data: data,
     })
-    .then((response) => response.data)
-    .catch((error) => console.error(error));
+    .then((response) => response.data);
+  // .catch((error) => console.error(error));
 };
 
 /** Removes a row of a table
@@ -73,13 +77,13 @@ export const putData = async (tableName: string, data: any) => {
  * @param {*} key
  * @returns
  */
-export const removeData = async (tableName: string, key: any) => {
+export const removeData = async (tableName: string, key: object) => {
   return await axios
     .post(import.meta.env.VITE_NEURO_API, {
       command: 'DELETE',
       table: tableName,
       data: key,
     })
-    .then((response) => response)
-    .catch((error) => console.error(error));
+    .then((response) => response);
+  // .catch((error) => console.error(error));
 };

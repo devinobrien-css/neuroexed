@@ -28,6 +28,7 @@ export const ProfileCard = ({ member, className }: ProfileCardProps) => {
             className="-my-20 mx-auto h-36 w-36 rounded-full object-cover object-center brightness-75"
             src={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${member.last
               .toLowerCase()
+              // eslint-disable-next-line quotes
               .replace("'", '')}.png`}
             alt={`Lab Member ${member.first} ${member.last}`}
           />
@@ -35,7 +36,7 @@ export const ProfileCard = ({ member, className }: ProfileCardProps) => {
           <br />
           <br />
           <div className="p-2">
-            <p className="overflow-clip overflow-ellipsis whitespace-nowrap text-left font-lato text-2xl font-light">
+            <p className="truncate text-left font-lato text-2xl font-light">
               {member.first} {member.last}
             </p>
             <p className="text-left font-light text-gray-600 ">
@@ -45,7 +46,7 @@ export const ProfileCard = ({ member, className }: ProfileCardProps) => {
               Member since {new Date(member.year_joined).getFullYear()}
             </p>
             <p className="font-light text-paynes-grey">-</p>
-            <p className="max-h-48 overflow-scroll text-left font-light text-gray-600">
+            <p className="max-h-48 overflow-y-scroll text-left font-light text-gray-600">
               {member.description}
             </p>
           </div>
@@ -77,7 +78,7 @@ export const ProfileCard = ({ member, className }: ProfileCardProps) => {
       <button
         className={cx(
           className,
-          `group relative bg-white shadow transition-all ease-in-out hover:grayscale`,
+          'group relative bg-white shadow transition-all ease-in-out hover:grayscale',
         )}
         onClick={() => setModal(true)}
       >
@@ -85,18 +86,18 @@ export const ProfileCard = ({ member, className }: ProfileCardProps) => {
           className="h-64 w-full object-cover object-center brightness-75"
           src={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${member.last
             .toLowerCase()
+            // eslint-disable-next-line quotes
             .replace("'", '')}.png`}
           alt={`Lab Member ${member.first} ${member.last}`}
         />
         <div className="p-1">
-          <p className="overflow-clip overflow-ellipsis whitespace-nowrap text-left font-lato text-2xl font-light">
+          <p className="truncate text-left font-lato text-2xl font-light">
             {member.first} {member.last}
           </p>
           <p className="text-left font-light text-gray-600 ">
             Member since {new Date(member.year_joined).getFullYear()}
           </p>
         </div>
-
         <p className="absolute top-1/3 w-full text-center font-lato text-white opacity-0 group-hover:opacity-100">
           view profile
         </p>

@@ -1,9 +1,3 @@
-import {
-  SubTitleSm,
-  TextSectionSm,
-  TitleLg,
-} from '../../../shared/components/common.library';
-
 const EducationSection = () => {
   return (
     <div className="my-4 rounded border p-12 shadow-lg">
@@ -29,7 +23,7 @@ const EducationSection = () => {
           </div>
           <div className="mx-auto my-2 flex justify-evenly md:w-1/2">
             <button
-              className="mx-auto my-6 block transform rounded bg-blue-900 px-4 py-2 text-white transition-all hover:scale-105 hover:bg-blue-400 hover:text-gray-600"
+              className="mx-auto my-6 block rounded bg-blue-900 px-4 py-2 text-white transition-all hover:scale-105 hover:bg-blue-400 hover:text-gray-600"
               onClick={() =>
                 (window.location.href =
                   'https://www.amazon.com/Education-That-Works-Neuroscience-Effective/dp/1940858216')
@@ -43,11 +37,13 @@ const EducationSection = () => {
       </div>
       <hr className="mx-auto my-4 w-5/6 border-2" />
       <div>
-        <TitleLg className="mx-auto w-fit">What People are Saying</TitleLg>
+        <p className="mx-auto w-fit font-raleway text-3xl font-light ">
+          What People are Saying
+        </p>
 
         <div className="flex justify-evenly">
           <div className="my-2 w-2/3 p-4">
-            <TextSectionSm className="text-center font-light">
+            <p className={'text-center text-sm font-light'}>
               "James Stellar draws on his deep knowledge of neuroscience and his
               years of experience as an academic officer at major universities
               to make the case for adding experiential education to traditional,
@@ -55,17 +51,17 @@ const EducationSection = () => {
               That Works—tells it all. Quite simply, experiential education is a
               pedagogy that empowers young people more effectively than
               classroom study alone."
-            </TextSectionSm>
+            </p>
             <br />
 
-            <SubTitleSm className="text-center">
+            <p className="text-center text-xl font-light italic">
               -Richard Freeland, past President of Northeastern Universityand
-            </SubTitleSm>
+            </p>
 
             <br />
             <br />
 
-            <TextSectionSm className="text-center font-light">
+            <p className={'text-center text-sm font-light'}>
               "At a time when states across the nation are mandating
               experiential learning in higher education, neuroscientist and
               academic leader James Stellar has written a beautiful book that
@@ -73,13 +69,13 @@ const EducationSection = () => {
               learning to transform students' visions and decisions about their
               best futures. Read this book and learn why experiential learning
               is the right next turn for higher education."
-            </TextSectionSm>
+            </p>
             <br />
 
-            <SubTitleSm className="text-center">
+            <p className="text-center text-xl font-light italic">
               -Vita Rabinowitz, current Provost and Vice Chancellor of the CUNY
               system
-            </SubTitleSm>
+            </p>
           </div>
         </div>
       </div>

@@ -1,38 +1,122 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Icon } from '@iconify/react';
-import { BlogMd } from '../../../shared/components/custom.library';
 import Loader from '../../../shared/components/Loader';
 import useBlogs from '../../../shared/hooks/useBlogs';
 import { BlogResponse } from '../../../shared/types/blog.types';
+import cx from 'classnames';
+import { Modal } from '../../../shared/components/modals/Modal';
 
-const partitionItems = (items: any[], step: number): any[] => {
-  const output: any[] = [];
+const img_map: Record<number, number> = {
+  0: 1,
+  1: 20,
+  2: 60,
+  3: 63,
+  4: 119,
+  5: 180,
+  6: 192,
+  7: 201,
+  8: 366,
+  9: 367,
+  10: 370,
+};
 
-  for (let i = 0; i < items.length; i++) {
-    const current_list = [];
-    for (let j = 0; j < 4; j++) {
-      if (j + i === items.length) continue;
-      else current_list.push(items[i + j]);
-    }
-    output.push(current_list);
-    i += 3;
-  }
-  return output;
+const BlogMd = ({
+  media_title,
+  media_type,
+  media_date,
+  media_source,
+  media_content,
+  className,
+  index,
+}: BlogResponse & { className?: string; index: number }) => {
+  const [viewDescription, setView] = useState(false);
+  const img = `https://picsum.photos/id/${img_map[index]}/1600/1000`;
+
+  return (
+    <>
+      {viewDescription && (
+        <Modal
+          closeModal={() => setView(false)}
+          className="p-12 md:h-full md:w-2/3"
+        >
+          <div className="flex justify-between border-b">
+            <p
+              className={
+                'flex pb-2 font-lato text-2xl font-light text-moonstone'
+              }
+            >
+              {media_type === 'BLOG' ? 'Blog' : 'Podcast'}
+            </p>
+            <p className="my-auto font-lato text-xl font-light text-paynes-grey">
+              {new Date(media_date).toDateString()}
+            </p>
+          </div>
+          <p className={'font-lato text-xl font-light'}>{media_title}</p>
+          <p className={'font-lato text-xl font-light'}>-</p>
+          <p className={'font-lato text-lg font-light'}>{media_content}</p>
+          <a
+            className={cx(
+              className,
+              'mx-auto my-4 block h-min rounded border border-paynes-grey bg-opacity-90  px-4 py-1 text-center text-lg text-paynes-grey shadow transition-colors hover:bg-tiffany-blue active:scale-105',
+            )}
+            href={media_source}
+            rel="noreferrer noopener"
+            target="_blank"
+          >
+            read the full post
+          </a>
+        </Modal>
+      )}
+      <div
+        className={cx(
+          'h-128 group mx-auto border bg-white shadow transition-all hover:shadow-xl',
+          className,
+        )}
+      >
+        <button>
+          <img src={img} className="h-82 object-cover" />
+          <div className="shrink-0 p-4 text-left">
+            <div>
+              <div className="flex justify-between border-b">
+                <p
+                  className={
+                    'flex pb-2 font-lato text-2xl font-light text-moonstone'
+                  }
+                >
+                  {media_type === 'BLOG' ? 'Blog' : 'Podcast'}
+                </p>
+                <p className="my-auto font-lato text-xl font-light text-paynes-grey">
+                  {new Date(media_date).toDateString()}
+                </p>
+              </div>
+              <p className={'p-2 font-lato text-xl font-light'}>
+                {media_title}
+              </p>
+            </div>
+          </div>
+          <div className="text-left">
+            <div
+              className={`transition-all duration-300 ${
+                viewDescription
+                  ? 'h-[170px] overflow-scroll'
+                  : 'h-0 overflow-hidden'
+              }`}
+            >
+              <p className="p-2">{media_content}</p>
+            </div>
+          </div>
+        </button>
+      </div>
+    </>
+  );
 };
 
 const LandingBlogs = () => {
-  const step = 4;
-
-  const { blogs } = useBlogs();
-
-  const [partitionedBlogs, setBlogs] = useState<any[]>();
-  useEffect(() => {
-    setBlogs(partitionItems(blogs ?? [], step));
-  }, [blogs]);
-
+  const { partitioned_blogs } = useBlogs();
   const [paginate, setPaginate] = useState(0);
+
   const increment = () => {
-    if (paginate - 1 < partitionedBlogs!.length) {
+    if (paginate - 1 < (partitioned_blogs?.length ?? 0)) {
       setPaginate(paginate + 1);
     }
   };
@@ -45,53 +129,57 @@ const LandingBlogs = () => {
   return (
     <div
       id="blogs"
-      className="mx-auto my-4 max-w-screen-2xl bg-cover bg-center bg-no-repeat p-4 text-center transition-all"
+      className="mx-auto my-4 max-w-screen-lg bg-cover bg-center bg-no-repeat transition-all"
     >
-      <p className="mb-8 font-raleway text-4xl font-light md:text-6xl">
+      <p className="mb-8 text-center font-raleway text-4xl font-light md:text-6xl">
         Blog Posts and Podcasts
       </p>
-      {partitionedBlogs ? (
-        <>
-          <div className="flex flex-wrap gap-6">
-            {partitionedBlogs[paginate]?.map((blog: BlogResponse) => {
-              return <BlogMd className="md:w-[45%]" {...blog} />;
-            })}
-          </div>
-          <div className="flex w-full justify-between shadow">
-            <a
-              href="#blogs"
-              className={`group border-l px-8 py-6 ${
-                paginate > 0 ? '' : 'pointer-events-none cursor-not-allowed'
-              }`}
-              onClick={decrement}
-            >
-              <Icon
-                icon="lucide:chevron-first"
-                className="rounded-full text-4xl text-gray-300 transition-colors duration-500 group-hover:bg-gray-200 group-hover:text-white group-hover:shadow-xl"
+
+      <div className="flex flex-wrap gap-6">
+        {partitioned_blogs?.[paginate]?.map(
+          (blog: BlogResponse, index: number) => {
+            return (
+              <BlogMd
+                key={blog.media_title}
+                index={index + paginate * 4}
+                className="md:w-[48%]"
+                {...blog}
               />
-            </a>
-            <p className="my-6 font-raleway text-lg italic text-gray-400">
-              page {paginate + 1} of {partitionedBlogs!.length}
-            </p>
-            <a
-              href="#blogs"
-              className={`group border-r px-8 py-6 ${
-                paginate === partitionedBlogs!.length - 1
-                  ? 'pointer-events-none cursor-not-allowed'
-                  : ''
-              }`}
-              onClick={increment}
-            >
-              <Icon
-                icon="lucide:chevron-last"
-                className="rounded-full text-4xl text-gray-300 transition-colors duration-500 group-hover:bg-gray-200 group-hover:text-white group-hover:shadow-xl"
-              />
-            </a>
-          </div>
-        </>
-      ) : (
-        <Loader />
-      )}
+            );
+          },
+        )}
+      </div>
+      <div className="flex w-full justify-between">
+        <button
+          className={`group px-8 py-6 ${
+            paginate > 0 ? '' : 'pointer-events-none cursor-not-allowed'
+          }`}
+          onClick={decrement}
+        >
+          <Icon
+            icon="lucide:chevron-first"
+            className="rounded-full text-4xl text-paynes-grey transition-colors duration-500 group-hover:bg-gray-200 group-hover:text-white group-hover:shadow-xl"
+          />
+        </button>
+        <p className="my-6 font-raleway text-xl italic text-paynes-grey">
+          page {paginate + 1} of {partitioned_blogs?.length}
+        </p>
+        <button
+          className={`group px-8 py-6 ${
+            paginate === (partitioned_blogs?.length ?? 0) - 1
+              ? 'pointer-events-none cursor-not-allowed'
+              : ''
+          }`}
+          onClick={increment}
+        >
+          <Icon
+            icon="lucide:chevron-last"
+            className="rounded-full text-4xl text-paynes-grey transition-colors duration-500 group-hover:bg-gray-200 group-hover:text-white group-hover:shadow-xl"
+          />
+        </button>
+      </div>
+
+      {!partitioned_blogs && <Loader />}
     </div>
   );
 };

@@ -12,7 +12,7 @@ export const SortBlogsModal = ({
 }: {
   blogs?: BlogResponse[];
   closeModal: () => void;
-  refetchBlogs: () => any;
+  refetchBlogs: () => void;
 }) => {
   const onSubmit = async (items: string[]) => {
     try {
@@ -24,9 +24,9 @@ export const SortBlogsModal = ({
         ),
       );
       closeModal();
-      await refetchBlogs();
+      refetchBlogs();
       toast.success('Blogs have been updated!');
-    } catch (e: any) {
+    } catch (_e) {
       toast.error('Blog update failed.');
     }
   };

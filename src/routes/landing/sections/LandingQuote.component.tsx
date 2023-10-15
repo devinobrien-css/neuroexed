@@ -1,8 +1,8 @@
 const LandingQuote = () => {
   return (
     <div className="bg-white">
-      <div className="relative mx-auto max-w-screen-2xl bg-opacity-25 bg-brain-network bg-contain bg-right bg-no-repeat">
-        <div className="bg-white bg-opacity-75 p-4 py-48 md:bg-opacity-50 md:px-16">
+      <div className="relative mx-auto max-w-screen-2xl bg-brain-network bg-contain bg-right bg-no-repeat">
+        <div className="bg-white p-4 py-48 opacity-75  md:px-16">
           <p className="mx-auto text-center font-lato text-2xl font-light text-gray-900 md:text-left md:text-4xl">
             “The heart has reasons of which reason does not know.”
           </p>

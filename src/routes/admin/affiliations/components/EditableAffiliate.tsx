@@ -52,7 +52,7 @@ export const EditableAffiliate = ({ affiliate }: { affiliate: Affiliate }) => {
       </div>
       <div
         className={`flex flex-col gap-y-4 transition-all ${
-          state ? 'h-[100%] p-10 opacity-100' : 'h-0 overflow-clip opacity-0'
+          state ? 'h-[100%] p-10 opacity-100' : 'h-0 overflow-hidden opacity-0'
         }`}
       >
         <Input name="name" register={register} />

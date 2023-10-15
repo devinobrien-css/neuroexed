@@ -7,8 +7,6 @@ const NotificationAccess = () => {
     queryFn: async () => await fetchData('messages'),
   });
 
-  console.log(notifications);
-
   return (
     <div>
       {notifications?.map((message) => {

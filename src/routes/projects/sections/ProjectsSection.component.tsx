@@ -1,16 +1,16 @@
 import ProjectProfile from './ProjectProfile.component';
 import Loader from '../../../shared/components/Loader';
 import useProjects from '../../../shared/hooks/useProjects';
-import { Project } from '../../../shared/types/project.types';
+import { Project, ProjectMember } from '../../../shared/types/project.types';
 
 const ProjectIcon = ({ title, description, members }: Project) => {
   return (
     <div className="mx-auto my-4 flex flex-col justify-between rounded border bg-white p-4 shadow-lg md:w-[45%]">
-      <p className="text-2xl">{title}</p>
-      <p>{description}</p>
-      <p className="mt-4 text-2xl">Cluster Members</p>
+      <p className="mb-2 font-lato text-2xl">{title}</p>
+      <p className="font-sans font-light text-paynes-grey">{description}</p>
+      <p className="mt-4 font-lato text-2xl">Cluster Members</p>
       <div className="flex overflow-x-scroll">
-        {members.map((member) => {
+        {members.map((member: ProjectMember) => {
           return <ProjectProfile key={member.id} member={member} />;
         })}
       </div>

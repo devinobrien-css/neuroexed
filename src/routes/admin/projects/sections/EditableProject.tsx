@@ -1,18 +1,15 @@
 import { useState } from 'react';
-import {
-  Project,
-  ProjectMember,
-  projectMember,
-} from '../../../../shared/types/project.types';
+import { Project, ProjectMember } from '../../../../shared/types/project.types';
 import useMembers from '../../../../shared/hooks/useMembers';
 import { Button } from '../../../../shared/components/form/Button';
 import { Input } from '../../../../shared/components/form/Input';
 import { useForm } from 'react-hook-form';
 import useProjects from '../../../../shared/hooks/useProjects';
+import { TextArea } from '../../../../shared/components/form/Textarea';
+import cx from 'classnames';
 
 export const EditableProject = ({ project }: { project: Project }) => {
   const [state, setState] = useState(false);
-
   const [newMember, setNewMember] = useState(false);
   const [selectedMembers, setSelectedMembers] = useState(project.members);
 
@@ -32,14 +29,15 @@ export const EditableProject = ({ project }: { project: Project }) => {
   }
 
   function handleAdd(person: ProjectMember) {
-    const newList = selectedMembers;
-    newList.push({
-      id: person.id, //email.split('@')[0]
-      email: person.email,
-      first: person.first,
-      last: person.last,
-    });
-    setSelectedMembers(newList);
+    setSelectedMembers([
+      ...selectedMembers,
+      {
+        id: person.id,
+        email: person.email,
+        first: person.first,
+        last: person.last,
+      },
+    ]);
   }
 
   const onSubmit = (data: Project) => {
@@ -84,14 +82,13 @@ export const EditableProject = ({ project }: { project: Project }) => {
         </div>
       </div>
       <div
-        className={`flex flex-col gap-y-4 transition-all ${
-          state ? 'h-[100%] p-10 opacity-100' : 'h-0 overflow-clip opacity-0'
-        }`}
+        className={cx('flex flex-col gap-y-4 transition-all', {
+          'h-[100%] p-10 opacity-100': state,
+          'h-0 overflow-hidden opacity-0': !state,
+        })}
       >
         <Input name="title" register={register} />
-        <Input name="description" register={register} />
-
-        <hr />
+        <TextArea name="description" register={register} />
 
         <div className="rounded-lg bg-white p-4 shadow hover:shadow-xl">
           <div className="flex justify-between">
@@ -104,7 +101,7 @@ export const EditableProject = ({ project }: { project: Project }) => {
                 onClick={() => setNewMember(true)}
               />
               {newMember && (
-                <div className="absolute top-full z-[100] max-h-[280px] min-w-[320px] overflow-scroll overflow-y-scroll bg-white shadow">
+                <div className="absolute top-full z-[100] max-h-[280px] min-w-[320px] overflow-scroll bg-white shadow">
                   <button
                     type="button"
                     className="sticky top-0 w-full bg-white px-2 text-right underline"
@@ -113,39 +110,15 @@ export const EditableProject = ({ project }: { project: Project }) => {
                     close
                   </button>
                   <div className="flex flex-col divide-y">
-                    {members?.map((member) => {
-                      return (
-                        <div
-                          key={member.last}
-                          onClick={() =>
-                            handleAdd({
-                              id: member.socials.email.split('@')[0],
-                              first: member.first,
-                              email: member.socials.email,
-                              last: member.last,
-                            })
-                          }
-                          className="no-wrap space-between flex cursor-pointer p-2"
-                        >
-                          <div className="no-wrap flex w-full">
-                            <img
-                              src={`${
-                                import.meta.env.VITE_S3_PROFILE_PICTURES
-                              }${member.last
-                                .toLowerCase()
-                                .replace("'", '')}.png`}
-                              alt={'photo of ' + member.last}
-                              className="block w-16 rounded-full"
-                            />
-                            <p className="my-auto pl-1 text-xl font-light">
-                              {member.first} {member.last}
-                            </p>
-                          </div>
-                          <Button
-                            type="button"
-                            color="blue"
-                            title="add"
-                            className="my-auto"
+                    {members
+                      ?.filter(
+                        (m) =>
+                          !selectedMembers.find((sm) => m.last === sm.last),
+                      )
+                      .map((member) => {
+                        return (
+                          <div
+                            key={member.last}
                             onClick={() =>
                               handleAdd({
                                 id: member.socials.email.split('@')[0],
@@ -154,10 +127,40 @@ export const EditableProject = ({ project }: { project: Project }) => {
                                 last: member.last,
                               })
                             }
-                          />
-                        </div>
-                      );
-                    })}
+                            className="no-wrap space-between flex cursor-pointer p-2"
+                          >
+                            <div className="no-wrap flex w-full">
+                              <img
+                                src={`${
+                                  import.meta.env.VITE_S3_PROFILE_PICTURES
+                                }${member.last
+                                  .toLowerCase()
+                                  // eslint-disable-next-line quotes
+                                  .replace("'", '')}.png`}
+                                alt={'photo of ' + member.last}
+                                className="block w-16 rounded-full"
+                              />
+                              <p className="my-auto pl-1 text-xl font-light">
+                                {member.first} {member.last}
+                              </p>
+                            </div>
+                            <Button
+                              type="button"
+                              color="blue"
+                              title="add"
+                              className="my-auto"
+                              onClick={() =>
+                                handleAdd({
+                                  id: member.socials.email.split('@')[0],
+                                  first: member.first,
+                                  email: member.socials.email,
+                                  last: member.last,
+                                })
+                              }
+                            />
+                          </div>
+                        );
+                      })}
                   </div>
                 </div>
               )}
@@ -167,12 +170,13 @@ export const EditableProject = ({ project }: { project: Project }) => {
           <div className="no-wrap flex flex-row overflow-scroll">
             {selectedMembers.map((member) => (
               <div
-                key={member.last}
+                key={member.last + member.first}
                 className="relative m-1 flex min-w-[300px] border bg-white p-3 shadow"
               >
                 <img
                   src={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${member.last
                     .toLowerCase()
+                    // eslint-disable-next-line quotes
                     .replace("'", '')}.png`}
                   alt={'photo of ' + member.last}
                   className="my-auto block w-14 rounded-full"

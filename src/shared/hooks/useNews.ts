@@ -25,7 +25,7 @@ const useNews = () => {
       ),
     onSuccess: async () => {
       await refetchPosts();
-      toast.success(`Post has been updated!`);
+      toast.success('Post has been updated!');
     },
     onError: () => toast.error('Post update failed'),
   });
@@ -35,7 +35,7 @@ const useNews = () => {
       await removeData('news', { title: { S: title } }),
     onSuccess: async () => {
       await refetchPosts();
-      toast.success(`News post has been deleted!`);
+      toast.success('News post has been deleted!');
     },
     onError: () => toast.error('News post deletion failed'),
   });

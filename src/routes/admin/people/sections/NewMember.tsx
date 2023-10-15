@@ -24,7 +24,7 @@ const NewPerson = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`border-b-2 bg-white transition-all`}
+      className={'border-b-2 bg-white transition-all'}
       id={'new-blog'}
     >
       <div className="flex flex-row justify-between p-4">
@@ -36,7 +36,7 @@ const NewPerson = ({
               src={
                 imagePreview?.length
                   ? URL.createObjectURL(imagePreview?.[0])
-                  : `https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/profile.png`
+                  : 'https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/profile.png'
               }
             />
           </div>

@@ -17,6 +17,28 @@ const useBlogs = () => {
     },
   });
 
+  const { data: partitioned_blogs } = useQuery({
+    queryKey: ['PARTITIONED_BLOGS'],
+    queryFn: async () => {
+      const sort = (await fetchData('sort-orders')) as Record<string, string[]>;
+      const res = (await fetchData('blogs')) as BlogResponse[];
+      const blogs = sort['blogs'].map(
+        (title) => res.filter((m) => m.media_title === title)[0],
+      );
+      const partitionedBlogs: BlogResponse[][] = [];
+      for (let i = 0; i < blogs.length; i++) {
+        const current_list = [];
+        for (let j = 0; j < 4; j++) {
+          if (j + i === blogs.length) continue;
+          else current_list.push(blogs[i + j]);
+        }
+        partitionedBlogs.push(current_list);
+        i += 3;
+      }
+      return partitionedBlogs;
+    },
+  });
+
   const { mutate: updateBlog } = useMutation<void, AxiosError, BlogFormInput>({
     mutationFn: async (data: BlogFormInput) => {
       await putData(
@@ -51,6 +73,7 @@ const useBlogs = () => {
 
   return {
     blogs: blogs,
+    partitioned_blogs: partitioned_blogs,
     updateBlog,
     deleteBlog,
     refetchBlogs,

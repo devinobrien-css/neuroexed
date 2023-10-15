@@ -1,9 +1,3 @@
-import {
-  SubTitleSm,
-  TextSectionSm,
-  TitleLg,
-} from '../../../shared/components/common.library';
-
 const DiversitySection = () => {
   return (
     <div className="my-4 rounded border p-12 shadow-lg">
@@ -29,7 +23,7 @@ const DiversitySection = () => {
           </div>
           <div className="mx-auto my-2 flex justify-evenly md:w-1/2">
             <button
-              className="mx-auto my-6 block transform rounded bg-blue-900 px-4 py-2 text-white transition-all hover:scale-105 hover:bg-blue-400 hover:text-gray-600"
+              className="mx-auto my-6 block rounded bg-blue-900 px-4 py-2 text-white transition-all hover:scale-105 hover:bg-blue-400 hover:text-gray-600"
               onClick={() =>
                 (window.location.href =
                   'https://www.amazon.com/Diversity-College-Conquering-Education-Inclusive/dp/1646870352')
@@ -39,7 +33,7 @@ const DiversitySection = () => {
               buy this book
             </button>
             <button
-              className="mx-auto my-6 block transform rounded bg-blue-900 px-4 py-2 text-white transition-all hover:scale-105 hover:bg-blue-400 hover:text-gray-600"
+              className="mx-auto my-6 block rounded bg-blue-900 px-4 py-2 text-white transition-all hover:scale-105 hover:bg-blue-400 hover:text-gray-600"
               onClick={() =>
                 (window.location.href = 'https://diversityatcollege.com')
               }
@@ -65,11 +59,12 @@ const DiversitySection = () => {
       </div>
       <hr className="mx-auto my-4 w-5/6 border-2" />
       <div>
-        <TitleLg className="mx-auto w-fit">What People are Saying</TitleLg>
-
+        <p className="mx-auto w-fit font-raleway text-3xl font-light ">
+          What People are Saying
+        </p>
         <div className="flex justify-evenly">
           <div className="my-2 w-2/3 p-4">
-            <TextSectionSm className="text-center font-light">
+            <p className={'text-center text-sm font-light'}>
               "In this education policy book, Stellar and some former students
               at Queens College and the University of Albany (debut authors
               Martinez, Eggan, Poy, Weiser, Eager, Cohen, and Buras) present
@@ -85,10 +80,11 @@ const DiversitySection = () => {
               addition to the field does an excellent job of drawing broad
               conclusions from a collection of individual experiences. An
               illuminating exploration of how colleges can support diversity."
-            </TextSectionSm>
+            </p>
             <br />
-
-            <SubTitleSm className="text-center">-Kirkus Reviews</SubTitleSm>
+            <p className="text-center text-xl font-light italic">
+              -Kirkus Reviews
+            </p>
           </div>
         </div>
       </div>

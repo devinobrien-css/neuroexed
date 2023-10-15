@@ -2,6 +2,7 @@ import { TextArea } from '../../../../shared/components/form/Textarea';
 import { UseFormRegister } from 'react-hook-form';
 import { Input } from '../../../../shared/components/form/Input';
 import { Post } from '../../../../shared/types/post.types';
+import cx from 'classnames';
 
 interface NewsFormProps {
   register: UseFormRegister<Post>;
@@ -10,9 +11,10 @@ interface NewsFormProps {
 export const NewsForm = ({ register, state }: NewsFormProps) => {
   return (
     <div
-      className={`transition-all ${
-        state ? 'h-[100%] opacity-100' : 'h-0 overflow-clip opacity-0'
-      }`}
+      className={cx('transition-all', {
+        'h-[100%] opacity-100': state,
+        'h-0 overflow-hidden opacity-0': state,
+      })}
     >
       <div className="flex w-full gap-x-4 p-4">
         <div className="flex w-1/2 flex-col gap-y-4">

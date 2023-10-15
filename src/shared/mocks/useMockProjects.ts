@@ -1,5 +1,3 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
 import { Project } from '../types/project.types';
 
 const useMockProjects = () => {

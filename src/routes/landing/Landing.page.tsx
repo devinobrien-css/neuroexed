@@ -4,7 +4,7 @@ import LandingBlogs from './sections/LandingBlogs.jsx';
 import LandingPublications from './sections/LandingBooks.js';
 import Footer from '../../shared/components/footer/Footer.js';
 import Header from '../../shared/components/Header.js';
-import LandingRedirect from './sections/LandingRedirect.component.jsx';
+import LandingRedirect from './sections/LandingRedirect.component.js';
 
 /** Landing page - initial route
  * @returns the components of the landing page

@@ -1,4 +1,4 @@
-import { BrainSectionEnum } from '../../../routes/projects/sections/ProjectsBrain.component';
+import { BrainSectionEnum } from '../../../routes/projects/sections/ProjectBrainData';
 
 export const TriuneBrain = ({ setState }) => {
   return (

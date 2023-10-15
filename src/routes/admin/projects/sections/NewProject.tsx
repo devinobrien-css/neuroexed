@@ -1,9 +1,5 @@
 import { useState } from 'react';
-import {
-  Project,
-  ProjectMember,
-  projectMember,
-} from '../../../../shared/types/project.types';
+import { Project, ProjectMember } from '../../../../shared/types/project.types';
 import useMembers from '../../../../shared/hooks/useMembers';
 import { Button } from '../../../../shared/components/form/Button';
 import { Input } from '../../../../shared/components/form/Input';
@@ -14,11 +10,10 @@ export const NewProject = () => {
   const [state, setState] = useState(true);
 
   const [newMember, setNewMember] = useState(false);
-  const [selectedMembers, setSelectedMembers] = useState(Array<any>);
+  const [selectedMembers, setSelectedMembers] = useState(Array<ProjectMember>);
 
   const { members } = useMembers();
   const { updateProject } = useProjects();
-
   const { register, handleSubmit, watch } = useForm<Project>();
 
   function handleRemove(id: string) {
@@ -78,7 +73,7 @@ export const NewProject = () => {
       </div>
       <div
         className={`flex flex-col gap-y-4 transition-all ${
-          state ? 'h-[100%] p-10 opacity-100' : 'h-0 overflow-clip opacity-0'
+          state ? 'h-[100%] p-10 opacity-100' : 'h-0 text-clip opacity-0'
         }`}
       >
         <Input name="title" register={register} />
@@ -97,7 +92,7 @@ export const NewProject = () => {
                 onClick={() => setNewMember(true)}
               />
               {newMember && (
-                <div className="absolute top-full z-[100] max-h-[280px] min-w-[320px] overflow-scroll overflow-y-scroll bg-white shadow">
+                <div className="absolute top-full z-[100] max-h-[280px] min-w-[320px] overflow-scroll bg-white shadow">
                   <button
                     type="button"
                     className="sticky top-0 w-full bg-white px-2 text-right underline"
@@ -126,6 +121,7 @@ export const NewProject = () => {
                                 import.meta.env.VITE_S3_PROFILE_PICTURES
                               }${member.last
                                 .toLowerCase()
+                                // eslint-disable-next-line quotes
                                 .replace("'", '')}.png`}
                               alt={'photo of ' + member.last}
                               className="block w-16 rounded-full"
@@ -166,6 +162,7 @@ export const NewProject = () => {
                 <img
                   src={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${member.last
                     .toLowerCase()
+                    // eslint-disable-next-line quotes
                     .replace("'", '')}.png`}
                   alt={'photo of ' + member.last}
                   className="my-auto block w-14 rounded-full"

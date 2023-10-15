@@ -6,11 +6,12 @@ const ProjectsValues = () => {
           Our lab group's core values
         </p>
         <div className="flex flex-col gap-y-4">
-          <div className="mx-auto my-4  w-full rounded border bg-white bg-opacity-10 p-4 text-gray-400">
+          <div className="mx-auto my-4  w-full rounded border bg-white/25 p-4 text-tiffany-blue">
             <p className="font-raleway text-3xl">
               The Experiential Development of Professional Wisdom
             </p>
-            <p className="font-lato font-light">
+            <br />
+            <p className="font-lato text-lg font-light ">
               Student development of "so-called" soft-skills, professional
               knowledge, entrepreneurship, and even wisdom through experiential
               education is seen as a natural progression with age and with
@@ -23,11 +24,12 @@ const ProjectsValues = () => {
               as below.
             </p>
           </div>
-          <div className="mx-auto my-4  w-full rounded border bg-white bg-opacity-10 p-4 text-gray-400">
-            <p className="font-raleway text-3xl">
+          <div className="mx-auto my-4  w-full rounded border bg-white/25 p-4 text-tiffany-blue">
+            <p className="font-raleway text-3xl ">
               Cognitive-Emotional Brain Circuit Integration and Reflection
             </p>
-            <p className="font-lato font-light">
+            <br />
+            <p className="font-lato text-lg font-light ">
               Reflection facilitates the integration of emotion with cognition
               in producing student maturity from experiential education. While
               focused on the neuroscience of brain areas and networks from brain
@@ -40,9 +42,10 @@ const ProjectsValues = () => {
               practices.
             </p>
           </div>
-          <div className="mx-auto my-4  w-full rounded border bg-white bg-opacity-10 p-4 text-gray-400">
+          <div className="mx-auto my-4  w-full rounded border bg-white/25 p-4 text-tiffany-blue">
             <p className="font-raleway text-3xl">Diversity and inclusion</p>
-            <p className="font-lato font-light">
+            <br />
+            <p className="font-lato text-lg font-light">
               Using experiential education thinking to promote students taking
               agency in working with diverse groups of college students for a
               diverse world is the focus of this project. Several members of the
@@ -54,9 +57,10 @@ const ProjectsValues = () => {
               interest of the lab.
             </p>
           </div>
-          <div className="mx-auto my-4  w-full rounded border bg-white bg-opacity-10 p-4 text-gray-400">
+          <div className="mx-auto my-4  w-full rounded border bg-white/25 p-4 text-tiffany-blue">
             <p className="font-raleway text-3xl">Engaged Teaching</p>
-            <p className="font-lato font-light">
+            <br />
+            <p className="font-lato text-lg font-light">
               Applying lessons from experiential education and the above
               projects, the goal here is to better reach, engage, and promote
               active learning in all classroom students, ranging from those who

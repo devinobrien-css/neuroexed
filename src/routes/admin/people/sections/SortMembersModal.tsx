@@ -12,10 +12,8 @@ export const SortMembersModal = ({
 }: {
   members?: MemberResponse[];
   closeModal: () => void;
-  refetchMembers: () => any;
+  refetchMembers: () => void;
 }) => {
-  console.log(members);
-
   const onSubmit = async (items: string[]) => {
     try {
       await putData(
@@ -26,9 +24,9 @@ export const SortMembersModal = ({
         ),
       );
       closeModal();
-      await refetchMembers();
+      refetchMembers();
       toast.success('Users have been updated!');
-    } catch (e: any) {
+    } catch (e) {
       toast.error('User update failed.');
     }
   };

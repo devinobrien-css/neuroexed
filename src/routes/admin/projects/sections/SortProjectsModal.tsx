@@ -3,7 +3,6 @@ import { sort_order } from '../../../../shared/types/object_schema';
 import { Modal } from '../../../../shared/components/modals/Modal';
 import { toast } from 'react-toastify';
 import { DragAndDrogList } from '../../../../shared/components/DragAndDrop/DragAndDrogList';
-import { BlogResponse } from '../../../../shared/types/blog.types';
 import { Project } from '../../../../shared/types/project.types';
 
 export const SortProjectsModal = ({
@@ -13,7 +12,7 @@ export const SortProjectsModal = ({
 }: {
   projects?: Project[];
   closeModal: () => void;
-  refetchProjects: () => any;
+  refetchProjects: () => void;
 }) => {
   const onSubmit = async (items: string[]) => {
     try {
@@ -27,7 +26,7 @@ export const SortProjectsModal = ({
       closeModal();
       await refetchProjects();
       toast.success('Projects have been updated!');
-    } catch (e: any) {
+    } catch (e) {
       toast.error('Project update failed.');
     }
   };

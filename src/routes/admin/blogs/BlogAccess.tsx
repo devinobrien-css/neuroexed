@@ -19,7 +19,7 @@ const BlogAccess = () => {
           <SortBlogsModal
             blogs={blogs}
             closeModal={() => setEditOrder(false)}
-            refetchBlogs={refetchBlogs}
+            refetchBlogs={() => refetchBlogs()}
           />
         )}
         <div>

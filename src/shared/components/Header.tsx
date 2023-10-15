@@ -18,13 +18,11 @@ const Header = ({ title, sub_title }: HeaderProps) => {
     user ? setAuthorized(true) : setAuthorized(false);
   });
 
-  console.log();
-
   return (
     <>
       <div className="bg-landing bg-cover shadow-lg md:min-h-[80vh]">
         <div className="flex w-full flex-col backdrop-blur-sm backdrop-brightness-50 md:min-h-[80vh]">
-          <div className="mx-auto my-auto w-fit py-48 md:w-2/3">
+          <div className="m-auto w-fit py-48 md:w-2/3">
             <FadeIn>
               <p className="p-2 text-center font-raleway text-3xl text-white transition-all md:text-6xl">
                 {title}

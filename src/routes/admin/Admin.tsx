@@ -49,7 +49,7 @@ const Admin = () => {
     <>
       <div className="bg-landing bg-cover shadow-lg">
         <div className="flex w-full flex-col backdrop-blur-sm backdrop-brightness-50">
-          <div className="mx-auto my-auto w-fit py-12 md:w-2/3">
+          <div className="m-auto w-fit py-12 md:w-2/3">
             <p className="text-center font-raleway text-white md:text-6xl">
               NeuroExed Studio
             </p>

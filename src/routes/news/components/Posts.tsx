@@ -1,5 +1,4 @@
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import { SectionTitle } from '../../../shared/components/common.library';
 import useNews from '../../../shared/hooks/useNews';
 import { Post } from '../../../shared/types/post.types';
 
@@ -8,7 +7,9 @@ export const Posts = () => {
 
   return (
     <div className="mx-auto my-32 max-w-screen-lg">
-      <SectionTitle className="mx-auto w-fit">Our Latest Updates</SectionTitle>
+      <p className="mx-auto w-fit font-raleway text-4xl transition-all md:text-6xl">
+        Our Latest Updates
+      </p>
       <div className="flex flex-col gap-y-12 py-12">
         {posts?.map((post: Post) => {
           return (

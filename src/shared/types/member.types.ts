@@ -30,6 +30,7 @@ export interface MemberResponse {
   socials: MemberSocials;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const defaultMemberFormValues = (member: Record<string, any>) => {
   return {
     'First Name': member.first.S,

@@ -25,7 +25,7 @@ const useAffiliates = () => {
       ),
     onSuccess: async () => {
       await refetchAffiliates();
-      toast.success(`Affiliation has been updated!`);
+      toast.success('Affiliation has been updated!');
     },
     onError: () => toast.error('Affiliate update failed'),
   });
@@ -35,7 +35,7 @@ const useAffiliates = () => {
       await removeData('affiliations', { name: { S: name } }),
     onSuccess: async () => {
       await refetchAffiliates();
-      toast.success(`Affiliation has been deleted!`);
+      toast.success('Affiliation has been deleted!');
     },
     onError: () => toast.error('Affiliate deletion failed'),
   });

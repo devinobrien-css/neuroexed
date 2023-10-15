@@ -24,7 +24,6 @@ const useMembers = () => {
     MemberFormInput
   >({
     mutationFn: async (data) => {
-      console.log(data);
       await putData(
         'people',
         Member({
@@ -49,7 +48,7 @@ const useMembers = () => {
       }
       refetchMembers();
     },
-    onSuccess: () => toast.success(`User has been updated!`),
+    onSuccess: () => toast.success('User has been updated!'),
     onError: () => toast.error('User update failed'),
   });
 
@@ -57,7 +56,7 @@ const useMembers = () => {
     mutationFn: (data: string) => removeMember(data),
     onSuccess: async () => {
       await refetchMembers();
-      toast.success(`User has been deleted!`);
+      toast.success('User has been deleted!');
     },
     onError: () => toast.error('User deletion failed'),
   });
@@ -67,7 +66,7 @@ const useMembers = () => {
       email: { S: email_to_remove },
     });
     const sort = await fetchData('sort-orders');
-    const output = sort['people'].filter((email: any) => {
+    const output = sort['people'].filter((email: string) => {
       if (email !== email_to_remove) {
         return { S: email };
       }

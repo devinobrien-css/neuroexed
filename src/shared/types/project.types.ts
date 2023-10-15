@@ -1,20 +1,20 @@
-export interface ProjectMember {
-  id: string;
-  email: string;
-  first: string;
-  last: string;
-}
-
 export interface Project {
   title: string;
   description: string;
   members: ProjectMember[];
 }
 
+export interface ProjectMember {
+  id: string;
+  first: string;
+  last: string;
+  email: string;
+}
+
 export interface ProjectRequest {
   title: string;
   description: string;
-  members: any[];
+  members: object[];
 }
 
 export const project = ({ title, description, members }: ProjectRequest) => {

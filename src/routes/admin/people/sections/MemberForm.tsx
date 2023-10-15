@@ -1,5 +1,5 @@
 import { TextArea } from '../../../../shared/components/form/Textarea';
-
+import cx from 'classnames';
 import { UseFormRegister } from 'react-hook-form';
 import { MemberFormInput } from '../../../../shared/types/member.types';
 import { Input, Select } from '../../../../shared/components/form/Input';
@@ -11,9 +11,10 @@ interface MemberFormProps {
 export const MemberForm = ({ register, state }: MemberFormProps) => {
   return (
     <div
-      className={`transition-all ${
-        state ? 'h-[100%] opacity-100' : 'h-0 overflow-clip opacity-0'
-      }`}
+      className={cx('transition-all', {
+        'h-[100%] opacity-100': state,
+        'h-0 overflow-hidden opacity-0': !state,
+      })}
     >
       <div className="flex flex-wrap">
         <div className="flex w-full flex-col gap-y-4 p-4 md:w-1/2">

@@ -13,7 +13,7 @@ const LandingPublications = () => {
           />
           <div className="h-max-content flex flex-col md:w-2/5 md:pl-2">
             <div className="my-auto">
-              <div className="flex flex-shrink-0">
+              <div className="flex shrink-0">
                 <img
                   src="./img/diversity.png"
                   alt="Diversity at College Book"
@@ -36,7 +36,7 @@ const LandingPublications = () => {
                 basis for recent panel discussions.
               </p>
               <button
-                className="mx-auto my-6 block transform rounded border-2 border-white px-4 py-2 text-white transition-all hover:scale-105"
+                className="mx-auto my-6 block rounded border-2 border-white px-4 py-2 text-white transition-all hover:scale-105"
                 onClick={() =>
                   (window.location.href =
                     'https://www.amazon.com/Diversity-College-Conquering-Education-Inclusive/dp/1646870352')
@@ -54,7 +54,7 @@ const LandingPublications = () => {
         <div className="my-4 justify-center md:flex md:border md:p-8">
           <div className="h-max-content flex flex-col pl-2 md:w-2/5">
             <div className="my-auto">
-              <div className="flex flex-shrink-0">
+              <div className="flex shrink-0">
                 <img
                   src="./img/education.png"
                   alt="Education That Works Book"
@@ -77,7 +77,7 @@ const LandingPublications = () => {
                 good students, good citizens, and good employees.
               </p>
               <button
-                className="mx-auto my-6 block transform rounded border-2 border-white px-4 py-2 text-white transition-all hover:scale-105"
+                className="mx-auto my-6 block rounded border-2 border-white px-4 py-2 text-white transition-all hover:scale-105"
                 onClick={() =>
                   (window.location.href =
                     'https://www.amazon.com/Diversity-College-Conquering-Education-Inclusive/dp/1646870352')
@@ -90,7 +90,7 @@ const LandingPublications = () => {
           <img
             src="./img/education.png"
             alt="Education that Works Book"
-            className="hidden w-1/4 md:block md:p-12"
+            className="hidden w-1/3 md:block md:p-12"
           />
         </div>
       </div>

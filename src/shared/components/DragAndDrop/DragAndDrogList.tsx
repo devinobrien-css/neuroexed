@@ -1,6 +1,5 @@
 import update from 'immutability-helper';
-import type { FC } from 'react';
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState } from 'react';
 
 import { Card } from './Card';
 import { Button } from '../form/Button';
@@ -51,7 +50,7 @@ export const DragAndDrogList = ({ items, onSubmit }: DragAndDrogListProps) => {
         />
       );
     },
-    [],
+    [moveCard],
   );
 
   return (

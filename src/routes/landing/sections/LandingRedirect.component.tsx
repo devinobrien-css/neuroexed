@@ -1,6 +1,5 @@
 import { Icon } from '@iconify/react';
 import { useNavigate } from 'react-router-dom';
-import { SubTitleSm, TitleMd } from '../../../shared/components/common.library';
 
 const LandingRedirect = () => {
   const navigate = useNavigate();
@@ -21,7 +20,7 @@ const LandingRedirect = () => {
         </div>
 
         <div className="my-auto w-full p-4 md:w-1/2">
-          <div className="mx-auto my-auto overflow-clip rounded-xl shadow-xl">
+          <div className="m-auto overflow-hidden rounded-xl shadow-xl">
             <div className="flex border-b border-gray-400">
               <div
                 className="group w-1/2 cursor-pointer p-4 transition-all hover:bg-gray-200"
@@ -41,10 +40,10 @@ const LandingRedirect = () => {
                   />
                 </div>
                 <br />
-                <TitleMd className="">Papers</TitleMd>
-                <SubTitleSm className="font-bold text-gray-600">
+                <p className="text-xl font-light">Papers</p>
+                <p className="font-light text-paynes-grey">
                   Our papers and articles on The Other Lobe
-                </SubTitleSm>
+                </p>
               </div>
               <div
                 className="group w-1/2 cursor-pointer border-l border-gray-400 p-4 transition-all hover:bg-gray-200"
@@ -59,10 +58,10 @@ const LandingRedirect = () => {
                   />
                 </div>
                 <br />
-                <TitleMd className="">Books</TitleMd>
-                <SubTitleSm className="font-bold text-gray-600">
+                <p className="text-xl font-light">Books</p>
+                <p className="font-light text-paynes-grey">
                   Our recent publications
-                </SubTitleSm>
+                </p>
               </div>
             </div>
             <div className="flex border-b border-gray-400">
@@ -84,10 +83,10 @@ const LandingRedirect = () => {
                   />
                 </div>
                 <br />
-                <TitleMd className="">Podcasts</TitleMd>
-                <SubTitleSm className="font-bold text-gray-600">
+                <p className="text-xl font-light">Podcasts</p>
+                <p className="font-light text-paynes-grey">
                   Our podcasts with guest speakers
-                </SubTitleSm>
+                </p>
               </div>
               <div
                 className="group w-1/2 cursor-pointer border-l border-gray-400 p-4 transition-all hover:bg-gray-200"
@@ -102,10 +101,10 @@ const LandingRedirect = () => {
                   />
                 </div>
                 <br />
-                <TitleMd className="">People</TitleMd>
-                <SubTitleSm className="font-bold text-gray-600">
+                <p className="text-xl font-light">People</p>
+                <p className="font-light text-paynes-grey">
                   The members of our lab team
-                </SubTitleSm>
+                </p>
               </div>
             </div>
             <div className="flex ">
@@ -122,10 +121,10 @@ const LandingRedirect = () => {
                   />
                 </div>
                 <br />
-                <TitleMd className="">Projects</TitleMd>
-                <SubTitleSm className="font-bold text-gray-600">
+                <p className="text-xl font-light">Projects</p>
+                <p className="font-light text-paynes-grey">
                   Our collaborative work broken down into clusters
-                </SubTitleSm>
+                </p>
               </div>
               <div
                 className="group w-1/2 cursor-pointer border-l border-gray-400 p-4 transition-all hover:bg-gray-200"
@@ -140,10 +139,10 @@ const LandingRedirect = () => {
                   />
                 </div>
                 <br />
-                <TitleMd className="">Affiliates</TitleMd>
-                <SubTitleSm className="font-bold text-gray-600">
+                <p className="text-xl font-light">Affiliates</p>
+                <p className="font-light text-paynes-grey">
                   Our affiliates and collaborators
-                </SubTitleSm>
+                </p>
               </div>
             </div>
           </div>

@@ -2,6 +2,7 @@ import { UseFormRegister } from 'react-hook-form';
 import { BlogFormInput } from '../../../../shared/types/blog.types';
 import { Input, Select } from '../../../../shared/components/form/Input';
 import { TextArea } from '../../../../shared/components/form/Textarea';
+import cx from 'classnames';
 
 interface BlogFormProps {
   register: UseFormRegister<BlogFormInput>;
@@ -10,9 +11,10 @@ interface BlogFormProps {
 export const BlogForm = ({ register, state }: BlogFormProps) => {
   return (
     <div
-      className={`gap-x-4 overflow-clip transition md:flex ${
-        state ? 'h-full pb-6' : 'h-0 opacity-0'
-      }`}
+      className={cx('gap-x-4 overflow-hidden transition md:flex', {
+        'h-full pb-6': state,
+        'h-0 opacity-0': !state,
+      })}
     >
       <div className="flex w-1/2 flex-col gap-y-4">
         <Input name="title" register={register} />

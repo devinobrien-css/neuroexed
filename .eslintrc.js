@@ -1,28 +1,31 @@
-// eslint-disable-next-line import/no-commonjs
 module.exports = {
   env: {
-    commonjs: true,
-    es2021: true,
     node: true,
+    browser: true,
+    es2020: true,
   },
-  extends: ['eslint:recommended', 'prettier'],
-  overrides: [
-    {
-      env: {
-        node: true,
-      },
-      files: ['.eslintrc.{js,cjs}'],
-      parserOptions: {
-        sourceType: 'script',
-      },
-    },
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:tailwindcss/recommended',
   ],
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-  },
-  plugins: ['import'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+  plugins: ['react-refresh', '@typescript-eslint'],
   rules: {
-    'import/no-commonjs': 'error',
+    'no-console': 'error',
+    quotes: ['error', 'single'],
+    semi: ['error', 'always'],
+    indent: ['error', 2],
+    'no-multi-spaces': ['error'],
+    'react-refresh/only-export-components': 'warn',
+    'tailwindcss/no-custom-classname': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { vars: 'all', args: 'after-used', ignoreRestSiblings: false },
+    ],
   },
 };

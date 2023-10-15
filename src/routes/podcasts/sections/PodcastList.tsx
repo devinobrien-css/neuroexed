@@ -1,15 +1,10 @@
-import { Icon } from '@iconify/react';
 import useMockPodcasts from '../../../shared/mocks/useMockPodcasts';
-import { Podcast as PodcastType } from '../../../shared/types/podcast.types';
-import { Podcast } from './Podcast';
-import { useState } from 'react';
+// import { Podcast as PodcastType } from '../../../shared/types/podcast.types';
 import { Season } from './Season';
 
-const countSeasons = (podcasts: PodcastType[]): number => {
-  // const seasons = podcasts.
-
-  return -1;
-};
+// const countSeasons = (podcasts: PodcastType[]): number => {
+//   return -1;
+// };
 
 export const PodcastList = () => {
   const { podcasts } = useMockPodcasts();

@@ -2,6 +2,7 @@ import { fetchData, putData } from '../api/dba';
 import { BlogResponse } from '../types/blog.types';
 import { MemberResponse } from '../types/member.types';
 import { sort_order } from '../types/object_schema';
+import { Project } from '../types/project.types';
 
 export async function updateOders() {
   const people = (await fetchData('people')) as MemberResponse[];
@@ -29,7 +30,7 @@ export async function updateOders() {
 
   const newProjectOrder: string[] = [];
   if (projects?.length !== projectOrder?.length) {
-    projects?.forEach((project: any) => {
+    projects?.forEach((project: Project) => {
       newProjectOrder.push(project.title);
     });
     await putData(

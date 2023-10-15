@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { Button } from '../../../../shared/components/form/Button';
 import useBlogs from '../../../../shared/hooks/useBlogs';
 import { useForm } from 'react-hook-form';
-import { BlogFormInput } from '../../../../shared/types/blog.types';
+import {
+  BlogFormInput,
+  BlogResponse,
+} from '../../../../shared/types/blog.types';
 import { BlogForm } from './BlogForm';
 
-export const EditableBlog = ({ blog }: { blog: any }) => {
+export const EditableBlog = ({ blog }: { blog: BlogResponse }) => {
   const [state, setState] = useState(false);
 
   const { updateBlog, deleteBlog } = useBlogs();
