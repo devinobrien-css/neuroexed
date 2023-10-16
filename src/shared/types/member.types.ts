@@ -52,6 +52,7 @@ export const Member = ({
   last,
   collegiate_title,
   lab_title,
+  lab_status,
   year_joined,
   description,
   socials,
@@ -65,6 +66,7 @@ export const Member = ({
         slug: { S: socials.email.split('@')[0] },
         collegiate_title: { S: collegiate_title },
         lab_title: { S: lab_title },
+        lab_status: { S: lab_status },
         year_joined: { S: year_joined },
         description: { S: description },
         socials: {

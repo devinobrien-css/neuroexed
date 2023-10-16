@@ -10,7 +10,6 @@ import { Button } from '../../../../shared/components/form/Button';
 
 export const EditablePerson = ({ data }: { data: MemberResponse }) => {
   const [state, setState] = useState<boolean>(false);
-
   const { deleteMember, updateMember } = useMembers();
 
   const { register, watch, handleSubmit } = useForm<MemberFormInput>({

@@ -8,7 +8,7 @@ To run the NeuroExed web application locally, follow these simple steps:
 
 1. **Clone the repository:** Start by cloning this repository to your local machine using the following command:
 
-`git clone https://github.com/your-username/neuroexed-web-app.git`
+`git clone https://github.com/devinobrien/neuroexed.git`
 
 2. **Install dependencies:** Navigate to the project directory and install the required dependencies using npm:
 

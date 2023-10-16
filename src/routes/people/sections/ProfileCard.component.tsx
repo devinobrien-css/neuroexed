@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { MemberResponse } from '../../../shared/types/member.types';
+import {
+  MemberResponse,
+  MemberSocials,
+} from '../../../shared/types/member.types';
 import cx from 'classnames';
 import { Modal } from '../../../shared/components/modals/Modal';
 import { Icon } from '@iconify/react';
@@ -10,6 +13,13 @@ interface ProfileCardProps {
 }
 export const ProfileCard = ({ member, className }: ProfileCardProps) => {
   const [modal, setModal] = useState<boolean>();
+
+  const socialIcons = {
+    email: 'line-md:email',
+    twitter: 'line-md:twitter',
+    instagram: 'line-md:instagram',
+    linkedin: 'line-md:linkedin',
+  };
 
   return (
     <>
@@ -51,27 +61,32 @@ export const ProfileCard = ({ member, className }: ProfileCardProps) => {
             </p>
           </div>
           <br />
-          <div className="flex justify-evenly bg-charcoal p-2">
-            <Icon
-              icon="line-md:instagram"
-              width={40}
-              className="cursor-pointer text-white"
-            />
-            <Icon
-              icon="line-md:linkedin"
-              width={40}
-              className="cursor-pointer text-white"
-            />
-            <Icon
-              icon="line-md:email"
-              width={40}
-              className="cursor-pointer text-white"
-            />
-            <Icon
-              icon="line-md:twitter"
-              width={40}
-              className="cursor-pointer text-white"
-            />
+          <div className="relative flex justify-evenly bg-charcoal p-2">
+            <div className="flex w-4/5 justify-evenly">
+              {Object.keys(socialIcons).map((social: string) => {
+                if (member.socials[social as keyof MemberSocials] !== '') {
+                  return (
+                    <a
+                      key={social}
+                      className="cursor-pointer transition-all hover:scale-110"
+                      rel="noreferrer noopener"
+                      target="_blank"
+                      href={
+                        (social === 'email' ? 'mailto:' : '') +
+                        member.socials[social as keyof MemberSocials]
+                      }
+                    >
+                      <Icon
+                        icon={socialIcons[social as keyof MemberSocials]}
+                        className="cursor-pointer text-white"
+                        width={40}
+                      />
+                    </a>
+                  );
+                }
+                return null;
+              })}
+            </div>
           </div>
         </Modal>
       )}
@@ -82,6 +97,9 @@ export const ProfileCard = ({ member, className }: ProfileCardProps) => {
         )}
         onClick={() => setModal(true)}
       >
+        <p className="absolute z-50 bg-oxford-blue/50 p-1 font-lato text-tiffany-blue">
+          {member.lab_status}
+        </p>
         <img
           className="h-64 w-full object-cover object-center brightness-75"
           src={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${member.last

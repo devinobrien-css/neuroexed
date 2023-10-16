@@ -30,14 +30,14 @@ const BlogMd = ({
   index,
 }: BlogResponse & { className?: string; index: number }) => {
   const [viewDescription, setView] = useState(false);
-  const img = `https://picsum.photos/id/${img_map[index]}/1600/1000`;
+  const img = `https://picsum.photos/id/${img_map[index]}/1000/400`;
 
   return (
     <>
       {viewDescription && (
         <Modal
           closeModal={() => setView(false)}
-          className="p-12 md:h-full md:w-2/3"
+          className="max-w-2xl p-12 md:h-full md:w-2/3"
         >
           <div className="flex justify-between border-b">
             <p
@@ -73,7 +73,7 @@ const BlogMd = ({
           className,
         )}
       >
-        <button>
+        <button onClick={() => setView(true)}>
           <img src={img} className="h-82 object-cover" />
           <div className="shrink-0 p-4 text-left">
             <div>
@@ -92,17 +92,6 @@ const BlogMd = ({
               <p className={'p-2 font-lato text-xl font-light'}>
                 {media_title}
               </p>
-            </div>
-          </div>
-          <div className="text-left">
-            <div
-              className={`transition-all duration-300 ${
-                viewDescription
-                  ? 'h-[170px] overflow-scroll'
-                  : 'h-0 overflow-hidden'
-              }`}
-            >
-              <p className="p-2">{media_content}</p>
             </div>
           </div>
         </button>
