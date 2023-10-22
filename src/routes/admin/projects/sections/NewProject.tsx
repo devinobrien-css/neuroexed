@@ -22,14 +22,15 @@ export const NewProject = () => {
   }
 
   function handleAdd(person: ProjectMember) {
-    const newList = selectedMembers;
-    newList.push({
-      id: person.id, //email.split('@')[0]
-      email: person.email,
-      first: person.first,
-      last: person.last,
-    });
-    setSelectedMembers(newList);
+    setSelectedMembers([
+      ...selectedMembers,
+      {
+        id: person.id,
+        email: person.email,
+        first: person.first,
+        last: person.last,
+      },
+    ]);
   }
 
   const onSubmit = (data: Project) => {

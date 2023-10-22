@@ -22,17 +22,23 @@ const MembersSection = () => {
           Discover the faces behind our groundbreaking research and the unique
           perspectives that shape our journey.
         </p>
-        <div className="mx-auto flex w-full max-w-screen-md justify-end p-2">
-          <Icon
-            icon="fa6-solid:magnifying-glass"
-            className="my-auto text-gray-500"
-          />
-          <input
-            className="ml-2 bg-transparent font-lato text-xl text-gray-500 outline-none"
-            placeholder={'Search for members...'}
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+        <div></div>
+        <div className="mx-auto flex w-full max-w-screen-md justify-between p-2">
+          <p className="text-grey-700 mt-4 font-lato italic">
+            click on a card to read more
+          </p>
+          <div className="flex">
+            <Icon
+              icon="fa6-solid:magnifying-glass"
+              className="my-auto text-gray-500"
+            />
+            <input
+              className="ml-2 bg-transparent font-lato text-xl text-gray-500 outline-none"
+              placeholder={'Search for members...'}
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
         </div>
         {!members && (
           <div className="flex min-h-[400px] flex-col items-center">

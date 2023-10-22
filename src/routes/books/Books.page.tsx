@@ -6,7 +6,7 @@ import DiversitySection from './sections/DiversitySection.component';
 const BooksSection = () => {
   return (
     <div className="mx-auto my-32 max-w-screen-xl">
-      <p className="mb-8 font-raleway text-4xl font-light md:text-6xl">
+      <p className="mb-8 text-center font-raleway text-4xl font-light md:text-6xl">
         Our Books
       </p>
       <br />

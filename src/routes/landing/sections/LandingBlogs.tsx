@@ -6,20 +6,6 @@ import { BlogResponse } from '../../../shared/types/blog.types';
 import cx from 'classnames';
 import { Modal } from '../../../shared/components/modals/Modal';
 
-const img_map: Record<number, number> = {
-  0: 1,
-  1: 20,
-  2: 60,
-  3: 63,
-  4: 119,
-  5: 180,
-  6: 192,
-  7: 201,
-  8: 366,
-  9: 367,
-  10: 370,
-};
-
 const BlogMd = ({
   media_title,
   media_type,
@@ -27,10 +13,8 @@ const BlogMd = ({
   media_source,
   media_content,
   className,
-  index,
-}: BlogResponse & { className?: string; index: number }) => {
+}: BlogResponse & { className?: string }) => {
   const [viewDescription, setView] = useState(false);
-  const img = `https://picsum.photos/id/${img_map[index]}/1000/400`;
 
   return (
     <>
@@ -74,7 +58,6 @@ const BlogMd = ({
         )}
       >
         <button onClick={() => setView(true)}>
-          <img src={img} className="h-82 object-cover" />
           <div className="shrink-0 p-4 text-left">
             <div>
               <div className="flex justify-between border-b">
@@ -125,18 +108,11 @@ const LandingBlogs = () => {
       </p>
 
       <div className="flex flex-wrap gap-6">
-        {partitioned_blogs?.[paginate]?.map(
-          (blog: BlogResponse, index: number) => {
-            return (
-              <BlogMd
-                key={blog.media_title}
-                index={index + paginate * 4}
-                className="md:w-[48%]"
-                {...blog}
-              />
-            );
-          },
-        )}
+        {partitioned_blogs?.[paginate]?.map((blog: BlogResponse) => {
+          return (
+            <BlogMd key={blog.media_title} className="md:w-[48%]" {...blog} />
+          );
+        })}
       </div>
       <div className="flex w-full justify-between">
         <button

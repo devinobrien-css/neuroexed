@@ -7,9 +7,9 @@ const AffiliationsList = () => {
   const { affiliates } = useAffiliates();
 
   return (
-    <div className="my-16 p-4">
-      <p className="mb-8 font-raleway text-4xl font-light md:text-6xl">
-        Affiliations
+    <div className="my-32 p-4">
+      <p className="mb-8 text-center font-raleway text-4xl font-light md:text-6xl">
+        Our Affiliations
       </p>
       <div className="flex flex-wrap">
         {!affiliates && (

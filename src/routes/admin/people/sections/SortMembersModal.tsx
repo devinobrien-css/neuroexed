@@ -32,14 +32,16 @@ export const SortMembersModal = ({
   };
 
   return (
-    <Modal className="" closeModal={closeModal}>
-      <DragAndDrogList
-        items={(members ?? []).map((member) => ({
-          label: member!.first + ' ' + member!.last,
-          value: member!.socials!.email ?? '',
-        }))}
-        onSubmit={onSubmit}
-      />
+    <Modal className="w-4/5" closeModal={closeModal}>
+      <div className="h-[70vh]  overflow-scroll">
+        <DragAndDrogList
+          items={(members ?? []).map((member) => ({
+            label: member.first + ' ' + member.last,
+            value: member.socials!.email ?? '',
+          }))}
+          onSubmit={onSubmit}
+        />
+      </div>
     </Modal>
   );
 };
