@@ -26,15 +26,10 @@ module.exports = {
         'azure-blue': '#F2FDFF',
       },
       backgroundImage: {
-        'main-brain': "url('./shared/assets/img/brain.gif')",
-        'brain-gif': "url('./shared/assets/img/brain.gif')",
         diversity: "url('./shared/assets/img/diversity.png')",
         education: "url('./shared/assets/img/education.png')",
-        landing: "url('./shared/assets/img/backgrounds/bg-3.jpeg')",
+        landing: "url('./shared/assets/img/standard-bg.jpeg')",
         'brain-network': "url('./shared/assets/img/brain-art.png')",
-        'brain-1': "url('./shared/assets/img/backgrounds/bg-1.png')",
-        'brain-3': "url('./shared/assets/img/backgrounds/bg-3.png')",
-        'brain-5': "url('./shared/assets/img/backgrounds/bg-5.png')",
       },
       fontFamily: {
         sans: ['Gill Sans', 'sans-serif'],
