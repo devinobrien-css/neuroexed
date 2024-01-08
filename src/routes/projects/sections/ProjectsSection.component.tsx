@@ -1,7 +1,7 @@
 import ProjectProfile from './ProjectProfile.component';
-import Loader from '../../../shared/components/Loader';
 import useProjects from '../../../shared/hooks/useProjects';
 import { Project, ProjectMember } from '../../../shared/types/project.types';
+import { Loader } from '../../../shared/components/Loader';
 
 const ProjectIcon = ({ title, description, members }: Project) => {
   return (

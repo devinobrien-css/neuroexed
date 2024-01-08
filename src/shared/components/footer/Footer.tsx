@@ -270,6 +270,9 @@ const Footer = () => {
               className="text-white"
             />
           </button>
+          <p className="mx-auto text-center font-lato font-light text-white">
+            © {new Date().getFullYear()} NeuroExed
+          </p>
         </div>
       </div>
     </>

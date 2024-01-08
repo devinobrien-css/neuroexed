@@ -3,6 +3,7 @@ import { tabs } from '../../manifest';
 import { FadeIn } from './animations/FadeIn';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useState } from 'react';
+import { MobileNav } from './MobileNav';
 
 interface HeaderProps {
   title: string;
@@ -12,6 +13,7 @@ const Header = ({ title, sub_title }: HeaderProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const auth = getAuth();
+
   const [authorized, setAuthorized] = useState(false);
 
   onAuthStateChanged(auth, (user) => {
@@ -20,6 +22,7 @@ const Header = ({ title, sub_title }: HeaderProps) => {
 
   return (
     <>
+      <MobileNav authorized={authorized} />
       <div className="bg-landing bg-cover shadow-lg md:min-h-[80vh]">
         <div className="flex w-full flex-col backdrop-blur-sm backdrop-brightness-50 md:min-h-[80vh]">
           <div className="m-auto w-fit py-48 md:w-2/3">
@@ -31,7 +34,6 @@ const Header = ({ title, sub_title }: HeaderProps) => {
             <p className="text-center text-xl font-light text-gray-200 transition-all md:text-3xl">
               -
             </p>
-
             <FadeIn>
               <p className="text-center font-light text-gray-200 transition-all md:text-2xl">
                 {sub_title}

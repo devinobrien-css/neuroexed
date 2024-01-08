@@ -4,6 +4,7 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}', './node_modules/flowbite/**/*.js'],
   theme: {
     screens: {
+      xs: '580px',
       sm: '640px',
       md: '1000px',
       lg: '1024px',
@@ -16,6 +17,9 @@ module.exports = {
       '1/4': '25%',
     },
     extend: {
+      zIndex: {
+        100: '100',
+      },
       colors: {
         'oxford-blue': '#101935',
         charcoal: '#33485E',

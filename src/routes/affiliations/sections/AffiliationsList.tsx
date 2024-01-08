@@ -1,4 +1,4 @@
-import Loader from '../../../shared/components/Loader';
+import { Loader } from '../../../shared/components/Loader';
 import useAffiliates from '../../../shared/hooks/useAffiliates';
 import { Affiliate } from '../../../shared/types/affiliate.types';
 import { Affiliation } from './Affiliation';

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
-import Loader from '../../../shared/components/Loader';
+import { Loader } from '../../../shared/components/Loader';
 import useBlogs from '../../../shared/hooks/useBlogs';
 import { BlogResponse } from '../../../shared/types/blog.types';
 import cx from 'classnames';
@@ -14,13 +14,13 @@ const BlogMd = ({
   media_content,
   className,
 }: BlogResponse & { className?: string }) => {
-  const [viewDescription, setView] = useState(false);
+  const [viewDescription, setViewDescription] = useState(false);
 
   return (
     <>
       {viewDescription && (
         <Modal
-          closeModal={() => setView(false)}
+          closeModal={() => setViewDescription(false)}
           className="max-w-2xl p-12 md:h-full md:w-2/3"
         >
           <div className="flex justify-between border-b">
@@ -57,7 +57,7 @@ const BlogMd = ({
           className,
         )}
       >
-        <button onClick={() => setView(true)}>
+        <button onClick={() => setViewDescription(true)}>
           <div className="shrink-0 p-4 text-left">
             <div>
               <div className="flex justify-between border-b">
@@ -83,7 +83,7 @@ const BlogMd = ({
   );
 };
 
-const LandingBlogs = () => {
+const LandingBlogs = ({ includeTitle = true }: { includeTitle?: boolean }) => {
   const { partitioned_blogs } = useBlogs();
   const [paginate, setPaginate] = useState(0);
 
@@ -103,9 +103,11 @@ const LandingBlogs = () => {
       id="blogs"
       className="mx-auto my-4 max-w-screen-lg bg-cover bg-center bg-no-repeat transition-all"
     >
-      <p className="mb-8 text-center font-raleway text-4xl font-light md:text-6xl">
-        Blog Posts and Podcasts
-      </p>
+      {includeTitle && (
+        <p className="mb-8 text-center font-raleway text-4xl font-light md:text-6xl">
+          Blog Posts and Podcasts
+        </p>
+      )}
 
       <div className="flex flex-wrap gap-6">
         {partitioned_blogs?.[paginate]?.map((blog: BlogResponse) => {

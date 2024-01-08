@@ -13,7 +13,7 @@ import NewsAccess from './routes/admin/news/NewsAccess';
 import NotificationAccess from './routes/admin/messages/NotificationAccess';
 import AffiliateAccess from './routes/admin/affiliations/AffiliateAccess';
 import ProjectAccess from './routes/admin/projects/ProjectAccess';
-// import PodcastAccess from './routes/admin/podcasts/PodcastAccess';
+import Blogs from './routes/blogs/Blogs.page';
 
 export const tabs = [
   {
@@ -51,6 +51,12 @@ export const tabs = [
     protected: false,
     pathname: '/affiliations',
     icon: 'carbon:network-4',
+  },
+  {
+    name: 'blogs',
+    protected: false,
+    pathname: '/blogs',
+    icon: 'ic:twotone-mic',
   },
   {
     name: 'podcasts',
@@ -94,11 +100,10 @@ export const router = createBrowserRouter([
   {
     path: '/podcasts',
     element: <Podcasts />,
-    children: [
-      {
-        path: '/podcasts/:id',
-      },
-    ],
+  },
+  {
+    path: '/blogs',
+    element: <Blogs />,
   },
   {
     path: '/admin',

@@ -11,9 +11,6 @@ export const PodcastList = () => {
 
   return (
     <div className="mx-auto my-32 max-w-screen-xl">
-      <h1 className="mb-4 text-center font-raleway text-6xl font-light">
-        Explore Our Lab's Podcasts
-      </h1>
       <div className="flex flex-col gap-y-4">
         <Season season="1" podcasts={podcasts} />
         <Season season="1" podcasts={podcasts} />
