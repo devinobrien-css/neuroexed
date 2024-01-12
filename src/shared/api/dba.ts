@@ -12,10 +12,13 @@ const putFileToS3 = async (
       bucket: bucket,
     })
     .then((response) => response.data);
-  // .catch((error) => console.error(error));
 };
 
 /** Uploads a file to S3
+ * @param {string} folder - string
+ * @param {string} fileName - string
+ * @param {FileList} file - FileList
+ * @returns void
  */
 export const uploadFileToBucket = async (
   folder: string,
@@ -41,8 +44,8 @@ export const uploadFileToBucket = async (
 };
 
 /** Fetches a row of a table
- * @param {*} tableName
- * @returns
+ * @param {string} tableName - string
+ * @returns BlogResponse
  */
 export const fetchData = async (tableName: string) => {
   return await axios
@@ -52,14 +55,12 @@ export const fetchData = async (tableName: string) => {
       data: {},
     })
     .then((response) => response.data);
-  // .catch((error) => console.error(error));
 };
 
-/** Updates a row of a table
- * @param {*} tableName
- * @param {*} conditions
- * @param {*} data
- * @returns
+/** Create a row of a table
+ * @param {string} tableName - string
+ * @param {object} data - object
+ * @returns void
  */
 export const putData = async (tableName: string, data: object) => {
   return await axios
@@ -69,13 +70,42 @@ export const putData = async (tableName: string, data: object) => {
       data: data,
     })
     .then((response) => response.data);
-  // .catch((error) => console.error(error));
+};
+
+/** Updates a row of a table
+ * @param {*} tableName - string
+ * @param {*} data - object
+ * @returns void
+ */
+export const updateData = async (tableName: string, data: object) => {
+  return await axios
+    .post(import.meta.env.VITE_NEURO_API, {
+      command: 'UPDATE',
+      table: tableName,
+      data: data,
+    })
+    .then((response) => response.data);
+};
+
+/** Updates the order of a table
+ * @param {*} tableName - string
+ * @param {*} data  - object
+ * @returns void
+ */
+export const updateOrder = async (tableName: string, data: object) => {
+  return await axios
+    .post(import.meta.env.VITE_NEURO_API, {
+      command: 'UPDATE_ORDER',
+      table: tableName,
+      data: data,
+    })
+    .then((response) => response.data);
 };
 
 /** Removes a row of a table
- * @param {*} tableName
- * @param {*} key
- * @returns
+ * @param {*} tableName - string
+ * @param {*} key - object
+ * @returns void
  */
 export const removeData = async (tableName: string, key: object) => {
   return await axios
@@ -85,5 +115,4 @@ export const removeData = async (tableName: string, key: object) => {
       data: key,
     })
     .then((response) => response);
-  // .catch((error) => console.error(error));
 };

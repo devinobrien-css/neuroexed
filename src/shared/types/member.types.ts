@@ -11,6 +11,7 @@ export interface MemberFormInput {
   Instagram: string;
   Linkedin: string;
   image?: FileList;
+  order: number;
 }
 
 export interface MemberSocials {
@@ -20,6 +21,7 @@ export interface MemberSocials {
   email: string;
 }
 export interface MemberResponse {
+  email: string;
   first: string;
   last: string;
   collegiate_title: string;
@@ -28,6 +30,7 @@ export interface MemberResponse {
   lab_status: boolean;
   description: string;
   socials: MemberSocials;
+  order: number;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -44,6 +47,7 @@ export const defaultMemberFormValues = (member: Record<string, any>) => {
     Twitter: member.socials.M.twitter.S,
     Instagram: member.socials.M.instagram.S,
     Linkedin: member.socials.M.linkedin.S,
+    order: 0,
   };
 };
 

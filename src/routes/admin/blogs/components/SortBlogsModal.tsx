@@ -1,5 +1,4 @@
-import { putData } from '../../../../shared/api/dba';
-import { sort_order } from '../../../../shared/types/object_schema';
+import { updateOrder } from '../../../../shared/api/dba';
 import { Modal } from '../../../../shared/components/modals/Modal';
 import { toast } from 'react-toastify';
 import { DragAndDrogList } from '../../../../shared/components/DragAndDrop/DragAndDrogList';
@@ -16,13 +15,16 @@ export const SortBlogsModal = ({
 }) => {
   const onSubmit = async (items: string[]) => {
     try {
-      await putData(
-        'sort-orders',
-        sort_order(
-          'blogs',
-          items.map((i) => ({ S: i })),
-        ),
+      await updateOrder(
+        'blogs',
+        items.map((item, index) => {
+          return {
+            id: item,
+            order: index,
+          };
+        }),
       );
+
       closeModal();
       refetchBlogs();
       toast.success('Blogs have been updated!');
@@ -34,10 +36,12 @@ export const SortBlogsModal = ({
   return (
     <Modal className="" closeModal={closeModal}>
       <DragAndDrogList
-        items={(blogs ?? []).map((blog) => ({
-          label: blog!.media_title,
-          value: blog!.media_title ?? '',
-        }))}
+        items={(blogs ?? []).map((blog) => {
+          return {
+            label: blog.media_title,
+            value: blog.id,
+          };
+        })}
         onSubmit={onSubmit}
       />
     </Modal>

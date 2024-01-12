@@ -9,23 +9,25 @@ import {
 import { BlogForm } from './BlogForm';
 
 export const EditableBlog = ({ blog }: { blog: BlogResponse }) => {
-  const [state, setState] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const { updateBlog, deleteBlog } = useBlogs();
 
   const { register, handleSubmit } = useForm<BlogFormInput>({
     defaultValues: {
+      id: blog.id,
       title: blog.media_title,
       date: blog.media_date,
       content: blog.media_content,
       source: blog.media_source,
       type: blog.media_type,
+      order: blog.order,
     },
   });
 
   const onSubmit = (blog: BlogFormInput) => {
     updateBlog(blog);
-    setState(false);
+    setOpen(false);
   };
 
   return (
@@ -37,11 +39,11 @@ export const EditableBlog = ({ blog }: { blog: BlogResponse }) => {
             color="blue"
             type="button"
             onClick={() => {
-              state ? setState(false) : setState(true);
+              open ? setOpen(false) : setOpen(true);
             }}
-            title={state ? 'cancel' : 'edit'}
+            title={open ? 'cancel' : 'edit'}
           />
-          {state ? (
+          {open ? (
             <>
               <Button color="yellow" type="submit" title="confirm" />
               <Button
@@ -50,7 +52,7 @@ export const EditableBlog = ({ blog }: { blog: BlogResponse }) => {
                 type="button"
                 onClick={() => {
                   deleteBlog(blog.media_title);
-                  setState(false);
+                  setOpen(false);
                 }}
               />
             </>
@@ -59,7 +61,7 @@ export const EditableBlog = ({ blog }: { blog: BlogResponse }) => {
           )}
         </div>
       </div>
-      <BlogForm register={register} state={state} />
+      <BlogForm register={register} state={open} />
     </form>
   );
 };
