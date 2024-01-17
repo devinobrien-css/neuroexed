@@ -7,7 +7,6 @@ import {
 } from '../api/dba';
 import { MemberFormInput, MemberResponse } from '../types/member.types';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { sort_order } from '../types/object_schema';
 import { toast } from 'react-toastify';
 import { AxiosError } from 'axios';
 
@@ -47,6 +46,27 @@ const useMembers = () => {
     cacheTime: 10 * 60 * 60, // 10 hours
   });
 
+  /** POST a member
+   * @param {MemberFormInput} data - MemberFormInput
+   * @returns void
+   * @example
+   * {
+   *    first: 'John',
+   *    last: 'Doe',
+   *    collegiate_title: 'President',
+   *    lab_title: 'Lab Manager',
+   *    lab_status: 'Undergraduate',
+   *    year_joined: '2020',
+   *    slug: 'john-doe',
+   *    description: 'This is a member',
+   *    socials: {
+   *      email: '',
+   *      twitter: '',
+   *      linkedin: '',
+   *      instagram: '',
+   *    }
+   *  },
+   */
   const { mutate: createMember } = useMutation<
     void,
     AxiosError,
@@ -65,7 +85,7 @@ const useMembers = () => {
         twitter: data.Twitter,
         linkedin: data.Linkedin,
         instagram: data.Instagram,
-        order: data.order,
+        order: 0,
       });
 
       if (data.image?.length) {
@@ -132,28 +152,24 @@ const useMembers = () => {
     onError: () => toast.error('User update failed'),
   });
 
+  /** DELETE a member
+   * @param {string} email_to_remove - email of member to delete
+   * @returns void
+   * @example deleteMember('email@gmail.com')
+   * @see src/shared/types/member.types.ts
+   */
   const { mutate: deleteMember } = useMutation({
-    mutationFn: (data: string) => removeMember(data),
+    mutationFn: async (email_to_remove: string) => {
+      await removeData(MEMBERS_TABLE_NAME, {
+        email: { S: email_to_remove },
+      });
+    },
     onSuccess: async () => {
       await refetchMembers();
       toast.success('User has been deleted!');
     },
     onError: () => toast.error('User deletion failed'),
   });
-
-  const removeMember = async (email_to_remove: string) => {
-    await removeData(MEMBERS_TABLE_NAME, {
-      email: { S: email_to_remove },
-    });
-    const sort = await fetchData('sort-orders');
-    const output = sort['people'].filter((email: string) => {
-      if (email !== email_to_remove) {
-        return { S: email };
-      }
-      return false;
-    });
-    await putData('sort-orders', sort_order('people', output));
-  };
 
   return {
     members: members,

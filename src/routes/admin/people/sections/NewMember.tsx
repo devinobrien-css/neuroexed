@@ -11,11 +11,12 @@ const NewPerson = ({
   setNewPerson: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [state, setState] = useState(true);
+  const [hidden, setHidden] = useState(false);
   const { createMember } = useMembers();
 
   const form = useForm<MemberFormInput>({
     defaultValues: {
-      'Year Joined': new Date().getFullYear().toString(),
+      'Year Joined': new Date().toUTCString(),
     },
   });
   const { watch, handleSubmit } = form;
@@ -23,11 +24,14 @@ const NewPerson = ({
   const onSubmit = async (data: MemberFormInput) => {
     createMember(data);
     setState(false);
+    setHidden(true);
   };
 
   const imagePreview = watch('image');
 
-  return (
+  return hidden ? (
+    <></>
+  ) : (
     <FormProvider {...form}>
       <form
         onSubmit={handleSubmit(onSubmit)}

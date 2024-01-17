@@ -3,9 +3,8 @@ import { Project } from '../../../../shared/types/project.types';
 import cx from 'classnames';
 
 export const ProjectForm = ({ isOpen }: { isOpen: boolean }) => {
-  const { register, control, watch } = useFormContext<Project>();
+  const { register } = useFormContext<Project>();
 
-  console.log(watch('members'));
   return (
     <div
       className={cx('transition-all', {

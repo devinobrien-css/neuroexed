@@ -12,8 +12,6 @@ const BlogAccess = () => {
 
   const { blogs, refetchBlogs } = useBlogs();
 
-  console.log(blogs);
-
   return (
     <>
       {editOrder && (

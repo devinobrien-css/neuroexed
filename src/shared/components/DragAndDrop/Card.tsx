@@ -7,7 +7,7 @@ import { ItemTypes } from './ItemTypes';
 
 export interface CardProps {
   id: number;
-  text: string;
+  text: string | JSX.Element;
   index: number;
   moveCard: (dragIndex: number, hoverIndex: number) => void;
 }
@@ -65,10 +65,11 @@ export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
   });
 
   drag(drop(ref));
+
   return (
     <div
       ref={ref}
-      className="cursor-pointer rounded-2xl p-4 shadow hover:bg-gray-100"
+      className="cursor-pointer border-b p-2 shadow hover:bg-gray-100"
       data-handler-id={handlerId}
     >
       {text}

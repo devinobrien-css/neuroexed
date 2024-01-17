@@ -146,7 +146,7 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
         <label className="mx-auto block w-[95%] rounded-lg border bg-white p-2 shadow hover:shadow-lg md:w-[98%]">
           <p className="font-lato text-2xl font-normal">Description</p>
           <textarea
-            rows={5}
+            rows={8}
             className="w-full border-none p-0 font-light"
             {...register('Description')}
           />

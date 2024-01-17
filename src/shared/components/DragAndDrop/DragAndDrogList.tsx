@@ -1,6 +1,5 @@
 import update from 'immutability-helper';
 import { useCallback, useState } from 'react';
-
 import { Card } from './Card';
 import { Button } from '../form/Button';
 
@@ -8,22 +7,31 @@ export interface Item {
   id: number;
   text: string;
   value: string;
+  display: JSX.Element;
 }
 
 export interface ContainerState {
   cards: Item[];
 }
 
+interface ItemsInput {
+  label: string;
+  value: string;
+  display?: JSX.Element;
+}
+
 interface DragAndDrogListProps {
-  items: Record<string, string>[];
+  items: ItemsInput[];
   onSubmit: (items: string[]) => Promise<void> | void;
 }
+
 export const DragAndDrogList = ({ items, onSubmit }: DragAndDrogListProps) => {
   const [cards, setCards] = useState(
     items.map((i, index) => ({
       id: index,
       text: i.label,
       value: i.value,
+      display: i.display ?? <>{i.label}</>,
     })),
   );
 
@@ -39,13 +47,16 @@ export const DragAndDrogList = ({ items, onSubmit }: DragAndDrogListProps) => {
   }, []);
 
   const renderCard = useCallback(
-    (card: { id: number; text: string }, index: number) => {
+    (
+      card: { id: number; text: string; display: JSX.Element },
+      index: number,
+    ) => {
       return (
         <Card
           key={card.id}
           index={index}
           id={card.id}
-          text={card.text}
+          text={card.display ?? card.text}
           moveCard={moveCard}
         />
       );
@@ -55,6 +66,7 @@ export const DragAndDrogList = ({ items, onSubmit }: DragAndDrogListProps) => {
 
   return (
     <div className="item-center flex flex-col">
+      <p className="p-2 text-5xl font-light">Drag and Drop</p>
       <div className="space-y-2 p-8">
         {cards.map((card, i) => renderCard(card, i))}
       </div>
