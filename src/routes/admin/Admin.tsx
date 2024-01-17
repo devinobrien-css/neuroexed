@@ -11,7 +11,6 @@ const Studio = () => {
     'projects',
     'affiliates',
     'news',
-    'podcasts',
     'notifications',
   ];
 

@@ -1,4 +1,4 @@
-import { Project, project, projectMember } from '../types/project.types';
+import { Project } from '../types/project.types';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { fetchData, putData, removeData } from '../api/dba';
 import { toast } from 'react-toastify';
@@ -15,15 +15,18 @@ const useProjects = () => {
   });
 
   const { mutate: updateProject } = useMutation<void, AxiosError, Project>({
-    mutationFn: async (data) =>
-      putData(
-        'projects',
-        project({
-          title: data.title,
-          description: data.description,
-          members: data.members.map(projectMember).map((m) => ({ M: m })),
-        }),
-      ),
+    mutationFn: async (data) => {
+      await putData('projects', {
+        title: data.title,
+        description: data.description,
+        members: data.members.map((m) => ({
+          id: m.id,
+          first: m.first,
+          last: m.last,
+          email: m.email,
+        })),
+      });
+    },
     onSuccess: async () => {
       await refetchProjects();
       toast.success('Project has been updated!');

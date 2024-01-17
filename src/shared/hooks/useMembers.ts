@@ -47,6 +47,38 @@ const useMembers = () => {
     cacheTime: 10 * 60 * 60, // 10 hours
   });
 
+  const { mutate: createMember } = useMutation<
+    void,
+    AxiosError,
+    MemberFormInput
+  >({
+    mutationFn: async (data) => {
+      await putData(MEMBERS_TABLE_NAME, {
+        email: data.Email,
+        first: data['First Name'],
+        last: data['Last Name'],
+        collegiate_title: data['Collegiate Title'],
+        lab_title: data['Lab Title'],
+        lab_status: data['Lab Status'],
+        year_joined: data['Year Joined'],
+        description: data.Description,
+        twitter: data.Twitter,
+        linkedin: data.Linkedin,
+        instagram: data.Instagram,
+        order: data.order,
+      });
+
+      if (data.image?.length) {
+        const fileName = `${data['Last Name'].toLowerCase()}.png`;
+        uploadFileToBucket('profile_pictures', fileName, data.image);
+      }
+
+      refetchMembers();
+    },
+    onSuccess: () => toast.success('User has been created!'),
+    onError: () => toast.error('User creation failed'),
+  });
+
   /** POST a member
    * @param {MemberFormInput} data - MemberFormInput
    * @returns void
@@ -83,12 +115,9 @@ const useMembers = () => {
         lab_status: data['Lab Status'],
         year_joined: data['Year Joined'],
         description: data.Description,
-        socials: {
-          email: data.Email,
-          twitter: data.Twitter,
-          linkedin: data.Linkedin,
-          instagram: data.Instagram,
-        },
+        twitter: data.Twitter,
+        linkedin: data.Linkedin,
+        instagram: data.Instagram,
         order: data.order,
       });
 
@@ -129,7 +158,7 @@ const useMembers = () => {
   return {
     members: members,
     refetchMembers,
-    createMember: mutateMember,
+    createMember: createMember,
     updateMember: mutateMember,
     deleteMember: deleteMember,
   };

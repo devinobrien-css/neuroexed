@@ -7,6 +7,7 @@ import {
   BlogResponse,
 } from '../../../../shared/types/blog.types';
 import { BlogForm } from './BlogForm';
+import { Icon } from '@iconify/react';
 
 export const EditableBlog = ({ blog }: { blog: BlogResponse }) => {
   const [open, setOpen] = useState(false);
@@ -33,7 +34,23 @@ export const EditableBlog = ({ blog }: { blog: BlogResponse }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex justify-between px-2 py-4">
-        <p className="font-light md:text-2xl">{blog.media_title}</p>
+        <div className="flex gap-x-2">
+          {blog.media_type === 'BLOG' ? (
+            <div className="my-auto border-r px-2">
+              <Icon
+                icon="mdi:newspaper-variant-multiple-outline"
+                className="my-auto h-8 w-8"
+              />
+              <p className="m-0 p-0 text-center font-lato font-light">blog</p>
+            </div>
+          ) : (
+            <div className="my-auto border-r px-2">
+              <Icon icon="ic:round-video-library" className="my-auto h-8 w-8" />
+              <p className="m-0 p-0 text-center font-lato font-light">cast</p>
+            </div>
+          )}
+          <p className="my-auto font-light md:text-2xl">{blog.media_title}</p>
+        </div>
         <div className="flex justify-end gap-x-4">
           <Button
             color="blue"
