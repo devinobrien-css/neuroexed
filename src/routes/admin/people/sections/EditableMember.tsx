@@ -90,19 +90,21 @@ export const EditablePerson = ({ data }: { data: MemberResponse }) => {
                 <p className="font-light md:text-2xl">
                   {data.first} {data.last}
                 </p>
-                <p className="font-light md:text-2xl">{data.socials.email}</p>
+                <p className="font-light text-blue-400 underline md:text-2xl">
+                  {data.socials.email}
+                </p>
               </div>
             </div>
             <div className="my-auto flex">
               <Button
-                color="blue"
+                color="gray"
                 type="button"
                 title={state ? 'cancel' : 'edit'}
                 onClick={() => (state ? setState(false) : setState(true))}
               />
               {state && (
                 <>
-                  <Button color="yellow" title="confirm" type="submit" />
+                  <Button color="blue" title="confirm" type="submit" />
                   <Button
                     color="red"
                     title="delete"

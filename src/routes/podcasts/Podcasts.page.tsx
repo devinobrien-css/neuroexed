@@ -88,10 +88,38 @@ const Podcasts = () => {
           help people learn how to learn from direct experiences and how to help
           others learn from direct experiences.
         </p>
+        <br />
 
-        <br />
-        <br />
-        <br />
+        <div className="mx-auto md:w-3/4">
+          <h2 className="text-4xl font-light">Latest Episodes</h2>
+          <p className="text-xl font-light">
+            Click on the episode to listen to the podcast.
+          </p>
+          <br />
+          <iframe
+            height="200px"
+            width="100%"
+            seamless
+            src="https://player.simplecast.com/b03652d7-27c2-4912-8c37-a97e9169a040?dark=false"
+          ></iframe>
+
+          <iframe
+            height="200px"
+            width="100%"
+            seamless
+            src="https://player.simplecast.com/5dd43c08-dd42-4b8b-8889-7002aaaf0d1b?dark=false"
+          ></iframe>
+
+          <iframe
+            height="200px"
+            width="100%"
+            seamless
+            src="https://player.simplecast.com/8f24eb19-e78c-4001-a376-120be966c685?dark=false"
+          ></iframe>
+          <br />
+          <br />
+          <br />
+        </div>
       </div>
       <Footer />
     </div>
