@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useBlogs from '../../../shared/hooks/useBlogs';
+import { useBlogsQuery } from '../../../shared/hooks/blogHooks';
 import { Button } from '../../../shared/components/form/Button';
 import { EditableBlog } from './components/EditableBlog';
 import { NewBlog } from './components/NewBlog';
@@ -10,7 +10,7 @@ const BlogAccess = () => {
   const [search, setSearch] = useState('');
   const [newBlog, setNewBlog] = useState(false);
 
-  const { blogs, refetchBlogs } = useBlogs();
+  const { data: blogs, refetch: refetchBlogs } = useBlogsQuery();
 
   return (
     <>

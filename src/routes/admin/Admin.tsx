@@ -1,4 +1,4 @@
-import { tabs } from '../../manifest';
+import { Icon } from '@iconify/react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const Studio = () => {
@@ -16,7 +16,7 @@ const Studio = () => {
 
   return (
     <div className="mb-4 shadow-xl">
-      <div className="mx-auto flex w-full divide-x overflow-x-scroll text-xl">
+      <div className="mx-auto flex w-full divide-x overflow-x-auto text-xl">
         {tabs.map((current) => {
           const route = `/admin/${current}`;
 
@@ -42,7 +42,6 @@ const Studio = () => {
 
 const Admin = () => {
   const navigate = useNavigate();
-  const location = useLocation();
 
   return (
     <>
@@ -58,26 +57,17 @@ const Admin = () => {
             </p>
           </div>
           <div className="flex w-full justify-between p-12">
-            {tabs.map((tab) => {
-              if (!tab.protected) {
-                return (
-                  <button
-                    key={tab.name}
-                    className={`font-raleway text-xl uppercase transition-all ${
-                      location.pathname === tab.pathname
-                        ? ' border-b-4 border-white text-gray-200'
-                        : 'text-gray-200 drop-shadow-2xl'
-                    }`}
-                    onClick={() => {
-                      navigate(tab.pathname);
-                    }}
-                  >
-                    {tab.name}
-                  </button>
-                );
+            <button
+              className={
+                'mx-auto flex gap-x-2 rounded-lg bg-gray-400 px-4 py-2 font-raleway text-xl uppercase text-white transition-all hover:bg-gray-300'
               }
-              return null;
-            })}
+              onClick={() => {
+                navigate('/');
+              }}
+            >
+              <Icon className="my-auto" icon="icon-park-twotone:back" />
+              <span className="my-auto">Back to Home</span>
+            </button>
           </div>
         </div>
       </div>

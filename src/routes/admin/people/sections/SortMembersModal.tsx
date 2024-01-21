@@ -4,6 +4,7 @@ import { Modal } from '../../../../shared/components/modals/Modal';
 import { toast } from 'react-toastify';
 import { DragAndDrogList } from '../../../../shared/components/DragAndDrop/DragAndDrogList';
 import { useState } from 'react';
+import { Loader } from '../../../../shared/components/Loader';
 
 export const SortMembersModal = ({
   members,
@@ -37,21 +38,22 @@ export const SortMembersModal = ({
   };
 
   return (
-    <Modal className="w-4/5" closeModal={closeModal}>
+    <Modal className="md:w-2/5" closeModal={closeModal}>
       <div className="h-[70vh]  overflow-scroll">
         {loading ? (
-          <div className="flex h-full items-center justify-center">
-            <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-teal-900"></div>
-          </div>
+          <Loader />
         ) : (
           <DragAndDrogList
             items={(members ?? []).map((member) => ({
               label:
                 member.first + ' ' + member.last + '  |  ' + member.lab_status,
-              value: member.socials!.email ?? '',
+              value: member.socials.email,
               display: (
                 <div className="flex justify-between">
                   <div className="flex gap-x-2">
+                    <p className="my-auto font-lato text-2xl font-light text-blue-500">
+                      {member.order + 1}
+                    </p>
                     <img
                       className="my-auto h-8 w-8 rounded-lg object-cover shadow"
                       alt="uploaded file"

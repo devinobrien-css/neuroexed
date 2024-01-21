@@ -3,7 +3,7 @@ import {
   CustomDropdownButtonToggle,
   DropdownButton,
   OverlayFunc,
-} from '../common/Dropdown/DropdownButton';
+} from '../common/DropdownButton';
 import { addDays, startOfWeek } from 'date-fns';
 import cx from 'classnames';
 import { Icon } from '@iconify/react';
@@ -113,7 +113,6 @@ export function DatePicker({
               fromDate={fromDate}
               toDate={toDate}
               onSelect={(day, selectedDay, activeModifiers, e) => {
-                // toggle();
                 if (workWeek) {
                   day = addDays(startOfWeek(day ?? selectedDay), 1);
                 }

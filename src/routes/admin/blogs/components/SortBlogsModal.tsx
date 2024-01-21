@@ -34,12 +34,28 @@ export const SortBlogsModal = ({
   };
 
   return (
-    <Modal className="" closeModal={closeModal}>
+    <Modal className="md:w-4/5" closeModal={closeModal}>
       <DragAndDrogList
-        items={(blogs ?? []).map((blog) => {
+        items={(blogs ?? []).map((blog, index) => {
           return {
             label: blog.media_title,
             value: blog.id,
+            display: (
+              <div className="flex justify-between">
+                <div className="flex gap-x-2">
+                  <p className="my-auto font-lato text-2xl font-light text-blue-500">
+                    {index + 1}
+                  </p>
+
+                  <p className="my-auto w-1/2 truncate font-lato text-2xl font-light text-blue-500">
+                    {blog.media_title}
+                  </p>
+                </div>
+                <p className="my-auto w-fit font-lato text-2xl font-light text-blue-500">
+                  {new Date(blog.media_date).toLocaleDateString()}
+                </p>
+              </div>
+            ),
           };
         })}
         onSubmit={onSubmit}

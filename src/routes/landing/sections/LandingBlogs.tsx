@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import { Loader } from '../../../shared/components/Loader';
-import useBlogs from '../../../shared/hooks/useBlogs';
+import useBlogs from '../../../shared/hooks/blogHooks';
 import { BlogResponse } from '../../../shared/types/blog.types';
 import cx from 'classnames';
 import { Modal } from '../../../shared/components/modals/Modal';

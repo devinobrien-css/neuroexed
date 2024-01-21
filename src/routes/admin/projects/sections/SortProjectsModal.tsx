@@ -1,9 +1,9 @@
-import { putData } from '../../../../shared/api/dba';
-import { sort_order } from '../../../../shared/types/object_schema';
 import { Modal } from '../../../../shared/components/modals/Modal';
 import { toast } from 'react-toastify';
 import { DragAndDrogList } from '../../../../shared/components/DragAndDrop/DragAndDrogList';
 import { Project } from '../../../../shared/types/project.types';
+import { useUpdateProjectsOrder } from '../../../../shared/hooks/projectHooks';
+import { Loader } from '../../../../shared/components/Loader';
 
 export const SortProjectsModal = ({
   projects,
@@ -14,32 +14,36 @@ export const SortProjectsModal = ({
   closeModal: () => void;
   refetchProjects: () => void;
 }) => {
-  const onSubmit = async (items: string[]) => {
-    try {
-      await putData(
-        'sort-orders',
-        sort_order(
-          'projects',
-          items.map((i) => ({ S: i })),
-        ),
-      );
+  const { mutate, isLoading } = useUpdateProjectsOrder({
+    onSuccess: () => {
+      refetchProjects();
       closeModal();
-      await refetchProjects();
-      toast.success('Projects have been updated!');
-    } catch (e) {
-      toast.error('Project update failed.');
-    }
+      toast.success('Project order has been updated!');
+    },
+    onError: () => {
+      toast.error('Project order update failed.');
+    },
+  });
+
+  const onSubmit = async (items: string[]) => {
+    mutate({
+      projects: items,
+    });
   };
 
   return (
-    <Modal className="" closeModal={closeModal}>
-      <DragAndDrogList
-        items={(projects ?? []).map((project) => ({
-          label: project!.title,
-          value: project!.title ?? '',
-        }))}
-        onSubmit={onSubmit}
-      />
+    <Modal closeModal={closeModal}>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <DragAndDrogList
+          items={(projects ?? []).map((project) => ({
+            label: project!.title,
+            value: project!.title ?? '',
+          }))}
+          onSubmit={onSubmit}
+        />
+      )}
     </Modal>
   );
 };

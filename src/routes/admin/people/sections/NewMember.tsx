@@ -10,8 +10,8 @@ const NewPerson = ({
 }: {
   setNewPerson: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const [state, setState] = useState(true);
-  const [hidden, setHidden] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
+
   const { createMember } = useMembers();
 
   const form = useForm<MemberFormInput>({
@@ -23,20 +23,18 @@ const NewPerson = ({
 
   const onSubmit = async (data: MemberFormInput) => {
     createMember(data);
-    setState(false);
-    setHidden(true);
+    setIsOpen(false);
+    setNewPerson(false);
   };
 
   const imagePreview = watch('image');
 
-  return hidden ? (
-    <></>
-  ) : (
+  return (
     <FormProvider {...form}>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={'border-b-2 bg-white transition-all'}
-        id={'new-blog'}
+        id={'new-member'}
       >
         <div className="flex flex-row justify-between p-4">
           <div className="flex">
@@ -61,14 +59,13 @@ const NewPerson = ({
           <div className="">
             <Button
               color="blue"
-              title={state ? 'cancel' : 'edit'}
+              title={isOpen ? 'cancel' : 'edit'}
               type="button"
               onClick={() => {
-                state ? setState(false) : setState(true);
-                setNewPerson(false);
+                isOpen ? setIsOpen(false) : setIsOpen(true);
               }}
             />
-            {state ? (
+            {isOpen ? (
               <>
                 <Button color="yellow" type="submit" title="confirm" />
               </>
@@ -77,7 +74,7 @@ const NewPerson = ({
             )}
           </div>
         </div>
-        <MemberForm isOpen={state} />
+        <MemberForm isOpen={isOpen} />
       </form>
     </FormProvider>
   );

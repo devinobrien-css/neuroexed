@@ -3,7 +3,7 @@ import { BlogForm } from './BlogForm';
 import { BlogFormInput } from '../../../../shared/types/blog.types';
 import { Button } from '../../../../shared/components/form/Button';
 import { useForm } from 'react-hook-form';
-import useBlogs from '../../../../shared/hooks/useBlogs';
+import useBlogs from '../../../../shared/hooks/blogHooks';
 
 export const NewBlog = () => {
   const [state, setState] = useState(true);

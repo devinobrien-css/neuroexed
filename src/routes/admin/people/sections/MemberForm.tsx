@@ -18,7 +18,7 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
       })}
     >
       <div className="flex flex-wrap">
-        <div className="flex w-full flex-col gap-y-4 p-4 md:w-1/2">
+        <div className="flex w-full flex-col gap-y-4 p-4 md:w-4/12">
           <div className="rounded-lg border bg-white p-2 shadow hover:shadow-lg">
             <p className="font-lato text-2xl font-normal">
               Personal Information
@@ -68,9 +68,9 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
           </div>
         </div>
 
-        <div className="flex w-full flex-col gap-y-4 p-4 md:w-1/2">
+        <div className="flex w-full flex-col gap-y-4 p-4 md:w-8/12">
           <div className="flex flex-wrap justify-between gap-4 md:flex-nowrap">
-            <div className="w-full md:w-1/3">
+            <div className="w-full rounded-lg shadow hover:shadow-lg md:w-1/3">
               <Controller
                 name={'Year Joined'}
                 control={control}
@@ -101,9 +101,11 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
                   accept="image/png"
                   {...register('image')}
                 />
-                <p className="my-auto cursor-pointer text-center font-lato text-xl font-light text-blue-500 underline">
-                  Upload New Profile Picture
-                </p>
+                <div className="my-auto flex cursor-pointer text-center font-lato text-xl font-light text-blue-500 underline">
+                  <span className="m-auto md:mt-3">
+                    Upload New Profile Picture
+                  </span>
+                </div>
               </label>
             </div>
           </div>

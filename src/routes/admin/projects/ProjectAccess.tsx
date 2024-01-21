@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import { Button } from '../../../shared/components/form/Button';
-import useProjects from '../../../shared/hooks/useProjects';
+import { useProjectsQuery } from '../../../shared/hooks/projectHooks';
 import { EditableProject } from './sections/EditableProject';
 import { Project } from '../../../shared/types/project.types';
 import { SortProjectsModal } from './sections/SortProjectsModal';
 import { NewProject } from './sections/NewProject';
+import { Loader } from '../../../shared/components/Loader';
 
 const ProjectAccess = () => {
+  const [search, setSearch] = useState('');
   const [editOrder, setEditOrder] = useState(false);
   const [newProject, setNewProject] = useState(false);
-  const [search, setSearch] = useState('');
 
-  const { projects, refetchProjects } = useProjects();
+  const { data: projects, isLoading, error, refetch } = useProjectsQuery();
 
   return (
     <>
@@ -19,7 +20,7 @@ const ProjectAccess = () => {
         <SortProjectsModal
           closeModal={() => setEditOrder(false)}
           projects={projects}
-          refetchProjects={refetchProjects}
+          refetchProjects={refetch}
         />
       )}
       <div className="">
@@ -47,8 +48,14 @@ const ProjectAccess = () => {
             />
           </div>
         </div>
-        <div className="mx-auto flex flex-col divide-y p-4 md:max-w-screen-2xl">
-          {newProject && <NewProject />}
+        <div className="mx-auto flex flex-col divide-y p-8 md:max-w-screen-xl">
+          {isLoading && <Loader />}
+          {error && (
+            <p className="my-12 text-center italic text-red-500">
+              An error occurred. Please refresh and try again
+            </p>
+          )}
+          {newProject && <NewProject setNewProject={setNewProject} />}
           {projects?.map((project: Project) => (
             <EditableProject key={project.title} project={project} />
           ))}
