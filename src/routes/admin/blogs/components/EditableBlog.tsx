@@ -5,7 +5,7 @@ import {
   useDeleteBlog,
   useUpdateBlog,
 } from '../../../../shared/hooks/blogHooks';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import {
   BlogFormInput,
   BlogResponse,
@@ -43,7 +43,7 @@ export const EditableBlog = ({ blog }: { blog: BlogResponse }) => {
     },
   });
 
-  const { register, handleSubmit, reset } = useForm<BlogFormInput>({
+  const form = useForm<BlogFormInput>({
     defaultValues: {
       id: blog.id,
       title: blog.media_title,
@@ -54,6 +54,7 @@ export const EditableBlog = ({ blog }: { blog: BlogResponse }) => {
       order: blog.order,
     },
   });
+  const { handleSubmit, reset } = form;
 
   const onSubmit = (blog: BlogFormInput) => {
     updateBlog({
@@ -63,70 +64,76 @@ export const EditableBlog = ({ blog }: { blog: BlogResponse }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex justify-between px-2 py-4">
-          <div className="flex gap-x-2">
-            {blog.media_type === 'BLOG' ? (
-              <div className="my-auto border-r px-2">
-                <Icon
-                  icon="mdi:newspaper-variant-multiple-outline"
-                  className="my-auto h-8 w-8"
-                />
-                <p className="m-0 p-0 text-center font-lato font-light">blog</p>
-              </div>
-            ) : (
-              <div className="my-auto border-r px-2">
-                <Icon
-                  icon="ic:round-video-library"
-                  className="my-auto h-8 w-8"
-                />
-                <p className="m-0 p-0 text-center font-lato font-light">cast</p>
-              </div>
-            )}
+      <FormProvider {...form}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex justify-between px-2 py-4">
+            <div className="flex gap-x-2">
+              {blog.media_type === 'BLOG' ? (
+                <div className="my-auto border-r px-2">
+                  <Icon
+                    icon="mdi:newspaper-variant-multiple-outline"
+                    className="my-auto h-8 w-8"
+                  />
+                  <p className="m-0 p-0 text-center font-lato font-light">
+                    blog
+                  </p>
+                </div>
+              ) : (
+                <div className="my-auto border-r px-2">
+                  <Icon
+                    icon="ic:round-video-library"
+                    className="my-auto h-8 w-8"
+                  />
+                  <p className="m-0 p-0 text-center font-lato font-light">
+                    cast
+                  </p>
+                </div>
+              )}
 
-            <div>
-              <p className="my-auto font-light md:text-2xl">
-                {blog.media_title}
-              </p>
-              <p className="my-auto font-light italic text-gray-400 md:text-lg">
-                {new Date(blog.media_date).toDateString()}
-              </p>
+              <div>
+                <p className="my-auto font-light md:text-2xl">
+                  {blog.media_title}
+                </p>
+                <p className="my-auto font-light italic text-gray-400 md:text-lg">
+                  {new Date(blog.media_date).toDateString()}
+                </p>
+              </div>
+            </div>
+            <div className="flex justify-end gap-x-4">
+              <Button
+                color="gray"
+                type="button"
+                onClick={() => {
+                  if (open) {
+                    reset({
+                      id: blog.id,
+                      title: blog.media_title,
+                      date: blog.media_date,
+                      content: blog.media_content,
+                      source: blog.media_source,
+                      type: blog.media_type,
+                      order: blog.order,
+                    });
+                    toast.warn('Changes have been discarded.', {
+                      autoClose: 1000,
+                    });
+                  }
+                  setOpen(!open);
+                }}
+                title={open ? 'cancel' : 'edit'}
+              />
+              {open && <Button color="blue" type="submit" title="confirm" />}
+              <Button
+                color="red"
+                title="delete"
+                type="button"
+                onClick={() => setConfirmDelete(true)}
+              />
             </div>
           </div>
-          <div className="flex justify-end gap-x-4">
-            <Button
-              color="gray"
-              type="button"
-              onClick={() => {
-                if (open) {
-                  reset({
-                    id: blog.id,
-                    title: blog.media_title,
-                    date: blog.media_date,
-                    content: blog.media_content,
-                    source: blog.media_source,
-                    type: blog.media_type,
-                    order: blog.order,
-                  });
-                  toast.warn('Changes have been discarded.', {
-                    autoClose: 1000,
-                  });
-                }
-                setOpen(!open);
-              }}
-              title={open ? 'cancel' : 'edit'}
-            />
-            {open && <Button color="blue" type="submit" title="confirm" />}
-            <Button
-              color="red"
-              title="delete"
-              type="button"
-              onClick={() => setConfirmDelete(true)}
-            />
-          </div>
-        </div>
-        <BlogForm register={register} state={open} />
-      </form>
+          <BlogForm isOpen={open} />
+        </form>
+      </FormProvider>
       {confirmDelete && (
         <ConfirmationModal
           title={'Delete Blog'}

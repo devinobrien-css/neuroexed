@@ -50,7 +50,7 @@ export const Select = <T extends FieldValues>({
         'cursor-pointer justify-between rounded-lg border bg-white p-2 shadow hover:shadow-lg',
       )}
     >
-      <span className="block w-full border-b font-lato text-xl text-gray-800">
+      <span className="block w-full border-b font-lato text-xl capitalize text-gray-800">
         {name}
       </span>
       <select

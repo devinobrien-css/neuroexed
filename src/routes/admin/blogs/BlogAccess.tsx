@@ -22,7 +22,7 @@ const BlogAccess = () => {
         />
       )}
       <div>
-        <div className="flex flex-col justify-between gap-y-4 py-8 md:flex-row">
+        <div className="sticky top-0 flex flex-col justify-between gap-y-4 bg-gray-50 py-8 shadow md:flex-row">
           <input
             id="search"
             name="search"
@@ -49,7 +49,7 @@ const BlogAccess = () => {
           </div>
         </div>
         <div className="divide-y md:px-24">
-          {newBlog ? <NewBlog /> : <></>}
+          {newBlog && <NewBlog setNewBlog={setNewBlog} />}
           {blogs
             ?.filter(
               (blog) =>
