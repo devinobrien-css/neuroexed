@@ -6,6 +6,7 @@ import {
 import cx from 'classnames';
 import { Modal } from '../../../shared/components/modals/Modal';
 import { Icon } from '@iconify/react';
+import { SafeProfilePicture } from '../../../shared/components/common/SafeProfilePicture';
 
 interface ProfileCardProps {
   member: MemberResponse;
@@ -21,6 +22,13 @@ export const ProfileCard = ({ member, className }: ProfileCardProps) => {
     linkedin: 'line-md:linkedin',
   };
 
+  const userProfilePicture = `${
+    import.meta.env.VITE_S3_PROFILE_PICTURES
+  }${member.last
+    .toLowerCase()
+    // eslint-disable-next-line quotes
+    .replace("'", '')}.png`;
+
   return (
     <>
       {modal && (
@@ -34,13 +42,19 @@ export const ProfileCard = ({ member, className }: ProfileCardProps) => {
             <br />
             <br />
           </div>
-          <img
+          {/* <img
             className="-my-20 mx-auto h-36 w-36 rounded-full object-cover object-center brightness-75"
             src={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${member.last
               .toLowerCase()
               // eslint-disable-next-line quotes
               .replace("'", '')}.png`}
             alt={`Lab Member ${member.first} ${member.last}`}
+          /> */}
+
+          <SafeProfilePicture
+            className="-my-20 mx-auto h-36 w-36 rounded-full object-cover object-center brightness-75"
+            firstName={member.first}
+            image={userProfilePicture}
           />
           <br />
           <br />
@@ -100,14 +114,15 @@ export const ProfileCard = ({ member, className }: ProfileCardProps) => {
         <p className="absolute z-50 bg-oxford-blue/50 p-1 font-lato text-tiffany-blue">
           {member.lab_status}
         </p>
-        <img
+        <SafeProfilePicture
           className="h-64 w-full object-cover object-center brightness-75"
-          src={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${member.last
+          firstName={member.first}
+          image={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${member.last
             .toLowerCase()
             // eslint-disable-next-line quotes
             .replace("'", '')}.png`}
-          alt={`Lab Member ${member.first} ${member.last}`}
         />
+
         <div className="p-1">
           <p className="truncate text-left font-lato text-2xl font-light">
             {member.first} {member.last}

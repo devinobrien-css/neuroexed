@@ -11,7 +11,7 @@ const ProjectIcon = (project: Project) => {
         {project.description}
       </p>
       <p className="mt-4 font-lato text-2xl">Cluster Members</p>
-      <div className="flex overflow-x-scroll">
+      <div className="flex overflow-x-auto">
         {project.members.map((member: ProjectMember) => {
           return <ProjectProfile key={member.id} member={member} />;
         })}

@@ -2,6 +2,7 @@ export interface Affiliate {
   name: string;
   slug: string;
   source: string;
+  image?: string;
 }
 
 export const affiliation = ({ name, source, slug }: Affiliate) => {

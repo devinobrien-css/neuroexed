@@ -6,7 +6,7 @@ import News from './routes/news/News.page';
 import Books from './routes/books/Books.page';
 import Affiliations from './routes/affiliations/Affiliations.page';
 import Podcasts from './routes/podcasts/Podcasts.page';
-import PeopleAccess from './routes/admin/people/PeopleAccess';
+import PeopleAccess from './routes/admin/people/MemberAccess';
 import Admin from './routes/admin/Admin';
 import BlogAccess from './routes/admin/blogs/BlogAccess';
 import NewsAccess from './routes/admin/news/NewsAccess';
@@ -35,22 +35,10 @@ export const tabs = [
     icon: 'fluent:brain-circuit-24-regular',
   },
   {
-    name: 'news',
-    protected: false,
-    pathname: '/news',
-    icon: 'fluent:news-24-regular',
-  },
-  {
     name: 'books',
     protected: false,
     pathname: '/books',
     icon: 'ph:books',
-  },
-  {
-    name: 'affiliations',
-    protected: false,
-    pathname: '/affiliations',
-    icon: 'carbon:network-4',
   },
   {
     name: 'blogs',
@@ -63,6 +51,18 @@ export const tabs = [
     protected: false,
     pathname: '/podcasts',
     icon: 'ic:twotone-mic',
+  },
+  {
+    name: 'news',
+    protected: false,
+    pathname: '/news',
+    icon: 'fluent:news-24-regular',
+  },
+  {
+    name: 'affiliations',
+    protected: false,
+    pathname: '/affiliations',
+    icon: 'carbon:network-4',
   },
   {
     name: 'admin',

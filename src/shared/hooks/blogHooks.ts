@@ -13,7 +13,7 @@ export const useBlogsQuery = createAPIQuery<BlogResponse[]>({
   queryKey: BLOGS_QUERY_KEY,
   queryFn: async () => {
     const res = (await fetchData(BLOGS_TABLE)) as BlogResponse[];
-    return res;
+    return res.sort((a, b) => a.order - b.order);
   },
 });
 

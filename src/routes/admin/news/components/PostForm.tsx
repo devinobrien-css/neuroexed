@@ -13,7 +13,7 @@ export const NewsForm = ({ register, state }: NewsFormProps) => {
     <div
       className={cx('transition-all', {
         'h-[100%] opacity-100': state,
-        'h-0 overflow-hidden opacity-0': state,
+        'h-0 overflow-hidden opacity-0': !state,
       })}
     >
       <div className="flex w-full gap-x-4 p-4">

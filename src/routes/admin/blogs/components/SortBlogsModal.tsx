@@ -3,6 +3,7 @@ import { Modal } from '../../../../shared/components/modals/Modal';
 import { toast } from 'react-toastify';
 import { DragAndDrogList } from '../../../../shared/components/DragAndDrop/DragAndDrogList';
 import { BlogResponse } from '../../../../shared/types/blog.types';
+import { Icon } from '@iconify/react';
 
 export const SortBlogsModal = ({
   blogs,
@@ -36,22 +37,27 @@ export const SortBlogsModal = ({
   return (
     <Modal className="md:w-4/5" closeModal={closeModal}>
       <DragAndDrogList
-        items={(blogs ?? []).map((blog, index) => {
+        items={(blogs ?? []).map((blog) => {
           return {
             label: blog.media_title,
             value: blog.id,
             display: (
               <div className="flex justify-between">
                 <div className="flex gap-x-2">
-                  <p className="my-auto font-lato text-2xl font-light text-blue-500">
-                    {index + 1}
-                  </p>
+                  {blog.media_type === 'BLOG' ? (
+                    <Icon
+                      icon="mdi:file-document-outline"
+                      className="my-auto h-6 w-6"
+                    />
+                  ) : (
+                    <Icon icon="mdi:youtube" className="my-auto h-6 w-6" />
+                  )}
 
-                  <p className="my-auto w-1/2 truncate font-lato text-2xl font-light text-blue-500">
+                  <p className="my-auto w-1/2 truncate font-lato text-2xl font-light">
                     {blog.media_title}
                   </p>
                 </div>
-                <p className="my-auto w-fit font-lato text-2xl font-light text-blue-500">
+                <p className="my-auto w-fit font-lato text-2xl font-light">
                   {new Date(blog.media_date).toLocaleDateString()}
                 </p>
               </div>

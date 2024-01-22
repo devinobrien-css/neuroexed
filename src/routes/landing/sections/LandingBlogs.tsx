@@ -104,9 +104,19 @@ const LandingBlogs = ({ includeTitle = true }: { includeTitle?: boolean }) => {
       className="mx-auto my-4 max-w-screen-lg bg-cover bg-center bg-no-repeat transition-all"
     >
       {includeTitle && (
-        <p className="mb-8 text-center font-raleway text-4xl font-light md:text-6xl">
-          Blog Posts and Podcasts
-        </p>
+        <>
+          <p className="mb-4 text-center font-raleway text-4xl font-light md:text-6xl">
+            Blog Posts and Podcasts
+          </p>
+          <hr className="mx-auto w-1/2" />
+
+          <p className="my-1 text-center font-lato text-xl font-light italic text-gray-500 md:text-xl">
+            Click on a post to read our latest blogs or listen to our latest
+            podcasts.
+          </p>
+          <hr className="mx-auto w-1/2" />
+          <br />
+        </>
       )}
 
       <div className="flex flex-wrap gap-6">

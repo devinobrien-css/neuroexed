@@ -66,7 +66,7 @@ export const EditableBlog = ({ blog }: { blog: BlogResponse }) => {
     <>
       <FormProvider {...form}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex justify-between px-2 py-4">
+          <div className="w-full justify-between pt-4 md:flex">
             <div className="flex gap-x-2">
               {blog.media_type === 'BLOG' ? (
                 <div className="my-auto border-r px-2">
@@ -91,7 +91,7 @@ export const EditableBlog = ({ blog }: { blog: BlogResponse }) => {
               )}
 
               <div>
-                <p className="my-auto font-light md:text-2xl">
+                <p className="my-auto max-w-full font-light md:max-w-xl  md:truncate md:text-xl">
                   {blog.media_title}
                 </p>
                 <p className="my-auto font-light italic text-gray-400 md:text-lg">
@@ -99,6 +99,7 @@ export const EditableBlog = ({ blog }: { blog: BlogResponse }) => {
                 </p>
               </div>
             </div>
+
             <div className="flex justify-end gap-x-4">
               <Button
                 color="gray"
@@ -114,7 +115,7 @@ export const EditableBlog = ({ blog }: { blog: BlogResponse }) => {
                       type: blog.media_type,
                       order: blog.order,
                     });
-                    toast.warn('Changes have been discarded.', {
+                    toast.warn('Unsaved changes have been discarded.', {
                       autoClose: 1000,
                     });
                   }
@@ -131,6 +132,7 @@ export const EditableBlog = ({ blog }: { blog: BlogResponse }) => {
               />
             </div>
           </div>
+          <br />
           <BlogForm isOpen={open} />
         </form>
       </FormProvider>

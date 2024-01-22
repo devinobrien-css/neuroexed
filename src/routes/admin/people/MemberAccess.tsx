@@ -1,16 +1,22 @@
 import { useState } from 'react';
-import { EditablePerson } from './sections/EditableMember';
-import useMembers from '../../../shared/hooks/useMembers';
+import { EditableMember } from './sections/EditableMember';
+import { useMembersQuery } from '../../../shared/hooks/memberHooks';
 import { SortMembersModal } from './sections/SortMembersModal';
-import NewPerson from './sections/NewMember';
+import { NewMember } from './sections/NewMember';
 import { MemberResponse } from '../../../shared/types/member.types';
 import { Button } from '../../../shared/components/form/Button';
+import { Loader } from '../../../shared/components/Loader';
 
-const PeopleAccess = () => {
+const MemberAccess = () => {
+  const [search, setSearch] = useState('');
   const [editOrder, setEditOrder] = useState(false);
   const [newPerson, setNewPerson] = useState(false);
-  const [search, setSearch] = useState('');
-  const { members, refetchMembers } = useMembers();
+
+  const {
+    data: members,
+    refetch: refetchMembers,
+    isLoading,
+  } = useMembersQuery();
 
   return (
     <>
@@ -22,7 +28,7 @@ const PeopleAccess = () => {
         />
       )}
       <div className="">
-        <div className="sticky top-0 flex flex-col justify-between gap-y-4 bg-gray-50 py-8 shadow md:flex-row">
+        <div className="sticky top-0 z-100 flex flex-col justify-between gap-y-4 bg-gray-50 py-8 shadow md:flex-row">
           <input
             id="search"
             name="search"
@@ -46,8 +52,9 @@ const PeopleAccess = () => {
             />
           </div>
         </div>
-        <div className="mx-auto divide-y divide-gray-200 shadow  md:max-w-screen-xl">
-          {newPerson ? <NewPerson setNewPerson={setNewPerson} /> : <></>}
+        <div className="mx-auto divide-y divide-gray-200  md:max-w-screen-xl">
+          {isLoading && <Loader />}
+          {newPerson && <NewMember setNewPerson={setNewPerson} />}
           {members
             ?.filter(
               (member: MemberResponse) =>
@@ -55,7 +62,7 @@ const PeopleAccess = () => {
                 member?.last?.toLowerCase().includes(search.toLowerCase()),
             )
             .map((member: MemberResponse, index: number) => {
-              return <EditablePerson key={index} data={member} />;
+              return <EditableMember key={index} data={member} />;
             })}
         </div>
       </div>
@@ -63,4 +70,4 @@ const PeopleAccess = () => {
   );
 };
 
-export default PeopleAccess;
+export default MemberAccess;

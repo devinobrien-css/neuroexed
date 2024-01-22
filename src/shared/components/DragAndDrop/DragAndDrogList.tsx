@@ -67,6 +67,9 @@ export const DragAndDrogList = ({ items, onSubmit }: DragAndDrogListProps) => {
   return (
     <div className="item-center flex flex-col">
       <p className="p-2 text-5xl font-light">Drag and Drop</p>
+      <p className="p-2 text-2xl font-light">
+        Drag and drop the items to reorder them.
+      </p>
       <div className="space-y-2 p-8">
         {cards.map((card, i) => renderCard(card, i))}
       </div>

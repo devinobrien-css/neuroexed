@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { ProfileCard } from './ProfileCard.component';
 import { useState } from 'react';
-import useMembers from '../../../shared/hooks/useMembers';
+import { useMembersQuery } from '../../../shared/hooks/memberHooks';
 import { MemberResponse } from '../../../shared/types/member.types';
 import { Loader } from '../../../shared/components/Loader';
 
@@ -10,7 +10,8 @@ import { Loader } from '../../../shared/components/Loader';
  */
 const MembersSection = () => {
   const [search, setSearch] = useState('');
-  const { members } = useMembers();
+
+  const { data: members, isLoading } = useMembersQuery();
 
   return (
     <div className="mx-auto my-32 max-w-screen-xl p-4">
@@ -37,12 +38,8 @@ const MembersSection = () => {
           />
         </div>
       </div>
-      {!members && (
-        <div className="flex min-h-[400px] flex-col items-center">
-          <Loader />
-        </div>
-      )}
       <div className="mx-auto flex max-w-screen-md flex-wrap gap-3 py-6">
+        {isLoading && <Loader />}
         {members
           ?.filter(
             (member: MemberResponse) =>

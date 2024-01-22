@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import useMembers from '../../../../shared/hooks/useMembers';
+import useMembers from '../../../../shared/hooks/memberHooks';
 import {
   MemberFormInput,
   MemberResponse,
@@ -8,9 +8,11 @@ import {
 import { MemberForm } from './MemberForm';
 import { Button } from '../../../../shared/components/form/Button';
 import { ConfirmationModal } from '../../../../shared/components/modals/ConfirmationModal';
+import { SafeProfilePicture } from '../../../../shared/components/common/SafeProfilePicture';
+import { toast } from 'react-toastify';
 
-export const EditablePerson = ({ data }: { data: MemberResponse }) => {
-  const [state, setState] = useState<boolean>(false);
+export const EditableMember = ({ data }: { data: MemberResponse }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
 
   const { deleteMember, updateMember } = useMembers();
@@ -45,12 +47,16 @@ export const EditablePerson = ({ data }: { data: MemberResponse }) => {
 
   const onSubmit = (data: MemberFormInput) => {
     updateMember(data);
-    setState(false);
+    setIsOpen(false);
   };
 
   const imagePreview = watch('image');
   // eslint-disable-next-line quotes
   const img = data.last.replace("'", '').toLowerCase();
+
+  const userProfilePicture = imagePreview?.length
+    ? URL.createObjectURL(imagePreview?.[0])
+    : `${import.meta.env.VITE_S3_PROFILE_PICTURES}${img}.png`;
 
   return (
     <>
@@ -60,9 +66,9 @@ export const EditablePerson = ({ data }: { data: MemberResponse }) => {
           message={`Are you sure you want to delete ${data.first} ${data.last}?`}
           closeModal={() => setConfirmDelete(false)}
           confirm={() => {
-            deleteMember(data?.socials.email);
+            deleteMember(data.socials.email);
             setConfirmDelete(false);
-            setState(false);
+            setIsOpen(false);
           }}
           confirmText={'Delete'}
           cancelText={'Cancel'}
@@ -76,19 +82,23 @@ export const EditablePerson = ({ data }: { data: MemberResponse }) => {
           <div className="flex flex-col justify-between gap-y-4 md:flex-row">
             <div className="flex">
               <div className="my-auto w-16">
-                <img
+                <SafeProfilePicture
                   className="h-16 w-16 rounded-lg object-cover object-top shadow"
-                  alt="uploaded file"
-                  src={
-                    imagePreview?.length
-                      ? URL.createObjectURL(imagePreview?.[0])
-                      : `https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/${img}.png`
+                  firstName={data.first}
+                  image={
+                    userProfilePicture ??
+                    `https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/${img}.png`
                   }
                 />
               </div>
               <div className="my-auto ml-2">
                 <p className="font-light md:text-2xl">
                   {data.first} {data.last}
+                  {' | '}
+                  <span className=" text-gray-400">
+                    {data.lab_status}
+                    {data.collegiate_title && ', ' + data.collegiate_title}
+                  </span>
                 </p>
                 <p className="font-light text-blue-400 underline md:text-2xl">
                   {data.socials.email}
@@ -99,25 +109,43 @@ export const EditablePerson = ({ data }: { data: MemberResponse }) => {
               <Button
                 color="gray"
                 type="button"
-                title={state ? 'cancel' : 'edit'}
-                onClick={() => (state ? setState(false) : setState(true))}
+                title={isOpen ? 'cancel' : 'edit'}
+                onClick={() => {
+                  if (isOpen) {
+                    form.reset({
+                      'First Name': data.first,
+                      'Last Name': data.last,
+                      'Collegiate Title': data.collegiate_title,
+                      'Lab Title': data.lab_title,
+                      'Lab Status': data.lab_status ?? 'Member',
+                      'Year Joined': getYearJoined(),
+                      Description: data.description,
+                      Email: data.socials.email,
+                      Twitter: data.socials.twitter,
+                      Instagram: data.socials.instagram,
+                      Linkedin: data.socials.linkedin,
+                      image: undefined,
+                      order: data.order,
+                    });
+                    toast.warn('Unsaved changes have been discarded.', {
+                      autoClose: 1000,
+                    });
+                  }
+                  setIsOpen(!isOpen);
+                }}
               />
-              {state && (
-                <>
-                  <Button color="blue" title="confirm" type="submit" />
-                  <Button
-                    color="red"
-                    title="delete"
-                    type="button"
-                    onClick={() => {
-                      setConfirmDelete(true);
-                    }}
-                  />
-                </>
-              )}
+              {isOpen && <Button color="blue" title="confirm" type="submit" />}
+              <Button
+                color="red"
+                title="delete"
+                type="button"
+                onClick={() => {
+                  setConfirmDelete(true);
+                }}
+              />
             </div>
           </div>
-          <MemberForm isOpen={state} />
+          <MemberForm isOpen={isOpen} />
         </form>
       </FormProvider>
     </>

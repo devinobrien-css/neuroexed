@@ -16,7 +16,7 @@ export const useProjectsQuery = createAPIQuery<Project[]>({
   queryKey: PROJECTS_QUERY_KEY,
   queryFn: async () => {
     const res = (await fetchData(PROJECTS_TABLE)) as Project[];
-    return res;
+    return res.sort((a, b) => a.order - b.order);
   },
 });
 

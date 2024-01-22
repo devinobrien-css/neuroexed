@@ -1,9 +1,10 @@
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { Project } from '../../../../shared/types/project.types';
 import cx from 'classnames';
-import useMembers from '../../../../shared/hooks/useMembers';
+import { useMembersQuery } from '../../../../shared/hooks/memberHooks';
 import { useState } from 'react';
 import { Button } from '../../../../shared/components/form/Button';
+import { SafeProfilePicture } from '../../../../shared/components/common/SafeProfilePicture';
 
 export const ProjectForm = ({ isOpen }: { isOpen: boolean }) => {
   const { register, control } = useFormContext<Project>();
@@ -16,9 +17,10 @@ export const ProjectForm = ({ isOpen }: { isOpen: boolean }) => {
     },
   });
 
-  const { members } = useMembers();
+  const { data: members } = useMembersQuery();
 
   const [addMember, setAddMember] = useState(false);
+  const [search, setSearch] = useState('');
 
   return (
     <div
@@ -27,8 +29,8 @@ export const ProjectForm = ({ isOpen }: { isOpen: boolean }) => {
         'h-0 overflow-hidden opacity-0': !isOpen,
       })}
     >
-      <div className="flex justify-between gap-4 py-4">
-        <div className="w-1/2 rounded-lg border bg-white p-2 shadow hover:shadow-lg">
+      <div className="flex flex-col justify-between gap-4 py-4 md:flex-row">
+        <div className="rounded-lg border bg-white p-2 shadow hover:shadow-lg md:w-1/2">
           <p className="font-lato text-2xl font-normal">Details</p>
           <div className="flex flex-col gap-y-2">
             <hr />
@@ -53,45 +55,80 @@ export const ProjectForm = ({ isOpen }: { isOpen: boolean }) => {
           </div>
         </div>
 
-        <div className=" w-1/2 rounded-lg border bg-white p-2 shadow hover:shadow-lg">
-          <div className="relative flex justify-between">
-            <p className="font-lato text-2xl font-normal">Members Included</p>
+        <div className=" h-fit rounded-lg border bg-white p-2 shadow hover:shadow-lg md:w-1/2">
+          <div className="relative">
+            <div className="flex justify-between">
+              <p className="font-lato text-2xl font-normal">Members Included</p>
 
-            <button
-              type="button"
-              className="text-blue-500"
-              onClick={() => setAddMember(true)}
-            >
-              + Add Member
-            </button>
+              <button
+                type="button"
+                className="italic text-blue-500 underline"
+                onClick={() => setAddMember(true)}
+              >
+                + Add Member
+              </button>
+            </div>
 
             {addMember && (
-              <div className="absolute right-0 top-full z-[100] max-h-[280px] min-w-[320px] overflow-scroll bg-white shadow">
-                <button
-                  type="button"
-                  className="sticky top-0 w-full bg-white px-2 text-right underline"
-                  onClick={() => setAddMember(false)}
-                >
-                  close
-                </button>
+              <div className="absolute right-0 top-0 z-[100] max-h-[380px] min-w-[320px] overflow-y-auto rounded border bg-white shadow-lg">
+                <div className="sticky top-0 bg-white p-2">
+                  <div className="flex justify-between">
+                    <p className="my-auto font-lato text-2xl font-normal">
+                      Add Members
+                    </p>
+                    <button
+                      type="button"
+                      className=" my-auto  bg-white text-right italic underline"
+                      onClick={() => setAddMember(false)}
+                    >
+                      close
+                    </button>
+                  </div>
+                  <p className="font-lato text-lg font-light">
+                    Select a member to add to this project.
+                  </p>
+
+                  <div className="flex flex-col gap-y-2 py-2">
+                    <label>
+                      <p className="font-lato  text-lg font-light">Search</p>
+                      <input
+                        placeholder="Search for a member..."
+                        value={search}
+                        onChange={(event) => setSearch(event.target.value)}
+                        className="w-full bg-transparent outline-none placeholder:font-light placeholder:text-gray-400 "
+                      />
+                    </label>
+                  </div>
+                </div>
+
                 <div className="flex flex-col divide-y">
                   {members
                     ?.filter((m) => !fields.find((sm) => m.last === sm.last))
+                    ?.filter(
+                      (member) =>
+                        member?.first
+                          ?.toLowerCase()
+                          .includes(search.toLowerCase()) ||
+                        member?.last
+                          ?.toLowerCase()
+                          .includes(search.toLowerCase()),
+                    )
                     .map((member) => {
+                      const memberProfilePicture = `${
+                        import.meta.env.VITE_S3_PROFILE_PICTURES
+                      }${member.last
+                        .toLowerCase()
+                        // eslint-disable-next-line quotes
+                        .replace("'", '')}.png`;
                       return (
                         <div
                           key={member.last}
                           className="no-wrap space-between flex cursor-pointer p-2"
                         >
                           <div className="no-wrap flex w-full">
-                            <img
-                              src={`${
-                                import.meta.env.VITE_S3_PROFILE_PICTURES
-                              }${member.last
-                                .toLowerCase()
-                                // eslint-disable-next-line quotes
-                                .replace("'", '')}.png`}
-                              alt={'photo of ' + member.last}
+                            <SafeProfilePicture
+                              image={memberProfilePicture}
+                              firstName={member.first}
                               className="block h-12 w-12 rounded object-cover"
                             />
                             <p className="my-auto pl-1 text-xl font-light">
@@ -128,38 +165,41 @@ export const ProjectForm = ({ isOpen }: { isOpen: boolean }) => {
                 No members have been added yet.
               </p>
             )}
-            {fields.map((field, index) => (
-              <div key={field.id} className="flex justify-between">
-                <div className="no-wrap flex w-full">
-                  <img
-                    src={`${
-                      import.meta.env.VITE_S3_PROFILE_PICTURES
-                    }${field.last
-                      .toLowerCase()
-                      // eslint-disable-next-line quotes
-                      .replace("'", '')}.png`}
-                    alt={'photo of ' + field.last}
-                    className="block h-12 w-12 rounded object-cover"
-                  />
-                  <p className="my-auto flex flex-col pl-1 text-xl font-light">
-                    <span className="m-0 p-0">
-                      {field.first} {field.last}
-                    </span>
-                    <span className="text-sm text-gray-400">
-                      ({field.email})
-                    </span>
-                  </p>
-                </div>
+            {fields.map((field, index) => {
+              const memberProfilePicture = `${
+                import.meta.env.VITE_S3_PROFILE_PICTURES
+              }${field.last
+                .toLowerCase()
+                // eslint-disable-next-line quotes
+                .replace("'", '')}.png`;
+              return (
+                <div key={field.id} className="flex justify-between">
+                  <div className="no-wrap flex w-full">
+                    <SafeProfilePicture
+                      image={memberProfilePicture}
+                      firstName={field.first}
+                      className="block h-12 w-12 rounded object-cover"
+                    />
+                    <p className="my-auto flex flex-col pl-1 text-xl font-light">
+                      <span className="m-0 p-0">
+                        {field.first} {field.last}
+                      </span>
+                      <span className="text-sm text-gray-400">
+                        ({field.email})
+                      </span>
+                    </p>
+                  </div>
 
-                <button
-                  type="button"
-                  onClick={() => remove(index)}
-                  className="pr-4 text-red-500 underline"
-                >
-                  remove
-                </button>
-              </div>
-            ))}
+                  <button
+                    type="button"
+                    onClick={() => remove(index)}
+                    className="pr-4 italic text-red-500 underline"
+                  >
+                    remove
+                  </button>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

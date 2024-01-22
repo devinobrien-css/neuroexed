@@ -1,30 +1,38 @@
 import { useState } from 'react';
-import useMembers from '../../../../shared/hooks/useMembers';
+import { useCreateMember } from '../../../../shared/hooks/memberHooks';
 import { FormProvider, useForm } from 'react-hook-form';
 import { MemberForm } from './MemberForm';
 import { MemberFormInput } from '../../../../shared/types/member.types';
 import { Button } from '../../../../shared/components/form/Button';
+import { toast } from 'react-toastify';
 
-const NewPerson = ({
+export const NewMember = ({
   setNewPerson,
 }: {
   setNewPerson: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [isOpen, setIsOpen] = useState(true);
 
-  const { createMember } = useMembers();
+  const { mutate: createMember } = useCreateMember({
+    onSuccess: () => {
+      toast.success('Member created successfully');
+      setIsOpen(false);
+      setNewPerson(false);
+    },
+    onError: () => {
+      toast.error('Member creation failed');
+    },
+  });
 
   const form = useForm<MemberFormInput>({
     defaultValues: {
       'Year Joined': new Date().toUTCString(),
     },
   });
-  const { watch, handleSubmit } = form;
+  const { watch, handleSubmit, reset } = form;
 
   const onSubmit = async (data: MemberFormInput) => {
     createMember(data);
-    setIsOpen(false);
-    setNewPerson(false);
   };
 
   const imagePreview = watch('image');
@@ -33,19 +41,19 @@ const NewPerson = ({
     <FormProvider {...form}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className={'border-b-2 bg-white transition-all'}
+        className={'border-b-2  transition-all'}
         id={'new-member'}
       >
         <div className="flex flex-row justify-between p-4">
           <div className="flex">
             <div className="w-16">
               <img
-                className="my-auto block"
+                className="my-auto block rounded-lg"
                 alt="uploaded file"
                 src={
                   imagePreview?.length
                     ? URL.createObjectURL(imagePreview?.[0])
-                    : 'https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/profile.png'
+                    : 'https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/male.png'
                 }
               />
             </div>
@@ -58,20 +66,27 @@ const NewPerson = ({
           </div>
           <div className="">
             <Button
-              color="blue"
+              color="gray"
               title={isOpen ? 'cancel' : 'edit'}
               type="button"
               onClick={() => {
-                isOpen ? setIsOpen(false) : setIsOpen(true);
+                if (isOpen) {
+                  reset();
+                  setNewPerson(false);
+                }
+                setIsOpen(!isOpen);
               }}
             />
-            {isOpen ? (
-              <>
-                <Button color="yellow" type="submit" title="confirm" />
-              </>
-            ) : (
-              <></>
-            )}
+            <Button color="blue" type="submit" title="create" />
+            <Button
+              color="red"
+              title="delete"
+              type="button"
+              onClick={() => {
+                reset();
+                setNewPerson(false);
+              }}
+            />
           </div>
         </div>
         <MemberForm isOpen={isOpen} />
@@ -79,5 +94,3 @@ const NewPerson = ({
     </FormProvider>
   );
 };
-
-export default NewPerson;

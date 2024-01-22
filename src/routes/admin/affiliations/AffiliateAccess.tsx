@@ -12,7 +12,7 @@ const AffiliateAccess = () => {
 
   return (
     <div className="bg-white">
-      <div className="flex flex-col justify-between gap-y-4 py-8 md:flex-row">
+      <div className="sticky top-0 flex flex-col justify-between gap-y-4 bg-white py-8 shadow md:flex-row">
         <input
           id="search"
           name="search"
@@ -31,7 +31,7 @@ const AffiliateAccess = () => {
           />
         </div>
       </div>
-      <div className="mx-auto flex flex-col divide-y md:max-w-screen-2xl">
+      <div className="mx-auto flex flex-col divide-y px-2 md:max-w-screen-xl">
         {newAffiliate && <NewAffiliate />}
         {affiliates
           ?.filter(

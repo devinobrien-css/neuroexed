@@ -63,7 +63,7 @@ export function DatePicker({
   return (
     <DropdownButton
       className={cx('p-2', className)}
-      menuClassName="z-55 border bg-white rounded-lg shadow-lg"
+      menuClassName="border bg-white rounded-lg shadow-lg"
       inline={inline}
       showChevron={showChevron}
       label={showDate}

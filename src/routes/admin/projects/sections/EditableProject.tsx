@@ -60,7 +60,7 @@ export const EditableProject = ({ project }: { project: Project }) => {
     <>
       <FormProvider {...form}>
         <form className="py-2" onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex justify-between">
+          <div className="justify-between md:flex">
             <div>
               <p className="font-light md:text-2xl">
                 {project.title ?? (
@@ -110,7 +110,7 @@ export const EditableProject = ({ project }: { project: Project }) => {
                       description: project.description,
                       members: project.members,
                     });
-                    toast.warn('Changes have been discarded.', {
+                    toast.warn('Unsaved changes have been discarded.', {
                       autoClose: 1000,
                     });
                   }

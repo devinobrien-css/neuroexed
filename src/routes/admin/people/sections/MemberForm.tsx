@@ -3,17 +3,22 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { MemberFormInput } from '../../../../shared/types/member.types';
 import { Select } from '../../../../shared/components/form/Input';
 import { DatePicker } from '../../../../shared/components/form/DatePicker';
+import { InputWarning } from '../../../../shared/components/form/InputWarning';
 
 interface MemberFormProps {
   isOpen: boolean;
 }
 export const MemberForm = ({ isOpen }: MemberFormProps) => {
-  const { register, control } = useFormContext<MemberFormInput>();
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = useFormContext<MemberFormInput>();
 
   return (
     <div
       className={cx('transition-all', {
-        'h-[100%] opacity-100': isOpen,
+        'h-[100%] pb-6 opacity-100': isOpen,
         'h-0 overflow-hidden opacity-0': !isOpen,
       })}
     >
@@ -26,32 +31,60 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
             <div className="flex flex-col gap-y-2">
               <hr />
               <label>
-                <p className="font-lato  text-lg font-light">First Name</p>
+                <p className="font-lato  text-lg font-light">
+                  First Name
+                  <InputWarning field="First Name" errors={errors} required />
+                </p>
                 <input
-                  {...register('First Name')}
-                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:text-gray-400 "
+                  {...register('First Name', {
+                    required: 'required',
+                  })}
+                  placeholder="Member First Name..."
+                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400 "
                 />
               </label>
               <label>
-                <p className="font-lato  text-lg font-light">Last Name</p>
+                <p className="font-lato  text-lg font-light">
+                  Last Name
+                  <InputWarning field="Last Name" errors={errors} required />
+                </p>
                 <input
-                  {...register('Last Name')}
-                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:text-gray-400 "
+                  {...register('Last Name', {
+                    required: 'required',
+                  })}
+                  placeholder="Member Last Name..."
+                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400 "
                 />
               </label>
               <label>
-                <p className="font-lato  text-lg font-light">Email</p>
+                <p className="font-lato  text-lg font-light">
+                  Email
+                  <InputWarning field="Email" errors={errors} required />
+                </p>
                 <input
-                  {...register('Email')}
-                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:text-gray-400 "
+                  {...register('Email', {
+                    required: 'required',
+                    pattern: {
+                      value: /\S+@\S+\.\S+/,
+                      message: 'enter a valid email',
+                    },
+                  })}
+                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400  "
+                  placeholder="Member Email..."
                 />
               </label>
               <hr />
               <label>
-                <p className="font-lato  text-lg font-light">Lab Title</p>
+                <p className="font-lato  text-lg font-light">
+                  Lab Title
+                  <InputWarning field="Lab Title" errors={errors} required />
+                </p>
                 <input
-                  {...register('Lab Title')}
-                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:text-gray-400 "
+                  {...register('Lab Title', {
+                    required: true,
+                  })}
+                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400  "
+                  placeholder="N/A"
                 />
               </label>
               <label>
@@ -60,7 +93,7 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
                 </p>
                 <input
                   {...register('Collegiate Title')}
-                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:text-gray-400 "
+                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400  "
                   placeholder="N/A"
                 />
               </label>
@@ -120,26 +153,54 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
 
             <div className="flex flex-col gap-y-2">
               <label>
-                <p className="text-md  font-lato font-light">Twitter</p>
+                <p className="text-md  font-lato font-light">
+                  Twitter
+                  <InputWarning field="Twitter" errors={errors} />
+                </p>
                 <input
-                  {...register('Twitter')}
-                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:text-gray-400 "
+                  {...register('Twitter', {
+                    pattern: {
+                      value: /https:\/\/(?:www\.)?twitter.com\/[A-Za-z0-9_]+/,
+                      message: 'enter a valid twitter url',
+                    },
+                  })}
+                  className="w-full bg-transparent italic text-blue-400 underline outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400"
+                  placeholder="https://twitter.com/username"
                 />
               </label>
 
               <label>
-                <p className="text-md font-lato font-light">Instagram</p>
+                <p className="text-md font-lato font-light">
+                  Instagram
+                  <InputWarning field="Instagram" errors={errors} />
+                </p>
                 <input
-                  {...register('Instagram')}
-                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:text-gray-400"
+                  {...register('Instagram', {
+                    pattern: {
+                      value: /https:\/\/(?:www\.)?instagram.com\/[A-Za-z0-9_]+/,
+                      message: 'enter a valid instagram url',
+                    },
+                  })}
+                  className="w-full bg-transparent italic text-blue-400 underline outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400"
+                  placeholder="https://instagram.com/username"
                 />
               </label>
 
               <label>
-                <p className="text-md font-lato font-light">Linkedin</p>
+                <p className="text-md font-lato font-light">
+                  Linkedin
+                  <InputWarning field="Linkedin" errors={errors} />
+                </p>
                 <input
-                  {...register('Linkedin')}
-                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:text-gray-400"
+                  {...register('Linkedin', {
+                    pattern: {
+                      value:
+                        /https:\/\/(?:www\.)?linkedin.com\/in\/[A-Za-z0-9_]+/,
+                      message: 'enter a valid linkedin url',
+                    },
+                  })}
+                  className="w-full bg-transparent italic text-blue-400 underline outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400"
+                  placeholder="https://linkedin.com/in/username"
                 />
               </label>
             </div>
@@ -151,6 +212,7 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
             rows={8}
             className="w-full border-none p-0 font-light"
             {...register('Description')}
+            placeholder="Description..."
           />
         </label>
       </div>
