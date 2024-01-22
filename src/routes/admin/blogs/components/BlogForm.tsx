@@ -3,12 +3,13 @@ import { BlogFormInput } from '../../../../shared/types/blog.types';
 import { Select } from '../../../../shared/components/form/Input';
 import cx from 'classnames';
 import { DatePicker } from '../../../../shared/components/form/DatePicker';
+import { InputWarning } from '../../../../shared/components/form/InputWarning';
 
 interface BlogFormProps {
   isOpen: boolean;
 }
 export const BlogForm = ({ isOpen }: BlogFormProps) => {
-  const { register, control } = useFormContext<BlogFormInput>();
+  const { register, control, formState:{errors} } = useFormContext<BlogFormInput>();
 
   return (
     <div
@@ -19,25 +20,36 @@ export const BlogForm = ({ isOpen }: BlogFormProps) => {
     >
       <div className="md:w-1/2">
         <div className="rounded-lg border bg-white p-2 shadow hover:shadow-lg">
-          <p className="font-lato text-2xl font-normal">Blog Details</p>
+          <p className="font-lato text-2xl font-normal">Details</p>
 
           <label>
-            <p className="font-lato  text-lg font-light">Title</p>
+            <p className="font-lato  text-lg font-light">
+              Title
+              <InputWarning field='title' errors={errors} required/>
+            </p>
             <textarea
               {...register('title', {
-                required: true,
+                required: 'this field is required',
               })}
-              className="w-full border-none bg-transparent p-0 outline-none placeholder:font-light placeholder:text-gray-400 "
+              className="w-full border-none bg-transparent p-0 outline-none placeholder:font-light placeholder:text-gray-400 placeholder:italic"
+              placeholder='Enter post title here...'
             />
           </label>
 
           <label>
-            <p className="font-lato  text-lg font-light">Source</p>
+            <p className="font-lato text-lg font-light">Source
+              <InputWarning field='source' errors={errors} required/>
+            </p>
             <textarea
               {...register('source', {
-                required: true,
+                required: 'this field is required',
+                pattern: {
+                  value: /https?:\/\/[\w\-_]+(\.[\w\-_]+)+[/#?]?.*$/,
+                  message: 'invalid url',
+                },
               })}
-              className="w-full border-none bg-transparent p-0 italic text-blue-400 underline outline-none placeholder:font-light placeholder:text-gray-400 "
+              className="w-full border-none bg-transparent p-0 italic text-blue-400 underline outline-none placeholder:font-light placeholder:text-gray-400 placeholder:italic"
+              placeholder='Enter url here...'
             />
           </label>
         </div>
@@ -68,14 +80,14 @@ export const BlogForm = ({ isOpen }: BlogFormProps) => {
           />
         </div>
       </div>
-      <div className="h-fit w-1/2 rounded-lg border bg-white">
+      <div className="h-fit w-1/2 rounded-lg border bg-white p-1">
         <label>
-          <p className="p-1 font-lato text-2xl font-normal">Blog Description</p>
+          <p className="p-1 font-lato text-2xl font-normal">Description</p>
           <textarea
             {...register('content')}
             rows={8}
             className="w-full border-none bg-transparent p-2 outline-none placeholder:font-light placeholder:text-gray-400"
-            placeholder="Enter blog content here..."
+            placeholder="Enter a description here..."
           />
         </label>
       </div>

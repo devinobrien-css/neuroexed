@@ -30,7 +30,11 @@ export const NewBlog = ({
     },
   });
 
-  const form = useForm<BlogFormInput>();
+  const form = useForm<BlogFormInput>({
+    defaultValues: {
+      date: new Date().toISOString()
+    }
+  });
   const { handleSubmit, watch, reset } = form;
 
   const onSubmit = (blog: BlogFormInput) => {
@@ -40,7 +44,7 @@ export const NewBlog = ({
   return (
     <FormProvider {...form}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex justify-between px-2 py-4">
+        <div className="flex justify-between px-2 py-8">
           <p className="font-light md:text-2xl">{watch('title')}</p>
           <div className="flex justify-end gap-x-4">
             <Button
