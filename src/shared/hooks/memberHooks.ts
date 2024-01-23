@@ -2,6 +2,7 @@ import {
   fetchData,
   putData,
   removeData,
+  sanitizeFilename,
   updateData,
   uploadFileToBucket,
 } from '../api/dba';
@@ -129,7 +130,7 @@ export const useUpdateMember = createAPIMutation<void, MemberFormInput>({
     });
 
     if (member.image?.length) {
-      // generate random filename
+      const fileName = sanitizeFilename(`${member['Lab Status']} ${member['Last Name'].toLowerCase()} ${member['Last Name'].toLowerCase()}`);
       uploadFileToBucket('profile_pictures', fileName, member.image);
     }
   },

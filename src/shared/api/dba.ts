@@ -32,13 +32,8 @@ export const uploadFileToBucket = async (
 };
 
 export const  sanitizeFilename = (inputStr: string, replacement: string = '_'): string => {
-  // Remove any characters that are not alphanumeric, hyphen, or underscore
   const sanitizedStr = inputStr.replace(/[^\w-]/g, replacement);
-  
-  // Remove leading and trailing spaces
   const trimmedStr = sanitizedStr.trim();
-
-  // Limit the length of the filename (adjust the maxLength as needed)
   const maxLength = 255;
   const finalStr = trimmedStr.slice(0, maxLength);
 
