@@ -77,12 +77,9 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
               <label>
                 <p className="font-lato  text-lg font-light">
                   Lab Title
-                  <InputWarning field="Lab Title" errors={errors} required />
                 </p>
                 <input
-                  {...register('Lab Title', {
-                    required: true,
-                  })}
+                  {...register('Lab Title')}
                   className="w-full bg-transparent outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400  "
                   placeholder="N/A"
                 />
@@ -126,19 +123,18 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
               name="Lab Status"
               options={['Alumni', 'Member']}
             />
-            <div className="w-full cursor-pointer rounded-lg border bg-white p-2 shadow hover:shadow-lg sm:w-2/5 md:w-1/3">
+            <div className="w-full cursor-pointer rounded-lg border bg-white px-2 py-1 shadow hover:shadow-lg sm:w-2/5 md:w-1/3">
               <label className="my-auto">
+                <span className="block w-full border-b font-lato text-xl capitalize text-gray-800">
+                  Upload New Profile Picture
+                </span>
+                <hr/>
                 <input
-                  className="hidden"
+                  className='mt-1'
                   type="file"
                   accept="image/png"
                   {...register('image')}
                 />
-                <div className="my-auto flex cursor-pointer text-center font-lato text-xl font-light text-blue-500 underline">
-                  <span className="m-auto md:mt-3">
-                    Upload New Profile Picture
-                  </span>
-                </div>
               </label>
             </div>
           </div>

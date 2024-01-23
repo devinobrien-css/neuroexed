@@ -8,7 +8,7 @@ import {
 import { MemberFormInput, MemberResponse } from '../types/member.types';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
-import { AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { createAPIMutation, createAPIQuery } from '../api/api';
 
 const MEMBERS_TABLE_NAME = 'people';
@@ -88,6 +88,74 @@ export const useCreateMember = createAPIMutation<void, MemberFormInput>({
     }
   },
 });
+
+/** PATCH member
+ * @param {MemberFormInput} data - MemberFormInput
+ * @returns void
+ * @example
+ * {
+ *  first: 'John',
+ *  last: 'Doe',
+ *  collegiate_title: 'President',
+ *  lab_title: 'Lab Manager',
+ *  lab_status: 'Undergraduate',
+ *  year_joined: '2020',
+ *  slug: 'john-doe',
+ *  description: 'This is a member',
+ *  socials: {
+ *   email: '',
+ *   twitter: '',
+ *   linkedin: '',
+ *   instagram: '',
+ *  }
+ * },
+ * @see src/shared/types/member.types.ts
+ */
+export const useUpdateMember = createAPIMutation<void, MemberFormInput>({
+  mutationFn: async (member) => {
+    await updateData(MEMBERS_TABLE_NAME, {
+      email: member.Email,
+      first: member['First Name'],
+      last: member['Last Name'],
+      collegiate_title: member['Collegiate Title'],
+      lab_title: member['Lab Title'],
+      lab_status: member['Lab Status'],
+      year_joined: member['Year Joined'],
+      description: member.Description,
+      twitter: member.Twitter,
+      linkedin: member.Linkedin,
+      instagram: member.Instagram,
+      order: member.order,
+    });
+
+    if (member.image?.length) {
+      // generate random filename
+      uploadFileToBucket('profile_pictures', fileName, member.image);
+    }
+  },
+});
+
+const uploadMemberImage = async (file: FileList , fileName: string) => {
+  const form = new FormData();
+  form.append(
+    'data',
+    JSON.stringify({
+      name: fileName,
+    }),
+  );
+
+  form.append('file', file[0], fileName);
+  const reader = new FileReader();
+  reader.readAsDataURL(file[0]);
+
+  reader.onload = async () =>
+    await axios
+    .post(import.meta.env.VITE_NEURO_S3_API, {
+      file: file,
+      fileName: fileName,
+      bucket: import.meta.env.VITE_S3_BUCKET,
+    })
+}
 
 /** Custom hook for members
  */

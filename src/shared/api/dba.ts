@@ -1,19 +1,5 @@
 import axios from 'axios';
 
-const putFileToS3 = async (
-  file: string | ArrayBuffer | null,
-  fileName: string,
-  bucket: string,
-) => {
-  return await axios
-    .post(import.meta.env.VITE_NEURO_S3_API, {
-      file: file,
-      fileName: fileName,
-      bucket: bucket,
-    })
-    .then((response) => response.data);
-};
-
 /** Uploads a file to S3
  * @param {string} folder - string
  * @param {string} fileName - string
@@ -35,13 +21,29 @@ export const uploadFileToBucket = async (
   form.append('file', file[0], fileName);
   const reader = new FileReader();
   reader.readAsDataURL(file[0]);
+  
   reader.onload = async () =>
-    await putFileToS3(
-      reader.result,
-      `${folder}/${fileName}`,
-      'neuroexed-bucket',
-    );
+    await axios
+    .post(import.meta.env.VITE_NEURO_S3_API, {
+      file: file,
+      fileName: fileName,
+      bucket: 'neuroexed-bucket',
+    })
 };
+
+export const  sanitizeFilename = (inputStr: string, replacement: string = '_'): string => {
+  // Remove any characters that are not alphanumeric, hyphen, or underscore
+  const sanitizedStr = inputStr.replace(/[^\w-]/g, replacement);
+  
+  // Remove leading and trailing spaces
+  const trimmedStr = sanitizedStr.trim();
+
+  // Limit the length of the filename (adjust the maxLength as needed)
+  const maxLength = 255;
+  const finalStr = trimmedStr.slice(0, maxLength);
+
+  return finalStr;
+}
 
 /** Fetches a row of a table
  * @param {string} tableName - string
