@@ -54,7 +54,7 @@ const Admin = () => {
             <p className="text-center text-3xl font-light text-gray-200">-</p>
             <p className="text-center text-2xl font-light text-gray-200">
               Use the following studio to edit website content
-              (test)
+              (test1)
             </p>
           </div>
           <div className="flex w-full justify-between p-12">
