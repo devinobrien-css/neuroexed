@@ -5,11 +5,6 @@ import { DropDirection } from 'react-overlays/cjs/DropdownContext';
 import cx from 'classnames';
 import { Icon } from '@iconify/react';
 
-export interface SelectOption {
-  label: React.ReactNode;
-  value: string;
-}
-
 interface DropdownToggleProps {
   label: string | JSX.Element;
   disabled?: boolean;

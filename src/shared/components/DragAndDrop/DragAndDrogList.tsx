@@ -3,15 +3,11 @@ import { useCallback, useState } from 'react';
 import { Card } from './Card';
 import { Button } from '../form/Button';
 
-export interface Item {
+interface Item {
   id: number;
   text: string;
   value: string;
   display: JSX.Element;
-}
-
-export interface ContainerState {
-  cards: Item[];
 }
 
 interface ItemsInput {

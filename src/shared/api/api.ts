@@ -9,15 +9,15 @@ import {
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
-export type APIError = AxiosError<{
+type APIError = AxiosError<{
   message: string;
 }>;
 
-export type UseAPIQuery<TQueryFnData = unknown, TError = unknown> = (
+type UseAPIQuery<TQueryFnData = unknown, TError = unknown> = (
   options?: Omit<UseQueryOptions<TQueryFnData, TError>, 'queryKey' | 'queryFn'>,
 ) => UseQueryResult<TQueryFnData, TError>;
 
-export type AdditionalQueryOptions<
+type AdditionalQueryOptions<
   TQueryFnData = unknown,
   TError = unknown,
   TData = TQueryFnData,
@@ -47,30 +47,7 @@ export const createAPIQuery = <TData>(
   return useAPIQuery;
 };
 
-/**
- * A utility to easily define a typed useQuery hook that requires parameters for an API endpoint.
- * @param options function that takes in TParams and returns query options
- * @returns typed useQuery hook and queryKey
- */
-export const createAPIQueryWithParams = <TData, TParams>(
-  getOptions: (params: TParams) => UseQueryOptions<TData, APIError>,
-) => {
-  const useAPIQueryWithParams = (
-    params: TParams,
-    additionalOptions?: AdditionalQueryOptions<TData, APIError>,
-  ) =>
-    useQuery<TData, APIError>({
-      ...getOptions(params),
-      ...additionalOptions,
-    });
-
-  useAPIQueryWithParams.queryKeyFn = (params: TParams) =>
-    getOptions(params).queryKey;
-
-  return useAPIQueryWithParams;
-};
-
-export type AdditionalMutationOptions<
+type AdditionalMutationOptions<
   TData = unknown,
   TError = unknown,
   TVariables = void,
@@ -98,38 +75,6 @@ export const createAPIMutation = <TData, TVariables, TContext = unknown>(
   ) =>
     useMutation<TData, APIError, TVariables, TContext>({
       ...options,
-      ...additionalOptions,
-    });
-
-  return useAPIMutation;
-};
-
-/**
- * A utility to easily define a typed useMutation hook for an API endpoint.
- * @param options function that takes in TParams and returns mutation options
- * @returns typed useMutation hook
- */
-export const createAPIMutationWithParams = <
-  TData,
-  TVariables,
-  TParams,
-  TContext = unknown,
->(
-  getOptions: (
-    params: TParams,
-  ) => UseMutationOptions<TData, APIError, TVariables, TContext>,
-) => {
-  const useAPIMutation = (
-    params: TParams,
-    additionalOptions?: AdditionalMutationOptions<
-      TData,
-      APIError,
-      TVariables,
-      TContext
-    >,
-  ) =>
-    useMutation<TData, APIError, TVariables, TContext>({
-      ...getOptions(params),
       ...additionalOptions,
     });
 

@@ -12,9 +12,3 @@ export interface ProjectMember {
   last: string;
   email: string;
 }
-
-export interface ProjectRequest {
-  title: string;
-  description: string;
-  members: object[];
-}

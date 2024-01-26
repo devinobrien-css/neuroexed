@@ -5,7 +5,7 @@ import { useDrag, useDrop } from 'react-dnd';
 
 import { ItemTypes } from './ItemTypes';
 
-export interface CardProps {
+interface CardProps {
   id: number;
   text: string | JSX.Element;
   index: number;

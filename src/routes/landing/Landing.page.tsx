@@ -1,7 +1,7 @@
 import React from 'react';
 import LandingQuote from './sections/LandingQuote.component.jsx';
 import LandingBlogs from './sections/LandingBlogs.jsx';
-import LandingPublications from './sections/LandingBooks.js';
+import {LandingBooks} from './sections/LandingBooks.js';
 import Footer from '../../shared/components/footer/Footer.js';
 import Header from '../../shared/components/Header.js';
 import LandingRedirect from './sections/LandingRedirect.component.js';
@@ -30,7 +30,7 @@ const Landing = () => {
           />
           <LandingQuote />
           <LandingBlogs />
-          <LandingPublications />
+          <LandingBooks />
           <LandingRedirect />
           <Footer />
         </>

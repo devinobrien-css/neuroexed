@@ -1,4 +1,4 @@
-const LandingPublications = () => {
+export const LandingBooks = () => {
   return (
     <div className="my-32 bg-landing bg-cover bg-no-repeat shadow-2xl shadow-gray-400 backdrop-opacity-10">
       <div className="backdrop-contrast-30 p-16 backdrop-blur-md">
@@ -97,5 +97,3 @@ const LandingPublications = () => {
     </div>
   );
 };
-
-export default LandingPublications;

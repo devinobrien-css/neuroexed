@@ -114,6 +114,13 @@ export const useCreateMember = createAPIMutation<void, MemberFormInput>({
  */
 export const useUpdateMember = createAPIMutation<void, MemberFormInput>({
   mutationFn: async (member) => {
+
+    const isUploadingImage = member.image?.length && member.image[0] instanceof File;
+     const imageMetaData = {
+        fileName: sanitizeFilename(`${new Date().getTime()}-${member['First Name'].toLowerCase()}-${member['Last Name'].toLowerCase()}`),
+        image: member.image,
+      };
+
     await updateData(MEMBERS_TABLE_NAME, {
       email: member.Email,
       first: member['First Name'],
@@ -127,12 +134,8 @@ export const useUpdateMember = createAPIMutation<void, MemberFormInput>({
       linkedin: member.Linkedin,
       instagram: member.Instagram,
       order: member.order,
+      ...(isUploadingImage ? { ...imageMetaData } : {})
     });
-
-    if (member.image?.length) {
-      const fileName = sanitizeFilename(`${member['Lab Status']} ${member['Last Name'].toLowerCase()} ${member['Last Name'].toLowerCase()}`);
-      uploadFileToBucket('profile_pictures', fileName, member.image);
-    }
   },
 });
 
