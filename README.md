@@ -2,19 +2,13 @@
 
 Welcome to the NeuroExed web application! This React and TypeScript-based application is designed to power the neuroscience website for our research lab, NeuroExed. Our mission is to facilitate the exchange of knowledge and discoveries in the field of neuroscience, providing valuable resources to researchers, practitioners, and enthusiasts worldwide.
 
-## Technologies Used
+## Prerequisites and Dependencies
 
-The NeuroExed web application is built using the following technologies:
-
-- React: A JavaScript library for building user interfaces.
-
-- TypeScript: A typed superset of JavaScript that enhances code maintainability and scalability.
-
-- Redux: A state management library for managing application state.
-
-- Tailwind CSS: A utility-first CSS framework that enables rapid UI development with a focus on flexibility and simplicity.
-
-- React Query: A query hook library for APIs, allowing efficient data retrieval and mutation with caching.
+- [Node](https://nodejs.org/en/download)
+- [Vite](https://vitejs.dev/)
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## Getting Started
 
@@ -22,30 +16,30 @@ To run the NeuroExed web application locally, follow these simple steps:
 
 1. **Clone the repository:** Start by cloning this repository to your local machine using the following command:
 
-    ```
-    $ git clone https://github.com/devinobrien/neuroexed.git
-    ```
+   ```
+   $ git clone https://github.com/devinobrien/neuroexed.git
+   ```
 
 2. **Install dependencies:** Navigate to the project directory and install the required dependencies using npm:
 
-    ```
-    $ cd neuroexed
-    $ npm i
-    ```
+   ```
+   $ cd neuroexed
+   $ npm i
+   ```
 
 3. **Install GitHooks:** An abstraction of this has been provided for convenience:
 
-    ```
-    $ npm run prepare
-    ```
+   ```
+   $ npm run prepare
+   ```
 
 4. **Run the application:** Once the dependencies are installed, start the development server with:
 
-    ```
-    $ npm start
-    ```
+   ```
+   $ npm start
+   ```
 
-The application will now be accessible at `http://localhost:3000`.
+The application will now be accessible at `http://localhost:5173`.
 
 ## Directory Structure
 
@@ -61,7 +55,7 @@ The application will now be accessible at `http://localhost:3000`.
 │       ├── hooks       -    images, icons and other assets
 │       └── types       -    type definitions and casting
 ├── .depcheckrc         -    dependency audit config file
-├── .eslintrc.js        -    linting config file 
+├── .eslintrc.js        -    linting config file
 ├── .prettierignore     -    prettier config file
 ├── .prettierrc         -    prettier config file
 ├── redirects.toml      -    maintains routing post-deployment (netlify)
@@ -74,7 +68,13 @@ The application will now be accessible at `http://localhost:3000`.
 
 ### Auto Formatting Code
 
-This application uses `prettier` and `eslint` to maintain the formatting and syntax of the codebase:
+This application uses `prettier` and `eslint` to maintain the formatting and syntax of the codebase. In order to utilize these features without console commands, install `eslint`, `prettier`, and `eslint prettier` extensions on VSCode.
+
+Alternatively, run:
+
+```
+$ npm run lint && npm run prettier
+```
 
 ### Auditing Packages
 
@@ -122,8 +122,4 @@ The NeuroExed web application is open-source and available under the [MIT Licens
 
 ## Contact
 
-For any inquiries or feedback regarding the NeuroExed web application, please reach out to us at:
-
-- Email: devinobrien@icloud.com
-
-Thank you for your interest in NeuroExed, and we hope you find our web application valuable in your journey through neuroscience!
+For any inquiries or feedback regarding the NeuroExed web application, please reach out to us at my [email](mailto:devinobrien@icloud.com). Thank you for your interest in NeuroExed, and we hope you find our web application valuable in your journey through neuroscience!

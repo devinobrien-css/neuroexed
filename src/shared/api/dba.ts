@@ -21,24 +21,26 @@ export const uploadFileToBucket = async (
   form.append('file', file[0], fileName);
   const reader = new FileReader();
   reader.readAsDataURL(file[0]);
-  
+
   reader.onload = async () =>
-    await axios
-    .post(import.meta.env.VITE_NEURO_S3_API, {
+    await axios.post(import.meta.env.VITE_NEURO_S3_API, {
       file: file,
       fileName: fileName,
       bucket: 'neuroexed-bucket',
-    })
+    });
 };
 
-export const  sanitizeFilename = (inputStr: string, replacement: string = '_'): string => {
+export const sanitizeFilename = (
+  inputStr: string,
+  replacement: string = '_',
+): string => {
   const sanitizedStr = inputStr.replace(/[^\w-]/g, replacement);
   const trimmedStr = sanitizedStr.trim();
   const maxLength = 255;
   const finalStr = trimmedStr.slice(0, maxLength);
 
   return finalStr;
-}
+};
 
 /** Fetches a row of a table
  * @param {string} tableName - string

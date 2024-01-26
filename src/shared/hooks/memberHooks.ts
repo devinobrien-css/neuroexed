@@ -114,12 +114,17 @@ export const useCreateMember = createAPIMutation<void, MemberFormInput>({
  */
 export const useUpdateMember = createAPIMutation<void, MemberFormInput>({
   mutationFn: async (member) => {
+    const isUploadingImage =
+      member.image?.length && member.image[0] instanceof File;
 
-    const isUploadingImage = member.image?.length && member.image[0] instanceof File;
-     const imageMetaData = {
-        fileName: sanitizeFilename(`${new Date().getTime()}-${member['First Name'].toLowerCase()}-${member['Last Name'].toLowerCase()}`),
-        image: member.image,
-      };
+    const imageMetaData = {
+      fileName: sanitizeFilename(
+        `${new Date().getTime()}-${member['First Name'].toLowerCase()}-${member[
+          'Last Name'
+        ].toLowerCase()}`,
+      ),
+      image: member.image,
+    };
 
     await updateData(MEMBERS_TABLE_NAME, {
       email: member.Email,
@@ -134,12 +139,13 @@ export const useUpdateMember = createAPIMutation<void, MemberFormInput>({
       linkedin: member.Linkedin,
       instagram: member.Instagram,
       order: member.order,
-      ...(isUploadingImage ? { ...imageMetaData } : {})
+      ...(isUploadingImage ? { ...imageMetaData } : {}),
     });
   },
 });
 
-const uploadMemberImage = async (file: FileList , fileName: string) => {
+// TODO: Move to api/utils.ts
+export const uploadMemberImage = async (file: FileList, fileName: string) => {
   const form = new FormData();
   form.append(
     'data',
@@ -153,13 +159,12 @@ const uploadMemberImage = async (file: FileList , fileName: string) => {
   reader.readAsDataURL(file[0]);
 
   reader.onload = async () =>
-    await axios
-    .post(import.meta.env.VITE_NEURO_S3_API, {
+    await axios.post(import.meta.env.VITE_NEURO_S3_API, {
       file: file,
       fileName: fileName,
       bucket: import.meta.env.VITE_S3_BUCKET,
-    })
-}
+    });
+};
 
 /** Custom hook for members
  */

@@ -20,7 +20,7 @@ export const MobileNav = ({ authorized }: { authorized: boolean }) => {
       </button>
       {open && (
         <div
-          className="z-100 fixed h-full w-full bg-gray-800 transition-all" // bg-opacity-50
+          className="fixed z-100 h-full w-full bg-gray-800 transition-all" // bg-opacity-50
         >
           <button>
             <Icon
