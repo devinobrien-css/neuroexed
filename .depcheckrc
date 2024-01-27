@@ -1,1 +1,1 @@
-ignores: ["eslint", "postcss", "autoprefixer", "depcheck", "@tanstack/eslint-plugin-query". "ts-loader"]
+ignores: ["eslint", "postcss", "autoprefixer", "depcheck", "@tanstack/eslint-plugin-query", "ts-loader"]

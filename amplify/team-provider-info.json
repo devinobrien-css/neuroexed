@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-neuroexed-dev-164958-authRole",
+      "UnauthRoleArn": "arn:aws:iam::535030628242:role/amplify-neuroexed-dev-164958-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::535030628242:role/amplify-neuroexed-dev-164958-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-neuroexed-dev-164958-deployment",
+      "UnauthRoleName": "amplify-neuroexed-dev-164958-unauthRole",
+      "StackName": "amplify-neuroexed-dev-164958",
+      "StackId": "arn:aws:cloudformation:us-east-1:535030628242:stack/amplify-neuroexed-dev-164958/04d3d0f0-bd5e-11ee-8532-0a35222c7999",
+      "AmplifyAppId": "d2op90f78vp85h"
+    },
+    "categories": {
+      "auth": {
+        "neuroexed60b0ea81": {
+          "userPoolId": "us-east-1_KAFpzjb2K",
+          "userPoolName": "MyUserPool",
+          "webClientId": "3rql1igf94ssl63ofeb7uulda7",
+          "nativeClientId": "3rql1igf94ssl63ofeb7uulda7"
+        }
+      }
+    }
+  }
+}

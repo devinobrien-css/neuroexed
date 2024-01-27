@@ -1,10 +1,13 @@
 import { Icon } from '@iconify/react';
 import { Modal } from '../../shared/components/modals/Modal';
 import { Button } from '../../shared/components/form/Button';
-import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
+import { signIn } from 'aws-amplify/auth';
+import { signOut } from 'aws-amplify/auth';
+import { removeAccessToken, setAccessToken } from '../../shared/auth/auth';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginForm {
   email: string;
@@ -14,17 +17,29 @@ interface LoginForm {
 export const LoginModal = ({ toggleModal }: { toggleModal: () => void }) => {
   const [viewPassword, setViewPassword] = useState(false);
   const { register, handleSubmit } = useForm<LoginForm>();
-  const auth = getAuth();
+  const navigate = useNavigate();
 
-  const onSubmit = (data: LoginForm) => {
-    signInWithEmailAndPassword(auth, data.email, data.password)
-      .then(() => {
-        toast.success('Logged in successfully!');
-        toggleModal();
-      })
-      .catch(() => {
-        toast.error('Invalid account. Attempt has been recorded');
+  const onSubmit = async (data: LoginForm) => {
+    try {
+      const { isSignedIn } = await signIn({
+        username: data.email,
+        password: data.password,
       });
+      if (!isSignedIn) {
+        toast.error(
+          'An error occurred when trying to login. Check your credentials',
+        );
+      } else {
+        setAccessToken();
+        toggleModal();
+        toast.success('Logged in successfully!');
+        navigate('/admin');
+      }
+    } catch (err) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const errorMessage = (err as any).message;
+      toast.error(errorMessage);
+    }
   };
   return (
     <Modal className="h-min w-[95%] xl:w-2/5" closeModal={toggleModal}>
@@ -86,19 +101,20 @@ export const LoginModal = ({ toggleModal }: { toggleModal: () => void }) => {
 };
 
 export const LogoutModal = ({ toggleModal }: { toggleModal: () => void }) => {
-  const auth = getAuth();
+  const navigate = useNavigate();
 
-  const onClick = () => {
-    signOut(auth)
-      .then(() => {
-        toast.success('Logged out safely.');
-        toggleModal();
-      })
-      .catch(() => {
-        toast.error(
-          'An error occurred when trying to logout. Check your connection',
-        );
-      });
+  const onClick = async () => {
+    try {
+      await signOut();
+      removeAccessToken();
+      toast.success('Logged out successfully!');
+      toggleModal();
+      navigate('/');
+    } catch (err) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const errorMessage = (err as any).message;
+      toast.error(errorMessage);
+    }
   };
 
   return (

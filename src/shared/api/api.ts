@@ -3,7 +3,6 @@ import {
   QueryKey,
   UseMutationOptions,
   UseQueryOptions,
-  UseQueryResult,
   useMutation,
   useQuery,
 } from '@tanstack/react-query';
@@ -12,10 +11,6 @@ import { AxiosError } from 'axios';
 type APIError = AxiosError<{
   message: string;
 }>;
-
-type UseAPIQuery<TQueryFnData = unknown, TError = unknown> = (
-  options?: Omit<UseQueryOptions<TQueryFnData, TError>, 'queryKey' | 'queryFn'>,
-) => UseQueryResult<TQueryFnData, TError>;
 
 type AdditionalQueryOptions<
   TQueryFnData = unknown,

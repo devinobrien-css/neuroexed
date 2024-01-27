@@ -14,6 +14,8 @@ import NotificationAccess from './routes/admin/messages/NotificationAccess';
 import AffiliateAccess from './routes/admin/affiliations/AffiliateAccess';
 import ProjectAccess from './routes/admin/projects/ProjectAccess';
 import Blogs from './routes/blogs/Blogs.page';
+import { ErrorPage } from './shared/error/Error';
+import { redirectIfUnauthenticated } from './shared/auth/auth';
 
 export const tabs = [
   {
@@ -108,6 +110,7 @@ export const router = createBrowserRouter([
   {
     path: '/admin',
     element: <Admin />,
+    loader: redirectIfUnauthenticated,
     children: [
       {
         path: '/admin/people',
@@ -138,5 +141,6 @@ export const router = createBrowserRouter([
         element: <></>,
       },
     ],
+    errorElement: <ErrorPage />,
   },
 ]);

@@ -58,7 +58,7 @@ The application will now be accessible at `http://localhost:5173`.
 ├── .eslintrc.js        -    linting config file
 ├── .prettierignore     -    prettier config file
 ├── .prettierrc         -    prettier config file
-├── redirects.toml      -    maintains routing post-deployment (netlify)
+├── redirects.toml      -    maintains routing post-deployment
 ├── tailwind.config.js  -    tailwing config file
 ├── tsconfig.json       -    typescript config file
 └── vite.config.ts      -    vite config file
@@ -102,11 +102,11 @@ The NeuroExed web application offers the following key features:
 
 - **Lab Members:** Meet our dedicated team of researchers, scientists, and contributors who are passionate about advancing the frontiers of neuroscience.
 
+- **Publications:** Read through the details or purchase a copy of work produced by lab founder, Jim Stellar.
+
 - **Blogs:** Explore the latest research articles and publications in the field of neuroscience contributed by our lab members.
 
-- **Blogs:** Listen through podcasts hosted by Jim Stellar with an array of guests in various fields.
-
-- **Publications:** Read through the details or purchase a copy of work produced by lab founder, Jim Stellar.
+- **Podcasts:** Listen through podcasts hosted by Stellar with an array of guests in various fields.
 
 - **Projects/Research Areas:** Dive into various research areas, learn about ongoing projects, and discover our contributions to specific subfields of neuroscience.
 

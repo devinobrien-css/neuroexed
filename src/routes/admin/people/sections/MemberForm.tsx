@@ -24,7 +24,7 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
     >
       <div className="flex flex-wrap">
         <div className="flex w-full flex-col gap-y-4 p-4 md:w-4/12">
-          <div className="rounded-lg border bg-white p-2 shadow hover:shadow-lg">
+          <div className="">
             <p className="font-lato text-2xl font-normal">
               Personal Information
             </p>
@@ -75,9 +75,7 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
               </label>
               <hr />
               <label>
-                <p className="font-lato  text-lg font-light">
-                  Lab Title
-                </p>
+                <p className="font-lato  text-lg font-light">Lab Title</p>
                 <input
                   {...register('Lab Title')}
                   className="w-full bg-transparent outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400  "
@@ -100,14 +98,14 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
 
         <div className="flex w-full flex-col gap-y-4 p-4 md:w-8/12">
           <div className="flex flex-wrap justify-between gap-4 md:flex-nowrap">
-            <div className="w-full rounded-lg shadow hover:shadow-lg md:w-1/3">
+            <div className="w-full md:w-1/3">
               <Controller
                 name={'Year Joined'}
                 control={control}
                 render={({ field: { onChange, value } }) => (
                   <DatePicker
                     showLabel
-                    dateClassName="border p-2 font-lato"
+                    dateClassName="border-none bg-transparent p-2 font-lato"
                     inline={false}
                     label="Year Joined"
                     toDate={new Date()}
@@ -123,14 +121,14 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
               name="Lab Status"
               options={['Alumni', 'Member']}
             />
-            <div className="w-full cursor-pointer rounded-lg border bg-white px-2 py-1 shadow hover:shadow-lg sm:w-2/5 md:w-1/3">
+            <div className="w-full cursor-pointer px-2 py-1 sm:w-2/5 md:w-1/3">
               <label className="my-auto">
                 <span className="block w-full border-b font-lato text-xl capitalize text-gray-800">
                   Upload New Profile Picture
                 </span>
-                <hr/>
+                <hr />
                 <input
-                  className='mt-1'
+                  className="mt-1"
                   type="file"
                   accept="image/png"
                   {...register('image')}

@@ -45,17 +45,14 @@ export const Select = <T extends FieldValues>({
   return (
     <label
       htmlFor={name}
-      className={cx(
-        className,
-        'cursor-pointer justify-between rounded-lg border bg-white p-2 shadow hover:shadow-lg',
-      )}
+      className={cx(className, 'cursor-pointer justify-between p-2')}
     >
       <span className="block w-full border-b font-lato text-xl capitalize text-gray-800">
         {name}
       </span>
       <select
         id={name}
-        className="text-md w-full border-none px-0 font-lato"
+        className="text-md w-full border-none bg-transparent px-0 font-lato"
         {...register(name)}
         {...rest}
       >

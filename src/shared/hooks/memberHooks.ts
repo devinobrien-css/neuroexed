@@ -2,7 +2,6 @@ import {
   fetchData,
   putData,
   removeData,
-  sanitizeFilename,
   updateData,
   uploadFileToBucket,
 } from '../api/dba';
@@ -11,6 +10,7 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import axios, { AxiosError } from 'axios';
 import { createAPIMutation, createAPIQuery } from '../api/api';
+import { sanitizeFilename } from '../api/util';
 
 const MEMBERS_TABLE_NAME = 'people';
 export const MEMBERS_QUERY_KEY = ['/members'];

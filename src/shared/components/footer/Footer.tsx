@@ -3,171 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { FooterLink } from './FooterLink';
 import { Icon } from '@iconify/react';
 import { LoginModal, LogoutModal } from '../../../routes/login/Login';
-import { getAuth } from 'firebase/auth';
-
-// const BugModalContent = () => {
-//   const [sent, setSent] = useState(false);
-//   const [location, setLocation] = useState('');
-//   const [content, setContent] = useState('');
-
-//   return (
-//     <>
-//       {sent && (
-//         <div className="w-[60vw] rounded bg-white px-2 py-6">
-//           <p>Bug Reported!</p>
-//         </div>
-//       )}
-//       <div className="w-[90vw] overflow-clip rounded-xl bg-white pb-2 md:w-[60vw]">
-//         <div className=" bg-dark-hex w-full bg-cover bg-center">
-//           <p className="p-6 text-6xl font-light text-white">Report a Bug</p>
-//         </div>
-//         <div className="mx-auto w-full rounded p-4 shadow-lg md:w-4/5">
-//           <div className="pb-2">
-//             <p>Location</p>
-//             <input
-//               className="w-full outline-none"
-//               value={location}
-//               placeholder="location of bug..."
-//               onChange={(event) => {
-//                 setLocation(event.target.value);
-//               }}
-//             />
-//           </div>
-//           <div>
-//             <p>Description</p>
-//             <textarea
-//               className="w-full rounded border-0 p-0"
-//               value={content}
-//               placeholder="description of bug..."
-//               onChange={(event) => {
-//                 setContent(event.target.value);
-//               }}
-//             ></textarea>
-//           </div>
-//         </div>
-//         <button
-//           className="mx-auto mt-2 block rounded bg-blue-300 px-2"
-//           onClick={async () => {
-//             var timestamp = new Date().getTime();
-
-//             await putData(
-//               'messages',
-//               message(
-//                 'error-' + timestamp,
-//                 'Error Reporter',
-//                 location,
-//                 content,
-//                 timestamp,
-//               ),
-//             );
-
-//             setContent('');
-//             setLocation('');
-//             setSent(true);
-//           }}
-//         >
-//           send
-//         </button>
-//       </div>
-//     </>
-//   );
-// };
-
-// const EmailModalContent = () => {
-//   const [sent, setSent] = useState(false);
-//   const [from, setFrom] = useState('');
-//   const [subject, setSubject] = useState('');
-//   const [content, setContent] = useState('');
-
-//   if (sent) {
-//     return (
-//       <div className="w-[60vw] rounded bg-white px-2 py-6">
-//         <p>Message Sent!</p>
-//       </div>
-//     );
-//   } else {
-//     return (
-//       <div className="w-[90vw] overflow-clip rounded-xl bg-white pb-2 md:w-[60vw]">
-//         <div className=" bg-dark-hex w-full bg-cover bg-center">
-//           <p className="p-6 text-6xl font-light text-white">
-//             Contact NeuroExed
-//           </p>
-//         </div>
-
-//         <div className="mx-auto w-full rounded p-4 shadow-lg md:w-4/5">
-//           <div className="w-full">
-//             <p className="text-xl">From</p>
-//             <input
-//               value={from}
-//               className="w-full focus:outline-none"
-//               placeholder="email or name"
-//               onChange={(event) => {
-//                 setFrom(event.target.value);
-//               }}
-//             />
-//           </div>
-//           <div className="w-full">
-//             <p className="text-xl">Subject</p>
-//             <input
-//               value={subject}
-//               className="w-full focus:outline-none"
-//               placeholder="topic of message"
-//               onChange={(event) => {
-//                 setSubject(event.target.value);
-//               }}
-//             />
-//           </div>
-//           <div className="w-full">
-//             <p className="text-xl">Message</p>
-//             <textarea
-//               value={content}
-//               className="w-full rounded border-0 p-0 focus:outline-none"
-//               placeholder="Hey there,"
-//               onChange={(event) => {
-//                 setContent(event.target.value);
-//               }}
-//             ></textarea>
-//           </div>
-//         </div>
-//         <button
-//           className="mx-auto my-4 block rounded bg-blue-300 px-2"
-//           onClick={async () => {
-//             const timestamp = new Date().getTime();
-
-//             await putData(
-//               'messages',
-//               message(
-//                 'message-' + timestamp,
-//                 from,
-//                 subject,
-//                 content,
-//                 timestamp,
-//               ),
-//             );
-
-//             setFrom('');
-//             setSubject('');
-//             setContent('');
-
-//             setSent(true);
-//           }}
-//         >
-//           send
-//         </button>
-//       </div>
-//     );
-//   }
-// };
+import { getAccessToken } from '../../auth/auth';
 
 const Footer = () => {
   const navigate = useNavigate();
   const [loginModal, setLoginModal] = useState(false);
-  const auth = getAuth();
 
   return (
     <>
       {loginModal &&
-        (auth.currentUser ? (
+        (getAccessToken() ? (
           <LogoutModal toggleModal={() => setLoginModal(false)} />
         ) : (
           <LoginModal toggleModal={() => setLoginModal(false)} />
@@ -262,8 +107,6 @@ const Footer = () => {
             onClick={() => setLoginModal(true)}
             className="absolute bottom-4 right-4"
           >
-            {/* <Icon icon='fxemoji:lock' width={30}/> */}
-            {/* <Icon icon='eos-icons:admin-outlined' width={30} className='text-white'/> */}
             <Icon
               icon="ic:twotone-admin-panel-settings"
               width={30}

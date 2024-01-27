@@ -10,6 +10,7 @@ import { Button } from '../../../../shared/components/form/Button';
 import { ConfirmationModal } from '../../../../shared/components/modals/ConfirmationModal';
 import { SafeProfilePicture } from '../../../../shared/components/common/SafeProfilePicture';
 import { toast } from 'react-toastify';
+import cx from 'classnames';
 
 export const EditableMember = ({ data }: { data: MemberResponse }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -77,7 +78,9 @@ export const EditableMember = ({ data }: { data: MemberResponse }) => {
       <FormProvider {...form}>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="border-gray-600 bg-gray-50 p-2 transition-all"
+          className={cx('border-gray-600 bg-gray-50 p-2 transition-all', {
+            'bg-white': isOpen,
+          })}
         >
           <div className="flex flex-col justify-between gap-y-4 md:flex-row">
             <div className="flex">

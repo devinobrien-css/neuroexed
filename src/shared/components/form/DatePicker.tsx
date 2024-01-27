@@ -63,7 +63,7 @@ export function DatePicker({
   return (
     <DropdownButton
       className={cx('p-2', className)}
-      menuClassName="border bg-white rounded-lg shadow-lg"
+      menuClassName="rounded-lg"
       inline={inline}
       showChevron={showChevron}
       label={showDate}
@@ -72,7 +72,7 @@ export function DatePicker({
           <CustomDropdownButtonToggle
             onClick={(e) => e.preventDefault()}
             className={cx(
-              'min-h-14 text-18 w-full rounded-lg  bg-white px-3',
+              'min-h-14 text-18 w-full rounded-lg  px-3',
               dateClassName,
             )}
           >
@@ -81,7 +81,7 @@ export function DatePicker({
             )}
             <div
               className={cx(
-                'flex justify-between rounded-b border-t bg-white p-2 transition-colors hover:bg-gray-100',
+                'flex justify-between rounded-b border-t p-2 transition-colors hover:bg-gray-100',
                 {
                   'my-auto': showLabel,
                 },

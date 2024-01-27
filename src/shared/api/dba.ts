@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { RequestType } from './constants';
+import { formatRequestBody, getRequestHeaders } from './util';
 
 /** Uploads a file to S3
  * @param {string} folder - string
@@ -30,29 +32,17 @@ export const uploadFileToBucket = async (
     });
 };
 
-export const sanitizeFilename = (
-  inputStr: string,
-  replacement: string = '_',
-): string => {
-  const sanitizedStr = inputStr.replace(/[^\w-]/g, replacement);
-  const trimmedStr = sanitizedStr.trim();
-  const maxLength = 255;
-  const finalStr = trimmedStr.slice(0, maxLength);
-
-  return finalStr;
-};
-
 /** Fetches a row of a table
  * @param {string} tableName - string
  * @returns BlogResponse
  */
 export const fetchData = async (tableName: string) => {
   return await axios
-    .post(import.meta.env.VITE_NEURO_API, {
-      command: 'READ',
-      table: tableName,
-      data: {},
-    })
+    .post(
+      import.meta.env.VITE_NEURO_API,
+      formatRequestBody(RequestType.READ, tableName, {}),
+      getRequestHeaders(),
+    )
     .then((response) => response.data);
 };
 

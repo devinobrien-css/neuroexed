@@ -1,9 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { tabs } from '../../manifest';
 import { FadeIn } from './animations/FadeIn';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useState } from 'react';
 import { MobileNav } from './MobileNav';
+import { getAccessToken } from '../auth/auth';
 
 interface HeaderProps {
   title: string;
@@ -12,17 +11,10 @@ interface HeaderProps {
 const Header = ({ title, sub_title }: HeaderProps) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const auth = getAuth();
-
-  const [authorized, setAuthorized] = useState(false);
-
-  onAuthStateChanged(auth, (user) => {
-    user ? setAuthorized(true) : setAuthorized(false);
-  });
 
   return (
     <>
-      <MobileNav authorized={authorized} />
+      <MobileNav authorized={!!getAccessToken()} />
       <div className="bg-landing bg-cover shadow-lg md:min-h-[80vh]">
         <div className="flex w-full flex-col backdrop-blur-sm backdrop-brightness-50 md:min-h-[80vh]">
           <div className="m-auto w-fit py-48 md:w-2/3">
@@ -61,7 +53,7 @@ const Header = ({ title, sub_title }: HeaderProps) => {
               }
               return null;
             })}
-            {authorized && (
+            {!!getAccessToken() && (
               <button
                 key="administrate"
                 className={`font-raleway text-xl uppercase transition-all ${
