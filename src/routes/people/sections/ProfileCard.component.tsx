@@ -22,12 +22,9 @@ export const ProfileCard = ({ member, className }: ProfileCardProps) => {
     linkedin: 'line-md:linkedin',
   };
 
-  const userProfilePicture = `${
-    import.meta.env.VITE_S3_PROFILE_PICTURES
-  }${member.last
-    .toLowerCase()
-    // eslint-disable-next-line quotes
-    .replace("'", '')}.png`;
+  const userProfilePicture = `${import.meta.env.VITE_S3_PROFILE_PICTURES}${
+    member.profile_picture
+  }`;
 
   return (
     <>
@@ -42,17 +39,8 @@ export const ProfileCard = ({ member, className }: ProfileCardProps) => {
             <br />
             <br />
           </div>
-          {/* <img
-            className="-my-20 mx-auto h-36 w-36 rounded-full object-cover object-center brightness-75"
-            src={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${member.last
-              .toLowerCase()
-              // eslint-disable-next-line quotes
-              .replace("'", '')}.png`}
-            alt={`Lab Member ${member.first} ${member.last}`}
-          /> */}
-
           <SafeProfilePicture
-            className="-my-20 mx-auto h-36 w-36 rounded-full object-cover object-center brightness-75"
+            className="h-16 w-16 rounded-lg object-cover object-top shadow"
             firstName={member.first}
             image={userProfilePicture}
           />
@@ -117,10 +105,7 @@ export const ProfileCard = ({ member, className }: ProfileCardProps) => {
         <SafeProfilePicture
           className="h-64 w-full object-cover object-center brightness-75"
           firstName={member.first}
-          image={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${member.last
-            .toLowerCase()
-            // eslint-disable-next-line quotes
-            .replace("'", '')}.png`}
+          image={userProfilePicture}
         />
 
         <div className="p-1">
