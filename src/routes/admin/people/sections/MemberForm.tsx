@@ -1,9 +1,9 @@
 import cx from 'classnames';
 import { Controller, useFormContext } from 'react-hook-form';
+import { Input } from '../../../../shared/components/form/Input';
 import { MemberFormInput } from '../../../../shared/types/member.types';
-import { Select } from '../../../../shared/components/form/Input';
 import { DatePicker } from '../../../../shared/components/form/DatePicker';
-import { InputWarning } from '../../../../shared/components/form/InputWarning';
+import { Select } from '../../../../shared/components/form/Select';
 
 interface MemberFormProps {
   isOpen: boolean;
@@ -30,68 +30,43 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
             </p>
             <div className="flex flex-col gap-y-2">
               <hr />
-              <label>
-                <p className="font-lato  text-lg font-light">
-                  First Name
-                  <InputWarning field="First Name" errors={errors} required />
-                </p>
-                <input
-                  {...register('First Name', {
-                    required: 'required',
-                  })}
-                  placeholder="Member First Name..."
-                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400 "
-                />
-              </label>
-              <label>
-                <p className="font-lato  text-lg font-light">
-                  Last Name
-                  <InputWarning field="Last Name" errors={errors} required />
-                </p>
-                <input
-                  {...register('Last Name', {
-                    required: 'required',
-                  })}
-                  placeholder="Member Last Name..."
-                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400 "
-                />
-              </label>
-              <label>
-                <p className="font-lato  text-lg font-light">
-                  Email
-                  <InputWarning field="Email" errors={errors} required />
-                </p>
-                <input
-                  {...register('Email', {
-                    required: 'required',
-                    pattern: {
-                      value: /\S+@\S+\.\S+/,
-                      message: 'enter a valid email',
-                    },
-                  })}
-                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400  "
-                  placeholder="Member Email..."
-                />
-              </label>
+              <Input
+                name="First Name"
+                label="First Name"
+                errors={errors}
+                required="this is required"
+                placeholder="Member First Name..."
+              />
+              <Input
+                name="Last Name"
+                label="Last Name"
+                errors={errors}
+                required="this is required"
+                placeholder="Member Last Name..."
+              />
+              <Input
+                name="Email"
+                label="Email"
+                type="email"
+                errors={errors}
+                required="this is required"
+                placeholder="first.last@gmail.com"
+                pattern={/\S+@\S+\.\S+/}
+                message={'enter a valid email'}
+              />
               <hr />
-              <label>
-                <p className="font-lato  text-lg font-light">Lab Title</p>
-                <input
-                  {...register('Lab Title')}
-                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400  "
-                  placeholder="N/A"
-                />
-              </label>
-              <label>
-                <p className="font-lato  text-lg font-light">
-                  Collegiate Title
-                </p>
-                <input
-                  {...register('Collegiate Title')}
-                  className="w-full bg-transparent outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400  "
-                  placeholder="N/A"
-                />
-              </label>
+              <Input
+                name="Lab Title"
+                label="Lab Title"
+                errors={errors}
+                placeholder="N/A"
+              />
+              <Input
+                name="Collegiate Title"
+                label="Collegiate Title"
+                errors={errors}
+                placeholder="N/A"
+              />
             </div>
           </div>
         </div>
@@ -105,7 +80,7 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
                 render={({ field: { onChange, value } }) => (
                   <DatePicker
                     showLabel
-                    dateClassName="border-none bg-transparent p-2 font-lato"
+                    dateClassName="border-none bg-transparent font-lato"
                     inline={false}
                     label="Year Joined"
                     toDate={new Date()}
@@ -115,92 +90,77 @@ export const MemberForm = ({ isOpen }: MemberFormProps) => {
                 )}
               />
             </div>
-            <Select
-              className="w-full sm:w-2/5 md:w-1/3"
-              register={register}
-              name="Lab Status"
-              options={['Alumni', 'Member']}
-            />
-            <div className="w-full cursor-pointer px-2 py-1 sm:w-2/5 md:w-1/3">
+
+            <div className="w-full md:w-1/3">
+              <Select
+                name="Lab Status"
+                label="Lab Status"
+                errors={errors}
+                required="this is required"
+                options={['Alumni', 'Member']}
+              />
+            </div>
+
+            <div className="w-full  md:w-1/3">
               <label className="my-auto">
-                <span className="block w-full border-b font-lato text-xl capitalize text-gray-800">
+                <span className="block w-full font-lato text-lg font-light capitalize text-gray-800">
                   Upload New Profile Picture
                 </span>
                 <hr />
                 <input
-                  className="mt-1"
+                  className="mt-1 text-sm font-light"
                   type="file"
                   accept="image/png"
                   {...register('image')}
                 />
+                <span className="text-md absolute font-light italic text-gray-600">
+                  .png files only
+                </span>
               </label>
             </div>
           </div>
 
-          <div className="rounded-lg border bg-white p-2 shadow hover:shadow-lg">
+          <div className="p-2">
             <div className="flex gap-x-2">
               <p className="font-lato text-2xl font-normal">Socials</p>
               <p className="text-md my-auto font-lato font-light">
                 (leave blank if none)
               </p>
             </div>
-
             <div className="flex flex-col gap-y-2">
-              <label>
-                <p className="text-md  font-lato font-light">
-                  Twitter
-                  <InputWarning field="Twitter" errors={errors} />
-                </p>
-                <input
-                  {...register('Twitter', {
-                    pattern: {
-                      value: /https:\/\/(?:www\.)?twitter.com\/[A-Za-z0-9_]+/,
-                      message: 'enter a valid twitter url',
-                    },
-                  })}
-                  className="w-full bg-transparent italic text-blue-400 underline outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400"
-                  placeholder="https://twitter.com/username"
-                />
-              </label>
-
-              <label>
-                <p className="text-md font-lato font-light">
-                  Instagram
-                  <InputWarning field="Instagram" errors={errors} />
-                </p>
-                <input
-                  {...register('Instagram', {
-                    pattern: {
-                      value: /https:\/\/(?:www\.)?instagram.com\/[A-Za-z0-9_]+/,
-                      message: 'enter a valid instagram url',
-                    },
-                  })}
-                  className="w-full bg-transparent italic text-blue-400 underline outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400"
-                  placeholder="https://instagram.com/username"
-                />
-              </label>
-
-              <label>
-                <p className="text-md font-lato font-light">
-                  Linkedin
-                  <InputWarning field="Linkedin" errors={errors} />
-                </p>
-                <input
-                  {...register('Linkedin', {
-                    pattern: {
-                      value:
-                        /https:\/\/(?:www\.)?linkedin.com\/in\/[A-Za-z0-9_]+/,
-                      message: 'enter a valid linkedin url',
-                    },
-                  })}
-                  className="w-full bg-transparent italic text-blue-400 underline outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400"
-                  placeholder="https://linkedin.com/in/username"
-                />
-              </label>
+              <Input
+                type="url"
+                name="Twitter"
+                label="Twitter"
+                errors={errors}
+                placeholder="https://twitter.com/username"
+                pattern={/^https?:\/\/(www\.)?twitter\.com\/[a-zA-Z0-9_]+\/?$/}
+                message="enter a valid twitter url"
+              />
+              <Input
+                type="url"
+                name="Instagram"
+                label="Instagram"
+                errors={errors}
+                placeholder="https://instagram.com/username"
+                pattern={
+                  /^https?:\/\/(www\.)?instagram\.com\/[a-zA-Z0-9_.]+\/?$/
+                }
+                message="enter a valid instagram url"
+              />
+              <Input
+                type="url"
+                name="Linkedin"
+                label="Linkedin"
+                errors={errors}
+                placeholder="https://linkedin.com/in/username"
+                pattern={/^https?:\/\/(www\.)?linkedin\.com\/.*$/}
+                message="enter a valid linkedin url"
+              />
             </div>
           </div>
         </div>
-        <label className="mx-auto block w-[95%] rounded-lg border bg-white p-2 shadow hover:shadow-lg md:w-[98%]">
+        <label className="mx-auto block w-[95%] md:w-[98%]">
           <p className="font-lato text-2xl font-normal">Description</p>
           <textarea
             rows={8}

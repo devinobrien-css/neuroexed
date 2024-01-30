@@ -71,17 +71,16 @@ export function DatePicker({
         inline ? undefined : (
           <CustomDropdownButtonToggle
             onClick={(e) => e.preventDefault()}
-            className={cx(
-              'min-h-14 text-18 w-full rounded-lg  px-3',
-              dateClassName,
-            )}
+            className={cx('w-full', dateClassName)}
           >
             {showLabel && (
-              <label className={'block text-left text-lg'}>{label}</label>
+              <label className={'block text-left text-lg font-light'}>
+                {label}
+              </label>
             )}
             <div
               className={cx(
-                'flex justify-between rounded-b border-t p-2 transition-colors hover:bg-gray-100',
+                'flex justify-between rounded-b border-t transition-colors hover:bg-gray-100',
                 {
                   'my-auto': showLabel,
                 },

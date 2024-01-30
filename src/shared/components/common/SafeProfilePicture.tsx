@@ -24,7 +24,7 @@ export const SafeProfilePicture = ({
     <img
       className={className}
       src={`https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/${
-        assumedGender ?? 'male'
+        assumedGender === 'unknown' ? 'female' : assumedGender
       }.png`}
       alt="Default Image"
     />

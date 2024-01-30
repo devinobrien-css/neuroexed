@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import { useCreateMember } from '../../../../shared/hooks/memberHooks';
+import {
+  MEMBERS_QUERY_KEY,
+  useCreateMember,
+} from '../../../../shared/hooks/memberHooks';
 import { FormProvider, useForm } from 'react-hook-form';
 import { MemberForm } from './MemberForm';
 import { MemberFormInput } from '../../../../shared/types/member.types';
 import { Button } from '../../../../shared/components/form/Button';
 import { toast } from 'react-toastify';
+import { useQueryClient } from '@tanstack/react-query';
 
 export const NewMember = ({
   setNewPerson,
@@ -13,8 +17,11 @@ export const NewMember = ({
 }) => {
   const [isOpen, setIsOpen] = useState(true);
 
+  const queryClient = useQueryClient();
+
   const { mutate: createMember } = useCreateMember({
-    onSuccess: () => {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(MEMBERS_QUERY_KEY);
       toast.success('Member created successfully');
       setIsOpen(false);
       setNewPerson(false);
@@ -41,7 +48,7 @@ export const NewMember = ({
     <FormProvider {...form}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className={'border-b-2  transition-all'}
+        className={'border-b-2  bg-white transition-all'}
         id={'new-member'}
       >
         <div className="flex flex-row justify-between p-4">

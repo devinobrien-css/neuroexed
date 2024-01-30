@@ -1,11 +1,10 @@
 import { useFormContext } from 'react-hook-form';
 import { Affiliate } from '../../../../shared/types/affiliate.types';
-import { InputWarning } from '../../../../shared/components/form/InputWarning';
 
 export const AffiliateForm = ({ isOpen }: { isOpen: boolean }) => {
   const {
     register,
-    formState: { errors },
+    // formState: { errors },
   } = useFormContext<Affiliate>();
 
   return (
@@ -23,7 +22,6 @@ export const AffiliateForm = ({ isOpen }: { isOpen: boolean }) => {
               <label>
                 <p className="font-lato  text-lg font-light">
                   Affiliation Name
-                  <InputWarning field="name" errors={errors} required />
                 </p>
                 <input
                   {...register('name', {
@@ -36,7 +34,6 @@ export const AffiliateForm = ({ isOpen }: { isOpen: boolean }) => {
               <label>
                 <p className="font-lato  text-lg font-light">
                   Affiliation Slug
-                  <InputWarning field="name" errors={errors} required />
                   <span className="text-sm italic text-gray-500">
                     {' '}
                     (this is the name of the image file without the
@@ -54,7 +51,6 @@ export const AffiliateForm = ({ isOpen }: { isOpen: boolean }) => {
               <label>
                 <p className="font-lato  text-lg font-light">
                   Affiliation Source
-                  <InputWarning field="name" errors={errors} required />
                 </p>
                 <input
                   {...register('source', {
@@ -74,7 +70,6 @@ export const AffiliateForm = ({ isOpen }: { isOpen: boolean }) => {
               <label>
                 <p className="font-lato  text-lg font-light">
                   Affiliation Image
-                  <InputWarning field="name" errors={errors} required />
                 </p>
                 <input
                   type="file"

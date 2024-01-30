@@ -1,15 +1,19 @@
 import { Controller, useFormContext } from 'react-hook-form';
 import { BlogFormInput } from '../../../../shared/types/blog.types';
-import { Select } from '../../../../shared/components/form/Input';
+
 import cx from 'classnames';
 import { DatePicker } from '../../../../shared/components/form/DatePicker';
-import { InputWarning } from '../../../../shared/components/form/InputWarning';
+import { Input } from '../../../../shared/components/form/Input';
 
 interface BlogFormProps {
   isOpen: boolean;
 }
 export const BlogForm = ({ isOpen }: BlogFormProps) => {
-  const { register, control, formState:{errors} } = useFormContext<BlogFormInput>();
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = useFormContext<BlogFormInput>();
 
   return (
     <div
@@ -22,24 +26,16 @@ export const BlogForm = ({ isOpen }: BlogFormProps) => {
         <div className="rounded-lg border bg-white p-2 shadow hover:shadow-lg">
           <p className="font-lato text-2xl font-normal">Details</p>
 
-          <label>
-            <p className="font-lato  text-lg font-light">
-              Title
-              <InputWarning field='title' errors={errors} required/>
-            </p>
-            <textarea
-              {...register('title', {
-                required: 'this field is required',
-              })}
-              className="w-full border-none bg-transparent p-0 outline-none placeholder:font-light placeholder:text-gray-400 placeholder:italic"
-              placeholder='Enter post title here...'
-            />
-          </label>
+          <Input
+            name="Title"
+            label="Title"
+            errors={errors}
+            required="this is required"
+            placeholder="Enter post title here..."
+          />
 
           <label>
-            <p className="font-lato text-lg font-light">Source
-              <InputWarning field='source' errors={errors} required/>
-            </p>
+            <p className="font-lato text-lg font-light">Source</p>
             <textarea
               {...register('source', {
                 required: 'this field is required',
@@ -48,8 +44,8 @@ export const BlogForm = ({ isOpen }: BlogFormProps) => {
                   message: 'invalid url',
                 },
               })}
-              className="w-full border-none bg-transparent p-0 italic text-blue-400 underline outline-none placeholder:font-light placeholder:text-gray-400 placeholder:italic"
-              placeholder='Enter url here...'
+              className="w-full border-none bg-transparent p-0 italic text-blue-400 underline outline-none placeholder:font-light placeholder:italic placeholder:text-gray-400"
+              placeholder="Enter url here..."
             />
           </label>
         </div>
@@ -72,12 +68,27 @@ export const BlogForm = ({ isOpen }: BlogFormProps) => {
               )}
             />
           </div>
-          <Select
-            name="type"
-            className="md:w-1/2"
-            options={['BLOG', 'PODCAST']}
-            register={register}
-          />
+          <div className="w-full border-2 border-green-500 md:w-1/3">
+            <label
+              htmlFor={'type'}
+              className={'cursor-pointer justify-between'}
+            >
+              <span className="block w-full border-b font-lato text-xl capitalize text-gray-800">
+                Post Type
+              </span>
+              <select
+                id={'type'}
+                className="text-md w-full border-none bg-transparent px-0 font-lato"
+                {...register('type')}
+              >
+                {['BLOG', 'PODCAST'].map((value, index) => (
+                  <option key={index} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
         </div>
       </div>
       <div className="h-fit w-1/2 rounded-lg border bg-white p-1">

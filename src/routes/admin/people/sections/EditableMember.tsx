@@ -1,6 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import useMembers from '../../../../shared/hooks/memberHooks';
+import {
+  MEMBERS_QUERY_KEY,
+  useDeleteMember,
+  useUpdateMember,
+} from '../../../../shared/hooks/memberHooks';
 import {
   MemberFormInput,
   MemberResponse,
@@ -11,22 +15,41 @@ import { ConfirmationModal } from '../../../../shared/components/modals/Confirma
 import { SafeProfilePicture } from '../../../../shared/components/common/SafeProfilePicture';
 import { toast } from 'react-toastify';
 import cx from 'classnames';
+import { toBase64 } from '../../../../shared/api/util';
+import { Loader } from '../../../../shared/components/Loader';
+import { useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { Modal } from '../../../../shared/components/modals/Modal';
 
 export const EditableMember = ({ data }: { data: MemberResponse }) => {
+  // STATES
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [confirmDelete, setConfirmDelete] = useState<boolean>(false);
 
-  const { deleteMember, updateMember } = useMembers();
+  // HOOKS
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
+  const { mutate: deleteMember, isLoading: deleteLoading } = useDeleteMember({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(MEMBERS_QUERY_KEY);
+      toast.success('Member deleted successfully');
+      navigate('/admin/people');
+      setIsOpen(false);
+    },
+    onError: () => {
+      toast.error('Member deletion failed');
+    },
+  });
+
+  // FORM CONTEXT
   const getYearJoined = () => {
     try {
-      const date = new Date(data.year_joined);
-      return date.toUTCString();
+      return new Date(data.year_joined).toUTCString();
     } catch {
       return new Date(Number(data.year_joined), 1, 1).toUTCString();
     }
   };
-
   const form = useForm<MemberFormInput>({
     defaultValues: {
       'First Name': data.first,
@@ -44,20 +67,36 @@ export const EditableMember = ({ data }: { data: MemberResponse }) => {
       order: data.order,
     },
   });
-  const { watch, handleSubmit } = form;
+  const { handleSubmit } = form;
+
+  const { mutate: updateMember, isLoading: updateLoading } = useUpdateMember({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(MEMBERS_QUERY_KEY);
+      toast.success('Member updated successfully');
+      navigate('/admin/people');
+      setIsOpen(false);
+    },
+    onError: () => {
+      toast.error('Member update failed');
+    },
+  });
 
   const onSubmit = (data: MemberFormInput) => {
     updateMember(data);
-    setIsOpen(false);
   };
 
-  const imagePreview = watch('image');
-  // eslint-disable-next-line quotes
-  const img = data.last.replace("'", '').toLowerCase();
+  const upload = form.watch('image')?.[0];
+  const [previewUrl, setPreviewUrl] = useState<string>('');
+  useEffect(() => {
+    const handleFileChange = async () => {
+      if (form.watch('image')?.[0]) {
+        setPreviewUrl((await toBase64(form.watch('image')![0])) as string);
+      }
+    };
+    handleFileChange();
+  }, [form, upload]);
 
-  const userProfilePicture = imagePreview?.length
-    ? URL.createObjectURL(imagePreview?.[0])
-    : `${import.meta.env.VITE_S3_PROFILE_PICTURES}${img}.png`;
+  const isLoading = updateLoading || deleteLoading;
 
   return (
     <>
@@ -75,6 +114,11 @@ export const EditableMember = ({ data }: { data: MemberResponse }) => {
           cancelText={'Cancel'}
         />
       )}
+      {isLoading && (
+        <Modal closeModal={() => null}>
+          <Loader />
+        </Modal>
+      )}
       <FormProvider {...form}>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -82,17 +126,27 @@ export const EditableMember = ({ data }: { data: MemberResponse }) => {
             'bg-white': isOpen,
           })}
         >
-          <div className="flex flex-col justify-between gap-y-4 md:flex-row">
+          <div
+            id={data.first}
+            className="flex flex-col justify-between gap-y-4 md:flex-row"
+          >
             <div className="flex">
               <div className="my-auto w-16">
-                <SafeProfilePicture
-                  className="h-16 w-16 rounded-lg object-cover object-top shadow"
-                  firstName={data.first}
-                  image={
-                    userProfilePicture ??
-                    `https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/${img}.png`
-                  }
-                />
+                {upload ? (
+                  <img
+                    alt="uploaded file"
+                    className="h-16 w-16 rounded-lg object-cover object-top shadow"
+                    src={previewUrl}
+                  />
+                ) : (
+                  <SafeProfilePicture
+                    className="h-16 w-16 rounded-lg object-cover object-top shadow"
+                    firstName={data.first}
+                    image={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${
+                      data.profile_picture
+                    }`}
+                  />
+                )}
               </div>
               <div className="my-auto ml-2">
                 <p className="font-light md:text-2xl">

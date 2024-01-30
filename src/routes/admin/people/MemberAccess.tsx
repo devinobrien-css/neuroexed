@@ -61,8 +61,8 @@ const MemberAccess = () => {
                 member?.first?.toLowerCase().includes(search.toLowerCase()) ||
                 member?.last?.toLowerCase().includes(search.toLowerCase()),
             )
-            .map((member: MemberResponse, index: number) => {
-              return <EditableMember key={index} data={member} />;
+            .map((member: MemberResponse) => {
+              return <EditableMember key={member.email} data={member} />;
             })}
         </div>
       </div>

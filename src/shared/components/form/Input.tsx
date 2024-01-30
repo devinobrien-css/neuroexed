@@ -1,67 +1,63 @@
-import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
-import { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes, ReactNode } from 'react';
+import { FieldErrors, useFormContext } from 'react-hook-form';
 import cx from 'classnames';
 
-interface InputProps<T extends FieldValues> {
-  register: UseFormRegister<T>;
-  name: Path<T>;
+export interface InputProps {
+  name: string;
+  label?: string;
+  errors: FieldErrors;
+  pattern?: RegExp;
+  message?: string;
+  required?: boolean | string;
+  placeholder?: string;
+  type?: InputHTMLAttributes<HTMLInputElement>['type'];
 }
-export const Input = <T extends FieldValues>({
-  register,
-  name,
-  ...rest
-}: InputProps<T> & InputHTMLAttributes<HTMLInputElement>) => {
+
+/**
+ * A generic input component
+ * @note The inclusion of the UseFormRegisterReturn type is to allow for the
+ *      input component to be used with react-hook-form.
+ * @param {InputProps} props - The standard props for the input component
+ * @returns {ReactNode} - A generic input component
+ */
+export const Input = (props: InputProps): ReactNode => {
+  const { register } = useFormContext();
+  const { label, name, placeholder, type, pattern, message, required, errors } =
+    props;
+
   return (
     <label
+      className="flex flex-col font-lato text-lg font-light"
       htmlFor={name}
-      className={
-        'cursor-pointer justify-between rounded-lg border bg-white p-2 shadow hover:shadow-lg'
-      }
     >
-      <span className="font-lato text-xl text-gray-800">{name}</span>
+      <span>
+        {label}
+        {required && <span className="text-red-500">*</span>}
+        {errors[name] && (
+          <span className="text-sm italic text-red-500">
+            <>- {errors[name]?.message}</>
+          </span>
+        )}
+      </span>
       <input
         id={name}
-        className="text-md w-full border-0 border-gray-300 font-lato"
-        {...register(name)}
-        {...rest}
+        type={type}
+        className={cx(
+          'text-md border-0 bg-transparent p-0 font-normal outline-none ring-transparent placeholder:font-light placeholder:italic placeholder:text-gray-400',
+          {
+            'italic text-blue-400 underline':
+              type === 'url' || type === 'email',
+          },
+        )}
+        placeholder={placeholder}
+        {...register(name, {
+          required: required,
+          pattern: pattern && {
+            value: pattern,
+            message: message ?? '',
+          },
+        })}
       />
-    </label>
-  );
-};
-
-interface SelectProps<T extends FieldValues> {
-  className?: string;
-  register: UseFormRegister<T>;
-  options: string[];
-  name: Path<T>;
-}
-export const Select = <T extends FieldValues>({
-  register,
-  options,
-  name,
-  className,
-  ...rest
-}: SelectProps<T>) => {
-  return (
-    <label
-      htmlFor={name}
-      className={cx(className, 'cursor-pointer justify-between p-2')}
-    >
-      <span className="block w-full border-b font-lato text-xl capitalize text-gray-800">
-        {name}
-      </span>
-      <select
-        id={name}
-        className="text-md w-full border-none bg-transparent px-0 font-lato"
-        {...register(name)}
-        {...rest}
-      >
-        {options.map((value, index) => (
-          <option key={index} value={value}>
-            {value}
-          </option>
-        ))}
-      </select>
     </label>
   );
 };

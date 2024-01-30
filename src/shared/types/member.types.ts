@@ -30,5 +30,6 @@ export interface MemberResponse {
   lab_status: boolean;
   description: string;
   socials: MemberSocials;
+  profile_picture: string;
   order: number;
 }

@@ -1,16 +1,7 @@
-import {
-  fetchData,
-  putData,
-  removeData,
-  updateData,
-  uploadFileToBucket,
-} from '../api/dba';
+import { fetchData, putData, removeData, updateData } from '../api/dba';
 import { MemberFormInput, MemberResponse } from '../types/member.types';
-import { useMutation } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
-import axios, { AxiosError } from 'axios';
 import { createAPIMutation, createAPIQuery } from '../api/api';
-import { sanitizeFilename } from '../api/util';
+import { prepareImageUpload, sanitizeFilename } from '../api/util';
 
 const MEMBERS_TABLE_NAME = 'people';
 export const MEMBERS_QUERY_KEY = ['/members'];
@@ -68,6 +59,18 @@ export const useMembersQuery = createAPIQuery<MemberResponse[]>({
  */
 export const useCreateMember = createAPIMutation<void, MemberFormInput>({
   mutationFn: async (member) => {
+    const isUploadingImage =
+      member.image?.length && member.image[0] instanceof File;
+
+    const fileName = sanitizeFilename(
+      `${new Date().getTime()}-${member['First Name'].toLowerCase()}-${member[
+        'Last Name'
+      ].toLowerCase()}`,
+    );
+
+    const imageData =
+      member.image?.[0] && (await prepareImageUpload(member.image, fileName));
+
     await putData(MEMBERS_TABLE_NAME, {
       email: member.Email,
       first: member['First Name'],
@@ -81,12 +84,8 @@ export const useCreateMember = createAPIMutation<void, MemberFormInput>({
       linkedin: member.Linkedin,
       instagram: member.Instagram,
       order: 0,
+      ...(isUploadingImage ? { ...imageData } : {}),
     });
-
-    if (member.image?.length) {
-      const fileName = `${member['Last Name'].toLowerCase()}.png`;
-      uploadFileToBucket('profile_pictures', fileName, member.image);
-    }
   },
 });
 
@@ -108,7 +107,10 @@ export const useCreateMember = createAPIMutation<void, MemberFormInput>({
  *   twitter: '',
  *   linkedin: '',
  *   instagram: '',
- *  }
+ *  },
+ *  image: FileList,
+ *  file_name: 'john-doe',
+ *  order: 0,
  * },
  * @see src/shared/types/member.types.ts
  */
@@ -117,14 +119,14 @@ export const useUpdateMember = createAPIMutation<void, MemberFormInput>({
     const isUploadingImage =
       member.image?.length && member.image[0] instanceof File;
 
-    const imageMetaData = {
-      fileName: sanitizeFilename(
-        `${new Date().getTime()}-${member['First Name'].toLowerCase()}-${member[
-          'Last Name'
-        ].toLowerCase()}`,
-      ),
-      image: member.image,
-    };
+    const fileName = sanitizeFilename(
+      `${new Date().getTime()}-${member['First Name'].toLowerCase()}-${member[
+        'Last Name'
+      ].toLowerCase()}`,
+    );
+
+    const imageData =
+      member.image?.[0] && (await prepareImageUpload(member.image, fileName));
 
     await updateData(MEMBERS_TABLE_NAME, {
       email: member.Email,
@@ -139,109 +141,21 @@ export const useUpdateMember = createAPIMutation<void, MemberFormInput>({
       linkedin: member.Linkedin,
       instagram: member.Instagram,
       order: member.order,
-      ...(isUploadingImage ? { ...imageMetaData } : {}),
+      ...(isUploadingImage ? { ...imageData } : {}),
     });
   },
 });
 
-// TODO: Move to api/utils.ts
-export const uploadMemberImage = async (file: FileList, fileName: string) => {
-  const form = new FormData();
-  form.append(
-    'data',
-    JSON.stringify({
-      name: fileName,
-    }),
-  );
-
-  form.append('file', file[0], fileName);
-  const reader = new FileReader();
-  reader.readAsDataURL(file[0]);
-
-  reader.onload = async () =>
-    await axios.post(import.meta.env.VITE_NEURO_S3_API, {
-      file: file,
-      fileName: fileName,
-      bucket: import.meta.env.VITE_S3_BUCKET,
-    });
-};
-
-/** Custom hook for members
+/** DELETE a member
+ * @param {string} email_to_remove - email of member to delete
+ * @returns void
+ * @example deleteMember('email@gmail.com')
+ * @see src/shared/types/member.types.ts
  */
-const useMembers = () => {
-  /** POST a member
-   * @param {MemberFormInput} data - MemberFormInput
-   * @returns void
-   * @example
-   * {
-   *    first: 'John',
-   *    last: 'Doe',
-   *    collegiate_title: 'President',
-   *    lab_title: 'Lab Manager',
-   *    lab_status: 'Undergraduate',
-   *    year_joined: '2020',
-   *    slug: 'john-doe',
-   *    description: 'This is a member',
-   *    socials: {
-   *      email: '',
-   *      twitter: '',
-   *      linkedin: '',
-   *      instagram: '',
-   *    }
-   *  },
-   */
-  const { mutate: mutateMember } = useMutation<
-    void,
-    AxiosError,
-    MemberFormInput
-  >({
-    mutationFn: async (data) => {
-      await updateData(MEMBERS_TABLE_NAME, {
-        email: data.Email,
-        first: data['First Name'],
-        last: data['Last Name'],
-        collegiate_title: data['Collegiate Title'],
-        lab_title: data['Lab Title'],
-        lab_status: data['Lab Status'],
-        year_joined: data['Year Joined'],
-        description: data.Description,
-        twitter: data.Twitter,
-        linkedin: data.Linkedin,
-        instagram: data.Instagram,
-        order: data.order,
-      });
-
-      if (data.image?.length) {
-        const fileName = `${data['Last Name'].toLowerCase()}.png`;
-        uploadFileToBucket('profile_pictures', fileName, data.image);
-      }
-    },
-    onSuccess: () => toast.success('User has been updated!'),
-    onError: () => toast.error('User update failed'),
-  });
-
-  /** DELETE a member
-   * @param {string} email_to_remove - email of member to delete
-   * @returns void
-   * @example deleteMember('email@gmail.com')
-   * @see src/shared/types/member.types.ts
-   */
-  const { mutate: deleteMember } = useMutation({
-    mutationFn: async (email_to_remove: string) => {
-      await removeData(MEMBERS_TABLE_NAME, {
-        email: { S: email_to_remove },
-      });
-    },
-    onSuccess: async () => {
-      toast.success('User has been deleted!');
-    },
-    onError: () => toast.error('User deletion failed'),
-  });
-
-  return {
-    updateMember: mutateMember,
-    deleteMember: deleteMember,
-  };
-};
-
-export default useMembers;
+export const useDeleteMember = createAPIMutation<void, string>({
+  mutationFn: async (email) => {
+    await removeData(MEMBERS_TABLE_NAME, {
+      email: { S: email },
+    });
+  },
+});
