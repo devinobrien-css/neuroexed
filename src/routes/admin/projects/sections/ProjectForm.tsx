@@ -114,12 +114,6 @@ export const ProjectForm = ({ isOpen }: { isOpen: boolean }) => {
                           .includes(search.toLowerCase()),
                     )
                     .map((member) => {
-                      const memberProfilePicture = `${
-                        import.meta.env.VITE_S3_PROFILE_PICTURES
-                      }${member.last
-                        .toLowerCase()
-                        // eslint-disable-next-line quotes
-                        .replace("'", '')}.png`;
                       return (
                         <div
                           key={member.last}
@@ -127,7 +121,9 @@ export const ProjectForm = ({ isOpen }: { isOpen: boolean }) => {
                         >
                           <div className="no-wrap flex w-full">
                             <SafeProfilePicture
-                              image={memberProfilePicture}
+                              image={`${
+                                import.meta.env.VITE_S3_PROFILE_PICTURES
+                              }${member.profile_picture}`}
                               firstName={member.first}
                               className="block h-12 w-12 rounded object-cover"
                             />
@@ -147,6 +143,7 @@ export const ProjectForm = ({ isOpen }: { isOpen: boolean }) => {
                                 first: member.first,
                                 email: member.socials.email,
                                 last: member.last,
+                                profile_picture: member.profile_picture,
                               })
                             }
                           />
@@ -166,17 +163,13 @@ export const ProjectForm = ({ isOpen }: { isOpen: boolean }) => {
               </p>
             )}
             {fields.map((field, index) => {
-              const memberProfilePicture = `${
-                import.meta.env.VITE_S3_PROFILE_PICTURES
-              }${field.last
-                .toLowerCase()
-                // eslint-disable-next-line quotes
-                .replace("'", '')}.png`;
               return (
                 <div key={field.id} className="flex justify-between">
                   <div className="no-wrap flex w-full">
                     <SafeProfilePicture
-                      image={memberProfilePicture}
+                      image={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${
+                        field.profile_picture
+                      }`}
                       firstName={field.first}
                       className="block h-12 w-12 rounded object-cover"
                     />

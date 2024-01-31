@@ -69,7 +69,6 @@ export const EditableProject = ({ project }: { project: Project }) => {
               </p>
               <div className="flex">
                 {project.members?.map((member, index) => {
-                  const img = member.last.replace("'", '').toLowerCase();
                   return (
                     index < 4 && (
                       <img
