@@ -32,7 +32,7 @@ export const uploadFileToBucket = async (
     });
 };
 
-/** Fetches a row of a table
+/** Fetche rows of a table
  * @param {string} tableName - string
  * @returns BlogResponse
  */
@@ -41,6 +41,22 @@ export const fetchData = async (tableName: string) => {
     .post(
       import.meta.env.VITE_NEURO_API,
       formatRequestBody(RequestType.READ, tableName, {}),
+      getRequestHeaders(),
+    )
+    .then((response) => response.data);
+};
+
+/** Fetches a row of a table
+ * @param {string} tableName - string
+ * @returns BlogResponse
+ */
+export const fetchOne = async (tableName: string, key: string) => {
+  return await axios
+    .post(
+      import.meta.env.VITE_NEURO_API,
+      formatRequestBody(RequestType.READ_ONE, tableName, {
+        key: key,
+      }),
       getRequestHeaders(),
     )
     .then((response) => response.data);

@@ -11,4 +11,5 @@ export interface ProjectMember {
   first: string;
   last: string;
   email: string;
+  profile_picture: string;
 }

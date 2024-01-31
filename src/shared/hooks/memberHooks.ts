@@ -3,7 +3,7 @@ import { MemberFormInput, MemberResponse } from '../types/member.types';
 import { createAPIMutation, createAPIQuery } from '../api/api';
 import { prepareImageUpload, sanitizeFilename } from '../api/util';
 
-const MEMBERS_TABLE_NAME = 'people';
+export const MEMBERS_TABLE_NAME = 'people';
 export const MEMBERS_QUERY_KEY = ['/members'];
 
 /** GET members

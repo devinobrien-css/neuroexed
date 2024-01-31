@@ -82,6 +82,7 @@ export const useUpdateProject = createAPIMutation<void, UpdateProjectParams>({
         first: member.first,
         last: member.last,
         email: member.email,
+        profile_picture: member.profile_picture,
       })),
     });
   },

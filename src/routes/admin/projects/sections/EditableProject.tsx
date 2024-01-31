@@ -78,7 +78,9 @@ export const EditableProject = ({ project }: { project: Project }) => {
                           index > 0 && '-ml-4',
                         )}
                         alt="uploaded file"
-                        src={`https://neuroexed-bucket.s3.us-east-1.amazonaws.com/profile_pictures/${img}.png`}
+                        src={`${import.meta.env.VITE_S3_PROFILE_PICTURES}${
+                          member.profile_picture
+                        }`}
                       />
                     )
                   );
