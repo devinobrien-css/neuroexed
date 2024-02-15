@@ -17,26 +17,26 @@ To run the NeuroExed web application locally, follow these simple steps:
 1. **Clone the repository:** Start by cloning this repository to your local machine using the following command:
 
    ```
-   $ git clone https://github.com/devinobrien/neuroexed.git
+   git clone https://github.com/devinobrien/neuroexed.git
    ```
 
 2. **Install dependencies:** Navigate to the project directory and install the required dependencies using npm:
 
    ```
-   $ cd neuroexed
-   $ npm i
+   cd neuroexed
+   npm i
    ```
 
 3. **Install GitHooks:** An abstraction of this has been provided for convenience:
 
    ```
-   $ npm run prepare
+   npm run prepare
    ```
 
 4. **Run the application:** Once the dependencies are installed, start the development server with:
 
    ```
-   $ npm start
+   npm start
    ```
 
 The application will now be accessible at `http://localhost:5173`.
@@ -73,7 +73,7 @@ This application uses `prettier` and `eslint` to maintain the formatting and syn
 Alternatively, run:
 
 ```
-$ npm run lint && npm run prettier
+npm run lint && npm run prettier
 ```
 
 ### Auditing Packages
@@ -81,7 +81,7 @@ $ npm run lint && npm run prettier
 This application uses `depcheck` to audit unused packages:
 
 ```
-$ npx depcheck
+npx depcheck
 ```
 
 The configuration for this audit is managed through the `.depcheckrc` file in the root of the application.
@@ -91,7 +91,7 @@ The configuration for this audit is managed through the `.depcheckrc` file in th
 This application uses `ts-prune` to locate and remove unused components within the application.
 
 ```
-$ npm run prune
+npm run prune
 ```
 
 The configuration for this file is managed through `.unimportedrc.json`
