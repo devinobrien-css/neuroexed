@@ -101,62 +101,64 @@ const LandingBlogs = ({ includeTitle = true }: { includeTitle?: boolean }) => {
   return (
     <div
       id="blogs"
-      className="mx-auto my-4 max-w-screen-lg bg-cover bg-center bg-no-repeat transition-all"
+      className="m-auto flex min-h-screen max-w-screen-lg flex-col transition-all"
     >
-      {includeTitle && (
-        <>
-          <p className="mb-4 text-center font-raleway text-4xl font-light md:text-6xl">
-            Blog Posts and Podcasts
+      <div className="m-auto">
+        {includeTitle && (
+          <>
+            <p className="mb-4  font-raleway text-4xl font-light md:text-6xl">
+              Blog Posts and Podcasts
+            </p>
+            <hr className="w-1/2" />
+
+            <p className="my-1 font-lato text-xl font-light italic text-gray-500 md:text-xl">
+              Click on a post to read our latest blogs or listen to our latest
+              podcasts.
+            </p>
+            <hr className="w-3/4" />
+            <br />
+          </>
+        )}
+
+        <div className="flex flex-wrap gap-6">
+          {partitioned_blogs?.[paginate]?.map((blog: BlogResponse) => {
+            return (
+              <BlogMd key={blog.media_title} className="md:w-[48%]" {...blog} />
+            );
+          })}
+        </div>
+        <div className="flex w-full justify-between">
+          <button
+            className={`group px-8 py-6 ${
+              paginate > 0 ? '' : 'pointer-events-none cursor-not-allowed'
+            }`}
+            onClick={decrement}
+          >
+            <Icon
+              icon="lucide:chevron-first"
+              className="rounded-full text-4xl text-paynes-grey transition-colors duration-500 group-hover:bg-gray-200 group-hover:text-white group-hover:shadow-xl"
+            />
+          </button>
+          <p className="my-6 font-raleway text-xl italic text-paynes-grey">
+            page {paginate + 1} of {partitioned_blogs?.length}
           </p>
-          <hr className="mx-auto w-1/2" />
+          <button
+            className={`group px-8 py-6 ${
+              paginate === (partitioned_blogs?.length ?? 0) - 1
+                ? 'pointer-events-none cursor-not-allowed'
+                : ''
+            }`}
+            onClick={increment}
+          >
+            <Icon
+              icon="lucide:chevron-last"
+              className="rounded-full text-4xl text-paynes-grey transition-colors duration-500 group-hover:bg-gray-200 group-hover:text-white group-hover:shadow-xl"
+            />
+          </button>
+        </div>
 
-          <p className="my-1 text-center font-lato text-xl font-light italic text-gray-500 md:text-xl">
-            Click on a post to read our latest blogs or listen to our latest
-            podcasts.
-          </p>
-          <hr className="mx-auto w-1/2" />
-          <br />
-        </>
-      )}
-
-      <div className="flex flex-wrap gap-6">
-        {partitioned_blogs?.[paginate]?.map((blog: BlogResponse) => {
-          return (
-            <BlogMd key={blog.media_title} className="md:w-[48%]" {...blog} />
-          );
-        })}
+        {!partitioned_blogs && <Loader />}
       </div>
-      <div className="flex w-full justify-between">
-        <button
-          className={`group px-8 py-6 ${
-            paginate > 0 ? '' : 'pointer-events-none cursor-not-allowed'
-          }`}
-          onClick={decrement}
-        >
-          <Icon
-            icon="lucide:chevron-first"
-            className="rounded-full text-4xl text-paynes-grey transition-colors duration-500 group-hover:bg-gray-200 group-hover:text-white group-hover:shadow-xl"
-          />
-        </button>
-        <p className="my-6 font-raleway text-xl italic text-paynes-grey">
-          page {paginate + 1} of {partitioned_blogs?.length}
-        </p>
-        <button
-          className={`group px-8 py-6 ${
-            paginate === (partitioned_blogs?.length ?? 0) - 1
-              ? 'pointer-events-none cursor-not-allowed'
-              : ''
-          }`}
-          onClick={increment}
-        >
-          <Icon
-            icon="lucide:chevron-last"
-            className="rounded-full text-4xl text-paynes-grey transition-colors duration-500 group-hover:bg-gray-200 group-hover:text-white group-hover:shadow-xl"
-          />
-        </button>
-      </div>
-
-      {!partitioned_blogs && <Loader />}
     </div>
   );
 };

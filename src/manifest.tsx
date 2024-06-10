@@ -5,7 +5,7 @@ import Projects from './routes/projects/Projects.page';
 import News from './routes/news/News.page';
 import Books from './routes/books/Books.page';
 import Affiliations from './routes/affiliations/Affiliations.page';
-import Podcasts from './routes/podcasts/Podcasts.page';
+import Podcasts from './routes/blogs/Podcasts.component';
 import PeopleAccess from './routes/admin/people/MemberAccess';
 import Admin from './routes/admin/Admin';
 import BlogAccess from './routes/admin/blogs/BlogAccess';
@@ -43,15 +43,9 @@ export const tabs = [
     icon: 'ph:books',
   },
   {
-    name: 'blogs',
+    name: 'blogs & podcasts',
     protected: false,
     pathname: '/blogs',
-    icon: 'ic:twotone-mic',
-  },
-  {
-    name: 'podcasts',
-    protected: false,
-    pathname: '/podcasts',
     icon: 'ic:twotone-mic',
   },
   {

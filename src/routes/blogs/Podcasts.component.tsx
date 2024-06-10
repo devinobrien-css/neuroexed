@@ -26,14 +26,7 @@ const links = [
 const Podcasts = () => {
   return (
     <div className="">
-      <Header
-        title="ExperiencED Podcast"
-        sub_title="These podcasts explore the process of learning from direct experiences in all of its forms."
-      />
-      <div className="my-32 px-2">
-        <h1 className=" text-center font-raleway text-4xl font-light md:text-6xl">
-          Explore Our Lab's Podcasts
-        </h1>
+      <div className="my-16 px-2">
         <br />
         <p className="mx-auto text-justify font-lato font-light md:w-3/4">
           The ExperiencED Podcasts explore the process of learning from direct
@@ -43,6 +36,7 @@ const Podcasts = () => {
           have studied the process of learning from direct experiences and
           explore their research.
         </p>
+        <br />
         <br />
         <div className="mx-auto flex flex-wrap sm:flex-nowrap md:w-3/4">
           <img
@@ -80,6 +74,7 @@ const Podcasts = () => {
           </div>
         </div>
         <br />
+        <br />
         <p className="mx-auto text-justify font-lato font-light md:w-3/4">
           We believe that learning from direct experiences is a powerful way to
           learn and we want to explore how people can maximize their learning
@@ -89,7 +84,7 @@ const Podcasts = () => {
           others learn from direct experiences.
         </p>
         <br />
-
+        <br />
         <div className="mx-auto md:w-3/4">
           <h2 className="text-4xl font-light">Latest Episodes</h2>
           <p className="text-xl font-light">
@@ -121,7 +116,6 @@ const Podcasts = () => {
           <br />
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

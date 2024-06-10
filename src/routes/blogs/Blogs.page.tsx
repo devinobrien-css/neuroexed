@@ -1,17 +1,19 @@
 import Header from '../../shared/components/Header';
 import Footer from '../../shared/components/footer/Footer';
 import LandingBlogs from '../landing/sections/LandingBlogs';
+import Podcasts from './Podcasts.component';
 
 const Blogs = () => {
   return (
-    <div className="">
+    <div>
       <Header
-        title="ExperiencED Podcast"
+        title="Neuroexed's Blogs & Podcast"
         sub_title="These podcasts explore the process of learning from direct experiences in all of its forms."
       />
+      <Podcasts />
       <div className="my-32 px-2">
         <h1 className=" text-center font-raleway text-4xl font-light md:text-6xl">
-          Explore Our Lab's Papers and Articles
+          Explore Our Lab's Blog Posts
         </h1>
         <br />
         <p className="mx-auto text-center font-lato text-lg font-light md:w-3/4">
@@ -30,7 +32,6 @@ const Blogs = () => {
           </a>
           .
         </p>
-        <br />
         <LandingBlogs includeTitle={false} />
         <br />
         <br />

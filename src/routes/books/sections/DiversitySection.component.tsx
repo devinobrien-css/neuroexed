@@ -1,10 +1,10 @@
 const DiversitySection = () => {
   return (
-    <div className="my-4 rounded border p-12 shadow-lg">
+    <div className="my-4 rounded p-12">
       <div className="p-4 md:flex">
         <div className="mx-auto min-h-[300px] shrink-0 bg-diversity bg-contain bg-center bg-no-repeat md:w-1/4"></div>
-        <div className="">
-          <div className="">
+        <div>
+          <div>
             <p className="font-raleway text-5xl font-light">
               Diversity at College
             </p>

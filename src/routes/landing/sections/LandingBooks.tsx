@@ -2,10 +2,7 @@ export const LandingBooks = () => {
   return (
     <div className="my-32 bg-landing bg-cover bg-no-repeat shadow-2xl shadow-gray-400 backdrop-opacity-10">
       <div className="backdrop-contrast-30 p-16 backdrop-blur-md">
-        <p className="mb-8 text-center font-raleway text-4xl text-white md:text-6xl">
-          Our Books
-        </p>
-        <div className="my-4 justify-center md:flex md:border md:p-8">
+        <div className="my-4 justify-center md:flex md:p-8">
           <img
             src="./img/diversity.png"
             alt="Diversity at College Book"
@@ -51,7 +48,7 @@ export const LandingBooks = () => {
         <br />
         <br />
 
-        <div className="my-4 justify-center md:flex md:border md:p-8">
+        <div className="my-4 justify-center md:flex md:p-8">
           <div className="h-max-content flex flex-col pl-2 md:w-2/5">
             <div className="my-auto">
               <div className="flex shrink-0">

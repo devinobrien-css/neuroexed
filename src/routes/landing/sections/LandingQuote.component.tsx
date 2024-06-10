@@ -1,6 +1,6 @@
 const LandingQuote = () => {
   return (
-    <div className="bg-white">
+    <div className="min-h-screen bg-white">
       <div className="relative mx-auto max-w-screen-2xl bg-brain-network bg-contain bg-right bg-no-repeat">
         <div className="bg-white p-4 py-48 opacity-75  md:px-16">
           <p className="mx-auto text-center font-lato text-2xl font-light text-gray-900 md:text-left md:text-4xl">
