@@ -1,10 +1,11 @@
 import React from 'react';
 import LandingQuote from './sections/LandingQuote.component.jsx';
 import LandingBlogs from './sections/LandingBlogs.jsx';
-import {LandingBooks} from './sections/LandingBooks.js';
+import { LandingBooks } from './sections/LandingBooks.js';
 import Footer from '../../shared/components/footer/Footer.js';
 import Header from '../../shared/components/Header.js';
 import LandingRedirect from './sections/LandingRedirect.component.js';
+import { Posts } from './sections/Posts.js';
 
 const under_construction = false;
 
@@ -16,7 +17,7 @@ const Landing = () => {
     <section className="scroll-smooth">
       {under_construction ? (
         <div className="relative">
-          <div className="z-100 absolute left-0 top-0 h-screen w-full cursor-not-allowed"></div>
+          <div className="absolute left-0 top-0 z-100 h-screen w-full cursor-not-allowed"></div>
           <Header
             title="Under Construction"
             sub_title="This page is currently under construction. Please check back soon!"
@@ -31,6 +32,7 @@ const Landing = () => {
           <LandingQuote />
           <LandingBlogs />
           <LandingBooks />
+          <Posts />
           <LandingRedirect />
           <Footer />
         </>

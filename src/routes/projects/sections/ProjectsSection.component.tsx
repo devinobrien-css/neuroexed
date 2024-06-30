@@ -25,9 +25,6 @@ const ProjectsSection = () => {
 
   return (
     <div className="my-24 p-4">
-      <p className="my-8 text-center font-raleway text-6xl">
-        Our Latest Collaborative Work
-      </p>
       <div className="flex-wrap md:flex">
         {!projects && (
           <div className="min-h-[400px] w-full">

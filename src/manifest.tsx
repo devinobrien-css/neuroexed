@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import Landing from './routes/landing/Landing.page';
 import People from './routes/people/People.page';
 import Projects from './routes/projects/Projects.page';
-import News from './routes/news/News.page';
 import Books from './routes/books/Books.page';
 import Affiliations from './routes/affiliations/Affiliations.page';
 import Podcasts from './routes/blogs/Podcasts.component';
@@ -49,12 +48,6 @@ export const tabs = [
     icon: 'ic:twotone-mic',
   },
   {
-    name: 'news',
-    protected: false,
-    pathname: '/news',
-    icon: 'fluent:news-24-regular',
-  },
-  {
     name: 'affiliations',
     protected: false,
     pathname: '/affiliations',
@@ -80,10 +73,6 @@ export const router = createBrowserRouter([
   {
     path: '/projects',
     element: <Projects />,
-  },
-  {
-    path: '/news',
-    element: <News />,
   },
   {
     path: '/books',

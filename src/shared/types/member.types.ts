@@ -27,7 +27,7 @@ export interface MemberResponse {
   collegiate_title: string;
   lab_title: string;
   year_joined: string;
-  lab_status: boolean;
+  lab_status: string;
   description: string;
   socials: MemberSocials;
   profile_picture: string;

@@ -102,6 +102,7 @@ export const ProfileCard = ({ member, className }: ProfileCardProps) => {
         <p className="absolute z-50 bg-oxford-blue/50 p-1 font-lato text-tiffany-blue">
           {member.lab_status}
         </p>
+
         <SafeProfilePicture
           className="h-64 w-full object-cover object-center brightness-75"
           firstName={member.first}

@@ -7,8 +7,11 @@ export const Posts = () => {
 
   return (
     <div className="mx-auto my-32 max-w-screen-lg">
-      <p className="mx-auto w-fit font-raleway text-4xl transition-all md:text-6xl">
+      <p className="w-fit font-raleway text-4xl transition-all md:text-6xl">
         Our Latest Updates
+      </p>
+      <p className="w-fit font-lato text-xl font-light text-gray-700 transition-all md:text-2xl">
+        Get caught up on the latest news from the Center
       </p>
       <div className="flex flex-col gap-y-12 py-12">
         {posts?.map((post: Post) => {

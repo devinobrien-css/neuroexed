@@ -33,8 +33,8 @@ const Footer = () => {
         ))}
       <div className="bg-landing bg-cover bg-center bg-no-repeat">
         <div className="p-4 backdrop-blur-md">
-          <div className="md:flex">
-            <div className="mx-4 w-full border-b border-white p-4 md:w-1/3">
+          <div className="justify-evenly md:flex">
+            <div className="mx-4 w-full border-white p-4 md:w-1/3">
               <p className="border-b border-white font-lato text-2xl font-light uppercase text-white">
                 OUTREACH
               </p>
@@ -59,7 +59,7 @@ const Footer = () => {
                 </FooterLink>
               </div>
             </div>
-            <div className="mx-4 w-full border-b border-white p-4 md:w-1/3">
+            <div className="mx-4 w-full border-white p-4 md:w-1/3">
               <p className="border-b border-white font-lato text-2xl font-light uppercase text-white">
                 AFFILIATES
               </p>
@@ -88,20 +88,18 @@ const Footer = () => {
                 </FooterLink>
               </div>
             </div>
-            <div className="mx-4 w-full border-b border-white p-4 md:w-1/3 ">
+            {/* <div className="mx-4 w-full border-b border-white p-4 md:w-1/3 ">
               <p className="border-b border-white font-lato text-2xl font-light uppercase text-white">
                 CONTACT
               </p>
               <div className="flex flex-col p-2">
-                {/* onClick={() => Modal(<EmailModalContent />)} */}
                 <FooterLink>send us a message</FooterLink>
                 <FooterLink onClick={() => navigate('/people')}>
                   email a staff member
                 </FooterLink>
-                {/* onClick={() => Modal(<BugModalContent />)} */}
                 <FooterLink>report a bug</FooterLink>
               </div>
-            </div>
+            </div> */}
           </div>
           <br />
           <br />
