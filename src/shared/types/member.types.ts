@@ -4,7 +4,7 @@ export interface MemberFormInput {
   'Collegiate Title': string;
   'Lab Title': string;
   'Year Joined': string;
-  'Lab Status': boolean;
+  'Lab Status': string;
   Description: string;
   Email: string;
   Twitter: string;
