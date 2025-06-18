@@ -2,23 +2,22 @@ import React from 'react';
 import Footer from '../../shared/components/footer/Footer';
 import Header from '../../shared/components/Header';
 import Navbar from '../../shared/components/Navbar';
-import { AffiliationsSection } from './sections/Affiliations.component';
-import AffiliationsList from './sections/AffiliationsList';
+import { PublicationsTable } from './sections/Publications.component';
 
-const Affiliations = () => {
+const Publications = () => {
   return (
     <section>
       <Navbar />
       <Header
-        title="Our Affiliations"
-        sub_title="Explore our partnerships and collaborations with organizations and institutions."
+        title="Our Publications"
+        sub_title="Explore our research papers, books, and other scholarly work."
       />
       <div className="container mx-auto p-4">
-        <AffiliationsList />
+        <PublicationsTable />
       </div>
       <Footer />
     </section>
   );
 };
 
-export default Affiliations;
+export default Publications;

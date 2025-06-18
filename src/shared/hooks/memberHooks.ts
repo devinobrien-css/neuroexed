@@ -31,7 +31,10 @@ export const MEMBERS_QUERY_KEY = ['/members'];
 export const useMembersQuery = createAPIQuery<MemberResponse[]>({
   queryKey: MEMBERS_QUERY_KEY,
   queryFn: async () => {
-    const res: MemberResponse[] = await fetchData(MEMBERS_TABLE_NAME);
+    const res = await fetchData(MEMBERS_TABLE_NAME);
+
+    console.log(res);
+
     return res.sort((a, b) => a.order - b.order);
   },
 });

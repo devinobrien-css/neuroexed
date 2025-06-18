@@ -1,7 +1,9 @@
 export interface Post {
   title: string;
-  date: string;
   content: string;
+  date: string;
+  author?: string;
+  image?: string;
 }
 export const post = ({ title, date, content }: Post) => {
   return {

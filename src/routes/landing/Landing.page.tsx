@@ -1,11 +1,16 @@
-import React from 'react';
-import LandingQuote from './sections/LandingQuote.component.jsx';
-import LandingBlogs from './sections/LandingBlogs.jsx';
-import { LandingBooks } from './sections/LandingBooks.js';
-import Footer from '../../shared/components/footer/Footer.js';
-import Header from '../../shared/components/Header.js';
-import LandingRedirect from './sections/LandingRedirect.component.js';
-import { Posts } from './sections/Posts.js';
+import LandingQuote from './sections/LandingQuote.component';
+import LandingBlogs from './sections/LandingBlogs';
+import { LandingBooks } from './sections/LandingBooks';
+import Footer from '../../shared/components/footer/Footer';
+import Header from '../../shared/components/Header';
+import Navbar from '../../shared/components/Navbar';
+import LandingRedirect from './sections/LandingRedirect.component';
+import { Posts } from './sections/Posts';
+import FeaturedResearch from './sections/FeaturedResearch';
+import StatsSection from './sections/StatsSection';
+import Testimonials from './sections/Testimonials';
+import CallToAction from './sections/CallToAction';
+import SocialMediaSection from './sections/SocialMediaSection';
 
 const under_construction = false;
 
@@ -15,6 +20,8 @@ const under_construction = false;
 const Landing = () => {
   return (
     <section className="scroll-smooth">
+      <Navbar />
+
       {under_construction ? (
         <div className="relative">
           <div className="absolute left-0 top-0 z-100 h-screen w-full cursor-not-allowed"></div>
@@ -30,14 +37,20 @@ const Landing = () => {
             sub_title="An interactive semi-virtual laboratory for study, writing, and research"
           />
           <LandingQuote />
-          <LandingBlogs />
-          <LandingBooks />
-          <Posts />
+          <FeaturedResearch />
+          <StatsSection />
           <LandingRedirect />
+          <SocialMediaSection />
+          <LandingBlogs />
+          <Posts />
+          <LandingBooks />
+          <CallToAction />
+          <Testimonials />
           <Footer />
         </>
       )}
     </section>
   );
 };
+
 export default Landing;

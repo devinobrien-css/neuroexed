@@ -13,6 +13,8 @@ export const SafeProfilePicture = ({
   const [fallbackImage, setFallbackImage] = useState<boolean>();
   const assumedGender = getGender(firstName ?? '');
 
+  console.log(image);
+
   return !fallbackImage ? (
     <img
       className={className}

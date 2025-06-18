@@ -8,9 +8,6 @@ const AffiliationsList = () => {
 
   return (
     <div className="my-32 p-4">
-      <p className="mb-8 text-center font-raleway text-4xl font-light md:text-6xl">
-        Our Affiliations
-      </p>
       <div className="flex flex-wrap">
         {!affiliates && (
           <div className="flex min-h-[400px] w-full flex-col items-center">
