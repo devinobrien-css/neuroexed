@@ -11,7 +11,7 @@ const AnimatedBrain: React.FC = () => {
       const startY = Math.round(366 + radius * Math.sin(startAngle) * 0.4);
       const endX = Math.round(512 + (Math.random() * 100 - 50));
       const endY = Math.round(366 + (Math.random() * 80 - 40));
-      
+
       return {
         id: `synapse-${i}-${Date.now()}`,
         startX,
@@ -114,7 +114,13 @@ const AnimatedBrain: React.FC = () => {
               </linearGradient>
 
               {/* Enhanced glow for center of brain */}
-              <filter id="centerGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <filter
+                id="centerGlow"
+                x="-20%"
+                y="-20%"
+                width="140%"
+                height="140%"
+              >
                 <feGaussianBlur stdDeviation="8" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
@@ -159,7 +165,7 @@ const AnimatedBrain: React.FC = () => {
               const ry = 200 - i * 10;
               const strokeOpacity = 0.3 + i * 0.1;
               const duration = 20 + i * 3;
-              
+
               return (
                 <motion.ellipse
                   key={`ring-${rx}-${ry}-${duration}`}
@@ -188,7 +194,7 @@ const AnimatedBrain: React.FC = () => {
             {/* Static rings */}
             {[...Array(4)].map((_, i) => {
               const r = 380 - i * 40;
-              
+
               return (
                 <ellipse
                   key={`static-ring-${r}`}
@@ -603,7 +609,7 @@ const AnimatedBrain: React.FC = () => {
               const y = 270 + i * 25;
               const x1 = 150;
               const x2 = 850;
-              
+
               return (
                 <motion.line
                   key={`scan-line-${i}-${y}`}
@@ -637,7 +643,7 @@ const AnimatedBrain: React.FC = () => {
       <div className="absolute inset-0 opacity-10 mix-blend-screen">
         {[...Array(15)].map((_, i) => {
           const topPercent = i * 6 + 5;
-          
+
           return (
             <motion.div
               key={`binary-${i}-${topPercent}`}
