@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
 const AnimatedBrain: React.FC = () => {
+  // Pre-calculate synapse positions to avoid undefined values during render
+  const synapsePositions = useMemo(() => {
+    return Array.from({ length: 20 }, (_, i) => {
+      const startAngle = (i * Math.PI) / 10;
+      const radius = 200 + Math.random() * 120;
+      const startX = Math.round(512 + radius * Math.cos(startAngle) * 0.55);
+      const startY = Math.round(366 + radius * Math.sin(startAngle) * 0.4);
+      const endX = Math.round(512 + (Math.random() * 100 - 50));
+      const endY = Math.round(366 + (Math.random() * 80 - 40));
+      
+      return {
+        id: `synapse-${i}-${Date.now()}`,
+        startX,
+        startY,
+        endX,
+        endY,
+        duration: 3 + Math.random() * 2,
+        delay: i * 0.2,
+      };
+    });
+  }, []);
   return (
     <div className="relative w-full">
       {/* <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-blue-900 to-gray-900 opacity-80"></div> */}
@@ -93,6 +114,13 @@ const AnimatedBrain: React.FC = () => {
               </linearGradient>
 
               {/* Enhanced glow for center of brain */}
+              <filter id="centerGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="8" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
 
               <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
                 <feGaussianBlur stdDeviation="6" result="blur" />
@@ -126,44 +154,55 @@ const AnimatedBrain: React.FC = () => {
             />
 
             {/* Rotating rings */}
-            {[...Array(5)].map((_, i) => (
-              <motion.ellipse
-                key={`ring-${i}`}
-                cx="512"
-                cy="366"
-                rx={350 - i * 15}
-                ry={200 - i * 10}
-                stroke="url(#brainOutline)"
-                strokeOpacity={0.3 + i * 0.1}
-                strokeWidth="1"
-                fill="none"
-                animate={{
-                  rotateX: [0, 360],
-                  opacity: [0.2, 0.4, 0.2],
-                }}
-                transition={{
-                  duration: 20 + i * 3,
-                  repeat: Infinity,
-                  ease: 'linear',
-                }}
-                style={{ transformOrigin: 'center center' }}
-              />
-            ))}
+            {[...Array(5)].map((_, i) => {
+              const rx = 350 - i * 15;
+              const ry = 200 - i * 10;
+              const strokeOpacity = 0.3 + i * 0.1;
+              const duration = 20 + i * 3;
+              
+              return (
+                <motion.ellipse
+                  key={`ring-${rx}-${ry}-${duration}`}
+                  cx="512"
+                  cy="366"
+                  rx={rx}
+                  ry={ry}
+                  stroke="url(#brainOutline)"
+                  strokeOpacity={strokeOpacity}
+                  strokeWidth="1"
+                  fill="none"
+                  animate={{
+                    rotateX: [0, 360],
+                    opacity: [0.2, 0.4, 0.2],
+                  }}
+                  transition={{
+                    duration: duration,
+                    repeat: Infinity,
+                    ease: 'linear',
+                  }}
+                  style={{ transformOrigin: 'center center' }}
+                />
+              );
+            })}
 
             {/* Static rings */}
-            {[...Array(4)].map((_, i) => (
-              <ellipse
-                key={`static-ring-${i}`}
-                cx="512"
-                cy="366"
-                rx={380 - i * 40}
-                ry={380 - i * 40}
-                stroke="url(#brainOutline)"
-                strokeOpacity={0.15}
-                strokeWidth="1"
-                fill="none"
-              />
-            ))}
+            {[...Array(4)].map((_, i) => {
+              const r = 380 - i * 40;
+              
+              return (
+                <ellipse
+                  key={`static-ring-${r}`}
+                  cx="512"
+                  cy="366"
+                  rx={r}
+                  ry={r}
+                  stroke="url(#brainOutline)"
+                  strokeOpacity={0.15}
+                  strokeWidth="1"
+                  fill="none"
+                />
+              );
+            })}
 
             {/* Brain structure - Full detailed structure from the provided SVG */}
             <g id="brain" filter="url(#glow)">
@@ -537,84 +576,85 @@ const AnimatedBrain: React.FC = () => {
             </g>
 
             {/* Synaptic activity */}
-            {[...Array(20)].map((_, i) => {
-              const startAngle = (i * Math.PI) / 10;
-              const radius = 200 + Math.random() * 120;
-              const startX = 512 + radius * Math.cos(startAngle) * 0.55;
-              const startY = 366 + radius * Math.sin(startAngle) * 0.4;
-              const endX = 512 + (Math.random() * 100 - 50);
-              const endY = 366 + (Math.random() * 80 - 40);
+            {synapsePositions.map((synapse) => (
+              <motion.circle
+                key={synapse.id}
+                cx={synapse.startX}
+                cy={synapse.startY}
+                r="1.5"
+                fill="#4dabf7"
+                filter="url(#glow)"
+                animate={{
+                  cx: [synapse.startX, synapse.endX, synapse.startX],
+                  cy: [synapse.startY, synapse.endY, synapse.startY],
+                  opacity: [0, 1, 0],
+                }}
+                transition={{
+                  duration: synapse.duration,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                  delay: synapse.delay,
+                }}
+              />
+            ))}
 
+            {/* Digital scan lines */}
+            {[...Array(12)].map((_, i) => {
+              const y = 270 + i * 25;
+              const x1 = 150;
+              const x2 = 850;
+              
               return (
-                <motion.circle
-                  key={`synapse-${i}`}
-                  cx={startX}
-                  cy={startY}
-                  r="1.5"
-                  fill="#4dabf7"
-                  filter="url(#glow)"
+                <motion.line
+                  key={`scan-line-${i}-${y}`}
+                  x1={x1}
+                  y1={y}
+                  x2={x2}
+                  y2={y}
+                  stroke="#4dabf7"
+                  strokeOpacity="0.1"
+                  strokeWidth="1"
+                  strokeDasharray="4,4"
                   animate={{
-                    cx: [startX, endX, startX],
-                    cy: [startY, endY, startY],
-                    opacity: [0, 1, 0],
+                    strokeOpacity: [0.05, 0.15, 0.05],
+                    x1: [x1, x1 + 30, x1],
+                    x2: [x2, x2 - 30, x2],
                   }}
                   transition={{
-                    duration: 3 + Math.random() * 2,
+                    duration: 5,
                     repeat: Infinity,
                     ease: 'easeInOut',
-                    delay: i * 0.2,
+                    delay: i * 0.3,
                   }}
                 />
               );
             })}
-
-            {/* Digital scan lines */}
-            {[...Array(12)].map((_, i) => (
-              <motion.line
-                key={`scan-${i}`}
-                x1="150"
-                y1={270 + i * 25}
-                x2="850"
-                y2={270 + i * 25}
-                stroke="#4dabf7"
-                strokeOpacity="0.1"
-                strokeWidth="1"
-                strokeDasharray="4,4"
-                animate={{
-                  strokeOpacity: [0.05, 0.15, 0.05],
-                  x1: [150, 180, 150],
-                  x2: [850, 820, 850],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                  delay: i * 0.3,
-                }}
-              />
-            ))}
           </svg>
         </motion.div>
       </motion.div>
 
       {/* Binary data scan effect */}
       <div className="absolute inset-0 opacity-10 mix-blend-screen">
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={`binary-${i + 1}`}
-            className="absolute h-[1px] w-full bg-gradient-to-r from-transparent via-blue-400 to-transparent"
-            style={{ top: `${i * 6 + 5}%` }}
-            animate={{
-              opacity: [0, 0.5, 0],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: 'easeInOut',
-              delay: i * 0.2,
-            }}
-          />
-        ))}
+        {[...Array(15)].map((_, i) => {
+          const topPercent = i * 6 + 5;
+          
+          return (
+            <motion.div
+              key={`binary-${i}-${topPercent}`}
+              className="absolute h-[1px] w-full bg-gradient-to-r from-transparent via-blue-400 to-transparent"
+              style={{ top: `${topPercent}%` }}
+              animate={{
+                opacity: [0, 0.5, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: 'easeInOut',
+                delay: i * 0.2,
+              }}
+            />
+          );
+        })}
       </div>
     </div>
   );
