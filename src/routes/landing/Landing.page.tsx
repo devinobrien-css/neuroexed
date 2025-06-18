@@ -48,7 +48,7 @@ const Landing = () => {
           <LandingRedirect />
           <SocialMediaSection />
           <LandingBlogs />
-          <Posts />
+          {/* <Posts /> */}
           <LandingBooks />
           <CallToAction />
           <Testimonials />
