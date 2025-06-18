@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Staff } from '../../../shared/types/staff.types';
+import { MemberResponse } from '../../../shared/types/member.types';
 import { Icon } from '@iconify/react';
 import { SafeProfilePicture } from '../../../shared/components/common/SafeProfilePicture';
 
 interface ProfileCardProps {
-  person: Staff;
+  person: MemberResponse;
   index: number;
   viewMode: 'grid' | 'list';
 }

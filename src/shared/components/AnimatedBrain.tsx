@@ -601,12 +601,11 @@ const AnimatedBrain: React.FC = () => {
       <div className="absolute inset-0 opacity-10 mix-blend-screen">
         {[...Array(15)].map((_, i) => (
           <motion.div
-            key={`binary-${i}`}
+            key={`binary-${i + 1}`}
             className="absolute h-[1px] w-full bg-gradient-to-r from-transparent via-blue-400 to-transparent"
             style={{ top: `${i * 6 + 5}%` }}
             animate={{
               opacity: [0, 0.5, 0],
-              translateY: [0, 2, 0],
             }}
             transition={{
               duration: 3,

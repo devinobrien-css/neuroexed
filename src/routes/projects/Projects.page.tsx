@@ -13,8 +13,12 @@ const Projects = () => {
       <Header
         title="Research Projects"
         sub_title="Explore our lab's ongoing projects and research initiatives in neuroscience and education."
+        scrollToId="projects-main-content"
+        buttonText="View Projects"
       />
-      <ProjectsSection />
+      <div id="projects-main-content">
+        <ProjectsSection />
+      </div>
       <ProjectsValues />
       <BrainEvolutionTimeline />
       <ProjectsBrain />

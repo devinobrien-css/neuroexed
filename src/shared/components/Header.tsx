@@ -4,9 +4,28 @@ import NeuralNetworkBackground from './NeuralNetworkBackground';
 interface HeaderProps {
   title: string;
   sub_title: string;
+  scrollToId?: string;
+  buttonText?: string;
 }
 
-const Header = ({ title, sub_title }: HeaderProps) => {
+const Header = ({
+  title,
+  sub_title,
+  scrollToId,
+  buttonText = 'Explore Our Work',
+}: HeaderProps) => {
+  const handleScroll = () => {
+    if (scrollToId) {
+      const element = document.getElementById(scrollToId);
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    }
+  };
+
   return (
     <div className="relative overflow-hidden bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 pt-16">
       {/* Neural Network Animation Background */}
@@ -83,21 +102,39 @@ const Header = ({ title, sub_title }: HeaderProps) => {
             className="mt-12"
           >
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <a
-                href="#blogs"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-gray-800 shadow-lg transition-all hover:bg-gray-100"
-              >
-                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M19 9L12 16L5 9"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                Explore Our Work
-              </a>
+              {scrollToId ? (
+                <button
+                  onClick={handleScroll}
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-gray-800 shadow-lg transition-all hover:bg-gray-100"
+                >
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M19 9L12 16L5 9"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  {buttonText}
+                </button>
+              ) : (
+                <a
+                  href="#blogs"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-gray-800 shadow-lg transition-all hover:bg-gray-100"
+                >
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M19 9L12 16L5 9"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  {buttonText}
+                </a>
+              )}
             </div>
           </motion.div>
         </motion.div>

@@ -1,6 +1,4 @@
 import { Icon } from '@iconify/react';
-import Header from '../../shared/components/Header';
-import Footer from '../../shared/components/footer/Footer';
 
 const links = [
   {

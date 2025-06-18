@@ -12,9 +12,11 @@ const Blogs = () => {
       <Header
         title="Neuroexed's Blogs & Podcast"
         sub_title="These podcasts explore the process of learning from direct experiences in all of its forms."
+        scrollToId="blogs-main-content"
+        buttonText="Explore Content"
       />
 
-      <div className="mx-auto my-32 max-w-7xl px-4">
+      <div id="blogs-main-content" className="mx-auto my-32 max-w-7xl px-4">
         <BlogsSection />
 
         <Podcasts />

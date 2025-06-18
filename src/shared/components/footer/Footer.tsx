@@ -57,8 +57,6 @@ const Footer = () => {
           <div className="relative">
             {/* Neural network decoration */}
             <div className="absolute inset-0 overflow-hidden">
-              <div className="absolute left-0 top-0 h-full w-full bg-[url('/img/neural-pattern.png')] bg-repeat opacity-5"></div>
-
               {/* Animated dots */}
               {Array.from({ length: 10 }).map((_, i) => (
                 <motion.div

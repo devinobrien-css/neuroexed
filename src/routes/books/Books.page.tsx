@@ -12,8 +12,10 @@ const Books = () => {
       <Header
         title="Books Published By Our Lab"
         sub_title="Explore our publications on experiential education and diversity in higher education."
+        scrollToId="books-main-content"
+        buttonText="View Books"
       />
-      <div className="mx-auto">
+      <div id="books-main-content" className="mx-auto">
         <DiversitySection />
         <EducationSection />
       </div>

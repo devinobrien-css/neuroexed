@@ -83,9 +83,6 @@ const LandingRedirect = () => {
     <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 py-16 md:py-32">
       {/* Background design elements */}
       <div className="absolute inset-0 -z-10">
-        {/* Neural network background pattern */}
-        <div className="absolute left-0 top-0 h-full w-full bg-[url('/img/neural-pattern.png')] bg-repeat opacity-5"></div>
-
         {/* Subtle gradient overlays */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(74,222,222,0.1),transparent_70%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(77,171,247,0.1),transparent_60%)]"></div>
@@ -156,7 +153,7 @@ const LandingRedirect = () => {
           >
             {/* Simplified Card Grid - Now with dark theme */}
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2">
-              {redirectItems.map((item, index) => (
+              {redirectItems.map((redirectItem, index) => (
                 <motion.div
                   key={index}
                   className="group rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-200 hover:border-tiffany-blue/30 hover:shadow-md"
@@ -164,21 +161,21 @@ const LandingRedirect = () => {
                   whileHover={{ y: -3 }}
                 >
                   <button
-                    onClick={item.onClick}
+                    onClick={redirectItem.onClick}
                     className="flex h-full w-full flex-col items-center p-4 text-center lg:items-start lg:p-5 lg:text-left"
                   >
                     <div
-                      className={`mb-3 flex h-10 w-10 items-center justify-center rounded-lg ${item.iconBg} text-white shadow-lg`}
+                      className={`mb-3 flex h-10 w-10 items-center justify-center rounded-lg ${redirectItem.iconBg} text-white shadow-lg`}
                     >
-                      <Icon icon={item.icon} className="h-5 w-5" />
+                      <Icon icon={redirectItem.icon} className="h-5 w-5" />
                     </div>
 
                     <h3 className="mb-1 text-base font-medium text-white transition-colors group-hover:text-tiffany-blue">
-                      {item.title}
+                      {redirectItem.title}
                     </h3>
 
                     <p className="text-xs font-light text-gray-400">
-                      {item.description}
+                      {redirectItem.description}
                     </p>
                   </button>
                 </motion.div>

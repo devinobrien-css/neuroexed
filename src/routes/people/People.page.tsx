@@ -20,8 +20,8 @@ const People = () => {
     (person) =>
       person.first.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
       person.last.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-      person.role?.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
-      person.bio?.toLowerCase().includes(debouncedSearch.toLowerCase()),
+      person.lab_title?.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+      person.description?.toLowerCase().includes(debouncedSearch.toLowerCase()),
   );
 
   return (
@@ -30,9 +30,14 @@ const People = () => {
       <Header
         title="Meet Our Team"
         sub_title="The innovators, researchers, and visionaries behind our groundbreaking work"
+        scrollToId="team-main-content"
+        buttonText="Meet the Team"
       />
 
-      <section className="bg-gradient-to-b from-white to-gray-50 py-20">
+      <section
+        id="team-main-content"
+        className="bg-gradient-to-b from-white to-gray-50 py-20"
+      >
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

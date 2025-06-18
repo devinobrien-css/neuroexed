@@ -63,10 +63,10 @@ const StatCounter = ({
 
 const StatsSection = () => {
   const stats = [
-    { value: 25, label: 'Research Publications' },
-    { value: 12, label: 'Active Projects' },
-    { value: 30, label: 'Team Members' },
-    { value: 8, label: 'Years of Research' },
+    { value: 10, label: 'Research Publications' },
+    { value: 6, label: 'Active Projects' },
+    { value: 28, label: 'Team Members' },
+    { value: 20, label: 'Years of Research' },
   ];
 
   return (

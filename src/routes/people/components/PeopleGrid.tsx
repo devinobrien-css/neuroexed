@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ProfileCard } from './ProfileCard';
-import { Staff } from '../../../shared/types/staff.types';
+import { MemberResponse } from '../../../shared/types/member.types';
 import { Icon } from '@iconify/react';
 
 interface PeopleGridProps {
-  people: Staff[];
+  people: MemberResponse[];
 }
 
 const PeopleGrid = ({ people }: PeopleGridProps) => {

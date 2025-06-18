@@ -28,6 +28,8 @@ const Landing = () => {
           <Header
             title="Under Construction"
             sub_title="This page is currently under construction. Please check back soon!"
+            scrollToId="landing-main-content"
+            buttonText="Learn More"
           />
         </div>
       ) : (
@@ -35,8 +37,12 @@ const Landing = () => {
           <Header
             title="Center for Neuroscience and Experiential Education"
             sub_title="An interactive semi-virtual laboratory for study, writing, and research"
+            scrollToId="landing-main-content"
+            buttonText="Explore Our Work"
           />
-          <LandingQuote />
+          <div id="landing-main-content">
+            <LandingQuote />
+          </div>
           <FeaturedResearch />
           <StatsSection />
           <LandingRedirect />

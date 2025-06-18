@@ -54,7 +54,6 @@ export const LandingBooks = () => {
         <div
           className={`absolute inset-0 bg-gradient-to-br opacity-20 transition-opacity duration-700 ${books[activeIndex].color}`}
         ></div>
-        <div className="absolute inset-0 bg-[url('/img/texture-dots.png')] opacity-5"></div>
 
         {/* Animated background shapes */}
         <motion.div
@@ -170,8 +169,8 @@ export const LandingBooks = () => {
                   <div className="relative h-full w-full">
                     <div className="absolute inset-0 flex items-center justify-center rounded-full bg-white p-2 shadow-lg">
                       <img
-                        src={books[activeIndex].award.image}
-                        alt={books[activeIndex].award.name}
+                        src={books[activeIndex].award?.image || ''}
+                        alt={books[activeIndex].award?.name || 'Award'}
                         className="h-16 w-16 object-contain"
                       />
                     </div>

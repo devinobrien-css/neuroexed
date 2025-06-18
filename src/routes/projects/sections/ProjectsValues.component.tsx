@@ -2,9 +2,17 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
 
+type IconType = 'bulb' | 'brain-circuit' | 'diversity' | 'teaching';
+
+interface ProjectValue {
+  title: string;
+  content: string;
+  icon: IconType;
+}
+
 const ProjectsValues = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const values = [
+  const values: ProjectValue[] = [
     {
       title: 'The Experiential Development of Professional Wisdom',
       content: `Student development of "so-called" soft-skills, professional
@@ -76,7 +84,7 @@ const ProjectsValues = () => {
     show: { opacity: 1, y: 0 },
   };
 
-  const iconMap = {
+  const iconMap: Record<IconType, string> = {
     bulb: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-3 7h6c.55 0 1 .45 1 1s-.45 1-1 1h-6c-.55 0-1-.45-1-1s.45-1 1-1zm0 3h6c.55 0 1 .45 1 1s-.45 1-1 1h-6c-.55 0-1-.45-1-1s.45-1 1-1z',
     'brain-circuit':
       'M14,8c0,2.21-1.79,4-4,4s-4-1.79-4-4c0-2.21,1.79-4,4-4S14,5.79,14,8z M10,14c-4.42,0-8,1.79-8,4v2h16v-2 C18,15.79,14.42,14,10,14z',
@@ -90,8 +98,6 @@ const ProjectsValues = () => {
     <section className="relative overflow-hidden py-28">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-blue-900">
-        <div className="absolute left-0 top-0 h-full w-full bg-[url('/img/neural-pattern.png')] bg-repeat opacity-5"></div>
-
         {/* Animated dots representing neural connections */}
         <div className="absolute inset-0">
           {Array.from({ length: 20 }).map((_, i) => (

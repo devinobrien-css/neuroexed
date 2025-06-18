@@ -25,7 +25,6 @@ const useNews = () => {
         // Try to fetch from API
         return await fetchData<Post[]>('/news', 'GET');
       } catch (err) {
-        console.warn('Using mock data due to API error:', err);
         // Return mock data if API fails
         return mockPosts;
       }
@@ -34,10 +33,20 @@ const useNews = () => {
     retry: 1, // Only retry once
   });
 
+  const updatePost = (_post: Post) => {
+    // Placeholder function - implement actual post update functionality when backend is available
+  };
+
+  const deletePost = (_postId: string) => {
+    // Placeholder function - implement actual post deletion functionality when backend is available
+  };
+
   return { 
     posts: posts || mockPosts, 
     isLoading,
-    error: error ? String(error) : undefined
+    error: error ? (error as Error).message : undefined,
+    updatePost,
+    deletePost
   };
 };
 

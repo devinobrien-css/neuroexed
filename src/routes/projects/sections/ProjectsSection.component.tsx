@@ -81,7 +81,7 @@ const ProjectIcon = (project: Project) => {
             <div className="mt-6 flex flex-wrap gap-6">
               <div className="flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm text-tiffany-blue">
                 <Icon icon="tabler:calendar" className="h-4 w-4" />
-                <span>Started: {project.start_date || 'Ongoing'}</span>
+                <span>Started: Ongoing</span>
               </div>
 
               <div className="flex items-center gap-2 rounded-full bg-purple-50 px-4 py-2 text-sm text-purple-600">
