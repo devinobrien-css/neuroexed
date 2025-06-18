@@ -13,8 +13,6 @@ interface ProfileCardProps {
 export const ProfileCard = ({ person, index, viewMode }: ProfileCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log(person.profile_picture);
-
   const profilePicture = `${import.meta.env.VITE_S3_PROFILE_PICTURES}${
     person.profile_picture
   }`;

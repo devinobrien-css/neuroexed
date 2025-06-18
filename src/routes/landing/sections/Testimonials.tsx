@@ -13,7 +13,7 @@ const Testimonials = () => {
     },
     {
       quote:
-        'NeuroExed\'s work on cognitive-emotional integration has transformed how we think about student development. Their interdisciplinary approach brings a fresh perspective to educational neuroscience that few other labs can match.',
+        "NeuroExed's work on cognitive-emotional integration has transformed how we think about student development. Their interdisciplinary approach brings a fresh perspective to educational neuroscience that few other labs can match.",
       author: 'Professor James Wilson',
       title: 'Chair of Neuroscience Department, UCLA',
       image: '/img/testimonial2.jpg',
@@ -113,9 +113,9 @@ const Testimonials = () => {
             </button>
 
             <div className="flex items-center gap-2">
-              {testimonials.map((_, index) => (
+              {testimonials?.map((_, index) => (
                 <button
-                  key={index}
+                  key={index + 1}
                   onClick={() => setCurrentIndex(index)}
                   className={`h-2.5 w-2.5 rounded-full transition-colors ${
                     currentIndex === index ? 'bg-tiffany-blue' : 'bg-gray-300'

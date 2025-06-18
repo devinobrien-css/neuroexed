@@ -23,7 +23,9 @@ const useNews = () => {
     queryFn: async () => {
       try {
         // Try to fetch from API
-        return await fetchData<Post[]>('/news', 'GET');
+        const result = await fetchData<Post[]>('/news', 'GET');
+        // Ensure we always return an array
+        return Array.isArray(result) ? result : mockPosts;
       } catch (err) {
         // Return mock data if API fails
         return mockPosts;
@@ -42,7 +44,7 @@ const useNews = () => {
   };
 
   return { 
-    posts: posts || mockPosts, 
+    posts: Array.isArray(posts) ? posts : mockPosts, 
     isLoading,
     error: error ? (error as Error).message : undefined,
     updatePost,
