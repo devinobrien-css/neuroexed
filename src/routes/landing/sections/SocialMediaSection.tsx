@@ -104,7 +104,7 @@ const SocialMediaSection = () => {
   const socialPosts: SocialMediaPost[] = [
     {
       id: '1',
-      title: "I've Looked at Higher Education from Both Sides",
+      title: 'I\'ve Looked at Higher Education from Both Sides',
       description:
         'James Stellar shares his unique perspective on higher education, drawing from his extensive experience in both academic and administrative roles, offering valuable insights into the educational landscape.',
       date: '2025-01-20',
@@ -120,20 +120,20 @@ const SocialMediaSection = () => {
     },
     {
       id: '2',
-      title: "Exploring Effects of Pregnancy and Menopause on Alzheimer's Risk",
+      title: 'Exploring Effects of Pregnancy and Menopause on Alzheimer\'s Risk',
       description:
-        "Dr. Zuloaga's groundbreaking research investigates how hormonal changes during pregnancy and menopause may influence Alzheimer's disease risk, offering new insights into women's brain health.",
+        'Dr. Zuloaga\'s groundbreaking research investigates how hormonal changes during pregnancy and menopause may influence Alzheimer\'s disease risk, offering new insights into women\'s brain health.',
       date: '2025-01-15',
       source: 'news',
       url: 'https://www.albany.edu/news-center/news/2025-zuloaga-exploring-effects-pregnancy-and-menopause-alzheimers-risk',
-      tags: ["Alzheimer's", "Women's Health", 'Hormones', 'Research'],
+      tags: ['Alzheimer\'s', 'Women\'s Health', 'Hormones', 'Research'],
       author: 'Pauline Meunier',
     },
     {
       id: '3',
-      title: "Great Day at UAlbany's Undergraduate Research Conference",
+      title: 'Great Day at UAlbany\'s Undergraduate Research Conference',
       description:
-        "Our lab members had an amazing time presenting their research at UAlbany's undergraduate research conference, showcasing innovative studies in neuroscience and experiential learning.",
+        'Our lab members had an amazing time presenting their research at UAlbany\'s undergraduate research conference, showcasing innovative studies in neuroscience and experiential learning.',
       date: '2024-04-15',
       source: 'linkedin',
       url: 'https://www.linkedin.com/posts/vanessanyblom6801_had-a-great-day-at-ualbanys-undergraduate-activity-7191199474822598656-rZ-p/',
@@ -187,27 +187,27 @@ const SocialMediaSection = () => {
 
   const getSourceIcon = (source: string) => {
     switch (source) {
-      case 'news':
-        return 'tabler:news';
-      case 'linkedin':
-        return 'tabler:brand-linkedin';
-      case 'research':
-        return 'tabler:flask';
-      default:
-        return 'tabler:link';
+    case 'news':
+      return 'tabler:news';
+    case 'linkedin':
+      return 'tabler:brand-linkedin';
+    case 'research':
+      return 'tabler:flask';
+    default:
+      return 'tabler:link';
     }
   };
 
   const getSourceColor = (source: string) => {
     switch (source) {
-      case 'news':
-        return 'from-blue-500 to-blue-600';
-      case 'linkedin':
-        return 'from-blue-600 to-blue-700';
-      case 'research':
-        return 'from-tiffany-blue to-emerald-500';
-      default:
-        return 'from-gray-500 to-gray-600';
+    case 'news':
+      return 'from-blue-500 to-blue-600';
+    case 'linkedin':
+      return 'from-blue-600 to-blue-700';
+    case 'research':
+      return 'from-tiffany-blue to-emerald-500';
+    default:
+      return 'from-gray-500 to-gray-600';
     }
   };
 
@@ -416,17 +416,17 @@ const SocialMediaSection = () => {
                             </button>
                             {typeof navigator !== 'undefined' &&
                               'share' in navigator && (
-                                <button
-                                  onClick={() => handleShare(post)}
-                                  className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                >
-                                  <Icon
-                                    icon="tabler:share"
-                                    className="mr-3 h-4 w-4 text-gray-600"
-                                  />
+                              <button
+                                onClick={() => handleShare(post)}
+                                className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                              >
+                                <Icon
+                                  icon="tabler:share"
+                                  className="mr-3 h-4 w-4 text-gray-600"
+                                />
                                   Native Share
-                                </button>
-                              )}
+                              </button>
+                            )}
                           </div>
                         </div>
                       )}

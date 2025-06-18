@@ -83,15 +83,15 @@ const AffiliationsList = () => {
     // Sort
     filtered.sort((a: Affiliate, b: Affiliate) => {
       switch (sortBy) {
-        case 'name':
-          return a.name.localeCompare(b.name);
-        case 'type':
-          return categorizeAffiliate(a).localeCompare(categorizeAffiliate(b));
-        case 'date':
-          // Since we don't have date data, sort by name as fallback
-          return a.name.localeCompare(b.name);
-        default:
-          return 0;
+      case 'name':
+        return a.name.localeCompare(b.name);
+      case 'type':
+        return categorizeAffiliate(a).localeCompare(categorizeAffiliate(b));
+      case 'date':
+        // Since we don't have date data, sort by name as fallback
+        return a.name.localeCompare(b.name);
+      default:
+        return 0;
       }
     });
 

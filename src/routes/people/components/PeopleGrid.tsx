@@ -24,8 +24,8 @@ const PeopleGrid = ({ people }: PeopleGridProps) => {
     filter === 'all'
       ? people
       : people.filter(
-          (person) => person.lab_status?.toLowerCase() === filter.toLowerCase(),
-        );
+        (person) => person.lab_status?.toLowerCase() === filter.toLowerCase(),
+      );
 
   const container = {
     hidden: { opacity: 0 },

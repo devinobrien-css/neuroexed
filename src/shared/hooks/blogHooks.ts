@@ -13,7 +13,8 @@ export const useBlogsQuery = createAPIQuery<BlogResponse[]>({
   queryKey: BLOGS_QUERY_KEY,
   queryFn: async () => {
     const res = (await fetchData(BLOGS_TABLE)) as BlogResponse[];
-    return res.sort((a, b) => a.order - b.order);
+    // Ensure res is an array before calling sort
+    return Array.isArray(res) ? res.sort((a, b) => a.order - b.order) : [];
   },
 });
 
@@ -113,6 +114,11 @@ const useBlogs = () => {
     queryKey: ['PARTITIONED_BLOGS'],
     queryFn: async () => {
       const blogs: BlogResponse[] = await fetchData('blogs');
+      
+      // Ensure blogs is an array
+      if (!Array.isArray(blogs)) {
+        return [];
+      }
 
       const partitionedBlogs: BlogResponse[][] = [];
       for (let i = 0; i < blogs.length; i++) {

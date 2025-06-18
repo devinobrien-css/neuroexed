@@ -11,34 +11,34 @@ const ProjectsBrain = () => {
 
   const getBrainColor = (section: BrainSectionEnum) => {
     switch (section) {
-      case BrainSectionEnum.NEO:
-        return {
-          gradient: 'from-blue-500 to-blue-600',
-          bgGradient: 'from-blue-500/10 to-blue-600/5',
-          border: 'border-blue-500/20',
-          icon: 'tabler:brain',
-        };
-      case BrainSectionEnum.PALEO:
-        return {
-          gradient: 'from-red-500 to-red-600',
-          bgGradient: 'from-red-500/10 to-red-600/5',
-          border: 'border-red-500/20',
-          icon: 'tabler:activity',
-        };
-      case BrainSectionEnum.REPT:
-        return {
-          gradient: 'from-emerald-500 to-emerald-600',
-          bgGradient: 'from-emerald-500/10 to-emerald-600/5',
-          border: 'border-emerald-500/20',
-          icon: 'fluent-emoji-high-contrast:lizard',
-        };
-      default:
-        return {
-          gradient: 'from-gray-500 to-gray-600',
-          bgGradient: 'from-gray-500/10 to-gray-600/5',
-          border: 'border-gray-500/20',
-          icon: 'tabler:brain',
-        };
+    case BrainSectionEnum.NEO:
+      return {
+        gradient: 'from-blue-500 to-blue-600',
+        bgGradient: 'from-blue-500/10 to-blue-600/5',
+        border: 'border-blue-500/20',
+        icon: 'tabler:brain',
+      };
+    case BrainSectionEnum.PALEO:
+      return {
+        gradient: 'from-red-500 to-red-600',
+        bgGradient: 'from-red-500/10 to-red-600/5',
+        border: 'border-red-500/20',
+        icon: 'tabler:activity',
+      };
+    case BrainSectionEnum.REPT:
+      return {
+        gradient: 'from-emerald-500 to-emerald-600',
+        bgGradient: 'from-emerald-500/10 to-emerald-600/5',
+        border: 'border-emerald-500/20',
+        icon: 'fluent-emoji-high-contrast:lizard',
+      };
+    default:
+      return {
+        gradient: 'from-gray-500 to-gray-600',
+        bgGradient: 'from-gray-500/10 to-gray-600/5',
+        border: 'border-gray-500/20',
+        icon: 'tabler:brain',
+      };
     }
   };
 
@@ -46,14 +46,14 @@ const ProjectsBrain = () => {
 
   const getBrainPosition = (section: BrainSectionEnum) => {
     switch (section) {
-      case BrainSectionEnum.NEO:
-        return '15%';
-      case BrainSectionEnum.PALEO:
-        return '40%';
-      case BrainSectionEnum.REPT:
-        return '70%';
-      default:
-        return '15%';
+    case BrainSectionEnum.NEO:
+      return '15%';
+    case BrainSectionEnum.PALEO:
+      return '40%';
+    case BrainSectionEnum.REPT:
+      return '70%';
+    default:
+      return '15%';
     }
   };
 
@@ -160,8 +160,8 @@ const ProjectsBrain = () => {
                     className={`flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-all ${
                       selected === tab.id
                         ? `bg-gradient-to-r ${
-                            getBrainColor(tab.id).gradient
-                          } text-white shadow-lg`
+                          getBrainColor(tab.id).gradient
+                        } text-white shadow-lg`
                         : 'border border-gray-200 bg-white text-gray-700 hover:bg-gray-50'
                     }`}
                     onClick={() => setSelected(tab.id)}

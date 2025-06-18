@@ -65,7 +65,7 @@ const TIMELINE_DATA = [
     icon: 'tabler:microscope',
     title: 'The Triune Brain Model',
     description:
-      "Paul MacLean's groundbreaking research revealed how these three brain systems work together, revolutionizing neuroscience education.",
+      'Paul MacLean\'s groundbreaking research revealed how these three brain systems work together, revolutionizing neuroscience education.',
     discoveries: [
       'Brain hierarchy understanding',
       'Evolutionary psychology',
@@ -82,46 +82,46 @@ export const BrainEvolutionTimeline = () => {
 
   const getColorClasses = (color: string) => {
     switch (color) {
-      case 'emerald':
-        return {
-          gradient: 'from-emerald-500 to-emerald-600',
-          bgGradient: 'from-emerald-500/10 to-emerald-600/5',
-          border: 'border-emerald-500/20',
-          dot: 'bg-emerald-500',
-          line: 'bg-emerald-200',
-        };
-      case 'red':
-        return {
-          gradient: 'from-red-500 to-red-600',
-          bgGradient: 'from-red-500/10 to-red-600/5',
-          border: 'border-red-500/20',
-          dot: 'bg-red-500',
-          line: 'bg-red-200',
-        };
-      case 'blue':
-        return {
-          gradient: 'from-blue-500 to-blue-600',
-          bgGradient: 'from-blue-500/10 to-blue-600/5',
-          border: 'border-blue-500/20',
-          dot: 'bg-blue-500',
-          line: 'bg-blue-200',
-        };
-      case 'purple':
-        return {
-          gradient: 'from-purple-500 to-purple-600',
-          bgGradient: 'from-purple-500/10 to-purple-600/5',
-          border: 'border-purple-500/20',
-          dot: 'bg-purple-500',
-          line: 'bg-purple-200',
-        };
-      default:
-        return {
-          gradient: 'from-gray-500 to-gray-600',
-          bgGradient: 'from-gray-500/10 to-gray-600/5',
-          border: 'border-gray-500/20',
-          dot: 'bg-gray-500',
-          line: 'bg-gray-200',
-        };
+    case 'emerald':
+      return {
+        gradient: 'from-emerald-500 to-emerald-600',
+        bgGradient: 'from-emerald-500/10 to-emerald-600/5',
+        border: 'border-emerald-500/20',
+        dot: 'bg-emerald-500',
+        line: 'bg-emerald-200',
+      };
+    case 'red':
+      return {
+        gradient: 'from-red-500 to-red-600',
+        bgGradient: 'from-red-500/10 to-red-600/5',
+        border: 'border-red-500/20',
+        dot: 'bg-red-500',
+        line: 'bg-red-200',
+      };
+    case 'blue':
+      return {
+        gradient: 'from-blue-500 to-blue-600',
+        bgGradient: 'from-blue-500/10 to-blue-600/5',
+        border: 'border-blue-500/20',
+        dot: 'bg-blue-500',
+        line: 'bg-blue-200',
+      };
+    case 'purple':
+      return {
+        gradient: 'from-purple-500 to-purple-600',
+        bgGradient: 'from-purple-500/10 to-purple-600/5',
+        border: 'border-purple-500/20',
+        dot: 'bg-purple-500',
+        line: 'bg-purple-200',
+      };
+    default:
+      return {
+        gradient: 'from-gray-500 to-gray-600',
+        bgGradient: 'from-gray-500/10 to-gray-600/5',
+        border: 'border-gray-500/20',
+        dot: 'bg-gray-500',
+        line: 'bg-gray-200',
+      };
     }
   };
 

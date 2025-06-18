@@ -21,10 +21,12 @@ const ProjectMembersList = () => {
           '/project_members',
           'GET',
         );
-        setMembers(data);
+        // Ensure data is an array before setting it
+        setMembers(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error('Error fetching project members:', err);
         setError('Failed to load team members. Please try again later.');
+        setMembers([]); // Set empty array on error
       } finally {
         setLoading(false);
       }
@@ -35,7 +37,7 @@ const ProjectMembersList = () => {
 
   // Filter members based on selected filter
   // Note: ProjectMember type doesn't have member_type, so we'll show all for now
-  const filteredMembers = members;
+  const filteredMembers = Array.isArray(members) ? members : [];
 
   const filterOptions = [
     { id: 'all', label: 'All Members', icon: 'users' },

@@ -13,7 +13,7 @@ const Testimonials = () => {
     },
     {
       quote:
-        "NeuroExed's work on cognitive-emotional integration has transformed how we think about student development. Their interdisciplinary approach brings a fresh perspective to educational neuroscience that few other labs can match.",
+        'NeuroExed\'s work on cognitive-emotional integration has transformed how we think about student development. Their interdisciplinary approach brings a fresh perspective to educational neuroscience that few other labs can match.',
       author: 'Professor James Wilson',
       title: 'Chair of Neuroscience Department, UCLA',
       image: '/img/testimonial2.jpg',

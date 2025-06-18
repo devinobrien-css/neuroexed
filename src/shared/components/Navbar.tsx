@@ -83,8 +83,8 @@ const Navbar = () => {
                           ? 'text-tiffany-blue'
                           : 'text-white'
                         : isScrolled
-                        ? 'text-gray-700 hover:text-tiffany-blue'
-                        : 'text-gray-200 hover:text-white'
+                          ? 'text-gray-700 hover:text-tiffany-blue'
+                          : 'text-gray-200 hover:text-white'
                     }`}
                   >
                     {link.name}

@@ -264,7 +264,7 @@ const LandingBlogs = ({ includeTitle = true }: { includeTitle?: boolean }) => {
             animate="show"
             key={`${paginate}-${debouncedSearch}`}
           >
-            {displayBlogs[paginate]?.map((blog: BlogResponse) => {
+            {(displayBlogs?.[paginate] || []).map((blog: BlogResponse) => {
               return (
                 <motion.div
                   key={`${paginate}-${blog.media_title}`}

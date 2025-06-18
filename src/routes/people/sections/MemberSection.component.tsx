@@ -34,13 +34,13 @@ const MembersSection = () => {
     {
       name: 'Michael Johnson',
       title: 'Graduate Research Assistant',
-      bio: "Michael's research explores the neural correlates of decision-making, with special interest in how real-world experiences shape the developing brain's approach to problem-solving.",
+      bio: 'Michael\'s research explores the neural correlates of decision-making, with special interest in how real-world experiences shape the developing brain\'s approach to problem-solving.',
       twitter: 'https://twitter.com/mjohnson',
     },
     {
       name: 'Sarah Martinez',
       title: 'Research Coordinator',
-      bio: "Sarah coordinates the lab's research initiatives, focusing on diversity and inclusion in experiential education. Her work examines how diverse populations experience and benefit from different educational approaches.",
+      bio: 'Sarah coordinates the lab\'s research initiatives, focusing on diversity and inclusion in experiential education. Her work examines how diverse populations experience and benefit from different educational approaches.',
       linkedin: 'https://linkedin.com/in/sarahmartinez',
     },
   ];

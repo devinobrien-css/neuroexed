@@ -282,8 +282,8 @@ export const LandingBooks = () => {
 
             <blockquote className="relative z-10 italic text-gray-700">
               {activeIndex === 0
-                ? "An illuminating exploration of how colleges can support diversity. The book succeeds in its presentation of realistic and attainable tactics schools can implement based on the contributors' experiences."
-                : "At a time when states across the nation are mandating experiential learning in higher education, this beautiful book educates and inspires us about the unique power of experiential learning to transform students' visions and decisions about their best futures."}
+                ? 'An illuminating exploration of how colleges can support diversity. The book succeeds in its presentation of realistic and attainable tactics schools can implement based on the contributors\' experiences.'
+                : 'At a time when states across the nation are mandating experiential learning in higher education, this beautiful book educates and inspires us about the unique power of experiential learning to transform students\' visions and decisions about their best futures.'}
             </blockquote>
 
             <div className="mt-4 flex justify-end">
