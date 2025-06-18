@@ -60,8 +60,8 @@ const LandingQuote = () => {
           </motion.div>
         </div>
 
-        <div className="flex justify-center lg:my-auto">
-          <Brain className="h-64 w-64 sm:h-80 sm:w-80 lg:h-auto lg:w-auto" />
+        <div className="mr-4 flex justify-center lg:my-auto">
+          <Brain className="h-[90vw] w-[90vw] sm:h-[40vw] sm:w-[40vw] lg:h-[30vw] lg:w-[30vw]" />
         </div>
       </div>
     </div>

@@ -211,7 +211,7 @@ const LandingBlogs = ({ includeTitle = true }: { includeTitle?: boolean }) => {
   return (
     <div
       id="blogs"
-      className="m-auto flex min-h-screen max-w-screen-lg flex-col px-4 transition-all"
+      className="m-auto my-12 flex min-h-screen max-w-screen-lg flex-col px-4 transition-all"
     >
       <div className="m-auto w-full">
         {includeTitle && (

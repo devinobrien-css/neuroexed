@@ -71,13 +71,7 @@ export const Brain = ({ className = '' }: { className?: string }) => {
   return (
     <div className={`relative ${className}`}>
       <style dangerouslySetInnerHTML={{ __html: styles }} />
-      <svg
-        width="545"
-        height="498"
-        viewBox="0 0 545 498"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg viewBox="0 0 545 498" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M503.107 311.81L503.476 312.277L503.873 311.833L506.516 308.874C507.128 309.577 507.5 310.495 507.5 311.5C507.5 313.709 505.709 315.5 503.5 315.5C501.291 315.5 499.5 313.709 499.5 311.5C499.5 310.405 499.94 309.413 500.653 308.69L503.107 311.81ZM503.5 307.5C504.343 307.5 505.125 307.762 505.77 308.207L503.523 310.722L501.438 308.071C502.04 307.709 502.746 307.5 503.5 307.5Z"
           className="neuron-node"
