@@ -51,7 +51,7 @@ const Landing = () => {
           {/* <Posts /> */}
           <LandingBooks />
           <CallToAction />
-          <Testimonials />
+          {/* <Testimonials /> */}
           <Footer />
         </>
       )}
