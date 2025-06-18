@@ -153,7 +153,7 @@ const LandingBlogs = ({ includeTitle = true }: { includeTitle?: boolean }) => {
   const debouncedSearch = useDebounce<string>(search, 300);
 
   // Flatten all blogs for searching
-  const allBlogs = partitioned_blogs?.flat() || [];
+  const allBlogs = partitioned_blogs?.flat() ?? [];
 
   // Filter blogs based on search
   const filteredBlogs = allBlogs.filter(
@@ -264,7 +264,7 @@ const LandingBlogs = ({ includeTitle = true }: { includeTitle?: boolean }) => {
             animate="show"
             key={`${paginate}-${debouncedSearch}`}
           >
-            {(displayBlogs?.[paginate] || []).map((blog: BlogResponse) => {
+            {(displayBlogs?.[paginate] ?? []).map((blog: BlogResponse) => {
               return (
                 <motion.div
                   key={`${paginate}-${blog.media_title}`}
