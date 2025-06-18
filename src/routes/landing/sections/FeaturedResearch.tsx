@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
+import { useNavigate } from 'react-router-dom';
 
 const FeaturedResearch = () => {
+  const navigate = useNavigate();
+
   const researchAreas = [
     {
       title: 'Experiential Learning',
@@ -96,7 +99,12 @@ const FeaturedResearch = () => {
                 <p className="text-gray-600">{area.description}</p>
 
                 <div className="mt-6 flex items-center">
-                  <button className="group inline-flex items-center font-medium text-blue-600 transition-colors hover:text-blue-800">
+                  <button
+                    className="group inline-flex items-center font-medium text-blue-600 transition-colors hover:text-blue-800"
+                    onClick={() => {
+                      navigate('/projects');
+                    }}
+                  >
                     Learn more
                     <Icon
                       icon="tabler:arrow-right"
