@@ -95,7 +95,7 @@ export const LandingBooks = () => {
             </span>
           </h2>
           <div className="mx-auto mb-6 h-1 w-24 rounded-full bg-gradient-to-r from-tiffany-blue to-blue-600"></div>
-          <p className="mx-auto max-w-2xl text-gray-600">
+          <p className="mx-auto max-w-2xl text-gray-600 dark:text-dark-text-secondary">
             Explore our books that blend neuroscience insights with educational
             practices, offering innovative perspectives on learning and
             development.
@@ -110,7 +110,7 @@ export const LandingBooks = () => {
                 className={`rounded-full px-4 py-2 transition-all ${
                   activeIndex === idx
                     ? `bg-gradient-to-r ${book.color} text-white shadow-lg`
-                    : `bg-gradient-to-r ${book.lightColor} text-gray-700 hover:text-gray-900`
+                    : `bg-gradient-to-r ${book.lightColor} text-gray-700 hover:text-gray-900 dark:text-dark-text-secondary dark:hover:text-dark-text`
                 }`}
               >
                 {book.title}
@@ -199,7 +199,7 @@ export const LandingBooks = () => {
               />
             </div>
 
-            <h3 className="mb-6 font-raleway text-3xl font-light text-gray-800 md:text-4xl">
+            <h3 className="mb-6 font-raleway text-3xl font-light text-gray-800 md:text-4xl dark:text-dark-text">
               {books[activeIndex].title}
             </h3>
 
@@ -209,7 +209,7 @@ export const LandingBooks = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.7 }}
             >
-              <p className="mb-8 leading-relaxed text-gray-600">
+              <p className="mb-8 leading-relaxed text-gray-600 dark:text-dark-text-secondary">
                 {books[activeIndex].description}
               </p>
 

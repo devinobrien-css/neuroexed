@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import { DarkModeToggle } from './common/DarkModeToggle';
+import { useTheme } from '../hooks/useTheme';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { isDark } = useTheme();
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -38,8 +41,10 @@ const Navbar = () => {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300${
-          isScrolled ? 'py-2 shadow-md backdrop-blur-md' : 'bg-transparent py-4'
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+          isScrolled 
+            ? 'bg-white/90 py-2 shadow-md backdrop-blur-md dark:bg-dark-surface/90' 
+            : 'bg-transparent py-4'
         }`}
       >
         <div className="container mx-auto px-4">
@@ -51,13 +56,17 @@ const Navbar = () => {
                   <Icon
                     icon="tabler:brain"
                     className={`h-8 w-8 transition-colors duration-300 ${
-                      isScrolled ? 'text-tiffany-blue' : 'text-white'
+                      isScrolled 
+                        ? 'text-tiffany-blue dark:text-tiffany-blue' 
+                        : 'text-white'
                     }`}
                   />
                 </div>
                 <span
                   className={`font-raleway text-xl font-medium transition-colors duration-300 ${
-                    isScrolled ? 'text-gray-800' : 'text-white'
+                    isScrolled 
+                      ? 'text-gray-800 dark:text-dark-text' 
+                      : 'text-white'
                   }`}
                 >
                   NeuroExed
@@ -73,26 +82,31 @@ const Navbar = () => {
                   (link.path !== '/' &&
                     location.pathname.startsWith(link.path));
 
+                const getLinkClasses = () => {
+                  if (isActive) {
+                    return isScrolled
+                      ? 'text-tiffany-blue dark:text-tiffany-blue'
+                      : 'text-white';
+                  }
+                  return isScrolled
+                    ? 'text-gray-700 hover:text-tiffany-blue dark:text-dark-text-secondary dark:hover:text-tiffany-blue'
+                    : 'text-gray-200 hover:text-white';
+                };
+
                 return (
                   <Link
                     key={link.name}
                     to={link.path}
-                    className={`relative rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-                      isActive
-                        ? isScrolled
-                          ? 'text-tiffany-blue'
-                          : 'text-white'
-                        : isScrolled
-                          ? 'text-gray-700 hover:text-tiffany-blue'
-                          : 'text-gray-200 hover:text-white'
-                    }`}
+                    className={`relative rounded-md px-3 py-2 text-sm font-medium transition-colors ${getLinkClasses()}`}
                   >
                     {link.name}
                     {isActive && (
                       <motion.div
                         layoutId="activeNavIndicator"
-                        className={`absolute inset-x-0 bottom-0 h-0.5${
-                          isScrolled ? 'bg-tiffany-blue' : 'bg-white'
+                        className={`absolute inset-x-0 bottom-0 h-0.5 ${
+                          isScrolled 
+                            ? 'bg-tiffany-blue dark:bg-tiffany-blue' 
+                            : 'bg-white'
                         }`}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -104,19 +118,29 @@ const Navbar = () => {
               })}
             </nav>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              <Icon
-                icon={isMobileMenuOpen ? 'tabler:x' : 'tabler:menu-2'}
-                className={`h-6 w-6 transition-colors duration-300 ${
-                  isScrolled ? 'text-gray-800' : 'text-white'
-                }`}
+            {/* Dark Mode Toggle and Mobile Menu Button */}
+            <div className="flex items-center gap-3">
+              <DarkModeToggle 
+                size="small" 
+                className={isScrolled ? '' : 'ring-white/20'} 
               />
-            </button>
+              
+              {/* Mobile Menu Button */}
+              <button
+                className="md:hidden"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                <Icon
+                  icon={isMobileMenuOpen ? 'tabler:x' : 'tabler:menu-2'}
+                  className={`h-6 w-6 transition-colors duration-300 ${
+                    isScrolled 
+                      ? 'text-gray-800 dark:text-dark-text' 
+                      : 'text-white'
+                  }`}
+                />
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -129,7 +153,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-[60px] z-40 border-t bg-white shadow-lg md:hidden"
+            className="fixed inset-x-0 top-[60px] z-40 border-t bg-white shadow-lg dark:border-dark-border dark:bg-dark-surface md:hidden"
           >
             <div className="p-4">
               <nav className="flex flex-col space-y-2">
@@ -145,8 +169,8 @@ const Navbar = () => {
                       to={link.path}
                       className={`rounded-md px-4 py-3 text-base font-medium transition-colors ${
                         isActive
-                          ? 'bg-tiffany-blue/10 text-tiffany-blue'
-                          : 'text-gray-700 hover:bg-gray-100'
+                          ? 'bg-tiffany-blue/10 text-tiffany-blue dark:bg-tiffany-blue/10'
+                          : 'text-gray-700 hover:bg-gray-100 dark:text-dark-text-secondary dark:hover:bg-dark-bg'
                       }`}
                     >
                       {link.name}

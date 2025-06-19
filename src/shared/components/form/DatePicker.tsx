@@ -99,7 +99,7 @@ export function DatePicker({
       disabled={disabled}
       overlay={({ show, toggle }) =>
         show ? (
-          <div className="z-60 mx-auto rounded-lg  bg-white p-4 shadow-lg">
+          <div className="z-60 mx-auto rounded-lg  bg-white p-4 shadow-lg dark:bg-dark-surface">
             <DayPicker
               disabled={disabled}
               mode="single"

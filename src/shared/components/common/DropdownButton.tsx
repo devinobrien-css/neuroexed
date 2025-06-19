@@ -23,7 +23,7 @@ const DropdownButtonToggle = ({
     <button
       {...props}
       className={cx(
-        'text-14 flex h-full items-center gap-2 whitespace-nowrap rounded-lg border-2 border-[#EDEEEF] px-2 font-semibold',
+        'text-14 flex h-full items-center gap-2 whitespace-nowrap rounded-lg border-2 border-[#EDEEEF] px-2 font-semibold dark:border-dark-border dark:bg-dark-surface',
         className,
         {
           'text-grey-300': disabled,

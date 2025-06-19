@@ -276,7 +276,7 @@ const SocialMediaSection = () => {
             >
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/10 to-tiffany-blue/10 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100"></div>
 
-              <div className="relative h-full rounded-3xl border border-gray-200 bg-white p-6 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+              <div className="relative h-full rounded-3xl border border-gray-200 bg-white p-6 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:border-dark-border dark:bg-dark-surface">
                 {/* Source Badge */}
                 <div className="mb-4 flex items-center justify-between">
                   <div
@@ -300,7 +300,7 @@ const SocialMediaSection = () => {
                 </div>
 
                 {/* Content */}
-                <h3 className="mb-3 line-clamp-2 font-raleway text-xl font-semibold text-gray-800">
+                <h3 className="mb-3 line-clamp-2 font-raleway text-xl font-semibold text-gray-800 dark:text-dark-text">
                   {post.title}
                 </h3>
 
@@ -326,7 +326,7 @@ const SocialMediaSection = () => {
                   {post.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
-                      className="inline-block rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600"
+                      className="inline-block rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600 dark:bg-dark-border dark:text-dark-text-secondary"
                     >
                       {tag}
                     </span>
@@ -362,7 +362,7 @@ const SocialMediaSection = () => {
                             shareDropdownOpen === post.id ? null : post.id,
                           )
                         }
-                        className="rounded-full bg-gray-100 p-2 transition-colors hover:bg-gray-200"
+                        className="rounded-full bg-gray-100 p-2 transition-colors hover:bg-gray-200 dark:bg-dark-border dark:hover:bg-dark-bg"
                         title="Share this post"
                       >
                         <Icon
@@ -372,11 +372,11 @@ const SocialMediaSection = () => {
                       </button>
 
                       {shareDropdownOpen === post.id && (
-                        <div className="absolute bottom-full right-0 mb-2 w-48 rounded-lg border border-gray-200 bg-white shadow-lg">
+                        <div className="absolute bottom-full right-0 mb-2 w-48 rounded-lg border border-gray-200 bg-white shadow-lg dark:border-dark-border dark:bg-dark-surface">
                           <div className="p-2">
                             <button
                               onClick={() => shareToTwitter(post)}
-                              className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                              className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-dark-text-secondary dark:hover:bg-dark-border"
                             >
                               <Icon
                                 icon="tabler:brand-twitter"
@@ -386,7 +386,7 @@ const SocialMediaSection = () => {
                             </button>
                             <button
                               onClick={() => shareToLinkedIn(post)}
-                              className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                              className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-dark-text-secondary dark:hover:bg-dark-border"
                             >
                               <Icon
                                 icon="tabler:brand-linkedin"
@@ -396,7 +396,7 @@ const SocialMediaSection = () => {
                             </button>
                             <button
                               onClick={() => shareToFacebook(post)}
-                              className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                              className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-dark-text-secondary dark:hover:bg-dark-border"
                             >
                               <Icon
                                 icon="tabler:brand-facebook"
@@ -406,7 +406,7 @@ const SocialMediaSection = () => {
                             </button>
                             <button
                               onClick={() => copyToClipboard(post)}
-                              className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                              className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-dark-text-secondary dark:hover:bg-dark-border"
                             >
                               <Icon
                                 icon="tabler:copy"
@@ -415,11 +415,10 @@ const SocialMediaSection = () => {
                               Copy Link
                             </button>
                             {typeof navigator !== 'undefined' &&
-                              'share' in navigator && (
-                              <button
-                                onClick={() => handleShare(post)}
-                                className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                              >
+                              'share' in navigator && (                                <button
+                                  onClick={() => handleShare(post)}
+                                  className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-dark-text-secondary dark:hover:bg-dark-border"
+                                >
                                 <Icon
                                   icon="tabler:share"
                                   className="mr-3 h-4 w-4 text-gray-600"

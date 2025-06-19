@@ -2,6 +2,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}', './node_modules/flowbite/**/*.js'],
+  darkMode: 'class', // Enable class-based dark mode
   theme: {
     screens: {
       xs: '580px',
@@ -28,6 +29,12 @@ module.exports = {
         'tiffany-blue': '#9AD4D6',
         'light-cyan': '#C6E9EB',
         'azure-blue': '#F2FDFF',
+        // Dark mode specific colors
+        'dark-bg': '#0f172a', // slate-900
+        'dark-surface': '#1e293b', // slate-800
+        'dark-border': '#334155', // slate-700
+        'dark-text': '#f1f5f9', // slate-100
+        'dark-text-secondary': '#cbd5e1', // slate-300
       },
       backgroundImage: {
         diversity: "url('./shared/assets/img/diversity.png')",

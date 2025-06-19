@@ -126,7 +126,7 @@ export const BrainEvolutionTimeline = () => {
   };
 
   return (
-    <section className="bg-gradient-to-br from-gray-50 to-white py-20">
+    <section className="bg-gradient-to-br from-gray-50 to-white py-20 dark:from-dark-bg dark:to-dark-surface">
       <div className="container mx-auto max-w-7xl px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -186,7 +186,7 @@ export const BrainEvolutionTimeline = () => {
                           className={`rounded-lg border p-4 transition-all ${
                             isSelected
                               ? `${colors.border} ${colors.bgGradient} shadow-lg`
-                              : 'border-gray-200 bg-white hover:shadow-md'
+                              : 'border-gray-200 bg-white hover:shadow-md dark:border-dark-border dark:bg-dark-surface'
                           }`}
                         >
                           <div className="mb-2 flex items-center gap-2">
@@ -198,7 +198,7 @@ export const BrainEvolutionTimeline = () => {
                             />
                             <span
                               className={`text-sm font-bold ${
-                                isSelected ? 'text-gray-800' : 'text-gray-600'
+                                isSelected ? 'text-gray-800' : 'text-gray-600 dark:text-dark-text-secondary'
                               }`}
                             >
                               {item.era}
@@ -206,7 +206,7 @@ export const BrainEvolutionTimeline = () => {
                           </div>
                           <div
                             className={`text-sm ${
-                              isSelected ? 'text-gray-700' : 'text-gray-600'
+                              isSelected ? 'text-gray-700' : 'text-gray-600 dark:text-dark-text-secondary'
                             }`}
                           >
                             {item.period}

@@ -77,7 +77,7 @@ const ProjectsBrain = () => {
 
   return (
     <>
-      <section className="bg-white py-20">
+      <section className="bg-white py-20 dark:bg-dark-bg">
         <div className="container mx-auto max-w-7xl px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -214,7 +214,7 @@ const ProjectsBrain = () => {
                       .map((paragraph, idx) => (
                         <motion.p
                           key={`${paragraph.substring(0, 20)}-${idx}`}
-                          className="text-sm leading-relaxed text-gray-700"
+                          className="text-sm leading-relaxed text-gray-700 dark:text-dark-text-secondary"
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 0.1 * idx }}

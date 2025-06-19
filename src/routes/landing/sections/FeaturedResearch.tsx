@@ -87,16 +87,16 @@ const FeaturedResearch = () => {
           {researchAreas.map((area, index) => (
             <motion.div key={index} variants={item} className="group relative">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/20 to-tiffany-blue/20 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100"></div>
-              <div className="relative h-full rounded-2xl border border-gray-200 bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl">
+              <div className="relative h-full rounded-2xl border border-gray-200 bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:border-dark-border dark:bg-dark-surface">
                 <div
                   className={`${area.color} mb-6 inline-flex rounded-xl p-3 text-white`}
                 >
                   <Icon icon={area.icon} width={28} height={28} />
                 </div>
-                <h3 className="mb-4 font-raleway text-2xl font-medium text-gray-800">
+                <h3 className="mb-4 font-raleway text-2xl font-medium text-gray-800 dark:text-dark-text">
                   {area.title}
                 </h3>
-                <p className="text-gray-600">{area.description}</p>
+                <p className="text-gray-600 dark:text-dark-text-secondary">{area.description}</p>
 
                 <div className="mt-6 flex items-center">
                   <button
