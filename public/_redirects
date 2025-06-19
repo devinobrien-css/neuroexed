@@ -1,1 +1,7 @@
+# Static assets should be served directly
+/img/* /img/:splat 200
+/favicon.ico /favicon.ico 200
+/robots.txt /robots.txt 200
+
+# SPA routing - redirect all other routes to index.html
 /* /index.html 200
