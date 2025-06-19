@@ -69,7 +69,7 @@ export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
   return (
     <div
       ref={ref}
-      className="cursor-pointer border-b p-2 shadow hover:bg-gray-100"
+      className="dark:border-dark-border dark:hover:bg-dark-border cursor-pointer border-b p-2 shadow hover:bg-gray-100"
       data-handler-id={handlerId}
     >
       {text}

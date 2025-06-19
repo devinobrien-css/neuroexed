@@ -175,18 +175,18 @@ const BlogsSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex min-h-[400px] flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-gray-50 to-white p-12 text-center shadow-lg"
+          className="dark:from-dark-surface/50 dark:to-dark-border/30 flex min-h-[400px] flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-gray-50 to-white p-12 text-center shadow-lg"
         >
-          <div className="mb-6 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 p-6">
+          <div className="mb-6 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 p-6 dark:from-blue-900/50 dark:to-purple-900/50">
             <Icon
               icon="tabler:search-off"
-              className="h-12 w-12 text-gray-400"
+              className="h-12 w-12 text-gray-400 dark:text-gray-300"
             />
           </div>
-          <h3 className="mb-3 text-2xl font-medium text-gray-700">
+          <h3 className="dark:text-dark-text mb-3 text-2xl font-medium text-gray-700">
             No Content Found
           </h3>
-          <p className="mb-6 max-w-md text-gray-500">
+          <p className="dark:text-dark-text-secondary mb-6 max-w-md text-gray-500">
             We couldn't find any{' '}
             {selectedType === 'ALL'
               ? 'content'

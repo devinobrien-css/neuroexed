@@ -13,22 +13,22 @@ const DiversitySection = () => {
   ];
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-white">
+    <div className="dark:bg-dark-bg relative min-h-screen overflow-hidden bg-white">
       <Navbar />
 
       {/* Hero Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-gray-50">
+      <div className="dark:from-dark-surface/50 dark:via-dark-border/30 dark:to-dark-surface/50 absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-gray-50">
         <div
           className="absolute inset-0 opacity-30"
           style={{
             backgroundImage:
-              'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%233B82F6\' fill-opacity=\'0.1\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'2\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+              "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233B82F6' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
           }}
         />
       </div>
 
       {/* White fade at top */}
-      <div className="absolute inset-x-0 top-0 z-20 h-32 bg-gradient-to-b from-white to-transparent" />
+      <div className="dark:from-dark-bg absolute inset-x-0 top-0 z-20 h-32 bg-gradient-to-b from-white to-transparent dark:to-transparent" />
 
       <div className="relative z-30 mx-auto max-w-7xl px-4 py-20">
         {/* Main Hero Section */}
@@ -89,7 +89,7 @@ const DiversitySection = () => {
               >
                 {/* Gradient Border */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-tiffany-blue p-1">
-                  <div className="h-full w-full rounded-2xl bg-white" />
+                  <div className="dark:bg-dark-surface h-full w-full rounded-2xl bg-white" />
                 </div>
 
                 {/* Book Image */}
@@ -175,17 +175,19 @@ const DiversitySection = () => {
                   <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white">
                     <Icon icon={stat.icon} className="h-5 w-5" />
                   </div>
-                  <div className="text-2xl font-bold text-gray-800">
+                  <div className="dark:text-dark-text text-2xl font-bold text-gray-800">
                     {stat.number}
                   </div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
+                  <div className="dark:text-dark-text-secondary text-sm text-gray-600">
+                    {stat.label}
+                  </div>
                 </motion.div>
               ))}
             </motion.div>
 
             {/* Description */}
             <motion.p
-              className="text-lg leading-relaxed text-gray-700"
+              className="dark:text-dark-text-secondary text-lg leading-relaxed text-gray-700"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -222,7 +224,7 @@ const DiversitySection = () => {
               </motion.button>
 
               <motion.button
-                className="group flex items-center gap-3 rounded-full border-2 border-green-600 bg-white px-8 py-4 font-medium text-green-600 shadow-lg transition-all hover:bg-green-50"
+                className="dark:bg-dark-surface dark:hover:bg-dark-border group flex items-center gap-3 rounded-full border-2 border-green-600 bg-white px-8 py-4 font-medium text-green-600 shadow-lg transition-all hover:bg-green-50 dark:border-green-400 dark:text-green-400"
                 onClick={() =>
                   window.open('https://diversityatcollege.com', '_blank')
                 }
@@ -281,9 +283,9 @@ const DiversitySection = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          <div className="mx-auto max-w-4xl">
+          <div className="mx-auto  max-w-4xl ">
             <motion.div
-              className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-50 to-purple-50 p-8 shadow-xl md:p-12"
+              className="dark:bg-dark-bg  relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-50 to-purple-50 p-0 shadow-xl"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
@@ -291,8 +293,8 @@ const DiversitySection = () => {
               <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gradient-to-br from-blue-200/20 to-purple-200/20" />
               <div className="absolute -bottom-4 -left-4 h-24 w-24 rounded-full bg-gradient-to-br from-tiffany-blue/20 to-blue-200/20" />
 
-              <div className="relative z-10">
-                <div className="mb-8 flex items-center justify-center">
+              <div className="relative z-10 p-8 dark:bg-tiffany-blue">
+                <div className="mb-8 flex items-center justify-center ">
                   <div className="rounded-full bg-gradient-to-r from-blue-500 to-purple-600 p-4">
                     <Icon icon="tabler:quote" className="h-8 w-8 text-white" />
                   </div>

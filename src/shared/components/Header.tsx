@@ -152,7 +152,7 @@ const Header = ({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1440 80"
-          className="fill-white"
+          className="dark:fill-dark-bg fill-white"
         >
           <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,42.7C1120,32,1280,32,1360,32L1440,32L1440,80L1360,80C1280,80,1120,80,960,80C800,80,640,80,480,80C320,80,160,80,80,80L0,80Z"></path>
         </svg>

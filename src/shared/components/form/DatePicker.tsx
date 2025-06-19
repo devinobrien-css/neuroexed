@@ -80,7 +80,7 @@ export function DatePicker({
             )}
             <div
               className={cx(
-                'flex justify-between rounded-b border-t transition-colors hover:bg-gray-100',
+                'dark:border-dark-border dark:hover:bg-dark-border flex justify-between rounded-b border-t transition-colors hover:bg-gray-100',
                 {
                   'my-auto': showLabel,
                 },
@@ -99,7 +99,7 @@ export function DatePicker({
       disabled={disabled}
       overlay={({ show, toggle }) =>
         show ? (
-          <div className="z-60 dark:bg-dark-surface mx-auto  rounded-lg bg-white p-4 shadow-lg">
+          <div className="z-60 dark:bg-dark-surface mx-auto rounded-lg bg-white p-4 shadow-lg">
             <DayPicker
               disabled={disabled}
               mode="single"

@@ -14,15 +14,17 @@ export const TextArea = <T extends FieldValues>({
     <label
       htmlFor={name}
       className={
-        'flex cursor-pointer flex-col rounded-lg border bg-white p-2 shadow hover:shadow-lg'
+        'dark:border-dark-border dark:bg-dark-surface flex cursor-pointer flex-col rounded-lg border bg-white p-2 shadow hover:shadow-lg'
       }
     >
-      <span className="w-3/12 font-lato text-xl text-gray-800">{name}</span>
+      <span className="dark:text-dark-text w-3/12 font-lato text-xl text-gray-800">
+        {name}
+      </span>
       <textarea
         id={name}
         rows={10}
         autoComplete={'false'}
-        className="w-full rounded border-0 font-lato"
+        className="dark:bg-dark-bg dark:text-dark-text w-full rounded border-0 font-lato"
         {...register(name)}
         {...rest}
       />

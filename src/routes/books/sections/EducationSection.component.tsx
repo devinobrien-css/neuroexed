@@ -13,16 +13,16 @@ const EducationSection = () => {
   ];
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-white">
+    <div className="dark:bg-dark-bg relative min-h-screen overflow-hidden bg-white">
       <Navbar />
 
       {/* Hero Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
+      <div className="dark:from-dark-surface/50 dark:via-dark-border/30 dark:to-dark-surface/50 absolute inset-0 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
         <div
           className="absolute inset-0 opacity-30"
           style={{
             backgroundImage:
-              'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2310B981\' fill-opacity=\'0.1\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'2\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+              "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310B981' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
           }}
         />
       </div>
@@ -86,7 +86,7 @@ const EducationSection = () => {
               >
                 {/* Gradient Border */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 p-1">
-                  <div className="h-full w-full rounded-2xl bg-white" />
+                  <div className="dark:bg-dark-surface h-full w-full rounded-2xl bg-white" />
                 </div>
 
                 {/* Book Image */}
@@ -171,17 +171,19 @@ const EducationSection = () => {
                   <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-green-500 to-blue-600 text-white">
                     <Icon icon={stat.icon} className="h-5 w-5" />
                   </div>
-                  <div className="text-2xl font-bold text-gray-800">
+                  <div className="dark:text-dark-text text-2xl font-bold text-gray-800">
                     {stat.number}
                   </div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
+                  <div className="dark:text-dark-text-secondary text-sm text-gray-600">
+                    {stat.label}
+                  </div>
                 </motion.div>
               ))}
             </motion.div>
 
             {/* Description */}
             <motion.p
-              className="text-lg leading-relaxed text-gray-700"
+              className="dark:text-dark-text-secondary text-lg leading-relaxed text-gray-700"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -230,14 +232,14 @@ const EducationSection = () => {
           transition={{ delay: 0.4 }}
         >
           <div className="mx-auto max-w-6xl">
-            <h3 className="mb-12 text-center font-raleway text-3xl font-light text-gray-800">
+            <h3 className="mb-12 text-center font-raleway text-3xl font-light text-gray-800 dark:text-gray-300">
               What People Are Saying
             </h3>
 
             <div className="grid gap-8 md:grid-cols-2">
               {/* First Testimonial */}
               <motion.div
-                className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-green-50 to-blue-50 p-8 shadow-xl"
+                className="dark:from-dark-surface/80 dark:to-dark-border/60 relative overflow-hidden rounded-3xl bg-gradient-to-br from-green-50 to-blue-50 p-8 shadow-xl"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
@@ -255,7 +257,7 @@ const EducationSection = () => {
                     </div>
                   </div>
 
-                  <blockquote className="mb-6 text-lg leading-relaxed text-gray-700">
+                  <blockquote className="mb-6 text-lg leading-relaxed text-gray-700 dark:text-gray-400">
                     <p className="italic">
                       "James Stellar draws on his deep knowledge of neuroscience
                       and his years of experience as an academic officer at
@@ -267,14 +269,14 @@ const EducationSection = () => {
                   </blockquote>
 
                   <div className="text-center">
-                    <cite className="flex items-center justify-center gap-2 text-lg font-medium text-gray-800">
+                    <cite className="dark:text-dark-text flex items-center justify-center gap-2 text-lg font-medium text-gray-800">
                       <Icon
                         icon="tabler:user-circle"
                         className="h-5 w-5 text-green-500"
                       />
                       Richard Freeland
                     </cite>
-                    <p className="mt-1 text-sm text-gray-600">
+                    <p className="dark:text-dark-text-secondary mt-1 text-sm text-gray-600">
                       Past President of Northeastern University
                     </p>
                   </div>
@@ -283,7 +285,7 @@ const EducationSection = () => {
 
               {/* Second Testimonial */}
               <motion.div
-                className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-50 to-purple-50 p-8 shadow-xl"
+                className="dark:from-dark-surface/80 dark:to-dark-border/60 relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-50 to-purple-50 p-8 shadow-xl"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
@@ -301,7 +303,7 @@ const EducationSection = () => {
                     </div>
                   </div>
 
-                  <blockquote className="mb-6 text-lg leading-relaxed text-gray-700">
+                  <blockquote className="mb-6 text-lg leading-relaxed text-gray-700 dark:text-gray-400">
                     <p className="italic">
                       "At a time when states across the nation are mandating
                       experiential learning in higher education, neuroscientist

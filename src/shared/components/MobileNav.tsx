@@ -14,18 +14,18 @@ export const MobileNav = ({ authorized }: { authorized: boolean }) => {
       >
         <Icon
           icon="ic:round-menu"
-          className="m-2 rounded-full bg-gray-800  text-white shadow transition-all" // bg-opacity-50 hover:bg-opacity-100
+          className="dark:bg-dark-surface m-2 rounded-full bg-gray-800 text-white shadow transition-all" // bg-opacity-50 hover:bg-opacity-100
           width={48}
         />
       </button>
       {open && (
         <div
-          className="fixed z-100 h-full w-full bg-gray-800 transition-all" // bg-opacity-50
+          className="dark:bg-dark-bg fixed z-100 h-full w-full bg-gray-800 transition-all" // bg-opacity-50
         >
           <button>
             <Icon
               icon="ic:round-close"
-              className="m-2 rounded-full bg-gray-800  text-white shadow transition-all" // bg-opacity-50 hover:bg-opacity-100
+              className="dark:bg-dark-surface m-2 rounded-full bg-gray-800 text-white shadow transition-all" // bg-opacity-50 hover:bg-opacity-100
               width={48}
               onClick={() => setOpen(false)}
             />

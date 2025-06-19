@@ -11,7 +11,7 @@ const ProjectIcon = (project: Project) => {
 
   return (
     <motion.div
-      className="w-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl transition-all"
+      className="dark:border-dark-border dark:bg-dark-surface w-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl transition-all"
       whileHover={{ y: -5 }}
       style={{
         boxShadow: isExpanded
@@ -22,7 +22,7 @@ const ProjectIcon = (project: Project) => {
     >
       {/* Project header with expand/collapse control */}
       <button
-        className="flex w-full items-center justify-between bg-gradient-to-r from-gray-50 to-white p-2 text-left transition-colors hover:from-gray-100 hover:to-gray-50 focus:outline-none focus:ring-2 focus:ring-tiffany-blue/50 sm:p-4"
+        className="dark:from-dark-bg/50 dark:to-dark-surface/80 dark:hover:from-dark-border/50 dark:hover:to-dark-bg/80 flex w-full items-center justify-between bg-gradient-to-r from-gray-50 to-white p-2 text-left transition-colors hover:from-gray-100 hover:to-gray-50 focus:outline-none focus:ring-2 focus:ring-tiffany-blue/50 sm:p-4"
         onClick={() => setIsExpanded(!isExpanded)}
         aria-expanded={isExpanded}
         aria-label={`${
@@ -38,7 +38,7 @@ const ProjectIcon = (project: Project) => {
             />
           </div>
           <div className="min-w-0 flex-1">
-            <h3 className="line-clamp-2 overflow-hidden font-raleway text-xs font-medium leading-tight text-gray-800 transition-colors group-hover:text-tiffany-blue sm:line-clamp-1 sm:text-lg md:text-2xl">
+            <h3 className="dark:text-dark-text line-clamp-2 overflow-hidden font-raleway text-xs font-medium leading-tight text-gray-800 transition-colors group-hover:text-tiffany-blue sm:line-clamp-1 sm:text-lg md:text-2xl">
               {project.title}
             </h3>
           </div>
@@ -51,7 +51,7 @@ const ProjectIcon = (project: Project) => {
         >
           <Icon
             icon="tabler:chevron-down"
-            className="h-4 w-4 text-gray-400 sm:h-6 sm:w-6"
+            className="dark:text-dark-text-secondary h-4 w-4 text-gray-400 sm:h-6 sm:w-6"
             aria-hidden="true"
           />
         </motion.div>
@@ -67,9 +67,9 @@ const ProjectIcon = (project: Project) => {
         transition={{ duration: 0.4, ease: 'easeInOut' }}
         className="overflow-hidden"
       >
-        <div className="border-t border-gray-100 p-4 pt-0 sm:p-6">
+        <div className="dark:border-dark-border border-t border-gray-100 p-4 pt-0 sm:p-6">
           <div className="mb-4 sm:mb-6">
-            <p className="text-sm leading-relaxed text-gray-700 sm:text-base">
+            <p className="dark:text-dark-text-secondary text-sm leading-relaxed text-gray-700 sm:text-base">
               {project.description}
             </p>
           </div>
@@ -81,7 +81,7 @@ const ProjectIcon = (project: Project) => {
                 icon="tabler:users"
                 className="h-4 w-4 text-tiffany-blue sm:h-5 sm:w-5"
               />
-              <h4 className="text-base font-medium text-gray-800 sm:text-lg">
+              <h4 className="dark:text-dark-text text-base font-medium text-gray-800 sm:text-lg">
                 Team Members
               </h4>
             </div>
@@ -94,7 +94,7 @@ const ProjectIcon = (project: Project) => {
 
             {/* Project stats */}
             <div className="mt-4 flex flex-col gap-3 sm:mt-6 sm:flex-row sm:flex-wrap sm:gap-6">
-              <div className="flex items-center gap-2 rounded-full bg-blue-50 px-3 py-2 text-xs text-tiffany-blue sm:px-4 sm:text-sm">
+              <div className="flex items-center gap-2 rounded-full bg-blue-50 px-3 py-2 text-xs text-tiffany-blue dark:bg-blue-900/30 dark:text-blue-300 sm:px-4 sm:text-sm">
                 <Icon
                   icon="tabler:calendar"
                   className="h-3 w-3 sm:h-4 sm:w-4"
@@ -102,7 +102,7 @@ const ProjectIcon = (project: Project) => {
                 <span>Started: Ongoing</span>
               </div>
 
-              <div className="flex items-center gap-2 rounded-full bg-purple-50 px-3 py-2 text-xs text-purple-600 sm:px-4 sm:text-sm">
+              <div className="flex items-center gap-2 rounded-full bg-purple-50 px-3 py-2 text-xs text-purple-600 dark:bg-purple-900/30 dark:text-purple-300 sm:px-4 sm:text-sm">
                 <Icon
                   icon="tabler:users-group"
                   className="h-3 w-3 sm:h-4 sm:w-4"
@@ -121,7 +121,7 @@ const ProjectsSection = () => {
   const { data: projects, isLoading, isError } = useProjectsQuery();
 
   return (
-    <section className="py-12 sm:py-16 lg:py-24">
+    <section className="dark:bg-dark-bg py-12 sm:py-16 lg:py-24">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -138,7 +138,7 @@ const ProjectsSection = () => {
           </span>
         </h2>
         <div className="mx-auto mb-4 h-1 w-16 rounded-full bg-gradient-to-r from-tiffany-blue to-blue-600 sm:mb-6 sm:w-24"></div>
-        <p className="mx-auto max-w-2xl px-4 text-sm text-gray-600 sm:px-0 sm:text-base">
+        <p className="dark:text-dark-text-secondary mx-auto max-w-2xl px-4 text-sm text-gray-600 sm:px-0 sm:text-base">
           Explore our ongoing research initiatives and collaborative projects
           that are pushing the boundaries of neuroscience and educational
           research.
@@ -159,10 +159,10 @@ const ProjectsSection = () => {
                 icon="tabler:alert-circle"
                 className="mx-auto mb-3 h-10 w-10 text-red-500 sm:mb-4 sm:h-12 sm:w-12"
               />
-              <h3 className="mb-2 text-lg font-medium text-gray-800 sm:text-xl">
+              <h3 className="dark:text-dark-text mb-2 text-lg font-medium text-gray-800 sm:text-xl">
                 Error Loading Projects
               </h3>
-              <p className="text-sm text-gray-600 sm:text-base">
+              <p className="dark:text-dark-text-secondary text-sm text-gray-600 sm:text-base">
                 Unable to load projects data. Please try again later.
               </p>
             </div>

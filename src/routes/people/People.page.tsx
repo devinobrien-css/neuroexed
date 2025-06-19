@@ -36,7 +36,7 @@ const People = () => {
 
       <section
         id="team-main-content"
-        className="bg-gradient-to-b from-white to-gray-50 py-20"
+        className="dark:bg-dark-bg dark:from-dark-bg dark:to-dark-surface bg-gradient-to-b from-white to-gray-50 py-20"
       >
         <div className="container mx-auto px-4">
           <motion.div

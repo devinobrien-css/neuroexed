@@ -54,7 +54,7 @@ const ProjectProfile = ({ member, index = 0 }: ProjectProfileProps) => {
           </div>
 
           {/* Profile image with position that overlaps sections */}
-          <div className="absolute -bottom-6 h-12 w-12 overflow-hidden rounded-full border-2 border-white bg-white">
+          <div className="absolute -bottom-6 h-12 w-12 overflow-hidden rounded-full border-2 border-white bg-white dark:border-dark-surface dark:bg-dark-surface">
             <SafeProfilePicture
               image={memberProfilePicture}
               firstName={member.first}
@@ -67,21 +67,21 @@ const ProjectProfile = ({ member, index = 0 }: ProjectProfileProps) => {
         <div className="px-3 pb-2 pt-8">
           {/* Name and role */}
           <div className="mb-2 text-center">
-            <h3 className="mb-1 font-raleway text-sm font-medium text-gray-800">
+            <h3 className="mb-1 font-raleway text-sm font-medium text-gray-800 dark:text-dark-text">
               {member.first} {member.last}
             </h3>{' '}
           </div>
         </div>
 
         {/* Interactive footer section */}
-        <div className="mt-auto border-t border-gray-100 bg-gradient-to-r from-gray-50 to-gray-100 p-2">
+        <div className="mt-auto border-t border-gray-100 bg-gradient-to-r from-gray-50 to-gray-100 p-2 dark:border-dark-border dark:from-dark-bg/50 dark:to-dark-border/50">
           <div className="flex items-center justify-between">
             {/* Social links */}
             <div className="flex space-x-1">
               {member.email && (
                 <motion.a
                   href={`mailto:${member.email}`}
-                  className="rounded-full border border-gray-100 bg-white p-1.5 text-gray-600 shadow-sm hover:text-tiffany-blue"
+                  className="rounded-full border border-gray-100 bg-white p-1.5 text-gray-600 shadow-sm hover:text-tiffany-blue dark:border-dark-border dark:bg-dark-surface dark:text-dark-text-secondary dark:hover:text-tiffany-blue"
                   aria-label={`Email ${member.first} ${member.last}`}
                   whileHover={{
                     y: -2,
@@ -97,7 +97,7 @@ const ProjectProfile = ({ member, index = 0 }: ProjectProfileProps) => {
             {/* View profile button */}
             <motion.button
               onClick={handleViewDetails}
-              className="flex items-center gap-1 text-xs font-medium text-tiffany-blue hover:text-blue-600"
+              className="flex items-center gap-1 text-xs font-medium text-tiffany-blue hover:text-blue-600 dark:text-tiffany-blue dark:hover:text-blue-400"
               whileHover={{ x: 2 }}
             >
               <span>Profile</span>

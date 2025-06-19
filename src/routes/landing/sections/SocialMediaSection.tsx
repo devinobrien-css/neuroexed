@@ -227,7 +227,7 @@ const SocialMediaSection = () => {
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50 py-24">
+    <section className="dark:from-dark-bg dark:to-dark-surface relative overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50 py-24">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(10,186,181,0.1),transparent_50%)]"></div>
 
       <div className="container relative z-10 mx-auto max-w-7xl px-4">

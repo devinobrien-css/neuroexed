@@ -52,7 +52,7 @@ const StatCounter = ({
 
   return (
     <div ref={ref} className="text-center">
-      <p className="mb-2 text-5xl font-light text-gray-900">
+      <p className="mb-2 text-5xl font-light text-gray-900 dark:text-gray-200">
         <span>{count}</span>
         <span className="text-tiffany-blue">+</span>
       </p>
@@ -70,7 +70,7 @@ const StatsSection = () => {
   ];
 
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="dark:bg-dark-bg bg-gray-50 py-16">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
