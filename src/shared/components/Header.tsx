@@ -29,11 +29,13 @@ const Header = ({
   };
 
   return (
-    <div className={`relative overflow-hidden pt-16 ${
-      isDark 
-        ? 'bg-gradient-to-r from-dark-bg via-dark-surface to-dark-bg' 
-        : 'bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900'
-    }`}>
+    <div
+      className={`relative overflow-hidden pt-16 ${
+        isDark
+          ? 'from-dark-bg via-dark-surface to-dark-bg bg-gradient-to-r'
+          : 'bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900'
+      }`}
+    >
       {/* Neural Network Animation Background */}
       <NeuralNetworkBackground />
 
@@ -111,7 +113,7 @@ const Header = ({
               {scrollToId ? (
                 <button
                   onClick={handleScroll}
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-gray-800 shadow-lg transition-all hover:bg-gray-100 dark:bg-dark-surface dark:text-dark-text dark:hover:bg-dark-border"
+                  className="dark:bg-dark-surface dark:text-dark-text dark:hover:bg-dark-border inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-gray-800 shadow-lg transition-all hover:bg-gray-100"
                 >
                   <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
                     <path
@@ -127,7 +129,7 @@ const Header = ({
               ) : (
                 <a
                   href="#blogs"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-gray-800 shadow-lg transition-all hover:bg-gray-100 dark:bg-dark-surface dark:text-dark-text dark:hover:bg-dark-border"
+                  className="dark:bg-dark-surface dark:text-dark-text dark:hover:bg-dark-border inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-gray-800 shadow-lg transition-all hover:bg-gray-100"
                 >
                   <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
                     <path

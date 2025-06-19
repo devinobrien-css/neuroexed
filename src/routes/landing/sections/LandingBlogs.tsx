@@ -87,7 +87,7 @@ const BlogMd = ({
       <motion.div
         whileHover={{ y: -5, transition: { duration: 0.2 } }}
         className={cx(
-          'group mx-auto overflow-hidden rounded-xl border bg-white shadow-md transition-all hover:shadow-lg dark:border-dark-border dark:bg-dark-surface',
+          'dark:border-dark-border dark:bg-dark-surface group mx-auto overflow-hidden rounded-xl border bg-white shadow-md transition-all hover:shadow-lg',
           className,
         )}
       >
@@ -117,7 +117,7 @@ const BlogMd = ({
                   {isPodcast ? 'Podcast' : 'Blog'}
                 </span>
               </div>
-              <p className="text-sm text-gray-500 dark:text-dark-text-secondary">
+              <p className="dark:text-dark-text-secondary text-sm text-gray-500">
                 {new Date(media_date).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'short',
@@ -126,12 +126,12 @@ const BlogMd = ({
               </p>
             </div>
 
-            <h3 className="line-clamp-2 font-lato text-xl font-medium text-gray-800 transition-colors group-hover:text-blue-700 dark:text-dark-text dark:group-hover:text-blue-400">
+            <h3 className="dark:text-dark-text line-clamp-2 font-lato text-xl font-medium text-gray-800 transition-colors group-hover:text-blue-700 dark:group-hover:text-blue-400">
               {media_title}
             </h3>
 
             <div className="mt-4 flex justify-end">
-              <span className="flex items-center gap-1 text-sm font-medium text-gray-500 transition-colors group-hover:text-tiffany-blue dark:text-dark-text-secondary">
+              <span className="dark:text-dark-text-secondary flex items-center gap-1 text-sm font-medium text-gray-500 transition-colors group-hover:text-tiffany-blue">
                 Read more
                 <Icon
                   icon="tabler:arrow-right"

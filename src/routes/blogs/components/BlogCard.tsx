@@ -51,7 +51,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
             </div>
           </div>
 
-          <h3 className="mb-6 font-raleway text-3xl font-medium text-gray-800 dark:text-dark-text">
+          <h3 className="dark:text-dark-text mb-6 font-raleway text-3xl font-medium text-gray-800">
             {blog.media_title}
           </h3>
 
@@ -84,7 +84,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
 
       <motion.div
         whileHover={{ y: -8, transition: { duration: 0.3 } }}
-        className="group h-full overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl dark:bg-dark-surface"
+        className="dark:bg-dark-surface group h-full overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl"
       >
         <button
           onClick={() => setViewDescription(true)}
@@ -127,7 +127,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
             </div>
 
             {/* Title */}
-            <h3 className="mb-4 line-clamp-2 font-raleway text-xl font-medium text-gray-800 transition-colors group-hover:text-blue-700 dark:text-dark-text dark:group-hover:text-blue-400">
+            <h3 className="dark:text-dark-text mb-4 line-clamp-2 font-raleway text-xl font-medium text-gray-800 transition-colors group-hover:text-blue-700 dark:group-hover:text-blue-400">
               {blog.media_title}
             </h3>
 

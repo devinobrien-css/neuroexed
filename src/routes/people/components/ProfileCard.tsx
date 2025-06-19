@@ -30,7 +30,7 @@ export const ProfileCard = ({ person, index, viewMode }: ProfileCardProps) => {
     <>
       <motion.div
         variants={item}
-        className={`group overflow-hidden rounded-xl border border-gray-100 bg-white shadow-md transition-all duration-300 hover:shadow-xl dark:border-dark-border dark:bg-dark-surface ${
+        className={`dark:border-dark-border dark:bg-dark-surface group overflow-hidden rounded-xl border border-gray-100 bg-white shadow-md transition-all duration-300 hover:shadow-xl ${
           viewMode === 'list' ? 'flex' : ''
         }`}
         whileHover={{ y: -5 }}
@@ -68,10 +68,10 @@ export const ProfileCard = ({ person, index, viewMode }: ProfileCardProps) => {
           className={viewMode === 'list' ? 'flex w-3/4 flex-col p-6' : 'p-6'}
         >
           <div className="mb-3">
-            <h3 className="font-raleway text-xl font-medium text-gray-800 transition-colors group-hover:text-tiffany-blue dark:text-dark-text">
+            <h3 className="dark:text-dark-text font-raleway text-xl font-medium text-gray-800 transition-colors group-hover:text-tiffany-blue">
               {person.first} {person.last}
             </h3>
-            <p className="text-sm text-gray-500 dark:text-dark-text-secondary">
+            <p className="dark:text-dark-text-secondary text-sm text-gray-500">
               {person.collegiate_title && (
                 <span className="block font-medium">
                   {person.collegiate_title}
@@ -117,7 +117,7 @@ export const ProfileCard = ({ person, index, viewMode }: ProfileCardProps) => {
               {person.socials?.email && (
                 <motion.a
                   href={`mailto:${person.socials.email}`}
-                  className="rounded-full bg-gray-50 p-2 text-gray-600 transition-colors hover:bg-tiffany-blue/10 hover:text-tiffany-blue dark:bg-dark-border dark:text-dark-text-secondary dark:hover:bg-tiffany-blue/20"
+                  className="dark:bg-dark-border dark:text-dark-text-secondary rounded-full bg-gray-50 p-2 text-gray-600 transition-colors hover:bg-tiffany-blue/10 hover:text-tiffany-blue dark:hover:bg-tiffany-blue/20"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   aria-label={`Email ${person.first} ${person.last}`}
@@ -130,7 +130,7 @@ export const ProfileCard = ({ person, index, viewMode }: ProfileCardProps) => {
                   href={person.socials.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-gray-50 p-2 text-gray-600 transition-colors hover:bg-blue-50 hover:text-blue-600 dark:bg-dark-border dark:text-dark-text-secondary dark:hover:bg-blue-600/20 dark:hover:text-blue-400"
+                  className="dark:bg-dark-border dark:text-dark-text-secondary rounded-full bg-gray-50 p-2 text-gray-600 transition-colors hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-blue-600/20 dark:hover:text-blue-400"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -142,7 +142,7 @@ export const ProfileCard = ({ person, index, viewMode }: ProfileCardProps) => {
                   href={person.socials.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-gray-50 p-2 text-gray-600 transition-colors hover:bg-blue-400/10 hover:text-blue-400 dark:bg-dark-border dark:text-dark-text-secondary dark:hover:bg-blue-400/20"
+                  className="dark:bg-dark-border dark:text-dark-text-secondary rounded-full bg-gray-50 p-2 text-gray-600 transition-colors hover:bg-blue-400/10 hover:text-blue-400 dark:hover:bg-blue-400/20"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -154,7 +154,7 @@ export const ProfileCard = ({ person, index, viewMode }: ProfileCardProps) => {
                   href={person.socials.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-gray-50 p-2 text-gray-600 transition-colors hover:bg-pink-500/10 hover:text-pink-500 dark:bg-dark-border dark:text-dark-text-secondary dark:hover:bg-pink-500/20"
+                  className="dark:bg-dark-border dark:text-dark-text-secondary rounded-full bg-gray-50 p-2 text-gray-600 transition-colors hover:bg-pink-500/10 hover:text-pink-500 dark:hover:bg-pink-500/20"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -186,7 +186,7 @@ export const ProfileCard = ({ person, index, viewMode }: ProfileCardProps) => {
             onClick={() => setIsModalOpen(false)}
           >
             <motion.div
-              className="relative max-h-[90vh] w-full max-w-4xl overflow-auto rounded-2xl bg-white shadow-2xl dark:bg-dark-surface"
+              className="dark:bg-dark-surface relative max-h-[90vh] w-full max-w-4xl overflow-auto rounded-2xl bg-white shadow-2xl"
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
@@ -195,7 +195,7 @@ export const ProfileCard = ({ person, index, viewMode }: ProfileCardProps) => {
             >
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="absolute right-4 top-4 z-10 rounded-full bg-white/80 p-2 text-gray-600 backdrop-blur-sm transition-colors hover:bg-gray-100 hover:text-gray-900 dark:bg-dark-bg/80 dark:text-dark-text dark:hover:bg-dark-border"
+                className="dark:bg-dark-bg/80 dark:text-dark-text dark:hover:bg-dark-border absolute right-4 top-4 z-10 rounded-full bg-white/80 p-2 text-gray-600 backdrop-blur-sm transition-colors hover:bg-gray-100 hover:text-gray-900"
                 aria-label="Close modal"
               >
                 <Icon icon="tabler:x" className="h-5 w-5" />
@@ -229,8 +229,8 @@ export const ProfileCard = ({ person, index, viewMode }: ProfileCardProps) => {
                 </div>
 
                 {/* Content area */}
-                <div className="p-8 md:w-2/3 dark:text-dark-text">
-                  <h2 className="mb-1 font-raleway text-3xl font-light text-gray-800 dark:text-dark-text">
+                <div className="dark:text-dark-text p-8 md:w-2/3">
+                  <h2 className="dark:text-dark-text mb-1 font-raleway text-3xl font-light text-gray-800">
                     {person.first} {person.last}
                   </h2>
 

@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  @apply bg-white font-lato text-gray-800 dark:bg-dark-bg dark:text-dark-text;
+  @apply dark:bg-dark-bg dark:text-dark-text bg-white font-lato text-gray-800;
   overflow-x: hidden;
 }
 

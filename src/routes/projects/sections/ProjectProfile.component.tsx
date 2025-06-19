@@ -32,7 +32,7 @@ const ProjectProfile = ({ member, index = 0 }: ProjectProfileProps) => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: index * 0.15 }}
-        className="group h-full w-[100px] overflow-hidden rounded-2xl border border-gray-100 bg-white dark:border-dark-border dark:bg-dark-surface"
+        className="dark:border-dark-border dark:bg-dark-surface group h-full w-[100px] overflow-hidden rounded-2xl border border-gray-100 bg-white"
         style={{
           boxShadow: '0 10px 30px -15px rgba(0, 0, 0, 0.15)',
         }}
@@ -118,7 +118,7 @@ const ProjectProfile = ({ member, index = 0 }: ProjectProfileProps) => {
             onClick={closeModal}
           >
             <motion.div
-              className="relative max-h-[90vh] w-full max-w-3xl overflow-auto rounded-2xl bg-white shadow-2xl dark:bg-dark-surface"
+              className="dark:bg-dark-surface relative max-h-[90vh] w-full max-w-3xl overflow-auto rounded-2xl bg-white shadow-2xl"
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}

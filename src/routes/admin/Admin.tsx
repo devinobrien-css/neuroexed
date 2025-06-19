@@ -18,7 +18,7 @@ const Studio = () => {
 
   return (
     <div className="mb-4 overflow-hidden rounded-lg shadow-xl">
-      <div className="mx-auto flex overflow-x-auto border-b bg-white text-lg dark:border-dark-border dark:bg-dark-surface">
+      <div className="dark:border-dark-border dark:bg-dark-surface mx-auto flex overflow-x-auto border-b bg-white text-lg">
         {tabs.map((tab) => {
           const route = `/admin/${tab.id}`;
           const isActive = location.pathname === route;
@@ -30,7 +30,7 @@ const Studio = () => {
               className={`flex items-center gap-2 px-6 py-4 transition-colors ${
                 isActive
                   ? 'border-b-2 border-blue-600 bg-blue-50 text-blue-600 dark:bg-blue-900/20'
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-dark-text-secondary dark:hover:bg-dark-bg dark:hover:text-dark-text'
+                  : 'dark:text-dark-text-secondary dark:hover:bg-dark-bg dark:hover:text-dark-text text-gray-600 hover:bg-gray-50 hover:text-gray-900'
               }`}
             >
               <Icon icon={tab.icon} className="h-5 w-5" />
@@ -39,7 +39,7 @@ const Studio = () => {
           );
         })}
       </div>
-      <div className="min-h-[60vh] bg-gray-50 dark:bg-dark-bg">
+      <div className="dark:bg-dark-bg min-h-[60vh] bg-gray-50">
         <Outlet />
       </div>
     </div>

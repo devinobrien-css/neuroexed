@@ -24,8 +24,8 @@ const PeopleGrid = ({ people }: PeopleGridProps) => {
     filter === 'all'
       ? people
       : people.filter(
-        (person) => person.lab_status?.toLowerCase() === filter.toLowerCase(),
-      );
+          (person) => person.lab_status?.toLowerCase() === filter.toLowerCase(),
+        );
 
   const container = {
     hidden: { opacity: 0 },
@@ -40,14 +40,14 @@ const PeopleGrid = ({ people }: PeopleGridProps) => {
   return (
     <>
       <div className="mb-8 flex flex-wrap items-center justify-center gap-2">
-        <div className="flex flex-wrap items-center justify-center gap-2 rounded-xl bg-white/80 p-2 shadow-sm backdrop-blur-sm dark:bg-dark-surface/80">
+        <div className="dark:bg-dark-surface/80 flex flex-wrap items-center justify-center gap-2 rounded-xl bg-white/80 p-2 shadow-sm backdrop-blur-sm">
           {filterOptions.map((option) => (
             <motion.button
               key={option.id}
               className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-all ${
                 filter === option.id
                   ? 'bg-gradient-to-r from-tiffany-blue to-blue-600 text-white shadow-md'
-                  : 'border border-gray-100 bg-white text-gray-700 hover:border-tiffany-blue/30 hover:bg-gray-50 hover:text-tiffany-blue dark:border-dark-border dark:bg-dark-surface dark:text-dark-text-secondary dark:hover:bg-dark-border dark:hover:text-tiffany-blue'
+                  : 'dark:border-dark-border dark:bg-dark-surface dark:text-dark-text-secondary dark:hover:bg-dark-border border border-gray-100 bg-white text-gray-700 hover:border-tiffany-blue/30 hover:bg-gray-50 hover:text-tiffany-blue dark:hover:text-tiffany-blue'
               }`}
               onClick={() => setFilter(option.id)}
               whileHover={{ scale: 1.03 }}
@@ -59,12 +59,12 @@ const PeopleGrid = ({ people }: PeopleGridProps) => {
           ))}
 
           {/* View toggle */}
-          <div className="ml-auto flex overflow-hidden rounded-lg border border-gray-200 bg-white dark:border-dark-border dark:bg-dark-surface">
+          <div className="dark:border-dark-border dark:bg-dark-surface ml-auto flex overflow-hidden rounded-lg border border-gray-200 bg-white">
             <button
               className={`p-2.5 transition-colors ${
                 viewMode === 'grid'
                   ? 'bg-tiffany-blue/10 text-tiffany-blue'
-                  : 'text-gray-500 hover:bg-gray-50 dark:text-dark-text-secondary dark:hover:bg-dark-bg'
+                  : 'dark:text-dark-text-secondary dark:hover:bg-dark-bg text-gray-500 hover:bg-gray-50'
               }`}
               onClick={() => setViewMode('grid')}
               aria-label="Grid view"
@@ -75,7 +75,7 @@ const PeopleGrid = ({ people }: PeopleGridProps) => {
               className={`p-2.5 transition-colors ${
                 viewMode === 'list'
                   ? 'bg-tiffany-blue/10 text-tiffany-blue'
-                  : 'text-gray-500 hover:bg-gray-50 dark:text-dark-text-secondary dark:hover:bg-dark-bg'
+                  : 'dark:text-dark-text-secondary dark:hover:bg-dark-bg text-gray-500 hover:bg-gray-50'
               }`}
               onClick={() => setViewMode('list')}
               aria-label="List view"

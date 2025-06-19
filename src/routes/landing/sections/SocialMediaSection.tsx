@@ -104,7 +104,7 @@ const SocialMediaSection = () => {
   const socialPosts: SocialMediaPost[] = [
     {
       id: '1',
-      title: 'I\'ve Looked at Higher Education from Both Sides',
+      title: "I've Looked at Higher Education from Both Sides",
       description:
         'James Stellar shares his unique perspective on higher education, drawing from his extensive experience in both academic and administrative roles, offering valuable insights into the educational landscape.',
       date: '2025-01-20',
@@ -120,20 +120,20 @@ const SocialMediaSection = () => {
     },
     {
       id: '2',
-      title: 'Exploring Effects of Pregnancy and Menopause on Alzheimer\'s Risk',
+      title: "Exploring Effects of Pregnancy and Menopause on Alzheimer's Risk",
       description:
-        'Dr. Zuloaga\'s groundbreaking research investigates how hormonal changes during pregnancy and menopause may influence Alzheimer\'s disease risk, offering new insights into women\'s brain health.',
+        "Dr. Zuloaga's groundbreaking research investigates how hormonal changes during pregnancy and menopause may influence Alzheimer's disease risk, offering new insights into women's brain health.",
       date: '2025-01-15',
       source: 'news',
       url: 'https://www.albany.edu/news-center/news/2025-zuloaga-exploring-effects-pregnancy-and-menopause-alzheimers-risk',
-      tags: ['Alzheimer\'s', 'Women\'s Health', 'Hormones', 'Research'],
+      tags: ["Alzheimer's", "Women's Health", 'Hormones', 'Research'],
       author: 'Pauline Meunier',
     },
     {
       id: '3',
-      title: 'Great Day at UAlbany\'s Undergraduate Research Conference',
+      title: "Great Day at UAlbany's Undergraduate Research Conference",
       description:
-        'Our lab members had an amazing time presenting their research at UAlbany\'s undergraduate research conference, showcasing innovative studies in neuroscience and experiential learning.',
+        "Our lab members had an amazing time presenting their research at UAlbany's undergraduate research conference, showcasing innovative studies in neuroscience and experiential learning.",
       date: '2024-04-15',
       source: 'linkedin',
       url: 'https://www.linkedin.com/posts/vanessanyblom6801_had-a-great-day-at-ualbanys-undergraduate-activity-7191199474822598656-rZ-p/',
@@ -187,27 +187,27 @@ const SocialMediaSection = () => {
 
   const getSourceIcon = (source: string) => {
     switch (source) {
-    case 'news':
-      return 'tabler:news';
-    case 'linkedin':
-      return 'tabler:brand-linkedin';
-    case 'research':
-      return 'tabler:flask';
-    default:
-      return 'tabler:link';
+      case 'news':
+        return 'tabler:news';
+      case 'linkedin':
+        return 'tabler:brand-linkedin';
+      case 'research':
+        return 'tabler:flask';
+      default:
+        return 'tabler:link';
     }
   };
 
   const getSourceColor = (source: string) => {
     switch (source) {
-    case 'news':
-      return 'from-blue-500 to-blue-600';
-    case 'linkedin':
-      return 'from-blue-600 to-blue-700';
-    case 'research':
-      return 'from-tiffany-blue to-emerald-500';
-    default:
-      return 'from-gray-500 to-gray-600';
+      case 'news':
+        return 'from-blue-500 to-blue-600';
+      case 'linkedin':
+        return 'from-blue-600 to-blue-700';
+      case 'research':
+        return 'from-tiffany-blue to-emerald-500';
+      default:
+        return 'from-gray-500 to-gray-600';
     }
   };
 
@@ -276,7 +276,7 @@ const SocialMediaSection = () => {
             >
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/10 to-tiffany-blue/10 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100"></div>
 
-              <div className="relative h-full rounded-3xl border border-gray-200 bg-white p-6 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:border-dark-border dark:bg-dark-surface">
+              <div className="dark:border-dark-border dark:bg-dark-surface relative h-full rounded-3xl border border-gray-200 bg-white p-6 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
                 {/* Source Badge */}
                 <div className="mb-4 flex items-center justify-between">
                   <div
@@ -300,7 +300,7 @@ const SocialMediaSection = () => {
                 </div>
 
                 {/* Content */}
-                <h3 className="mb-3 line-clamp-2 font-raleway text-xl font-semibold text-gray-800 dark:text-dark-text">
+                <h3 className="dark:text-dark-text mb-3 line-clamp-2 font-raleway text-xl font-semibold text-gray-800">
                   {post.title}
                 </h3>
 
@@ -326,7 +326,7 @@ const SocialMediaSection = () => {
                   {post.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
-                      className="inline-block rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600 dark:bg-dark-border dark:text-dark-text-secondary"
+                      className="dark:bg-dark-border dark:text-dark-text-secondary inline-block rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600"
                     >
                       {tag}
                     </span>
@@ -362,7 +362,7 @@ const SocialMediaSection = () => {
                             shareDropdownOpen === post.id ? null : post.id,
                           )
                         }
-                        className="rounded-full bg-gray-100 p-2 transition-colors hover:bg-gray-200 dark:bg-dark-border dark:hover:bg-dark-bg"
+                        className="dark:bg-dark-border dark:hover:bg-dark-bg rounded-full bg-gray-100 p-2 transition-colors hover:bg-gray-200"
                         title="Share this post"
                       >
                         <Icon
@@ -372,11 +372,11 @@ const SocialMediaSection = () => {
                       </button>
 
                       {shareDropdownOpen === post.id && (
-                        <div className="absolute bottom-full right-0 mb-2 w-48 rounded-lg border border-gray-200 bg-white shadow-lg dark:border-dark-border dark:bg-dark-surface">
+                        <div className="dark:border-dark-border dark:bg-dark-surface absolute bottom-full right-0 mb-2 w-48 rounded-lg border border-gray-200 bg-white shadow-lg">
                           <div className="p-2">
                             <button
                               onClick={() => shareToTwitter(post)}
-                              className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-dark-text-secondary dark:hover:bg-dark-border"
+                              className="dark:text-dark-text-secondary dark:hover:bg-dark-border flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
                             >
                               <Icon
                                 icon="tabler:brand-twitter"
@@ -386,7 +386,7 @@ const SocialMediaSection = () => {
                             </button>
                             <button
                               onClick={() => shareToLinkedIn(post)}
-                              className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-dark-text-secondary dark:hover:bg-dark-border"
+                              className="dark:text-dark-text-secondary dark:hover:bg-dark-border flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
                             >
                               <Icon
                                 icon="tabler:brand-linkedin"
@@ -396,7 +396,7 @@ const SocialMediaSection = () => {
                             </button>
                             <button
                               onClick={() => shareToFacebook(post)}
-                              className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-dark-text-secondary dark:hover:bg-dark-border"
+                              className="dark:text-dark-text-secondary dark:hover:bg-dark-border flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
                             >
                               <Icon
                                 icon="tabler:brand-facebook"
@@ -406,7 +406,7 @@ const SocialMediaSection = () => {
                             </button>
                             <button
                               onClick={() => copyToClipboard(post)}
-                              className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-dark-text-secondary dark:hover:bg-dark-border"
+                              className="dark:text-dark-text-secondary dark:hover:bg-dark-border flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
                             >
                               <Icon
                                 icon="tabler:copy"
@@ -415,17 +415,18 @@ const SocialMediaSection = () => {
                               Copy Link
                             </button>
                             {typeof navigator !== 'undefined' &&
-                              'share' in navigator && (                                <button
+                              'share' in navigator && (
+                                <button
                                   onClick={() => handleShare(post)}
-                                  className="flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-dark-text-secondary dark:hover:bg-dark-border"
+                                  className="dark:text-dark-text-secondary dark:hover:bg-dark-border flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 >
-                                <Icon
-                                  icon="tabler:share"
-                                  className="mr-3 h-4 w-4 text-gray-600"
-                                />
+                                  <Icon
+                                    icon="tabler:share"
+                                    className="mr-3 h-4 w-4 text-gray-600"
+                                  />
                                   Native Share
-                              </button>
-                            )}
+                                </button>
+                              )}
                           </div>
                         </div>
                       )}

@@ -95,7 +95,7 @@ export const LandingBooks = () => {
             </span>
           </h2>
           <div className="mx-auto mb-6 h-1 w-24 rounded-full bg-gradient-to-r from-tiffany-blue to-blue-600"></div>
-          <p className="mx-auto max-w-2xl text-gray-600 dark:text-dark-text-secondary">
+          <p className="dark:text-dark-text-secondary mx-auto max-w-2xl text-gray-600">
             Explore our books that blend neuroscience insights with educational
             practices, offering innovative perspectives on learning and
             development.
@@ -110,7 +110,7 @@ export const LandingBooks = () => {
                 className={`rounded-full px-4 py-2 transition-all ${
                   activeIndex === idx
                     ? `bg-gradient-to-r ${book.color} text-white shadow-lg`
-                    : `bg-gradient-to-r ${book.lightColor} text-gray-700 hover:text-gray-900 dark:text-dark-text-secondary dark:hover:text-dark-text`
+                    : `bg-gradient-to-r ${book.lightColor} dark:text-dark-text-secondary dark:hover:text-dark-text text-gray-700 hover:text-gray-900`
                 }`}
               >
                 {book.title}
@@ -199,7 +199,7 @@ export const LandingBooks = () => {
               />
             </div>
 
-            <h3 className="mb-6 font-raleway text-3xl font-light text-gray-800 md:text-4xl dark:text-dark-text">
+            <h3 className="dark:text-dark-text mb-6 font-raleway text-3xl font-light text-gray-800 md:text-4xl">
               {books[activeIndex].title}
             </h3>
 
@@ -209,7 +209,7 @@ export const LandingBooks = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.7 }}
             >
-              <p className="mb-8 leading-relaxed text-gray-600 dark:text-dark-text-secondary">
+              <p className="dark:text-dark-text-secondary mb-8 leading-relaxed text-gray-600">
                 {books[activeIndex].description}
               </p>
 
@@ -282,8 +282,8 @@ export const LandingBooks = () => {
 
             <blockquote className="relative z-10 italic text-gray-700">
               {activeIndex === 0
-                ? 'An illuminating exploration of how colleges can support diversity. The book succeeds in its presentation of realistic and attainable tactics schools can implement based on the contributors\' experiences.'
-                : 'At a time when states across the nation are mandating experiential learning in higher education, this beautiful book educates and inspires us about the unique power of experiential learning to transform students\' visions and decisions about their best futures.'}
+                ? "An illuminating exploration of how colleges can support diversity. The book succeeds in its presentation of realistic and attainable tactics schools can implement based on the contributors' experiences."
+                : "At a time when states across the nation are mandating experiential learning in higher education, this beautiful book educates and inspires us about the unique power of experiential learning to transform students' visions and decisions about their best futures."}
             </blockquote>
 
             <div className="mt-4 flex justify-end">

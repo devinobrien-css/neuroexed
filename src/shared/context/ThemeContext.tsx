@@ -1,4 +1,10 @@
-import React, { createContext, useEffect, useState, useMemo, useCallback } from 'react';
+import React, {
+  createContext,
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+} from 'react';
 
 export type Theme = 'light' | 'dark';
 
@@ -8,7 +14,9 @@ export interface ThemeContextType {
   isDark: boolean;
 }
 
-export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export const ThemeContext = createContext<ThemeContextType | undefined>(
+  undefined,
+);
 
 interface ThemeProviderProps {
   children: React.ReactNode;
@@ -21,12 +29,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     if (savedTheme) {
       return savedTheme;
     }
-    
-    // Check system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-    
+
+    // Always default to light mode
     return 'light';
   });
 
@@ -48,10 +52,11 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   // Listen for system theme changes
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (e: MediaQueryListEvent) => {
+    const handleChange = () => {
       // Only auto-switch if user hasn't manually set a preference
       if (!localStorage.getItem('neuroexed-theme')) {
-        setTheme(e.matches ? 'dark' : 'light');
+        // Always default to light mode, don't follow system preference
+        setTheme('light');
       }
     };
 
@@ -59,15 +64,16 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  const value = useMemo<ThemeContextType>(() => ({
-    theme,
-    toggleTheme,
-    isDark,
-  }), [theme, toggleTheme, isDark]);
+  const value = useMemo<ThemeContextType>(
+    () => ({
+      theme,
+      toggleTheme,
+      isDark,
+    }),
+    [theme, toggleTheme, isDark],
+  );
 
   return (
-    <ThemeContext.Provider value={value}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 };

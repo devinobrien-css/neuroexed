@@ -65,7 +65,7 @@ const TIMELINE_DATA = [
     icon: 'tabler:microscope',
     title: 'The Triune Brain Model',
     description:
-      'Paul MacLean\'s groundbreaking research revealed how these three brain systems work together, revolutionizing neuroscience education.',
+      "Paul MacLean's groundbreaking research revealed how these three brain systems work together, revolutionizing neuroscience education.",
     discoveries: [
       'Brain hierarchy understanding',
       'Evolutionary psychology',
@@ -82,51 +82,51 @@ export const BrainEvolutionTimeline = () => {
 
   const getColorClasses = (color: string) => {
     switch (color) {
-    case 'emerald':
-      return {
-        gradient: 'from-emerald-500 to-emerald-600',
-        bgGradient: 'from-emerald-500/10 to-emerald-600/5',
-        border: 'border-emerald-500/20',
-        dot: 'bg-emerald-500',
-        line: 'bg-emerald-200',
-      };
-    case 'red':
-      return {
-        gradient: 'from-red-500 to-red-600',
-        bgGradient: 'from-red-500/10 to-red-600/5',
-        border: 'border-red-500/20',
-        dot: 'bg-red-500',
-        line: 'bg-red-200',
-      };
-    case 'blue':
-      return {
-        gradient: 'from-blue-500 to-blue-600',
-        bgGradient: 'from-blue-500/10 to-blue-600/5',
-        border: 'border-blue-500/20',
-        dot: 'bg-blue-500',
-        line: 'bg-blue-200',
-      };
-    case 'purple':
-      return {
-        gradient: 'from-purple-500 to-purple-600',
-        bgGradient: 'from-purple-500/10 to-purple-600/5',
-        border: 'border-purple-500/20',
-        dot: 'bg-purple-500',
-        line: 'bg-purple-200',
-      };
-    default:
-      return {
-        gradient: 'from-gray-500 to-gray-600',
-        bgGradient: 'from-gray-500/10 to-gray-600/5',
-        border: 'border-gray-500/20',
-        dot: 'bg-gray-500',
-        line: 'bg-gray-200',
-      };
+      case 'emerald':
+        return {
+          gradient: 'from-emerald-500 to-emerald-600',
+          bgGradient: 'from-emerald-500/10 to-emerald-600/5',
+          border: 'border-emerald-500/20',
+          dot: 'bg-emerald-500',
+          line: 'bg-emerald-200',
+        };
+      case 'red':
+        return {
+          gradient: 'from-red-500 to-red-600',
+          bgGradient: 'from-red-500/10 to-red-600/5',
+          border: 'border-red-500/20',
+          dot: 'bg-red-500',
+          line: 'bg-red-200',
+        };
+      case 'blue':
+        return {
+          gradient: 'from-blue-500 to-blue-600',
+          bgGradient: 'from-blue-500/10 to-blue-600/5',
+          border: 'border-blue-500/20',
+          dot: 'bg-blue-500',
+          line: 'bg-blue-200',
+        };
+      case 'purple':
+        return {
+          gradient: 'from-purple-500 to-purple-600',
+          bgGradient: 'from-purple-500/10 to-purple-600/5',
+          border: 'border-purple-500/20',
+          dot: 'bg-purple-500',
+          line: 'bg-purple-200',
+        };
+      default:
+        return {
+          gradient: 'from-gray-500 to-gray-600',
+          bgGradient: 'from-gray-500/10 to-gray-600/5',
+          border: 'border-gray-500/20',
+          dot: 'bg-gray-500',
+          line: 'bg-gray-200',
+        };
     }
   };
 
   return (
-    <section className="bg-gradient-to-br from-gray-50 to-white py-20 dark:from-dark-bg dark:to-dark-surface">
+    <section className="dark:from-dark-bg dark:to-dark-surface bg-gradient-to-br from-gray-50 to-white py-20">
       <div className="container mx-auto max-w-7xl px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -186,7 +186,7 @@ export const BrainEvolutionTimeline = () => {
                           className={`rounded-lg border p-4 transition-all ${
                             isSelected
                               ? `${colors.border} ${colors.bgGradient} shadow-lg`
-                              : 'border-gray-200 bg-white hover:shadow-md dark:border-dark-border dark:bg-dark-surface'
+                              : 'dark:border-dark-border dark:bg-dark-surface border-gray-200 bg-white hover:shadow-md'
                           }`}
                         >
                           <div className="mb-2 flex items-center gap-2">
@@ -198,7 +198,9 @@ export const BrainEvolutionTimeline = () => {
                             />
                             <span
                               className={`text-sm font-bold ${
-                                isSelected ? 'text-gray-800' : 'text-gray-600 dark:text-dark-text-secondary'
+                                isSelected
+                                  ? 'text-gray-800'
+                                  : 'dark:text-dark-text-secondary text-gray-600'
                               }`}
                             >
                               {item.era}
@@ -206,7 +208,9 @@ export const BrainEvolutionTimeline = () => {
                           </div>
                           <div
                             className={`text-sm ${
-                              isSelected ? 'text-gray-700' : 'text-gray-600 dark:text-dark-text-secondary'
+                              isSelected
+                                ? 'text-gray-700'
+                                : 'dark:text-dark-text-secondary text-gray-600'
                             }`}
                           >
                             {item.period}
