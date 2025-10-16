@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <style>
+    .node {
+      fill: #5c5c5c;
+      opacity: 0.8;
+    }
+    .small-node {
+      fill: #5c5c5c;
+      opacity: 0.6;
+    }
+    .connection {
+      stroke: #5c5c5c;
+      stroke-width: 0.5;
+      opacity: 0.4;
+    }
+  </style>
+  
+  <!-- Connections -->
+  <g class="connections">
+    <!-- Horizontal connections -->
+    <line class="connection" x1="200" y1="250" x2="300" y2="200" />
+    <line class="connection" x1="300" y1="200" x2="400" y2="180" />
+    <line class="connection" x1="400" y1="180" x2="500" y2="200" />
+    <line class="connection" x1="500" y1="200" x2="600" y2="250" />
+    <line class="connection" x1="200" y1="350" x2="300" y2="320" />
+    <line class="connection" x1="300" y1="320" x2="400" y2="300" />
+    <line class="connection" x1="400" y1="300" x2="500" y2="320" />
+    <line class="connection" x1="500" y1="320" x2="600" y2="350" />
+    <line class="connection" x1="200" y1="450" x2="300" y2="430" />
+    <line class="connection" x1="300" y1="430" x2="400" y2="420" />
+    <line class="connection" x1="400" y1="420" x2="500" y2="430" />
+    <line class="connection" x1="500" y1="430" x2="600" y2="450" />
+    
+    <!-- Additional network connections -->
+    <line class="connection" x1="200" y1="250" x2="250" y2="350" />
+    <line class="connection" x1="250" y1="350" x2="300" y2="430" />
+    <line class="connection" x1="300" y1="200" x2="350" y2="280" />
+    <line class="connection" x1="350" y1="280" x2="400" y2="300" />
+    <line class="connection" x1="400" y1="180" x2="400" y2="300" />
+    <line class="connection" x1="400" y1="300" x2="400" y2="420" />
+    <line class="connection" x1="500" y1="200" x2="450" y2="280" />
+    <line class="connection" x1="450" y1="280" x2="400" y2="300" />
+    <line class="connection" x1="600" y1="250" x2="550" y2="350" />
+    <line class="connection" x1="550" y1="350" x2="500" y2="430" />
+    
+    <!-- More connections to create dense network -->
+    <line class="connection" x1="220" y1="270" x2="320" y2="220" />
+    <line class="connection" x1="270" y1="320" x2="370" y2="200" />
+    <line class="connection" x1="320" y1="340" x2="420" y2="220" />
+    <line class="connection" x1="370" y1="370" x2="470" y2="250" />
+    <line class="connection" x1="420" y1="390" x2="520" y2="270" />
+    <line class="connection" x1="470" y1="410" x2="570" y2="290" />
+    <line class="connection" x1="230" y1="400" x2="330" y2="350" />
+    <line class="connection" x1="280" y1="420" x2="380" y2="370" />
+    <line class="connection" x1="330" y1="440" x2="430" y2="390" />
+    <line class="connection" x1="380" y1="460" x2="480" y2="410" />
+    <line class="connection" x1="430" y1="480" x2="530" y2="430" />
+    <line class="connection" x1="480" y1="500" x2="580" y2="450" />
+    
+    <!-- Additional diagonal connections -->
+    <line class="connection" x1="250" y1="200" x2="350" y2="320" />
+    <line class="connection" x1="300" y1="250" x2="400" y2="370" />
+    <line class="connection" x1="350" y1="230" x2="450" y2="350" />
+    <line class="connection" x1="400" y1="220" x2="500" y2="340" />
+    <line class="connection" x1="450" y1="230" x2="550" y2="350" />
+    <line class="connection" x1="500" y1="250" x2="600" y2="370" />
+    <line class="connection" x1="250" y1="400" x2="350" y2="280" />
+    <line class="connection" x1="300" y1="380" x2="400" y2="260" />
+    <line class="connection" x1="350" y1="370" x2="450" y2="250" />
+    <line class="connection" x1="400" y1="360" x2="500" y2="240" />
+    <line class="connection" x1="450" y1="350" x2="550" y2="230" />
+    <line class="connection" x1="500" y1="340" x2="600" y2="220" />
+  </g>
+  
+  <!-- Nodes -->
+  <g class="nodes">
+    <!-- Larger nodes -->
+    <circle class="node" cx="200" cy="250" r="7" />
+    <circle class="node" cx="300" cy="200" r="6" />
+    <circle class="node" cx="400" cy="180" r="8" />
+    <circle class="node" cx="500" cy="200" r="7" />
+    <circle class="node" cx="600" cy="250" r="6" />
+    <circle class="node" cx="200" cy="350" r="6" />
+    <circle class="node" cx="300" cy="320" r="7" />
+    <circle class="node" cx="400" cy="300" r="8" />
+    <circle class="node" cx="500" cy="320" r="7" />
+    <circle class="node" cx="600" cy="350" r="6" />
+    <circle class="node" cx="200" cy="450" r="6" />
+    <circle class="node" cx="300" cy="430" r="7" />
+    <circle class="node" cx="400" cy="420" r="8" />
+    <circle class="node" cx="500" cy="430" r="7" />
+    <circle class="node" cx="600" cy="450" r="6" />
+    
+    <!-- Smaller nodes -->
+    <circle class="small-node" cx="250" cy="220" r="3" />
+    <circle class="small-node" cx="350" cy="190" r="2" />
+    <circle class="small-node" cx="450" cy="190" r="3" />
+    <circle class="small-node" cx="550" cy="220" r="2" />
+    <circle class="small-node" cx="250" cy="330" r="2" />
+    <circle class="small-node" cx="350" cy="310" r="3" />
+    <circle class="small-node" cx="450" cy="310" r="2" />
+    <circle class="small-node" cx="550" cy="330" r="3" />
+    <circle class="small-node" cx="250" cy="440" r="3" />
+    <circle class="small-node" cx="350" cy="425" r="2" />
+    <circle class="small-node" cx="450" cy="425" r="3" />
+    <circle class="small-node" cx="550" cy="440" r="2" />
+    <circle class="small-node" cx="230" cy="280" r="2" />
+    <circle class="small-node" cx="280" cy="240" r="3" />
+    <circle class="small-node" cx="330" cy="210" r="2" />
+    <circle class="small-node" cx="470" cy="210" r="2" />
+    <circle class="small-node" cx="520" cy="240" r="3" />
+    <circle class="small-node" cx="570" cy="280" r="2" />
+    <circle class="small-node" cx="230" cy="380" r="3" />
+    <circle class="small-node" cx="280" cy="340" r="2" />
+    <circle class="small-node" cx="330" cy="330" r="3" />
+    <circle class="small-node" cx="470" cy="330" r="3" />
+    <circle class="small-node" cx="520" cy="340" r="2" />
+    <circle class="small-node" cx="570" cy="380" r="3" />
+    <circle class="small-node" cx="230" cy="480" r="2" />
+    <circle class="small-node" cx="280" cy="450" r="3" />
+    <circle class="small-node" cx="330" cy="440" r="2" />
+    <circle class="small-node" cx="470" cy="440" r="2" />
+    <circle class="small-node" cx="520" cy="450" r="3" />
+    <circle class="small-node" cx="570" cy="480" r="2" />
+  </g>
+</svg>

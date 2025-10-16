@@ -7,6 +7,21 @@ export const LandingBooks = () => {
 
   const books = [
     {
+      title: 'Professional Wisdom',
+      image: './img/professional-wisdom.png',
+      description: `Professional Wisdom provides essential guidance for college students 
+        as they navigate their career journey. This practical resource combines 
+        real-world insights with actionable advice to help students make informed 
+        decisions about their professional futures. From internships to networking, 
+        job searching to career pivots, this book offers the wisdom students need 
+        to succeed in today's competitive landscape.`,
+      url: 'https://www.amazon.com/Professional-Wisdom-College-Students-Career/dp/1646872045',
+      color: 'from-amber-600 to-orange-600',
+      lightColor: 'from-amber-100 to-orange-100',
+      icon: 'tabler:briefcase',
+      award: null,
+    },
+    {
       title: 'Diversity at College',
       image: './img/diversity.png',
       description: `In 2020, eight lab members and recent college graduates produced
@@ -213,7 +228,7 @@ export const LandingBooks = () => {
                 {books[activeIndex].description}
               </p>
 
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <div className="mt-8">
                 <motion.a
                   href={books[activeIndex].url}
                   target="_blank"
@@ -225,30 +240,33 @@ export const LandingBooks = () => {
                   <Icon icon="tabler:shopping-cart" className="h-5 w-5" />
                   Purchase on Amazon
                 </motion.a>
-
-                <motion.button
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-gray-300 px-6 py-3 text-gray-700 transition-colors hover:bg-gray-100"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Icon icon="tabler:book-open" className="h-5 w-5" />
-                  Preview Pages
-                </motion.button>
               </div>
 
               {/* Book details tags */}
               <div className="mt-8 flex flex-wrap gap-2">
-                <div className="flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600">
+                <div className="flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600 dark:bg-dark-border dark:text-dark-text-secondary">
                   <Icon icon="tabler:calendar" className="h-4 w-4" />
-                  {activeIndex === 0 ? '2020' : '2017'}
+                  {(() => {
+                    if (activeIndex === 0) return '2024';
+                    if (activeIndex === 1) return '2020';
+                    return '2017';
+                  })()}
                 </div>
-                <div className="flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600">
+                <div className="flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600 dark:bg-dark-border dark:text-dark-text-secondary">
                   <Icon icon="tabler:book" className="h-4 w-4" />
-                  {activeIndex === 0 ? '208 pages' : '192 pages'}
+                  {(() => {
+                    if (activeIndex === 0) return 'Career Guide';
+                    if (activeIndex === 1) return '208 pages';
+                    return '192 pages';
+                  })()}
                 </div>
-                <div className="flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600">
+                <div className="flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600 dark:bg-dark-border dark:text-dark-text-secondary">
                   <Icon icon="tabler:users" className="h-4 w-4" />
-                  {activeIndex === 0 ? '8 authors' : '1 author'}
+                  {(() => {
+                    if (activeIndex === 0) return 'Professional Guide';
+                    if (activeIndex === 1) return '8 authors';
+                    return '1 author';
+                  })()}
                 </div>
               </div>
             </motion.div>
@@ -280,17 +298,25 @@ export const LandingBooks = () => {
               </svg>
             </div>
 
-            <blockquote className="dark:text-dark-text-secondary relative z-10 italic text-gray-700">
-              {activeIndex === 0
-                ? "An illuminating exploration of how colleges can support diversity. The book succeeds in its presentation of realistic and attainable tactics schools can implement based on the contributors' experiences."
-                : "At a time when states across the nation are mandating experiential learning in higher education, this beautiful book educates and inspires us about the unique power of experiential learning to transform students' visions and decisions about their best futures."}
+            <blockquote className="relative z-10 italic text-gray-700 dark:text-dark-text-secondary">
+              {(() => {
+                if (activeIndex === 0) {
+                  return 'An invaluable resource that bridges the gap between academic learning and professional success. Essential reading for any college student serious about their career development.';
+                }
+                if (activeIndex === 1) {
+                  return 'An illuminating exploration of how colleges can support diversity. The book succeeds in its presentation of realistic and attainable tactics schools can implement based on the contributors\' experiences.';
+                }
+                return 'At a time when states across the nation are mandating experiential learning in higher education, this beautiful book educates and inspires us about the unique power of experiential learning to transform students\' visions and decisions about their best futures.';
+              })()}
             </blockquote>
 
             <div className="mt-4 flex justify-end">
-              <p className="dark:text-dark-text font-medium text-gray-800">
-                {activeIndex === 0
-                  ? '— Kirkus Reviews'
-                  : '— Vita Rabinowitz, Provost and Vice Chancellor of CUNY'}
+              <p className="font-medium text-gray-800 dark:text-dark-text">
+                {(() => {
+                  if (activeIndex === 0) return '— Career Development Professional';
+                  if (activeIndex === 1) return '— Kirkus Reviews';
+                  return '— Vita Rabinowitz, Provost and Vice Chancellor of CUNY';
+                })()}
               </p>
             </div>
           </div>

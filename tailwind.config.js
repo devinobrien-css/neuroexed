@@ -39,6 +39,7 @@ module.exports = {
       backgroundImage: {
         diversity: "url('./shared/assets/img/diversity.png')",
         education: "url('./shared/assets/img/education.png')",
+        'professional-wisdom': "url('./shared/assets/img/professional-wisdom.png')",
         landing: "url('./shared/assets/img/standard-bg.jpeg')",
         'brain-network': "url('./shared/assets/img/brain-art.png')",
       },
