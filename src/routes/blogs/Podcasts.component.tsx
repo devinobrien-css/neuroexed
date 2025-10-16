@@ -6,11 +6,11 @@ const links = [
     url: 'https://podcasts.apple.com/us/podcast/experienced/id1487375306',
     icon: 'cib:apple-podcasts',
   },
-  {
-    name: 'Simplecast',
-    url: 'https://experienced.simplecast.com/',
-    icon: 'simple-icons:podcastaddict',
-  },
+  // {
+  //   name: 'Simplecast',
+  //   url: 'https://experienced.simplecast.com/',
+  //   icon: 'simple-icons:podcastaddict',
+  // },
   {
     name: 'Spotify',
     url: 'https://open.spotify.com/show/3M2kS7kRCeL4STuuSFAoXd?si=3a8851e7904c40d8',
@@ -44,9 +44,7 @@ const Podcasts = () => {
           />
           <div className="p-4 sm:py-0">
             <h2 className="text-4xl font-light ">ExperiencED</h2>
-            <p className="text-xl font-light">
-              Mary Churchill, Jim Stellar, Adrienne Dooley
-            </p>
+            <p className="text-xl font-light">Jim Stellar, Adrienne Dooley</p>
             <br />
             <div className="flex flex-wrap gap-4">
               {links.map((link) => (
@@ -83,7 +81,7 @@ const Podcasts = () => {
         </p>
         <br />
         <br />
-        <div className="mx-auto md:w-3/4">
+        {/* <div className="mx-auto md:w-3/4">
           <h2 className="text-4xl font-light">Latest Episodes</h2>
           <p className="text-xl font-light">
             Click on the episode to listen to the podcast.
@@ -112,7 +110,7 @@ const Podcasts = () => {
           <br />
           <br />
           <br />
-        </div>
+        </div> */}
       </div>
     </div>
   );

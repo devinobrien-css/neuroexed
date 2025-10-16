@@ -18,7 +18,7 @@ export const LandingBooks = () => {
       url: 'https://www.amazon.com/Professional-Wisdom-College-Students-Career/dp/1646872045',
       color: 'from-amber-600 to-orange-600',
       lightColor: 'from-amber-100 to-orange-100',
-      icon: 'tabler:briefcase',
+      icon: 'tabler:compass',
       award: null,
     },
     {

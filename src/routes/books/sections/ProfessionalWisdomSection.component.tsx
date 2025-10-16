@@ -128,7 +128,7 @@ const ProfessionalWisdomSection = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
             >
-              <Icon icon="tabler:briefcase" className="h-4 w-4" />
+              <Icon icon="tabler:compass" className="h-4 w-4" />
               Career Development Guide
             </motion.div>
 
